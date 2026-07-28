@@ -1,0 +1,735 @@
+aid: amex-gbt
+name: American Express Global Business Travel
+review:
+  question: Does American Express Global Business Travel publish a public developer
+    surface, documented APIs and machine-readable API contracts - and what would it
+    cost a corporate travel programme to leave?
+  answer: true
+  date: '2026-07-28'
+  reviewer: API Evangelist
+  method: direct HTTP probing of amexglobalbusinesstravel.com, amexgbt.com,
+    egencia.com, apis.egencia.com, apis-us-west-2.lab.egencia.cloud and candidate
+    developer/api/docs subdomains; recovery of the developer center's own
+    api-summaries feed; anonymous harvest and parse of every OpenAPI document it
+    points at; retrieval of the public Egencia Postman workspace via the Postman
+    public collection API; DNS resolution checks; GitHub organisation checks
+findings:
+  summary: |
+    Amex GBT is a travel management company - the intermediary layer of the travel
+    distribution chain, not a supplier of inventory. It aggregates air, hotel, rail,
+    car and ground content sourced through the GDS layer, through NDC and through
+    direct supplier connections, and resells it to corporate travel programmes with
+    policy, approval, duty-of-care, expense and reporting wrapped around it. NYSE
+    GBTG, headquartered in New York, operating in more than 140 countries, with
+    Egencia acquired May 2021, Ovation January 2021, Hogg Robinson Group February
+    2018 and CWT completed 2 September 2025.
+
+    The company's API programme is entirely the Egencia platform. There is no separate
+    Amex GBT developer portal. apitools.amexgbt.com, which older search indexes
+    describe as an Amex GBT developer portal, does not resolve at all (NXDOMAIN on
+    2026-07-28) - it is dead. developer.amexgbt.com and api.amexgbt.com resolve to
+    Cloudflare but return 403 to every automated client.
+
+    Everything on the amexglobalbusinesstravel.com and egencia.com web properties is
+    behind Cloudflare bot protection and returns HTTP 403 to curl, to WebFetch and to
+    a reader proxy alike - including robots.txt, llms.txt and the developer center
+    itself. That is a browser-only gate, not an authentication gate. It means the
+    human-facing developer center could not be confirmed with a 200, and it is the
+    reason portalConfirmed is recorded false.
+
+    The technical surface behind it, however, is wide open. The developer center is a
+    thin client over a JSON content service, and that service is served from
+    apis.egencia.com, which is NOT behind the same bot gate. Recovering the developer
+    center's own catalogue feed (/developer-center/v1/api-summaries) produced a list
+    of six API families and twelve named APIs. Every documentation_link in that feed
+    resolves anonymously, with no key and no click-through, to either a rich JSON
+    api-info document or - following one more hop - a complete OpenAPI 3.1.0
+    definition. Thirteen product-level OpenAPI documents and four service-level
+    OpenAPI documents were harvested this way, all HTTP 200, all valid JSON, all
+    parsing cleanly. That is an unusually good machine-readable posture for a
+    corporate travel intermediary, and it is almost certainly unintentional: the
+    Cloudflare policy that blocks the marketing site was never applied to the API
+    gateway that serves the docs.
+
+    The runtime is a different story. Every production endpoint probed anonymously -
+    /openconnect/api/scim/v2/Users, /bi/api/v1/transactions, /dutyofcare/api/v1/bookings,
+    /bi/api/base/version - returns HTTP 401. Authentication is OAuth 2.0 client
+    credentials against https://apis.egencia.com/auth/v1/token, and the BI API's own
+    documentation states the gate in plain words: "The values for client id and client
+    secret will be provided to the Client after on-boarding to Egencia API platform."
+    There is no self-serve signup, no sandbox key, no interactive try-it. The
+    sandbox that exists - apis-us-west-2.lab.egencia.cloud, discovered in the public
+    Egencia Postman workspace - is live and returns 401 to unauthenticated callers.
+
+    On the switching-cost question the picture is genuinely mixed, and that is the
+    finding. The identity surface is a real open standard: the User Sync API is SCIM
+    2.0 across three concurrent versions, with SCIM ListResponse and Error message
+    schemas, a /v2/Schemas discovery endpoint, and standard filter syntax. A customer
+    who provisions travellers into Egencia over SCIM has done work that transfers to
+    any other SCIM consumer. But it is SCIM plus an Egencia extension -
+    urn:ietf:params:scim:schemas:extension:egencia:2.0:User carrying companyId,
+    singleSignOnId, arrangers, approvers and customDataFields - and the extension is
+    where the programme's actual configuration lives.
+
+    Everything else is proprietary. The booking, approval, cancellation, receipt,
+    expense, validation, duty-of-care and reporting contracts are bespoke Egencia
+    shapes. There is no OpenTravel/OTA message, no HTNG interface, no IATA NDC schema
+    and no NDC endpoint anywhere in the estate. NDC appears exactly once, as a boolean
+    reporting attribute: the schema "NDC (New Distribution Capability) Details" with a
+    single property is_ndc, described as "Indicates whether an air booking was done via
+    NDC (New Distribution Capability) or not". That is the whole NDC posture - Amex GBT
+    consumes NDC content as a TMC and flags it in reporting; it publishes no NDC API of
+    its own, and none would be expected of an agency rather than a carrier.
+
+    Three of the thirteen contracts are SPIs rather than APIs - Validation, Expense and
+    Approval Customisation - meaning Egencia calls the customer, and the customer must
+    build and host the web service. An SPI raises switching cost even when the contract
+    is published openly, because the integration asset is code the customer wrote to
+    Egencia's shape and cannot repoint at a competitor.
+
+    The exit path is better than most of this sector. The BI Transactions API is a
+    genuine, documented bulk export of the customer's own transaction history: POST
+    /v1/transactions with a date range and filters returns pagination metadata, and GET
+    /v1/transactions/{reportId} pages through it, across air, hotel, car, train, ground
+    and fee lines of business with segment, leg and ticketing detail. The response
+    schemas carry the portable industry keys - pnr, record_locator, marketing_airline,
+    operating_carrier, ticketing_carrier, hotel_chain_code, ticket_code,
+    confirmation_number, invoice_number - so a departing customer can carry its
+    booking history to a successor TMC in industry terms rather than Egencia terms.
+    Separately, every service exposes DELETE /gdpr?user_id=, a per-user erasure
+    operation. That is a deletion right, not a portability right, and it should not be
+    mistaken for one.
+
+    What does not travel is the programme configuration: Egencia company_id,
+    traveler_id, booking_id, item_id, itinerary_number, CDF definition and value IDs,
+    the SCIM userId, and the approval hierarchy modelled in the Egencia extension
+    schema. Rebuilding those against a successor platform is the migration project.
+  probes:
+    - url: https://www.amexglobalbusinesstravel.com/
+      status: 403
+      note: Cloudflare "Attention Required!" interstitial to every automated client,
+        with and without a browser user agent. Same for the apex, which redirects here.
+    - url: https://amexgbt.com/
+      status: 403
+      note: Redirects to https://www.amexglobalbusinesstravel.com/, then 403.
+    - url: https://www.amexglobalbusinesstravel.com/egencia-developer-center/
+      status: 403
+      note: The developer center itself. Cloudflare bot gate, not an auth gate - a
+        reader proxy returned the "Performing security verification" page. Could not
+        be confirmed with a 200 from any automated client.
+    - url: https://www.amexglobalbusinesstravel.com/egencia-developer-center/v1/api-summaries
+      status: 403
+      note: Live catalogue feed, blocked to automated clients. Recovered from the
+        Internet Archive capture of the pre-rebrand URL below.
+    - url: https://web.archive.org/web/20250510070921if_/https://www.egencia.com/developer-center/v1/api-summaries
+      status: 200
+      note: The developer center's own API catalogue - six families (User Interface,
+        Data Customisation, Booking Details, Approval Workflows, Duty of Care, Data
+        reporting) and twelve named APIs, each with an id, a description and a
+        documentation_link. This is what unlocked the harvest.
+    - url: https://www.egencia.com/developer-center/
+      status: 403
+      note: Redirects to /egencia-developer-center/ on amexglobalbusinesstravel.com.
+        Confirms the Egencia developer center is now an Amex GBT property.
+    - url: https://developer.egencia.com/
+      status: 403
+      note: Resolves via Cloudflare and redirects to /login - a login shell, not a
+        self-serve portal.
+    - url: https://api.egencia.com/
+      status: 403
+      note: Resolves and redirects to /login.
+    - url: https://apitools.amexgbt.com/
+      status: 0
+      note: NXDOMAIN. Older search indexes describe this as the Amex GBT developer
+        portal. It no longer exists.
+    - url: https://developer.amexgbt.com/
+      status: 403
+      note: Resolves to Cloudflare (194.36.55.5, 194.36.55.251). Cloudflare
+        interstitial only; no content obtainable.
+    - url: https://api.amexgbt.com/
+      status: 403
+      note: Resolves to Cloudflare. Interstitial only.
+    - url: https://developer.amexglobalbusinesstravel.com/
+      status: 0
+      note: Does not resolve. Same for developers., docs. and api. on that domain.
+    - url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+      status: 200
+      note: Public JSON api-info document, 38,539 bytes. Not behind the Cloudflare bot
+        gate. States the SCIM 2.0 conformance verbatim.
+    - url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+      status: 200
+    - url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+      status: 200
+    - url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+      status: 200
+    - url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+      status: 200
+    - url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+      status: 200
+    - url: https://apis.egencia.com/bi/v1/api-info
+      status: 200
+      note: Contains the onboarding gate verbatim and the full BI transaction type
+        catalogue.
+    - url: https://apis.egencia.com/dutyofcare/v1/api-info
+      status: 200
+    - url: https://apis.egencia.com/company/v1/api-info?name=company-details
+      status: 200
+    - url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+      status: 200
+      note: On www.egencia.com but NOT blocked - the /openconnect-*-service paths
+        bypass the bot gate that blocks the rest of the host.
+    - url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+      status: 200
+    - url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+      status: 200
+    - url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+      status: 200
+    - url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+      status: 200
+      note: OpenAPI 3.1.0, "Egencia User Sync API" v1.0, 204,073 bytes. Tags SCIM User
+        Sync V1/V2/V3. securitySchemes OAuth2 clientCredentials, tokenUrl
+        https://apis.egencia.com/auth/v1/token.
+    - url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+      status: 200
+      note: OpenAPI 3.1.0, 164,210 bytes, 7 paths.
+    - url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+      status: 200
+      note: OpenAPI 3.1.0, 30,597 bytes, 4 paths.
+    - url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+      status: 200
+      note: OpenAPI 3.1.0, 13,437 bytes, 2 paths.
+    - url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+      status: 200
+      note: OpenAPI 3.1.0, 18,088 bytes, 4 paths.
+    - url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+      status: 200
+      note: OpenAPI 3.1.0, 3,080 bytes, 1 path.
+    - url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+      status: 200
+      note: OpenAPI 3.1.0, "BI API" v1.0, 220,683 bytes, 9 paths. info.description
+        carries the Terms and Conditions quoted below.
+    - url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+      status: 200
+      note: OpenAPI 3.1.0, 24,800 bytes, 2 paths.
+    - url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+      status: 200
+      note: OpenAPI 3.1.0, 13,197 bytes, 4 paths.
+    - url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+      status: 200
+      note: OpenAPI 3.1.0, 26,355 bytes, 2 paths. No securitySchemes declared.
+    - url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+      status: 200
+      note: OpenAPI 3.1.0, 6,610 bytes, 1 path. SPI - Egencia calls the customer.
+    - url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+      status: 200
+      note: OpenAPI 3.1.0, 245,642 bytes, 2 paths. Server paths are placeholders
+        (/some.base.path/...) because the consumer hosts the endpoint.
+    - url: https://apis.egencia.com/approval/docs/api-docs
+      status: 200
+      note: OpenAPI 3.1.0, "Openconnect Approval Service", 15,984 bytes, 1 path.
+    - url: https://apis.egencia.com/openconnect/docs/api-docs
+      status: 200
+      note: Service-level definition, 586,811 bytes, 36 paths - the union of the
+        product APIs plus /scim/v1/admin-users, /v2/Schemas, /v1/resolve, /gdpr and
+        /base/liveness|readiness|version.
+    - url: https://apis.egencia.com/bi/docs/api-docs
+      status: 200
+      note: Service-level definition, 225,893 bytes, 14 paths - adds /gdpr and
+        /v1/sensitive/audit/clean.
+    - url: https://apis.egencia.com/dutyofcare/docs/api-docs
+      status: 200
+      note: Service-level definition, 29,990 bytes, 7 paths.
+    - url: https://apis.egencia.com/company/docs/api-docs
+      status: 200
+      note: Service-level definition, 24,785 bytes, 10 paths - adds
+        /v1/billing-entity/thirdparty/response/gbt-customer and
+        /v1/companies/{company_id}/agent-assist-notes.
+    - url: https://apis.egencia.com/openconnect/docs/api-docs/swagger-config
+      status: 500
+      note: '{"error":{"code":"EGE-ER-OS-5001",...}}. The swagger-config index that
+        would enumerate every group is broken; the group names had to be recovered
+        from the api-summaries feed instead.'
+    - url: https://apis.egencia.com/openconnect/api/scim/v2/Users
+      status: 401
+      note: Runtime endpoint, live and gated.
+    - url: https://apis.egencia.com/bi/api/v1/transactions
+      status: 401
+    - url: https://apis.egencia.com/dutyofcare/api/v1/bookings
+      status: 401
+    - url: https://apis.egencia.com/bi/api/base/version
+      status: 401
+    - url: https://apis.egencia.com/auth/v1/token
+      status: 404
+      note: 404 on GET with a JSON error body - the token endpoint is POST-only and
+        the host is live.
+    - url: https://apis-us-west-2.lab.egencia.cloud/
+      status: 403
+      note: The sandbox/lab region host, discovered in the public Egencia Postman
+        workspace as the collection's OAuth accessTokenUrl. Cloudflare at the root.
+    - url: https://apis-us-west-2.lab.egencia.cloud/bi/api/v1/docs/technical-contract
+      status: 401
+      note: Live and gated - confirms the lab environment is real, not a placeholder.
+    - url: https://apis-eu-west-1.lab.egencia.cloud/
+      status: 403
+      note: Resolves - a second lab region exists.
+    - url: https://www.postman.com/_api/collection/23466972-7b3a5dbc-feac-4537-a0c1-d119f23b3596?populate=true
+      status: 200
+      note: Public "Egencia API" Postman collection, 168 requests in 8 top-level
+        folders (Access Token, Approval, Company CDF, Duty Of Care, Expense, Receipts,
+        Reporting, User Sync), collection-level OAuth2 client_credentials against
+        https://apis-us-west-2.lab.egencia.cloud/auth/v1/token. Publisher handle
+        egenciaapi, created 2022-09-30, updated 2025-01-13, not Postman-verified.
+    - url: https://apis.egencia.com/.well-known/security.txt
+      status: 403
+    - url: https://www.amexglobalbusinesstravel.com/.well-known/security.txt
+      status: 403
+      note: Cloudflare gate - could not be confirmed either way.
+    - url: https://www.amexglobalbusinesstravel.com/robots.txt
+      status: 403
+    - url: https://www.amexglobalbusinesstravel.com/llms.txt
+      status: 403
+    - url: https://www.egencia.com/llms.txt
+      status: 403
+    - url: https://api.github.com/orgs/egencia
+      status: 404
+      note: No Egencia GitHub organisation.
+    - url: https://api.github.com/orgs/amexgbt
+      status: 404
+    - url: https://api.github.com/orgs/amex-gbt
+      status: 404
+      note: github.com/americanexpress exists but is American Express the card
+        issuer, a different corporate entity, and is deliberately not listed here.
+    - url: https://www.linkedin.com/company/american-express-global-business-travel/
+      status: 200
+switchingCost:
+  interfaceShape:
+    value: standard-plus-proprietary
+    standardsNamed:
+      - name: SCIM 2.0 (System for Cross-domain Identity Management, RFC 7643 / RFC 7644)
+        where: Egencia User Sync API - /scim/v1/users, /scim/v2/Users, /scim/v3/Users,
+          plus /v2/Schemas discovery on the service-level definition
+        status: implemented and load-bearing. Egencia's own api-info states the API
+          "supports SCIM, or System for Cross-domain Identity Management, an open
+          standard that allows automating user provisioning using REST API and JSON"
+          and "follows version 2.0 of the SCIM protocol". Standard SCIM message
+          schemas are used - urn:ietf:params:scim:api:messages:2.0:ListResponse and
+          urn:ietf:params:scim:api:messages:2.0:Error - as is the standard enterprise
+          extension urn:ietf:params:scim:schemas:extension:enterprise:2.0:User.
+      - name: SCIM Egencia extension schema
+        where: urn:ietf:params:scim:schemas:extension:egencia:2.0:User
+        status: proprietary extension carrying companyId, singleSignOnId, arrangers,
+          approvers and customDataFields. This is the vendor-specific half - the
+          programme's actual configuration lives in attributes no other SCIM consumer
+          understands.
+      - name: OAuth 2.0 client credentials grant
+        where: securitySchemes.OAuth2 in eleven of the thirteen contracts, tokenUrl
+          https://apis.egencia.com/auth/v1/token, credentials passed as HTTP Basic
+          base64(client_id:client_secret), token TTL returned as expires_in
+        status: implemented; a standard authentication mechanism, which makes the
+          client library portable but not the data model
+      - name: OpenAPI 3.1.0
+        where: all seventeen harvested definitions
+        status: implemented, published anonymously, and machine-readable. This is the
+          single best thing about Amex GBT's API posture.
+      - name: HAL-style _links hypermedia
+        where: Receipt SPI payload (_links.receipt.href) and BI transaction pagination
+          metadata
+        status: partially implemented as a response convention
+    standardsAbsent:
+      - IATA NDC - no NDC schema, no NDC endpoint, no certification level claimed
+        anywhere. NDC appears only as the reporting attribute is_ndc.
+      - OpenTravel / OTA XML or OTA 2.0 - no reference found in any of the seventeen
+        contracts or any api-info document
+      - HTNG - no reference found
+      - IATA Resolution 787 / Offer-Order data model - no reference found
+      - IATA ONE Order - no reference found
+      - GIATA IDs for hotel property matching - no reference found; hotel_chain_code
+        is present but no property-level industry identifier is
+      - AsyncAPI, GraphQL - none published, despite three of the thirteen contracts
+        being push/webhook SPIs that would be natural AsyncAPI candidates
+    evidence: >-
+      Eleven of the thirteen published contracts describe resources that exist only in
+      Egencia's model - bookings and trip items keyed by Egencia IDs, custom data
+      fields keyed by Egencia definition IDs, approval levels one and two, receipts,
+      BI transaction reports. A consumer integrating against them writes code that
+      cannot be repointed at BCD, CTM, Navan or Concur without a rewrite. The SCIM
+      surface is the honourable exception, and it is the only place where a genuine
+      open standard carries real weight.
+  secondSource:
+    value: alternatives-with-migration
+    alternativesConsidered:
+      - name: BCD Travel
+        note: The nearest like-for-like global TMC. Same class of service, entirely
+          different API surface.
+      - name: CWT
+        note: Was the obvious second source until Amex GBT completed its acquisition
+          of CWT on 2 September 2025. One fewer independent alternative in the global
+          multinational TMC tier - directly relevant to this assessment.
+      - name: Corporate Travel Management (CTM)
+        note: Global TMC with its own platform and integration surface.
+      - name: Navan (formerly TripActions)
+        note: The strongest software-first substitute for Egencia specifically, with a
+          published API and a similar expense-plus-travel proposition.
+      - name: TravelPerk
+        note: SMB and mid-market substitute with its own API.
+      - name: SAP Concur Travel
+        note: Substitute for the booking and policy layer, and already the destination
+          for many Egencia Expense SPI feeds - which cuts both ways, since a customer
+          using Concur as the system of record is less locked in.
+      - name: Direct GDS or NDC aggregation (Sabre, Amadeus, Travelport, Duffel, Kyte)
+        note: Only viable for an organisation prepared to become its own agency,
+          including IATA/ARC accreditation. Not a realistic swap for a corporate
+          travel department.
+    reasoning: >-
+      Real alternatives exist in every tier, and the corporate travel management
+      market is not a monopoly - so this is not few-alternatives and certainly not
+      no-alternative. But nothing is a drop-in. Moving means renegotiating supplier and
+      hotel programme agreements, changing agency of record and the IATA/ARC agency
+      number attached to the programme, re-provisioning every traveller profile,
+      re-modelling the entire custom-data-field taxonomy that carries cost-centre and
+      project coding, rebuilding the approval hierarchy, rewriting the two or three
+      SPI web services the customer hosts for validation, expense and approval
+      customisation, and re-pointing the reporting warehouse at a different schema.
+      The SCIM half of the work transfers; the other eleven contracts do not. That is
+      the definition of alternatives-with-migration.
+  exitPath:
+    value: bulk-export-documented
+    operationCited: POST https://apis.egencia.com/bi/api/v1/transactions - creates a
+      filtered transaction report over a date range and returns pagination metadata;
+      GET https://apis.egencia.com/bi/api/v1/transactions/{reportId} pages the result.
+      Line-of-business variants at /v1/transactions/air, /hotel, /car, /train, /ground
+      and /fees.
+    detail: >-
+      Egencia describes the BI Transactions API as a "generic and secure solution to
+      allow clients to access their previous booking transaction data dynamically for
+      different dates and other user query filters", covering all lines of business at
+      summary level and air, hotel, car, train, ground and fee transactions
+      individually, including air segment and ticketing detail and train segment and
+      leg detail. This is a real, documented, self-service bulk export of the
+      customer's own history - rare in this sector and the reason the exit path is
+      recorded as bulk-export-documented rather than export-on-request.
+    limits: >-
+      It exports transactions, not configuration. There is no documented export of user
+      profiles in bulk (SCIM supports GET /scim/v2/Users with filters and pagination,
+      which is a workable substitute), no export of custom data field definitions
+      beyond per-company GET, no export of approval hierarchies, and no documented
+      archive of receipt or invoice documents in bulk. Egencia's own guidance also
+      pushes consumers toward incremental daily pulls - "retrieve data for consecutive
+      dates rather than fixed periods ... only retrieve historical data as necessary" -
+      which is an operational constraint on a full historical extraction.
+    gdprOperation: >-
+      DELETE /gdpr?user_id={id} is published on every service-level definition -
+      openconnect, bi, dutyofcare and company. It is an erasure operation, not a
+      portability operation. It deletes a user's data; it does not hand it back.
+      Recording it here so it is not mistaken for a data-portability endpoint. BI and
+      Duty of Care additionally expose /v1/sensitive/audit/clean.
+    accessCondition: The export requires live client credentials, which are revoked on
+      account closure. A customer must run the export before the relationship ends,
+      not after.
+  identifierPortability:
+    value: portable PNR/record locator, IATA agency and carrier codes and hotel chain
+      codes travel; Egencia itinerary, booking, item, company, traveller and CDF keys
+      do not
+    portable:
+      - name: pnr
+        source: BI Transactions API, schema "Unique transaction identification details"
+        definition: '"The booking reference code provided by the vendor. Also known as
+          a PNR (passenger name record) code. This is typically a 6 character reference
+          code"'
+      - name: record_locator
+        source: same schema
+        definition: identical definition to pnr - the supplier-side booking reference
+      - name: confirmation_number
+        source: same schema
+        definition: '"A unique number generated by supplier that identifies the
+          booking."'
+      - name: ticket_code (ticket_number deprecated in its favour)
+        source: same schema, and Train segment details
+      - name: IATA agency code by point of sale
+        source: GET https://apis.egencia.com/bi/api/v1/egencia_iata, schema "IATA Code
+          response" with properties iata and pos
+        definition: '"IATA Code for the particular Point of Sale" - the agency
+          accreditation number attached to the programme in each market'
+      - name: marketing_airline, operating_carrier_segment, ticketing_carrier,
+          carrier_code, airline_alliance, low_cost_carrier
+        source: Air transaction and Air segment schemas - IATA airline designators
+      - name: hotel_chain_code
+        source: Hotel transaction response - '"The chain code associated with the
+          hotel."' Chain-level only; no GIATA or property-level industry ID is exposed.
+      - name: invoice_number
+        source: '"The invoice number associated with the travel transaction being
+          reported on."'
+    nonPortable:
+      - name: itinerary_number
+        note: '"The Egencia itinerary number associated with the travel transaction
+          being reported on." Egencia''s own key, explicitly labelled as such.'
+      - name: booking_id and item_id
+        note: The primary keys of every booking, approval, cancellation and receipt
+          operation. Example from the published Receipt SPI payload - booking_id
+          "8000-2573-464", item_id "86a508692d9282afa0d96e5f6af".
+      - name: company_id and organization_parent_id
+        note: Egencia account keys, required path parameters on the CDF API and present
+          in every SPI payload.
+      - name: traveler_id and SCIM userId
+        note: Egencia-issued user keys. The SCIM extension also carries singleSignOnId,
+          which is customer-controlled and therefore more portable.
+      - name: CDF definitionId and valueId
+        note: The keys under which a customer's own cost-centre, project-code and
+          reason-for-travel taxonomy is stored. This is the customer's data in
+          Egencia's namespace.
+      - name: resourceId / reportId
+        note: Opaque UUIDs for Duty of Care and BI pagination resources.
+    reading: >-
+      The reporting layer was designed to be handed to a third party - it speaks the
+      industry's identifiers. The transactional layer was designed to be operated by
+      Egencia - it speaks Egencia's. A departing customer keeps its booking history in
+      a form a successor TMC can read; it does not keep its programme configuration.
+  contractualLockIn:
+    value: no minimum term, exclusivity, fee schedule or termination notice is
+      published; Egencia reserves unilateral amendment of the API terms and imposes
+      the upgrade timetable
+    verbatim:
+      - source: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+          (OpenAPI info.description, "Terms & Conditions")
+        clause: unilateral amendment
+        text: >-
+          "By accepting the terms and conditions, you acknowledge and agree that
+          Egencia have the right, in its sole discretion, to modify these terms.
+          Egencia will notify you about material changes to this Agreement by sending a
+          notice to the email address, fax number, or other address that you provided
+          to us or by placing a prominent notice on the APIs and SPIs. Customers will be
+          responsible for reviewing and becoming familiar with any such modifications."
+      - source: same
+        clause: version upgrade obligation
+        text: >-
+          "Egencia will notify Consumer and Shared Client of the availability of new
+          major versions and provide the timeframe for the Consumer to upgrade."
+      - source: same
+        clause: copyright over the documentation itself
+        text: >-
+          "All details on this document are copyrighted and are protected by Egencia
+          copyright laws. Any unauthorized use of any part of this document may violate
+          copyright laws and may lead to legal actions."
+      - source: same, "Versioning"
+        clause: breaking-change scope
+        text: >-
+          "Egencia will release new version of the software with backward compatibility
+          only when there is significant change(s). These changes can be structural, and
+          can contain enhancements, major bug fixes, or change of behavior, endpoint
+          changes, new fields added, or fields removed."
+      - source: https://apis.egencia.com/bi/v1/api-info
+        clause: credential issue is conditional on onboarding
+        text: >-
+          "The values for client id and client secret will be provided to the Client
+          after on-boarding to Egencia API platform."
+    notPublished:
+      - minimum term or commitment period
+      - exclusivity or full-content clause
+      - per-transaction, per-segment or per-call fees, and API pricing of any kind
+      - termination notice period
+      - revocation-on-account-closure language (though credentials are plainly tied to
+        an active client relationship)
+      - rate limits or quotas - the BI documentation announces a "rate limits" section
+        that is never actually populated with numbers
+      - service level agreement or uptime commitment
+      - deprecation policy with dated sunset windows
+      - an acceptable use policy or data licence for API responses
+    reading: >-
+      The real commercial terms of an Amex GBT or Egencia relationship live in the
+      negotiated master services agreement, which is not published and cannot be cited.
+      What IS published is a short terms block embedded in the OpenAPI documents
+      themselves, and it is one-sided in the ordinary way - Egencia may change the
+      terms at its sole discretion and sets the timetable on which the customer must
+      upgrade. Nothing verifiable was found about minimum terms, exclusivity or
+      termination, and nothing has been inferred.
+  distributionModel:
+    value: aggregator-reseller
+    detail: >-
+      Amex GBT is a travel management company - the buy-side intermediary. It does not
+      own inventory. It aggregates supplier content and resells it to corporate travel
+      programmes with policy, approval, duty-of-care, expense and reporting layered on
+      top, and it earns transaction fees and supplier commissions rather than fares.
+      Its own air content is GDS-intermediated in the classic way, which the published
+      schemas make plain - PNR and record locator, marketing, operating and ticketing
+      carrier codes, ticket codes, and an IATA agency number per point of sale
+      retrievable from GET /v1/egencia_iata. The APIs it publishes are not distribution
+      APIs at all - there is no shopping, offer, pricing, order, fulfilment or ticketing
+      endpoint anywhere in the estate. Booking happens in Egencia's own web checkout;
+      the APIs govern who may book, under what codes, and what data comes back
+      afterwards.
+    ndcPosture: >-
+      No NDC certification level is claimed and no NDC API is published - which is the
+      expected posture for an agency rather than a carrier, since IATA NDC certification
+      applies to airlines and to aggregators/IT providers, not to a TMC's own corporate
+      API. NDC appears exactly once in the entire published surface, in the BI
+      Transactions API, as the schema "NDC (New Distribution Capability) Details" with a
+      single string property is_ndc - "Indicates whether an air booking was done via NDC
+      (New Distribution Capability) or not". Amex GBT therefore consumes NDC content and
+      reports on it, and gives its corporate customers the ability to distinguish
+      NDC-sourced air spend from GDS-sourced air spend in their own reporting. Nothing
+      published states whether GDS bookings carry a surcharge; no fee schedule of any
+      kind is published.
+    productFamiliesRepresented: >-
+      Egencia's own segmentation, faithfully reproduced in apis.yml, is six families -
+      User Interface (User Sync, Context SSO), Data Customisation (Company Info, Company
+      CDF, Validation SPI), Booking Details (Expense SPI, Booking API, Cancellation and
+      Deletion), Approval Workflows (Approval API, Approval Customisation SPI, Receipts),
+      Duty of Care, and Data Reporting. Note what is absent relative to a distribution
+      platform - no search/shopping, no offers and pricing, no order creation, no
+      payment, no fulfilment or ticketing, no loyalty, no content and imagery, no
+      availability and rates. Amex GBT does not expose the booking funnel over an API at
+      all.
+  accessGate:
+    value: customer-account-required
+    developerMustSign: >-
+      There is no signup form, no sandbox key and no interactive try-it anywhere. The
+      published documentation and the seventeen OpenAPI contracts are fully public and
+      anonymous - a prospective integrator can read and code-generate against the entire
+      surface before committing, which is genuinely good. But to call anything, a
+      developer must be, or be working on behalf of, an onboarded Egencia corporate
+      client or contracted partner. Egencia states it directly in the BI API
+      documentation - "The values for client id and client secret will be provided to
+      the Client after on-boarding to Egencia API platform." Those credentials are then
+      exchanged for a bearer token at https://apis.egencia.com/auth/v1/token using the
+      OAuth 2.0 client credentials grant with HTTP Basic
+      base64(client_id:client_secret); tokens expire and must be renewed, with the BI
+      guidance noting a one-hour lifetime. No IATA or ARC accreditation is required of
+      the developer - Amex GBT holds the accreditation, which is precisely the service
+      being sold - so this is a commercial customer gate, not an
+      accredited-or-licensed gate.
+    portalConfirmed: false
+    portalUrl: https://www.amexglobalbusinesstravel.com/egencia-developer-center/
+    portalNote: >-
+      The Egencia Developer Center is real, is Amex GBT's own property, and is the
+      canonical home of this API programme - its catalogue feed, its api-info documents
+      and its OpenAPI definitions were all retrieved live. It is recorded as not
+      confirmed for two independent reasons. First, every HTML page on
+      amexglobalbusinesstravel.com and egencia.com returns HTTP 403 from Cloudflare to
+      any automated client, so no 200 could be obtained from the portal itself. Second,
+      and more importantly, it is not a self-serve portal - there is no registration,
+      no key issue and no sandbox available without an Egencia commercial relationship.
+      developer.egencia.com redirects to /login, which is a partner login shell, exactly
+      the case the confirmation test is meant to exclude.
+  agentReadiness:
+    llmsTxt: not confirmable - /llms.txt returns 403 from the Cloudflare gate on both
+      www.amexglobalbusinesstravel.com and www.egencia.com rather than a clean 404
+    mcp: none published
+    note: >-
+      Seventeen valid OpenAPI 3.1.0 documents retrievable anonymously means an agent or
+      code generator can be built against this surface without any prior relationship -
+      which is a materially better agent-readiness position than most travel
+      intermediaries. What blocks an agent is the runtime credential, not the contract.
+      No machine-readable terms, rate limits or scopes are published, so an agent cannot
+      check what it is allowed to do before calling.
+sources:
+  - url: https://www.amexglobalbusinesstravel.com/egencia-developer-center/
+    type: DeveloperPortal
+    note: The developer center. Blocked to automated clients by Cloudflare; recorded
+      as the canonical portal URL on the strength of its own catalogue feed and
+      documentation endpoints.
+  - url: https://web.archive.org/web/20250510070921if_/https://www.egencia.com/developer-center/v1/api-summaries
+    type: Catalog
+    note: Egencia's own API catalogue feed, captured 2025-05-10. Six families, twelve
+      named APIs, each with the id used in the /api-details/{id} page route and the
+      documentation_link followed to harvest each contract.
+  - url: https://apis.egencia.com/bi/v1/api-info
+    type: Documentation
+    note: Source of the onboarding gate quotation and of the BI transaction type
+      catalogue and developer guidelines.
+  - url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+    type: Documentation
+    note: Source of the SCIM 2.0 conformance statement.
+  - url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+    type: OpenAPI
+    note: Source of the verbatim Terms and Conditions, the versioning policy, the NDC
+      is_ndc attribute, the IATA Code response schema and the PNR / record_locator /
+      hotel_chain_code identifier evidence.
+  - url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+    type: OpenAPI
+    note: Source of the SCIM v1/v2/v3 surface and the
+      urn:ietf:params:scim:schemas:extension:egencia:2.0:User extension evidence.
+  - url: https://apis.egencia.com/openconnect/docs/api-docs
+    type: OpenAPI
+    note: Service-level definition; source of the DELETE /gdpr erasure operation and
+      the /v2/Schemas SCIM discovery endpoint.
+  - url: https://www.postman.com/egenciaapi/egencia-api/collection/n9n3gk7/egencia-api
+    type: PostmanCollection
+    note: Public Egencia API Postman workspace, 168 requests. Source of the
+      apis-us-west-2.lab.egencia.cloud sandbox host and the collection-level OAuth 2.0
+      client_credentials configuration. Publisher is not Postman-verified; treated as
+      corroborating evidence only, and every host and path it named was independently
+      probed.
+  - url: https://en.wikipedia.org/wiki/American_Express_Global_Business_Travel
+    type: Reference
+    note: Corporate facts used in the description - NYSE GBTG, listing 31 May 2022 via
+      SPAC, New York headquarters, more than 140 countries, shareholders American
+      Express, Qatar Investment Authority and Expedia Group, and the acquisition
+      timeline (HRG February 2018, Ovation January 2021, Egencia May 2021, CWT
+      completed 2 September 2025).
+actions:
+  apisListed: 13
+  apisYmlCreated: true
+  openapiHarvested: true
+  openapiDirectory: openapi/
+  specsSaved: 17
+  artifactsSaved:
+    - openapi/amex-gbt-user-sync-api-openapi.json
+    - openapi/amex-gbt-sso-context-api-openapi.json
+    - openapi/amex-gbt-company-info-api-openapi.json
+    - openapi/amex-gbt-company-cdf-api-openapi.json
+    - openapi/amex-gbt-validation-spi-openapi.json
+    - openapi/amex-gbt-expense-spi-openapi.json
+    - openapi/amex-gbt-booking-api-openapi.json
+    - openapi/amex-gbt-cancellation-deletion-api-openapi.json
+    - openapi/amex-gbt-approval-workflow-api-openapi.json
+    - openapi/amex-gbt-approval-customisation-spi-openapi.json
+    - openapi/amex-gbt-receipt-api-openapi.json
+    - openapi/amex-gbt-duty-of-care-api-openapi.json
+    - openapi/amex-gbt-reporting-api-openapi.json
+    - openapi/amex-gbt-service-openconnect-openapi.json
+    - openapi/amex-gbt-service-bi-openapi.json
+    - openapi/amex-gbt-service-dutyofcare-openapi.json
+    - openapi/amex-gbt-service-company-openapi.json
+  provenance:
+    fetchedOn: '2026-07-28'
+    allStatus: 200
+    verbatim: true
+    note: Every file in openapi/ was retrieved anonymously over HTTPS from
+      apis.egencia.com on 2026-07-28, returned HTTP 200 with content-type
+      application/json, and is stored byte-for-byte as served. Each parses as valid
+      JSON and declares openapi 3.1.0. No spec was authored, edited, merged or
+      reconstructed.
+  humanUrlDerivation: >-
+    The per-API humanURL values follow the pattern
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/{id},
+    where {id} is taken verbatim from Egencia's own api-summaries catalogue feed. The
+    pattern itself is corroborated by an independently indexed live page for the Duty
+    of Care API at .../egencia-developer-center/api-details/doc-api. The pages could
+    not be individually confirmed with a 200 because Cloudflare blocks every automated
+    client on that host. Recorded here so the derivation is auditable.
+  reason: |
+    Thirteen APIs are listed because Egencia's own developer center catalogue names
+    twelve, and a thirteenth - the Approval Customisation SPI - has its own published
+    OpenAPI contract at https://apis.egencia.com/approval/docs/api-docs even though the
+    captured feed groups it under Approval Workflows. Every one of the thirteen has a
+    real, anonymously retrievable, parsing OpenAPI 3.1.0 definition, so all thirteen
+    clear the bar of real AND documented AND machine-readable.
+
+    Four additional service-level definitions (openconnect, bi, dutyofcare, company)
+    are saved and referenced under common[] rather than as separate APIs. They are the
+    same operations viewed per deployed service rather than per product, plus the
+    infrastructure operations - /gdpr erasure, /base/liveness, /base/readiness,
+    /base/version, /v1/sensitive/audit/clean, /scim/v1/admin-users, /v1/resolve and
+    /v2/Schemas - that Egencia does not present as products. They are recorded because
+    the /gdpr operation is material to the exit-path assessment and because they are
+    the only place several operations appear at all.
+
+    The apis-us-west-2.lab.egencia.cloud and apis-eu-west-1.lab.egencia.cloud sandbox
+    hosts are deliberately NOT listed as APIs. They are real and live, but they are
+    environments of the same contracts rather than distinct APIs, and Egencia does not
+    document them publicly - the host name came from a third-party Postman workspace.
+
+    No Amex GBT-branded API is listed separately because none exists. apitools.amexgbt.com
+    is NXDOMAIN and developer.amexgbt.com serves no obtainable content. The entire
+    published API programme of American Express Global Business Travel is the Egencia
+    platform.

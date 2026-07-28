@@ -1,0 +1,406 @@
+aid: amex-gbt
+url: https://raw.githubusercontent.com/api-evangelist/amex-gbt/refs/heads/main/apis.yml
+name: American Express Global Business Travel
+kind: company
+humanURL: https://www.amexglobalbusinesstravel.com/
+description: American Express Global Business Travel (Amex GBT, NYSE GBTG, headquartered
+  in New York) is the largest business-to-business travel platform in the world, operating
+  in more than 140 countries under the Amex GBT, Egencia and Ovation brands, with CWT
+  acquired in September 2025. Its home market is the United States. In the travel
+  distribution chain Amex GBT is an intermediary rather than a supplier - a travel
+  management company that aggregates air, hotel, rail, car and ground content sourced
+  through the GDS layer, through NDC and through direct supplier connections, then
+  resells it to corporate travel programmes with policy, approval, duty-of-care and
+  reporting wrapped around it. It holds no inventory of its own, but it does hold the
+  booking record, and that is where the switching cost lives. Its API posture is
+  genuinely open at the documentation layer and firmly closed at the runtime layer.
+  The Egencia Developer Center publishes thirteen named APIs and SPIs, and every one
+  of them serves a real, anonymously retrievable OpenAPI 3.1.0 document from
+  apis.egencia.com - no login, no key, no click-through. The identity surface is
+  standards-based (SCIM 2.0 user provisioning over OAuth 2.0 client credentials); the
+  booking, approval, expense, receipt, duty-of-care and reporting surfaces are
+  proprietary Egencia shapes with no OpenTravel, HTNG or IATA NDC schema anywhere in
+  them. Runtime access is customer-account gated - Egencia's own documentation states
+  that "the values for client id and client secret will be provided to the Client
+  after on-boarding to Egencia API platform", and every production endpoint returns
+  401 to an anonymous caller. So - public contracts, gated runtime, a real documented
+  bulk data export in the BI Transactions API, and API terms Egencia reserves the
+  right to change in its sole discretion.
+accessModel:
+  pricing: unknown
+  onboarding: customer-account-required
+  trial: false
+  try_now: false
+  public: false
+  label: Public OpenAPI contracts - client credentials issued only after onboarding
+  confidence: high
+  source:
+  - openapi
+  - developer-portal
+  - terms
+  generated: '2026-07-28'
+  method: probed
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Travel
+- United States
+- Corporate Travel
+- Travel Management
+- Business Travel
+- Distribution
+- Booking
+- Aviation
+- Hotels
+- Rail
+- Car Rental
+- Expense
+- Duty of Care
+- Reporting
+created: '2026-07-28'
+modified: '2026-07-28'
+specificationVersion: '0.19'
+apis:
+- aid: amex-gbt:egencia-user-sync-api
+  name: Egencia User Sync API
+  description: SCIM-based user provisioning for an Egencia corporate travel programme.
+    Egencia's own overview states the API "supports SCIM, or System for Cross-domain
+    Identity Management, an open standard that allows automating user provisioning
+    using REST API and JSON" and that it "follows version 2.0 of the SCIM protocol".
+    Three concurrent versions are published - /scim/v1/users, /scim/v2/Users and
+    /scim/v3/Users - supporting create, retrieve, search, replace, patch and delete of
+    traveller profiles, with an Egencia SCIM extension schema
+    (urn:ietf:params:scim:schemas:extension:egencia:2.0:User) carrying companyId,
+    singleSignOnId, arrangers, approvers and custom data fields. This is the most
+    portable interface in the estate and the reason the interface shape is recorded as
+    standard-plus-proprietary rather than proprietary.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - Users
+  - SCIM
+  - Identity
+  - Provisioning
+  - Single Sign-On
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-user-sync-api-openapi.json
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+- aid: amex-gbt:egencia-context-sso-api
+  name: Egencia Context SSO API
+  description: Single sign-on entry point that carries contextual data into the Egencia
+    booking flow at authentication time. Documented endpoints are GET /v1/newTrip and
+    GET /v2/startTrip, which accept trip context - origin, destination, dates and
+    custom data fields such as TravelRequest, PurchaseOrder and MissionOrder - and
+    pre-populate the search form and checkout, with that context flowing back out
+    through the Expense SPI. This is the hand-off point between a customer's own
+    intranet or travel-request system and the Egencia platform.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/context-sso-api
+  baseURL: https://apis.egencia.com/openconnect-sso-service
+  tags:
+  - Single Sign-On
+  - Authentication
+  - Context
+  - Booking
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-sso-context-api-openapi.json
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+- aid: amex-gbt:egencia-company-details-api
+  name: Egencia Company Details API
+  description: Retrieves company information for an Egencia corporate account - name,
+    display name and related detail - plus e-commerce settings and an audit view of
+    those settings. Documented operations are GET /v1/companies, GET
+    /v1/companies/{company_id}, GET /v1/companies/ecommerce-settings and GET
+    /v1/companies/ecommerce-settings/audit. The company_id it returns is an Egencia
+    internal key, not an industry identifier.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/company-info-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - Company
+  - Account
+  - Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-company-info-api-openapi.json
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+- aid: amex-gbt:egencia-company-cdf-api
+  name: Egencia Company CDF API
+  description: Manages custom data fields - the client-defined fields Egencia describes
+    as capturing "invoicing, reporting, approval, billing" detail, commonly department,
+    billing unit, reason for travel or project code. Documented operations cover GET
+    /v1/companies/{companyId}/cdfs, list, create, replace and delete of CDF values
+    under a definition, and PATCH of the value link. Custom data fields are a
+    significant proprietary lock-in surface - a customer's own cost-allocation taxonomy
+    is modelled inside Egencia's schema and keyed by Egencia definition and value IDs.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/cdf-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - Custom Data Fields
+  - Company
+  - Cost Allocation
+  - Reporting
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-company-cdf-api-openapi.json
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+- aid: amex-gbt:egencia-validation-spi
+  name: Egencia Validation SPI
+  description: A service provider interface, not a consumable API - Egencia calls the
+    customer. At checkout, when a traveller presses book, Egencia posts the booking
+    payload to a web service the customer must build and implement, and the customer's
+    response authorises or blocks the booking. The published contract is POST
+    /v1/validateFields on https://apis.egencia.com/openconnect-validation-service. The
+    integration burden sits on the customer's side, which is why an SPI raises
+    switching cost even though the contract is published openly.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/validation-spi
+  baseURL: https://apis.egencia.com/openconnect-validation-service
+  tags:
+  - Validation
+  - Booking
+  - Policy
+  - Webhook
+  - SPI
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-validation-spi-openapi.json
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+- aid: amex-gbt:egencia-expense-spi
+  name: Egencia Expense SPI
+  description: Near real-time push of booking and expense data out of Egencia into a
+    customer's expense or ERP system. Egencia describes it as an "Expense capability"
+    that pushes a message to a connected partner web service whenever a booking is
+    created or updated, carrying either receipt or invoice information depending on
+    company configuration, with retries if the consumer does not acknowledge. The
+    published contract documents a subscription registration operation and the push
+    payload. This is the principal outbound data path for a customer's own travel
+    spend.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/expense-spi
+  baseURL: https://apis.egencia.com/openconnect-expensestream-service
+  tags:
+  - Expense
+  - Bookings
+  - Webhook
+  - Notifications
+  - SPI
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-expense-spi-openapi.json
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+- aid: amex-gbt:egencia-get-booking-api
+  name: Egencia Get Booking API
+  description: Retrieval of a booking and its individual trip items, plus the receipts
+    attached to an item. Documented operations are GET /v1/bookings/{bookingId}, GET
+    /v1/bookings/{bookingId}/items/{itemId}, GET and v2 GET of item receipts, and the
+    item-level cancel and delete actions. Paired with the Get Booking SPI push
+    notification, which tells a partner system that a booking was created, updated or
+    cancelled so it can fetch the detail. Booking and item identifiers are Egencia
+    keys; the supplier PNR and record locator travel with the data.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/booking-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - Bookings
+  - Trips
+  - Receipts
+  - Itinerary
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-booking-api-openapi.json
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+- aid: amex-gbt:egencia-cancellation-deletion-api
+  name: Egencia Expense Cancellation and Deletion API
+  description: Trip-level cancellation and deletion of bookings. Documented operations
+    are POST /v1/bookings/{bookingId}/cancel and POST /v1/bookings/{bookingId}/delete,
+    which act on every trip item in the booking and return a CANCELLED status per item
+    or a FAILURE status with an error code. Item-level equivalents are documented on
+    the Get Booking API.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/cancel-delete-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - Bookings
+  - Cancellation
+  - Servicing
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-cancellation-deletion-api-openapi.json
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+- aid: amex-gbt:egencia-approval-workflow-api
+  name: Egencia Approval Workflow API
+  description: Programmatic approval or denial of booking requests, at trip level and
+    at trip-item level. Documented operations are POST
+    /v1/bookings/{bookingId}/approve, /deny and the matching
+    /items/{itemId}/approve and /deny. Egencia positions it as eliminating manual trip
+    approval for individual travellers and groups.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/approval-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - Approvals
+  - Workflow
+  - Policy
+  - Bookings
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-approval-workflow-api-openapi.json
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+- aid: amex-gbt:egencia-approval-customisation-spi
+  name: Egencia Approval Customisation SPI
+  description: An outbound service provider interface that lets a customer decide, at
+    checkout time, whether level one and level two approval are required for a booking
+    and who the approvers are. Egencia calls the customer's web service with the
+    booking data and plugs the response into its own approval process. The published
+    contract is POST /v1/custom-approval. As with the Validation SPI, the customer
+    builds and hosts the implementation.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/approval-customisation-spi
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - Approvals
+  - Workflow
+  - Webhook
+  - SPI
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-approval-customisation-spi-openapi.json
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+- aid: amex-gbt:egencia-receipt-api
+  name: Egencia Receipt API
+  description: Retrieval of the receipt for a booked trip item, via GET
+    /v1/receipts/{itemId}, paired with a Receipt SPI that pushes a notification to a
+    customer-built web service whenever a receipt is generated. The documented push
+    payload carries booking_id, item_id, product_type, company_id, traveler_id,
+    organization_parent_id and a HAL-style _links.receipt href back into the Egencia
+    API - a clear illustration of how the record stays anchored to Egencia keys.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/receipts-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - Receipts
+  - Invoices
+  - Expense
+  - Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-receipt-api-openapi.json
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+- aid: amex-gbt:egencia-duty-of-care-api
+  name: Egencia Duty of Care API
+  description: Traveller-tracking data for risk and duty-of-care programmes. Egencia
+    documents POST https://apis.egencia.com/dutyofcare/api/v1/bookings to create a
+    paginated query of booking data for a partner ID over a date range, then GET
+    /v1/bookings/{resourceId} to page through the result. This is the surface a risk
+    management vendor integrates against to locate travellers during a disruption.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/doc-api
+  baseURL: https://apis.egencia.com/dutyofcare/api
+  tags:
+  - Duty of Care
+  - Traveler Tracking
+  - Risk Management
+  - Bookings
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-duty-of-care-api-openapi.json
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+- aid: amex-gbt:egencia-reporting-api
+  name: Egencia Reporting API (BI Transactions)
+  description: Consolidated booking transaction data out of Egencia, and the closest
+    thing in the estate to a documented exit path. POST /v1/transactions creates a
+    filtered report over a date range and returns pagination links; GET
+    /v1/transactions/{reportId} pages the result. Line-of-business variants cover air,
+    hotel, car, train, ground and fees, with segment, leg and ticketing detail. The
+    response schemas carry portable industry identifiers - pnr and record_locator,
+    marketing, operating and ticketing carrier codes, hotel_chain_code, ticket_code,
+    confirmation_number and invoice_number - alongside Egencia's own
+    itinerary_number. A separate GET /v1/egencia_iata returns the IATA agency code for
+    a given point of sale, and an is_ndc flag records whether an air booking was made
+    through NDC.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/reporting-api
+  baseURL: https://apis.egencia.com/bi/api
+  tags:
+  - Reporting
+  - Business Intelligence
+  - Transactions
+  - Data Export
+  - Air
+  - Hotel
+  - Rail
+  - Car Rental
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-reporting-api-openapi.json
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+common:
+- type: Website
+  url: https://www.amexglobalbusinesstravel.com/
+- type: DeveloperPortal
+  url: https://www.amexglobalbusinesstravel.com/egencia-developer-center/
+- type: Documentation
+  url: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-overview
+- type: Authentication
+  url: https://apis.egencia.com/auth/v1/token
+- type: OpenAPI
+  url: openapi/amex-gbt-service-openconnect-openapi.json
+  name: Egencia OpenConnect service definition (all user, booking, approval, CDF and
+    receipt operations plus /gdpr erasure and health probes)
+- type: OpenAPI
+  url: openapi/amex-gbt-service-bi-openapi.json
+  name: Egencia BI service definition (all transaction and IATA operations plus /gdpr
+    erasure and health probes)
+- type: OpenAPI
+  url: openapi/amex-gbt-service-dutyofcare-openapi.json
+  name: Egencia Duty of Care service definition
+- type: OpenAPI
+  url: openapi/amex-gbt-service-company-openapi.json
+  name: Egencia Company service definition
+- type: PostmanCollection
+  url: https://www.postman.com/egenciaapi/egencia-api/collection/n9n3gk7/egencia-api
+  name: Egencia API public Postman workspace (168 requests, publisher handle
+    egenciaapi, not Postman-verified)
+- type: Company
+  url: https://www.amexglobalbusinesstravel.com/about/
+- type: Egencia
+  url: https://www.amexglobalbusinesstravel.com/egencia/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/american-express-global-business-travel/
+- type: InvestorRelations
+  url: https://investors.amexglobalbusinesstravel.com/
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
