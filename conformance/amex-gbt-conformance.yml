@@ -1,0 +1,186 @@
+generated: '2026-07-28'
+method: derived
+source: >-
+  all seventeen documents in openapi/, plus
+  https://apis.egencia.com/openconnect/v1/api-info?name=User (SCIM conformance statement,
+  verbatim) and https://apis.egencia.com/bi/v1/api-info
+notes: >-
+  Amex GBT's estate is standards-based exactly where identity and transport are concerned and
+  proprietary everywhere the travel domain is concerned. There is no travel-industry schema
+  anywhere in it - no OpenTravel/OTA, no HTNG, no IATA NDC message, no ONE Order, no Resolution
+  787 offer/order model. NDC appears once, as the reporting boolean is_ndc. That is the expected
+  posture for a travel management company rather than a supplier or aggregator, but it is worth
+  recording explicitly because it is the single biggest driver of switching cost in this estate.
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: All seventeen harvested documents declare "openapi":"3.1.0" and parse cleanly. Every
+    one is retrievable anonymously from apis.egencia.com with no key and no click-through.
+- id: oauth2
+  conforms: true
+  evidence: >-
+    securitySchemes type oauth2 with a clientCredentials flow and tokenUrl
+    https://apis.egencia.com/auth/v1/token in thirteen of the seventeen documents. Credentials
+    are presented as HTTP Basic base64(client_id:client_secret); tokens are one hour.
+- id: rfc6749-client-credentials
+  conforms: true
+  evidence: openapi securitySchemes flows.clientCredentials; documented token exchange in the BI
+    Developer Guidelines.
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: partial
+  evidence: >-
+    https://www.egencia.com/.well-known/oauth-authorization-server returns 200 with RFC 8414
+    metadata (issuer https://www.egencia.com/auth-service). That document describes the END-USER
+    web authorization server (authorization_code + refresh_token, PKCE S256), NOT the
+    machine-to-machine token endpoint the OpenAPIs declare. apis.egencia.com returns 404 for the
+    same path - the API authorization server publishes no discovery document.
+  artifact: well-known/amex-gbt-oauth-authorization-server.json
+- id: rfc9728-oauth-protected-resource-metadata
+  conforms: partial
+  evidence: >-
+    https://www.egencia.com/.well-known/oauth-protected-resource returns 200 (resource
+    https://www.egencia.com). Again the web surface, not the API surface.
+  artifact: well-known/amex-gbt-oauth-protected-resource.json
+- id: oidc-discovery
+  conforms: unknown
+  evidence: /.well-known/openid-configuration returns a Cloudflare 403 interstitial on all three
+    hosts, so absence could not be confirmed by probe.
+- id: scim-2.0
+  conforms: true
+  evidence: >-
+    Egencia's own api-info states the User Sync API "supports SCIM, or System for Cross-domain
+    Identity Management, an open standard that allows automating user provisioning using REST API
+    and JSON" and "follows version 2.0 of the SCIM protocol". Standard message schemas are used -
+    urn:ietf:params:scim:api:messages:2.0:ListResponse and
+    urn:ietf:params:scim:api:messages:2.0:Error - as is
+    urn:ietf:params:scim:schemas:extension:enterprise:2.0:User. GET /v2/Schemas and
+    GET /v2/Schemas/{id} provide SCIM schema discovery. Media type application/scim+json.
+  paths: [/scim/v1/users, /scim/v2/Users, /scim/v3/Users, /v2/Schemas]
+- id: rfc7643-scim-core-schema
+  conforms: true
+  evidence: SCIM core User schema plus the enterprise extension in
+    openapi/amex-gbt-user-sync-api-openapi.json.
+- id: rfc7644-scim-protocol
+  conforms: true
+  evidence: >-
+    SCIM create/retrieve/replace/patch/delete, POST /search, and the SCIM Error schema
+    (schemas/status/detail) on application/scim+json responses.
+- id: scim-vendor-extension
+  conforms: true
+  standard: false
+  evidence: >-
+    urn:ietf:params:scim:schemas:extension:egencia:2.0:User carries companyId, singleSignOnId,
+    arrangers, approvers and customDataFields. Legal under SCIM's extension model, but the
+    programme's actual configuration lives in attributes no other SCIM consumer understands.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    No application/problem+json response anywhere. Four different proprietary error envelopes are
+    in production instead. See errors/amex-gbt-error-codes.yml.
+- id: hal
+  conforms: partial
+  evidence: >-
+    application/hal+json is the documented Accept header for the BI Transactions API, and
+    _links.next / _links.receipt appear in the reporting, duty-of-care, booking-SPI and
+    receipt-SPI payloads. No curies and no _embedded - a response convention rather than a full
+    HAL implementation.
+- id: json-api
+  conforms: false
+- id: odata
+  conforms: false
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation response header is declared in any document, and no
+    operation carries deprecated:true. Deprecation is announced in prose in the dated change
+    feeds instead. See lifecycle/amex-gbt-lifecycle.yml.
+- id: idempotency-key
+  conforms: false
+  evidence: Zero matches for /idempoten/ across all seventeen documents and all api-info
+    documents. See conventions/amex-gbt-conventions.yml.
+- id: rfc9116-security-txt
+  conforms: unknown
+  evidence: >-
+    /.well-known/security.txt returns a Cloudflare 403 on apis.egencia.com, www.egencia.com and
+    www.amexglobalbusinesstravel.com - blocked, not confirmed absent. A vulnerability disclosure
+    programme does exist, published as web pages rather than as security.txt. See
+    security/amex-gbt-vulnerability-disclosure.yml.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    No AsyncAPI document is published, despite four of the thirteen contracts being push/webhook
+    SPIs that are natural AsyncAPI candidates. The event surface is documented as OpenAPI
+    definitions of the customer-hosted listener instead; captured in
+    asyncapi/amex-gbt-webhooks.yml.
+- id: graphql
+  conforms: false
+  evidence: No GraphQL endpoint documented or discovered.
+- id: grpc
+  conforms: false
+- id: mcp
+  conforms: false
+  evidence: No hosted Model Context Protocol server published. mcp.egencia.com and
+    apis.egencia.com/mcp both return the Cloudflare interstitial (wildcard), not an MCP endpoint.
+- id: iata-ndc
+  conforms: false
+  evidence: >-
+    No NDC schema, no NDC endpoint, no certification level claimed. NDC appears exactly once, as
+    the reporting attribute is_ndc - "Indicates whether an air booking was done via NDC ... or
+    not" - introduced 2023-12-21 with data back to 2019. Amex GBT consumes NDC content as a TMC
+    and flags it in reporting; IATA NDC certification applies to airlines and to
+    aggregators/IT providers, not to a TMC's own corporate API.
+- id: opentravel-ota
+  conforms: false
+  evidence: No OTA XML, OTA 2.0 or OpenTravel reference in any document.
+- id: htng
+  conforms: false
+- id: iata-one-order
+  conforms: false
+- id: iata-resolution-787
+  conforms: false
+- id: giata
+  conforms: false
+  evidence: >-
+    hotel_chain_code is exposed but no property-level industry identifier is. A 2026-02-17
+    changelog entry added "provider" and "property_id" - the distribution system's own property
+    key, not a neutral industry ID.
+- id: iata-airline-designator
+  conforms: true
+  evidence: >-
+    marketing_airline, operating_carrier_segment, ticketing_carrier, carrier_code,
+    airline_alliance and airlineCode carry IATA airline designators; flight and car segments
+    carry IATA location codes.
+- id: iata-agency-code
+  conforms: true
+  evidence: 'GET /v1/egencia_iata returns the "IATA Code response" schema (iata + pos) - the
+    agency accreditation number attached to the programme in each point of sale.'
+- id: iso-8601
+  conforms: true
+  evidence: >-
+    Documented verbatim across Duty of Care and the reporting responses - "Timestamp in ISO 8601
+    format: YYYY-MM-DDTHH:MM:SSZ".
+- id: gdpr-erasure
+  conforms: true
+  evidence: >-
+    DELETE /gdpr?user_id= on every service-level definition, with GET /gdpr as a pre-erasure
+    validation, plus POST /v1/sensitive/audit/clean on bi and dutyofcare. This is an erasure
+    right, not a portability right.
+- id: soc2
+  conforms: unknown
+  evidence: >-
+    No trust centre, certification page or audit report could be verified. trust.egencia.com
+    returns a Cloudflare 403 on a wildcard record; trust.amexglobalbusinesstravel.com does not
+    resolve. Amex GBT marketing material states it "continuously monitors regulatory changes to
+    stay compliant with frameworks like GDPR, ISO 27001, and PCI DSS", which is a monitoring
+    claim, not a certification claim. No Compliance pointer is wired in apis.yml because no
+    published certification could be verified.
+- id: iso-27001
+  conforms: unknown
+  evidence: See soc2 above.
+- id: pci-dss
+  conforms: unknown
+  evidence: See soc2 above.
+related:
+- authentication/amex-gbt-authentication.yml
+- conventions/amex-gbt-conventions.yml
+- errors/amex-gbt-error-codes.yml
+- well-known/amex-gbt-well-known.yml

@@ -1,0 +1,96 @@
+generated: '2026-07-28'
+method: derived
+source: >-
+  4xx and 5xx responses across all seventeen documents in openapi/ (statuses aggregated
+  provider-wide, descriptions taken verbatim from the specs)
+format: proprietary
+rfc9457: false
+notes: >-
+  This is the HTTP-status view of the estate, derived mechanically from the OpenAPI responses.
+  The service-specific EGE-ER-* code registry - which is what a consumer actually branches on -
+  lives in errors/amex-gbt-error-codes.yml and is the richer artifact. Neither file invents a
+  code: every status and description below appears verbatim in a published Egencia contract.
+  Egencia declares no application/problem+json response anywhere, so `type` URIs do not exist and
+  none have been synthesised.
+envelope_media_types:
+  application/scim+json: 242
+  application/hal+json: 80
+  '*/*': 47
+  application/json: 28
+  application/json;charset=utf-8: 23
+problems:
+- status: 400
+  title: Bad Request
+  description: 'Invalid input or request. On SCIM: the request body cannot be read as it does not comply with the expected schema. On Company Details: invalid query parameters. On Duty of Care: request body malformed or contains invalid values.'
+  operations_declaring: 103
+  handling: Handle internally - Egencia instructs consumers not to raise support cases for 4xx.
+- status: 401
+  title: Unauthorized
+  description: Authentication token empty, invalid or expired. Every production endpoint returns this to an anonymous caller.
+  operations_declaring: 117
+  remediation: Request a fresh token from https://apis.egencia.com/auth/v1/token; tokens expire after one hour.
+- status: 403
+  title: Forbidden
+  description: User not validated for the operation / user is not authorized to perform this operation / user does not have permission to access data.
+  operations_declaring: 117
+  related_codes: [EGE-ER-OS-4001]
+- status: 404
+  title: Not Found
+  description: You are trying to access an invalid or non-existent resource; the resource does not exist; data satisfying the provided input details does not exist.
+  operations_declaring: 61
+  related_codes: [EGE-ER-OS-4002, EGE-ER-OS-4008, EGE-ER-DS-RESOURCE_NOT_FOUND]
+- status: 409
+  title: Conflict
+  description: 'User already exists. (SCIM User Sync create operations.)'
+  operations_declaring: 4
+  related_codes: [EGE-ER-OS-4007]
+- status: 415
+  title: Unsupported Media Type
+  description: Incorrect media type provided. Declared on the CDF and SCIM write surfaces.
+  operations_declaring: 2
+- status: 422
+  title: Invalid input
+  description: Invalid or missing required input.
+  operations_declaring: 99
+  related_codes: [EGE-ER-OS-4005, EGE-ER-OS-4006]
+- status: 429
+  title: Too Many Requests
+  description: 'Too many requests: will be retried 3 times automatically on our side.'
+  operations_declaring: 2
+  direction: outbound
+  note: >-
+    Declared ONLY on the Expense SPI - that is, on the web service the CUSTOMER hosts and Egencia
+    calls. No Egencia inbound endpoint declares 429, and no rate limits are published.
+- status: 500
+  title: Internal Server Error
+  description: Unable to process request.
+  operations_declaring: 119
+  related_codes: [EGE-ER-OS-5001, EGE-ER-OS-5004, EGE-ER-OS-5005, EGE-ER-OS-5011, EGE-ER-OS-5012, EGE-ER-OS-4004, EGE-ER-DS-INTERNAL-SERVER-ERROR]
+  handling: 'Egencia support routing: "Only reach out to Egencia support for 5xx error codes."'
+- status: 501
+  title: Not Implemented
+  description: Declared on the approval operations and on the /gdpr and /base/version platform controllers.
+  operations_declaring: 16
+- status: 502
+  title: Bad Gateway
+  description: 'Bad gateway: will be retried 3 times automatically on our side.'
+  operations_declaring: 2
+  direction: outbound
+- status: 503
+  title: Service Unavailable
+  description: Unable to process request at the moment. Declared across the SCIM User Sync surface; the Expense SPI variant adds "will be retried 3 times automatically on our side".
+  operations_declaring: 42
+- status: 504
+  title: Gateway Timeout
+  description: 'Gateway timeout: will be retried 3 times automatically on our side.'
+  operations_declaring: 2
+  direction: outbound
+gaps:
+- No 4xx or 5xx response in any spec declares a response SCHEMA on the openconnect product APIs -
+  only a description string. A generated client cannot type the error body from the contract; it
+  has to be learned from the api-info documentation or from live probing.
+- No RFC 9457 problem type URIs, no error `type` field, no documented retry-after signalling on
+  any Egencia inbound endpoint.
+related:
+- errors/amex-gbt-error-codes.yml
+- conventions/amex-gbt-conventions.yml

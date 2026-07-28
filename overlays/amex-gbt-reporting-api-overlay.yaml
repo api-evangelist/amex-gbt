@@ -1,0 +1,36 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for BI API
+  version: 1.0.0
+extends: openapi/amex-gbt-reporting-api-openapi.json
+generated: '2026-07-28'
+method: generated
+source: >-
+  Derived from openapi/amex-gbt-reporting-api-openapi.json (OpenAPI 3.1.0, 9 paths, 9 operations) plus the
+  cross-cutting artifacts in this repo. The harvested specification itself is never mutated.
+actions:
+- target: $.info
+  description: Provider, provenance and cross-cutting contract metadata.
+  update:
+    x-apievangelist-slug: "amex-gbt"
+    x-apievangelist-provider: "American Express Global Business Travel"
+    x-apievangelist-platform: "Egencia"
+    x-apievangelist-harvested: "2026-07-28"
+    x-apievangelist-spec-source: "anonymous HTTP 200 from apis.egencia.com"
+    x-apievangelist-access-model: "public OpenAPI contracts; runtime gated on OAuth 2.0 client credentials issued only after commercial onboarding"
+    x-apievangelist-conventions: "conventions/amex-gbt-conventions.yml"
+    x-apievangelist-errors: "errors/amex-gbt-error-codes.yml"
+    x-apievangelist-lifecycle: "lifecycle/amex-gbt-lifecycle.yml"
+    x-apievangelist-changelog: "changelog/amex-gbt-changelog.yml"
+    x-apievangelist-authentication: "authentication/amex-gbt-authentication.yml"
+    x-apievangelist-data-model: "data-model/amex-gbt-data-model.yml"
+    x-apievangelist-idempotency: "none - no Idempotency-Key or equivalent exists anywhere in this estate"
+    x-apievangelist-rate-limits: "none published"
+- target: "$.info"
+  update:
+    x-apievangelist-changelog: "https://apis.egencia.com/bi/v1/api-info"
+    x-apievangelist-note: "api_updates[] in the api-info document is the real dated changelog for this API: 42 entries back to 2023-12-21, tagged Breaking Change and Deprecation."
+- target: "$.paths[\"/v1/transactions\"].post"
+  update:
+    x-apievangelist-pagination: "two-phase: POST creates a report resource, GET /v1/transactions/{reportId} pages it via _links.next until next is null"
+    x-apievangelist-limit: "From 2026-07-01 historical extraction is capped at 12 months per request (announced 2025-08-04, deferred from 2026-03-31)."

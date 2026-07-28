@@ -1,0 +1,176 @@
+generated: '2026-07-28'
+method: searched
+source: >-
+  https://apis.egencia.com/openconnect/v1/api-info?name={User,Booking,Approval,CancelAndDelete,Receipt,CompanyCustomData},
+  https://apis.egencia.com/company/v1/api-info?name=company-details,
+  https://apis.egencia.com/bi/v1/api-info, https://apis.egencia.com/dutyofcare/v1/api-info
+  (all HTTP 200, anonymous), plus live 404/500 probes of apis.egencia.com
+format: proprietary
+notes: >-
+  Egencia does not use RFC 9457 problem+json anywhere in this estate. Three distinct error
+  envelopes are in production, and which one you get depends on which service tier answered
+  the request. Codes are namespaced by service - OS = OpenConnect Service, DS = Duty of Care
+  Service.
+envelopes:
+- name: Egencia domain error
+  media_type: application/json
+  shape: '{"error": {"code": "<EGE-ER-*>", "message": "<string>"}}'
+  observed_verbatim: '{"error":{"code":"EGE-ER-OS-4004","message":"Domain not supported."}}'
+  evidence: live probe of https://apis.egencia.com/openconnect/v1/api-info?name=Auth (HTTP 500)
+- name: Spring platform error
+  media_type: application/json
+  shape: '{"timestamp": <epoch-ms|iso>, "path": "<string>", "status": <int>, "error": "<string>", "requestId": "<string>"}'
+  observed_verbatim: '{"timestamp":1785249528515,"path":"/openconnect/v1/api-info","status":404,"error":"Not Found","requestId":"b74906c2-36306"}'
+  evidence: live probe of https://apis.egencia.com/openconnect/v1/api-info (HTTP 404)
+  note: >-
+    The requestId in this envelope is the only correlation identifier the platform emits;
+    there is no documented X-Request-Id request header.
+- name: SCIM error (RFC 7644)
+  media_type: application/scim+json
+  schema: ErrorSchema
+  source: openapi/amex-gbt-service-openconnect-openapi.json#/components/schemas/ErrorSchema
+  fields: [schemas, status, detail, data, meta]
+  note: Used by the SCIM v1/v2/v3 User Sync surfaces only.
+- name: ErrorNode
+  schema: ErrorNode
+  source: openapi/amex-gbt-service-openconnect-openapi.json#/components/schemas/ErrorNode
+  fields: [errorCode, errorDescription]
+error_codes:
+- code: EGE-ER-OS-4001
+  message: You do not have sufficient permissions to perform approve/deny action. Contact your admin.
+  http_status: 403
+  service: openconnect
+  apis: [approval-workflow-api, approval-customisation-spi]
+- code: EGE-ER-OS-4002
+  message: Resource not found, you are trying to access an invalid or non existent resource.
+  http_status: 404
+  service: openconnect
+  apis: [approval-workflow-api, approval-customisation-spi, booking-api, cancellation-deletion-api, company-cdf-api, receipt-api]
+- code: EGE-ER-OS-4004
+  message: Domain not supported.
+  http_status: 500
+  service: openconnect
+  apis: [openconnect-platform]
+  note: Observed live; not listed in the published error_codes tables.
+- code: EGE-ER-OS-4005
+  message: Invalid request parameters found, please provide correct params.
+  http_status: 400
+  service: openconnect
+  apis: [company-cdf-api]
+- code: EGE-ER-OS-4006
+  message: CDF given in request has field type as free field.
+  http_status: 422
+  service: openconnect
+  apis: [company-cdf-api]
+- code: EGE-ER-OS-4007
+  message: Duplicate value found, given CDF value already exists.
+  http_status: 409
+  service: openconnect
+  apis: [company-cdf-api]
+- code: EGE-ER-OS-4008
+  message: Receipt is unavailable for this booking item.
+  http_status: 404
+  service: openconnect
+  apis: [booking-api, receipt-api]
+- code: EGE-ER-OS-5001
+  message: Unable to process your request right now. Please try again later.
+  http_status: 500
+  service: openconnect
+  apis: [approval-workflow-api, approval-customisation-spi, booking-api, cancellation-deletion-api, company-cdf-api, receipt-api]
+  remediation: Retry. Egencia instructs consumers to handle 4xx internally and only raise support cases for 5xx.
+- code: EGE-ER-OS-5004
+  message: There was an error in approving/denying the following items [list of item ids]. Please try again.
+  http_status: 500
+  service: openconnect
+  apis: [approval-workflow-api, approval-customisation-spi]
+- code: EGE-ER-OS-5005
+  message: Approval is not required for this trip.
+  http_status: 500
+  service: openconnect
+  apis: [approval-workflow-api, approval-customisation-spi]
+- code: EGE-ER-OS-5011
+  message: There was an error in cancelling the [list of item ids] items. Please try again.
+  http_status: 500
+  service: openconnect
+  apis: [cancellation-deletion-api]
+- code: EGE-ER-OS-5012
+  message: There was an error in deleting the [list of item ids] items. Please try again.
+  http_status: 500
+  service: openconnect
+  apis: [cancellation-deletion-api]
+- code: EGE-ER-DS-INVALID-PARTNER
+  message: The request contains an invalid Partner ID. Try again with a valid Partner ID.
+  service: dutyofcare
+  apis: [duty-of-care-api]
+- code: EGE-ER-DS-COMPANY-NOT-CONFIGURED
+  message: The request contains Company Id(s) which is not configured for the specified partner.
+  service: dutyofcare
+  apis: [duty-of-care-api]
+- code: EGE-ER-DS-COMPANY-ID-EMPTY
+  message: The 'company_id' cannot be empty in the request body
+  service: dutyofcare
+  apis: [duty-of-care-api]
+- code: EGE-ER-DS-OVERLAPPED-DATE
+  message: Start date cannot be greater than End date
+  service: dutyofcare
+  apis: [duty-of-care-api]
+- code: EGE-ER-DS-INVALID-DATE
+  message: 'Error! Invalid date format. Please enter the date in the format YYYY-MM-DDTHH:MM:SSZ'
+  service: dutyofcare
+  apis: [duty-of-care-api]
+- code: EGE-ER-DS-EXCEEDED-COUNT-COMPANY-ID
+  message: Company ID count exceeded maximum allowed limit of 10
+  service: dutyofcare
+  apis: [duty-of-care-api]
+  note: The only published quantitative request limit anywhere in the estate.
+- code: EGE-ER-DS-FUTURE-REQUESTED-DATE
+  message: start_date_time and end_date_time should be less than or equal to the current datetime
+  service: dutyofcare
+  apis: [duty-of-care-api]
+- code: EGE-ER-DS-RESOURCE_NOT_FOUND
+  message: The requested resource could not be found
+  service: dutyofcare
+  apis: [duty-of-care-api]
+- code: EGE-ER-DS-REQUESTED_PAGE_NOT_FOUND
+  message: Cannot directly access this page.
+  service: dutyofcare
+  apis: [duty-of-care-api]
+- code: EGE-ER-DS-INTERNAL-SERVER-ERROR
+  message: Internal server error
+  service: dutyofcare
+  apis: [duty-of-care-api]
+info_codes:
+- code: EGE-ER-DS-BOOKINGS-NOT-AVAILABLE
+  message: No bookings available for this particular request
+  service: dutyofcare
+  kind: success
+- code: EGE-ER-DS-NO_MORE_BOOKINGS
+  message: All records have been fetched. No more bookings available.
+  service: dutyofcare
+  kind: success
+  note: This is how the Duty of Care pagination terminates.
+http_status_semantics:
+- status: '400'
+  meaning: 'Bad Request: Invalid input or request. On SCIM - request body cannot be read as it does not comply with expected schema.'
+- status: '401'
+  meaning: 'Unauthorized: authentication token empty, invalid or expired.'
+- status: '403'
+  meaning: 'Forbidden: user not validated for operation / insufficient permissions.'
+- status: '404'
+  meaning: Not Found.
+- status: '415'
+  meaning: Unsupported media type (CDF and SCIM write surfaces).
+- status: '422'
+  meaning: 'Invalid input: invalid or missing required input.'
+- status: '500'
+  meaning: 'Internal Server Error: unable to process request.'
+- status: '501'
+  meaning: Not Implemented (platform version/GDPR controllers).
+- status: '503'
+  meaning: Service Unavailable. Please try again later (SCIM User Sync).
+support_policy: >-
+  "Handle any 4xx errors internally. Only reach out to Egencia support for 5xx error codes."
+  - Reporting API Developer Guidelines, https://apis.egencia.com/bi/v1/api-info
+related:
+- errors/amex-gbt-problem-types.yml
+- conventions/amex-gbt-conventions.yml

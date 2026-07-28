@@ -1,0 +1,34 @@
+generated: '2026-07-28'
+method: derived
+source: openapi/amex-gbt-approval-workflow-api-openapi.json, openapi/amex-gbt-booking-api-openapi.json,
+  openapi/amex-gbt-cancellation-deletion-api-openapi.json, openapi/amex-gbt-company-cdf-api-openapi.json,
+  openapi/amex-gbt-company-info-api-openapi.json, openapi/amex-gbt-duty-of-care-api-openapi.json,
+  openapi/amex-gbt-receipt-api-openapi.json, openapi/amex-gbt-reporting-api-openapi.json, openapi/amex-gbt-service-bi-openapi.json,
+  openapi/amex-gbt-service-company-openapi.json, openapi/amex-gbt-service-dutyofcare-openapi.json,
+  openapi/amex-gbt-service-openconnect-openapi.json ...
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://apis.egencia.com/auth/v1/token
+    scopes: 0
+  sources:
+  - openapi/amex-gbt-approval-workflow-api-openapi.json
+  - openapi/amex-gbt-booking-api-openapi.json
+  - openapi/amex-gbt-cancellation-deletion-api-openapi.json
+  - openapi/amex-gbt-company-cdf-api-openapi.json
+  - openapi/amex-gbt-company-info-api-openapi.json
+  - openapi/amex-gbt-duty-of-care-api-openapi.json
+  - openapi/amex-gbt-receipt-api-openapi.json
+  - openapi/amex-gbt-reporting-api-openapi.json
+  - openapi/amex-gbt-service-bi-openapi.json
+  - openapi/amex-gbt-service-company-openapi.json
+  - openapi/amex-gbt-service-dutyofcare-openapi.json
+  - openapi/amex-gbt-service-openconnect-openapi.json
+  - openapi/amex-gbt-user-sync-api-openapi.json

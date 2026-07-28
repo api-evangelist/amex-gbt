@@ -1,0 +1,38 @@
+generated: '2026-07-28'
+method: generated
+source: >-
+  Grounded in the operationIds published in openapi/ and the guidance published verbatim in the
+  Egencia api-info documents. No operationId in any skill is invented - each was verified against
+  the referenced spec.
+notes: >-
+  Egencia publishes no AGENTS.md, no skill files and no agent guidance of its own; a search of the
+  developer surface found none, so these are generated. They mirror the six marquee flows the
+  estate actually supports: authenticate, export, provision, approve/service, track, and receive
+  the push. There is no booking-creation skill because Amex GBT does not expose the booking funnel
+  over an API.
+skills:
+- file: amex-gbt-authenticate.md
+  name: Authenticate against the Egencia API platform
+  api: openapi/amex-gbt-service-openconnect-openapi.json
+  operations: []
+  note: Prerequisite for every other skill.
+- file: amex-gbt-export-transactions.md
+  name: Export booking transaction history from the Reporting API
+  api: openapi/amex-gbt-reporting-api-openapi.json
+  operations: [queryTransactions, queryTransactionsForAir, queryTransactionsForHotel, queryTransactionsForCar, queryTransactionsForTrain, queryTransactionsForGround, queryTransactionsForFees, getTransactions, getIATACode]
+- file: amex-gbt-provision-travelers-scim.md
+  name: Provision travellers into Egencia over SCIM 2.0
+  api: openapi/amex-gbt-user-sync-api-openapi.json
+  operations: [createUser, getUser, getUsers, updateUser, patchUser, deleteUserUser, createUser_1, getUser_1, getUsers_1, updateUser_1, patchUser_1, deleteUserUser_1, createUser_2, getUser_2, updateUser_2, patchUser_2, deleteUserUser_2, getUserByCondition]
+- file: amex-gbt-approve-and-service-bookings.md
+  name: Approve, deny, cancel and delete Egencia bookings
+  api: openapi/amex-gbt-approval-workflow-api-openapi.json
+  operations: [approveBooking, denyBooking, approveBookingItem, denyBookingItem, cancelBooking, deleteBooking, cancelBookingItem, deleteBookingItem, getBookingProduct, getBookingItem]
+- file: amex-gbt-track-travelers-duty-of-care.md
+  name: Locate travellers with the Duty of Care API
+  api: openapi/amex-gbt-duty-of-care-api-openapi.json
+  operations: [getDutyOfCareData, getBookings]
+- file: amex-gbt-receive-expense-push.md
+  name: Receive the Egencia Expense and Booking SPI push, then fetch receipts
+  api: openapi/amex-gbt-expense-spi-openapi.json
+  operations: [pushExpense, pushSubscriptionNotification, getBookingProduct, getBookingItem, getReceipt, getReceiptsAsZip]

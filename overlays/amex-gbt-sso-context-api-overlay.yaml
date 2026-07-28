@@ -1,0 +1,28 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for SSO Context API
+  version: 1.0.0
+extends: openapi/amex-gbt-sso-context-api-openapi.json
+generated: '2026-07-28'
+method: generated
+source: >-
+  Derived from openapi/amex-gbt-sso-context-api-openapi.json (OpenAPI 3.1.0, 2 paths, 2 operations) plus the
+  cross-cutting artifacts in this repo. The harvested specification itself is never mutated.
+actions:
+- target: $.info
+  description: Provider, provenance and cross-cutting contract metadata.
+  update:
+    x-apievangelist-slug: "amex-gbt"
+    x-apievangelist-provider: "American Express Global Business Travel"
+    x-apievangelist-platform: "Egencia"
+    x-apievangelist-harvested: "2026-07-28"
+    x-apievangelist-spec-source: "anonymous HTTP 200 from apis.egencia.com"
+    x-apievangelist-access-model: "public OpenAPI contracts; runtime gated on OAuth 2.0 client credentials issued only after commercial onboarding"
+    x-apievangelist-conventions: "conventions/amex-gbt-conventions.yml"
+    x-apievangelist-errors: "errors/amex-gbt-error-codes.yml"
+    x-apievangelist-lifecycle: "lifecycle/amex-gbt-lifecycle.yml"
+    x-apievangelist-changelog: "changelog/amex-gbt-changelog.yml"
+    x-apievangelist-authentication: "authentication/amex-gbt-authentication.yml"
+    x-apievangelist-data-model: "data-model/amex-gbt-data-model.yml"
+    x-apievangelist-idempotency: "none - no Idempotency-Key or equivalent exists anywhere in this estate"
+    x-apievangelist-rate-limits: "none published"

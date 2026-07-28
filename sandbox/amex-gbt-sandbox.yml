@@ -1,0 +1,100 @@
+generated: '2026-07-28'
+method: searched
+source: >-
+  openapi/amex-gbt-company-info-api-openapi.json (worked examples in the operation descriptions,
+  published by Egencia), openapi/amex-gbt-service-dutyofcare-openapi.json (pagination example),
+  https://www.postman.com/_api/collection/23466972-7b3a5dbc-feac-4537-a0c1-d119f23b3596
+  (public "Egencia API" Postman collection, HTTP 200), plus live probes of the lab hosts on
+  2026-07-28
+status: gated
+self_serve: false
+notes: >-
+  Egencia runs a real non-production environment and names it in its own published documentation,
+  but does not document it as a developer sandbox and issues no test credentials without an
+  onboarding relationship. There are no magic test values in this estate - no test card numbers,
+  no test identifiers, no fixture triggers, no time simulation. The company IDs, booking IDs and
+  traveller names that appear in the published examples are illustrative sample payloads, not
+  callable fixtures, and are recorded below strictly as documentation examples so a future round
+  does not mistake them for working test data.
+environments:
+- name: production
+  host: https://apis.egencia.com
+  token_url: https://apis.egencia.com/auth/v1/token
+  documented: true
+- name: lab / non-production (US West)
+  host: https://apis-us-west-2.lab.egencia.cloud
+  token_url: https://apis-us-west-2.lab.egencia.cloud/auth/v1/token
+  documented: partially
+  evidence:
+  - The collection-level OAuth 2.0 client_credentials accessTokenUrl in the public Egencia API
+    Postman collection.
+  - >-
+    A published Egencia OpenAPI example uses it verbatim - the Duty of Care pagination sample
+    response returns
+    "https://apis-us-west-2.lab.egencia.cloud/dutyofcare/api/v1/bookings/90ab1f54-9c91-4eba-b8c8-93f8328ee178"
+    as the _links.next href.
+  probes:
+  - {url: 'https://apis-us-west-2.lab.egencia.cloud/', status: 403, note: Cloudflare interstitial at the root}
+  - {url: 'https://apis-us-west-2.lab.egencia.cloud/bi/api/v1/docs/technical-contract', status: 401, note: live and gated - confirms the environment is real, not a placeholder}
+- name: lab / non-production (EU West)
+  host: https://apis-eu-west-1.lab.egencia.cloud
+  documented: partially
+  evidence:
+  - >-
+    The Company Details API's own published examples call it directly -
+    "GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies?name=Acme&status=ACTIVE&count=50"
+    and
+    "GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/{companyId}"
+    appear verbatim in openapi/amex-gbt-company-info-api-openapi.json.
+  probes:
+  - {url: 'https://apis-eu-west-1.lab.egencia.cloud/', status: 403, note: resolves - a second lab region exists}
+credentials:
+  test_mode_prefix: none - there is no test-vs-live key prefix or mode flag
+  issue: >-
+    "The values for client id and client secret will be provided to the Client after on-boarding
+    to Egencia API platform." The same statement covers lab and production; no separate sandbox
+    key issue is documented.
+  onboarding_support: >-
+    Egencia's API launch material states its team "will provide one-to-one support in configuring
+    and preparing the testing environment for a smooth and successful integration" - i.e. the
+    test environment is set up for you by Egencia, not self-provisioned.
+  guidance_verbatim: >-
+    "Use POST and GET requests with the Developer Center Swagger endpoints to test credentials and
+    ensure proper response receipt." (Reporting API Developer Guidelines)
+test_values:
+  published: false
+  note: No test card numbers, test IBANs, magic identifiers, decline triggers, test clocks or
+    fixture-generation tooling exist anywhere in this estate.
+documentation_example_values:
+  warning: >-
+    ILLUSTRATIVE ONLY - these are sample payload values printed in Egencia's published
+    documentation. They are not callable fixtures and will not resolve against any environment.
+  values:
+  - {field: company_id, example: '60806', source: 'openapi/amex-gbt-company-info-api-openapi.json (retrieveCompany example, "TMS Demo Aus")'}
+  - {field: company_id, example: '35067', source: 'openapi/amex-gbt-duty-of-care-api-openapi.json (Duty of Care sample response)'}
+  - {field: partner_id, example: '92', source: 'openapi/amex-gbt-duty-of-care-api-openapi.json (sample curl)'}
+  - {field: bookingId, example: '2000-2587-907', source: 'openapi/amex-gbt-approval-workflow-api-openapi.json (approveBookingItem parameter example)'}
+  - {field: itemId, example: 5f964c44e7b72600017fc8bb, source: 'openapi/amex-gbt-approval-workflow-api-openapi.json (approveBookingItem parameter example)'}
+  - {field: booking_id, example: '8000-2573-465', source: 'Booking SPI payload example, https://apis.egencia.com/openconnect/v1/api-info?name=Booking'}
+  - {field: trip_id, example: 0600-2564-655, source: 'openapi/amex-gbt-duty-of-care-api-openapi.json (sample response)'}
+tooling:
+  postman:
+    url: https://www.postman.com/egenciaapi/egencia-api/collection/n9n3gk7/egencia-api
+    requests: 168
+    folders: [Access Token, Approval, Company CDF, Duty Of Care, Expense, Receipts, Reporting, User Sync]
+    auth: collection-level OAuth 2.0 client_credentials against the US West lab token endpoint
+    publisher: egenciaapi
+    verified: false
+    note: >-
+      Not a Postman-verified publisher. Treated as corroborating evidence only; every host and
+      path it names was independently probed. This is the only installable integration asset
+      Egencia's ecosystem offers - there are no client SDKs in any package registry.
+  swagger_ui:
+    note: >-
+      The Developer Center renders Swagger UI over the same anonymously-retrievable OpenAPI
+      documents. Reading and code-generating against the whole surface requires no relationship;
+      only calling it does.
+related:
+- packages/amex-gbt-packages.yml
+- authentication/amex-gbt-authentication.yml
+- conventions/amex-gbt-conventions.yml

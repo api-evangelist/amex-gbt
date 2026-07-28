@@ -1,0 +1,87 @@
+generated: '2026-07-28'
+method: searched
+source: live probes of every apis.yml baseURL host, every OpenAPI servers[] host and the docs host
+notes: >-
+  Every host in this estate sits behind Cloudflare. www.amexglobalbusinesstravel.com,
+  www.egencia.com and apis.egencia.com all return a Cloudflare 403 interstitial for
+  /.well-known/security.txt, so absence of a security.txt could not be confirmed by probe -
+  it is recorded as blocked, not as missing. The two documents that did return real JSON are
+  the RFC 8414 / RFC 9728 pair on www.egencia.com, and they describe the END-USER web
+  authorization server (authorization_code + refresh_token, PKCE S256), which is a DIFFERENT
+  surface from the machine-to-machine token endpoint the OpenAPIs declare
+  (https://apis.egencia.com/auth/v1/token, clientCredentials).
+hosts:
+- host: https://apis.egencia.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+    note: Cloudflare interstitial, not an origin response
+  - path: /.well-known/openid-configuration
+    status: 403
+    note: Cloudflare interstitial
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 403
+    note: Cloudflare interstitial
+  - path: /.well-known/ai-plugin.json
+    status: 403
+    note: Cloudflare interstitial
+  - path: /llms.txt
+    status: 403
+    note: Cloudflare interstitial
+- host: https://www.egencia.com
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: amex-gbt-oauth-authorization-server.json
+    spec: RFC 8414
+    issuer: https://www.egencia.com/auth-service
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: amex-gbt-oauth-protected-resource.json
+    spec: RFC 9728
+    resource: https://www.egencia.com
+  - path: /.well-known/security.txt
+    status: 403
+    note: Cloudflare interstitial
+  - path: /.well-known/openid-configuration
+    status: 403
+    note: Cloudflare interstitial
+  - path: /.well-known/api-catalog
+    status: 403
+    note: Cloudflare interstitial
+  - path: /.well-known/ai-plugin.json
+    status: 403
+    note: Cloudflare interstitial
+  - path: /llms.txt
+    status: 403
+    note: Cloudflare interstitial
+- host: https://www.amexglobalbusinesstravel.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+    note: Cloudflare interstitial
+  - path: /.well-known/openid-configuration
+    status: 403
+    note: Cloudflare interstitial
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+    note: Cloudflare interstitial
+  - path: /.well-known/oauth-protected-resource
+    status: 403
+    note: Cloudflare interstitial
+  - path: /.well-known/api-catalog
+    status: 403
+    note: Cloudflare interstitial
+  - path: /.well-known/ai-plugin.json
+    status: 403
+    note: Cloudflare interstitial
+  - path: /llms.txt
+    status: 403
+    note: Cloudflare interstitial
+security_txt:
+  found: false
+  note: not confirmed absent - all three hosts return a Cloudflare 403 for the path

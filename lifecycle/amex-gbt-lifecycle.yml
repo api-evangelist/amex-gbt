@@ -1,0 +1,120 @@
+generated: '2026-07-28'
+method: searched
+source: >-
+  openapi/amex-gbt-reporting-api-openapi.json (info.description "Terms & Conditions" and
+  "Versions" blocks, verbatim), https://apis.egencia.com/bi/v1/api-info,
+  https://apis.egencia.com/openconnect/v1/api-info?name=User, plus live probes of candidate
+  status-page and trust hosts on 2026-07-28
+versioning:
+  scheme: uri-path
+  current:
+    openconnect: v1 (bookings, approvals, CDF, receipts); SCIM v1, v2 and v3 concurrent
+    bi: v1
+    dutyofcare: v1
+    company: v1
+    sso: v1 and v2 concurrent (/v1/newTrip, /v2/startTrip)
+    receipts: v1 and v2 concurrent (/v1/.../receipts, /v2/.../receipts, /v2/.../receipts/{receiptId})
+  docs: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  policy_verbatim: >-
+    "Egencia will release new version of the software with backward compatibility only when
+    there is significant change(s). These changes can be structural, and can contain
+    enhancements, major bug fixes, or change of behavior, endpoint changes, new fields added, or
+    fields removed."
+  upgrade_obligation_verbatim: >-
+    "Egencia will notify Consumer and Shared Client of the availability of new major versions and
+    provide the timeframe for the Consumer to upgrade."
+  note: >-
+    Old major versions are run concurrently rather than sunset on a published clock - SCIM v1, v2
+    and v3 are all live simultaneously, as are SSO v1/v2 and receipts v1/v2. There is no
+    published end-of-life date for any version.
+deprecation:
+  policy_url: null
+  policy_page_published: false
+  practice: >-
+    Deprecation is real and observable but is announced only through the per-API dated change
+    feeds (the api_updates[] arrays rendered as "Recent Updates" in the Developer Center), not
+    through a standalone policy page. Entries are tagged "Deprecation" or "Breaking Change",
+    name the affected attributes, and state a removal window ("We plan to remove this attribute
+    after February 2026"). Notice periods observed in the feed run from roughly three months to
+    just over a year, and Egencia has twice deferred an announced removal date rather than
+    breaking consumers on schedule.
+  evidence:
+  - date: '2025-11-04'
+    text: >-
+      "We have deprecated an attribute from the Train endpoint under segment report level:
+      'ticket_number' ... Please use ticket_code instead of ticket_number."
+  - date: '2025-11-04'
+    text: >-
+      "We have deprecated an attribute from the Train endpoint: 'class_of_service_code'. We plan
+      to remove this attribute after February 2026."
+  - date: '2024-02-16'
+    text: >-
+      "Starting June 1st, 2024, we will remove over 100 deprecated data attributes to improve the
+      reporting API's performance."
+  - date: '2025-08-04 / 2025-10-24 / 2025-11-25 / 2026-04-14 / 2026-05-15 / 2026-06-15'
+    text: >-
+      Six separate advance notices for the same breaking change - limiting Reporting API
+      historical extraction to 12 months per request - originally 2026-03-31, deferred to
+      2026-07-01. This is the clearest evidence of a deliberate advance-notice practice.
+  deferrals:
+  - {announced: '2024-02-16', original: '2024-06-01', moved_to: '2024-08-01 then phased through 2024-10'}
+  - {announced: '2025-08-04', original: '2026-03-31', moved_to: '2026-07-01'}
+  sunset_header: false
+  deprecation_header: false
+  deprecated_in_openapi: false
+  note: >-
+    No operation in any of the seventeen harvested OpenAPI documents carries `deprecated: true`,
+    and no RFC 8594 Sunset or Deprecation response header is declared anywhere. Deprecation in
+    this estate happens at the response-attribute level, described in prose, not at the
+    operation level in the contract.
+  changelog: changelog/amex-gbt-changelog.yml
+deprecated_operations: []
+deprecated_attributes:
+- {attribute: ticket_number, scope: Reporting API - Train segment details and All Transactions identifier, replacement: ticket_code, announced: '2025-11-04'}
+- {attribute: class_of_service_code, scope: Reporting API - Train, removal_after: '2026-02', announced: '2025-11-04'}
+- {attribute: feetype, scope: Reporting API - Hotel, removal_after: '2025-10', announced: '2025-01-30'}
+- {attribute: change_fees, scope: Reporting API - Hotel, removal_after: '2025-10', announced: '2025-01-30'}
+sla:
+  published: false
+  uptime_target: null
+  note: >-
+    No service level agreement, uptime commitment, support response time or credit regime is
+    published anywhere in the developer surface. The only operational commitment found is a
+    support-routing rule in the Reporting API developer guidelines - "Handle any 4xx errors
+    internally. Only reach out to Egencia support for 5xx error codes."
+status_page:
+  published: false
+  probes:
+  - {url: 'https://status.egencia.com/', status: 403, note: resolves to Cloudflare (wildcard on egencia.com); no obtainable content}
+  - {url: 'https://status.amexgbt.com/', status: 0, note: does not resolve}
+  - {url: 'https://status.amexglobalbusinesstravel.com/', status: 0, note: does not resolve}
+  - {url: 'https://egencia.statuspage.io/', status: 200, note: redirects to the Atlassian Statuspage marketing site - not a claimed status page}
+  - {url: 'https://amexgbt.statuspage.io/', status: 200, note: redirects to the Atlassian Statuspage marketing site - not a claimed status page}
+  note: >-
+    No public status page was found. status.egencia.com returns a Cloudflare 403 because
+    egencia.com carries a wildcard CNAME to Cloudflare, so its existence is not confirmed either
+    way; both statuspage.io candidates are unclaimed. No StatusPage pointer is wired in apis.yml
+    because none could be verified. Health probes DO exist on the API itself
+    (GET /base/liveness, GET /base/readiness, GET /base/version on every service-level
+    definition), but they are authenticated and are not a customer-facing status surface.
+health_endpoints:
+- {operation: liveness, path: /base/liveness, services: [openconnect, bi, dutyofcare, company]}
+- {operation: readiness, path: /base/readiness, services: [openconnect, bi, dutyofcare, company]}
+- {operation: version, path: /base/version, services: [openconnect, bi, dutyofcare, company], note: returns build number, build date, deployment date, datacenter and stage}
+support:
+  channel: Egencia community case (customer-authenticated)
+  contact_page: https://www.egencia.com/en/contact-questions
+  policy_verbatim: >-
+    "For any technical support regarding the Reporting API with Egencia, please submit a
+    community case with the following details: Names of the Reporting API endpoints (Air, Hotel,
+    Fee, etc), Impacted API (if available), API Request body used for data retrieval, Date/time
+    of the API request execution."
+terms:
+  amendment_verbatim: >-
+    "By accepting the terms and conditions, you acknowledge and agree that Egencia have the
+    right, in its sole discretion, to modify these terms."
+  source: openapi/amex-gbt-reporting-api-openapi.json#/info/description
+related:
+- changelog/amex-gbt-changelog.yml
+- conventions/amex-gbt-conventions.yml
+- errors/amex-gbt-error-codes.yml

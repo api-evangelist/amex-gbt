@@ -1,0 +1,86 @@
+# American Express Global Business Travel (Amex GBT / Egencia)
+
+> Amex GBT (NYSE: GBTG) is the largest business-to-business travel platform in the world, operating in more than 140 countries under the Amex GBT, Egencia and Ovation brands. It is an intermediary, not a supplier: a travel management company that aggregates air, hotel, rail, car and ground content through the GDS layer, through NDC and through direct supplier connections, then resells it to corporate travel programmes with policy, approval, duty-of-care, expense and reporting wrapped around it. Its entire published API programme is the Egencia platform.
+
+## What you can and cannot do with these APIs
+
+- **Contracts are open.** Thirteen named APIs and SPIs, plus four service-level definitions, all serve real OpenAPI 3.1.0 documents anonymously from `apis.egencia.com` - no login, no key, no click-through. You can read and code-generate against the entire surface before committing to anything.
+- **Runtime is closed.** Every production endpoint returns HTTP 401 to an anonymous caller. Authentication is OAuth 2.0 client credentials against `https://apis.egencia.com/auth/v1/token`; Egencia states that "the values for client id and client secret will be provided to the Client after on-boarding to Egencia API platform". There is no self-serve signup, no sandbox key and no interactive try-it.
+- **There is no booking funnel.** No shopping, offer, pricing, order, payment, fulfilment or ticketing endpoint exists. Booking happens in Egencia's own web checkout. These APIs govern who may book, under what codes, and what data comes back afterwards.
+- **No MCP server, no GraphQL, no AsyncAPI, no client SDKs** in any public package registry. The only installable integration asset is a public Postman collection.
+
+## APIs
+
+- [Egencia User Sync API](https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api): SCIM 2.0 traveller provisioning across three concurrent versions (`/scim/v1/users`, `/scim/v2/Users`, `/scim/v3/Users`) with an Egencia extension schema. The most portable interface in the estate.
+- [Egencia Context SSO API](https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/context-sso-api): carries trip context into the booking flow at authentication time (`GET /v1/newTrip`, `GET /v2/startTrip`).
+- [Egencia Company Details API](https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/company-info-api): company records and e-commerce settings.
+- [Egencia Company CDF API](https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/cdf-api): custom data fields - the customer's own cost-centre, project-code and reason-for-travel taxonomy, modelled in Egencia's schema.
+- [Egencia Validation SPI](https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/validation-spi): Egencia calls you at checkout; your response authorises or blocks the booking.
+- [Egencia Expense SPI](https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/expense-spi): near real-time push of booking and expense data to a customer-hosted listener.
+- [Egencia Get Booking API](https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/booking-api): retrieve a booking, its trip items and their receipts.
+- [Egencia Cancellation and Deletion API](https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/cancel-delete-api): trip-level cancel and delete.
+- [Egencia Approval Workflow API](https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/approval-api): approve or deny at trip and trip-item level, at approver levels ONE, TWO and SECURITY.
+- [Egencia Approval Customisation SPI](https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/approval-customisation-spi): you decide, at checkout, whether approval is required and who approves.
+- [Egencia Receipt API](https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/receipts-api): download the receipt (PDF) or the invoice/credit-note collection (ZIP) for a trip item.
+- [Egencia Duty of Care API](https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/doc-api): traveller-tracking data for risk programmes, paginated by partner ID over a date range.
+- [Egencia Reporting API (BI Transactions)](https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/reporting-api): consolidated booking transaction export across air, hotel, car, train, ground and fees. The documented exit path.
+
+## Specs
+
+- [Egencia User Sync API OpenAPI](https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI)
+- [Egencia Get Booking API OpenAPI](https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI)
+- [Egencia Approval Workflow API OpenAPI](https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI)
+- [Egencia Cancellation/Deletion API OpenAPI](https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI)
+- [Egencia Company CDF API OpenAPI](https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI)
+- [Egencia Receipt API OpenAPI](https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI)
+- [Company Details API OpenAPI](https://apis.egencia.com/company/docs/api-docs/company-info-api)
+- [Duty Of Care API OpenAPI](https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service)
+- [BI Transactions API OpenAPI](https://apis.egencia.com/bi/docs/api-docs/transaction-data-service)
+- [SSO Context API OpenAPI](https://apis.egencia.com/openconnect-sso/docs/api-docs/sso)
+- [Validation SPI OpenAPI](https://apis.egencia.com/openconnect-validation/docs/api-docs/validation)
+- [Expense SPI OpenAPI](https://apis.egencia.com/openconnect-expense/docs/api-docs/expense)
+- [Approval Customisation SPI OpenAPI](https://apis.egencia.com/approval/docs/api-docs)
+- [OpenConnect service definition](https://apis.egencia.com/openconnect/docs/api-docs) - 59 operations, the union of the product APIs plus `/gdpr`, `/v2/Schemas`, `/scim/v1/admin-users`, `/v1/resolve` and the `/base` health probes
+- [BI service definition](https://apis.egencia.com/bi/docs/api-docs)
+- [Duty of Care service definition](https://apis.egencia.com/dutyofcare/docs/api-docs)
+- [Company service definition](https://apis.egencia.com/company/docs/api-docs)
+
+## Docs
+
+- [Egencia Developer Center](https://www.amexglobalbusinesstravel.com/egencia-developer-center/)
+- [API overview](https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-overview)
+- [BI Transactions API reference document](https://apis.egencia.com/bi/v1/api-info) - also the richest changelog in the estate (`api_updates[]`, 42 dated entries)
+- [User Sync API reference document](https://apis.egencia.com/openconnect/v1/api-info?name=User) - the verbatim SCIM 2.0 conformance statement
+- [Get Booking API reference document](https://apis.egencia.com/openconnect/v1/api-info?name=Booking)
+- [Duty of Care API reference document](https://apis.egencia.com/dutyofcare/v1/api-info)
+- [Expense SPI reference document](https://www.egencia.com/openconnect-expensestream-service/v1/api-info)
+- [Validation SPI reference document](https://www.egencia.com/openconnect-validation-service/v1/api-info)
+- [Public Egencia API Postman collection](https://www.postman.com/egenciaapi/egencia-api/collection/n9n3gk7/egencia-api) - 168 requests, not a Postman-verified publisher
+- [Contact and support](https://www.egencia.com/en/contact-questions)
+- [Responsible disclosure](https://amexgbt.responsibledisclosure.com/hc/en-us)
+- [Terms of service](https://www.amexglobalbusinesstravel.com/terms-of-service/)
+- [Privacy policy](https://www.amexglobalbusinesstravel.com/egencia/privacy/)
+
+## Conventions an agent must know
+
+- **Auth:** POST to `https://apis.egencia.com/auth/v1/token` with HTTP Basic `base64(client_id:client_secret)`. Tokens last one hour and must be renewed. No scopes are declared.
+- **Pagination is not uniform.** Reporting and Duty of Care use a two-phase pattern (POST creates a report resource, GET pages it via `_links.next` until `next` is null). Company Details uses `start`/`count` with a maximum count of 100. User Sync uses SCIM `ListResponse`.
+- **Errors are not uniform.** Four envelopes are in production: the Egencia domain error `{"error":{"code":"EGE-ER-*","message":"..."}}`, a Spring platform error carrying `requestId`, an RFC 7644 SCIM error on `application/scim+json`, and an `ErrorNode`. No RFC 9457 `application/problem+json` anywhere.
+- **There is no idempotency contract.** No `Idempotency-Key` header or equivalent exists anywhere in the estate. Approve, deny, cancel and delete are not documented as safely retryable - do not blind-retry a write.
+- **No published rate limits.** The Reporting API documentation advertises a rate-limits section and never populates it. The only quantitative caps published are 10 company IDs per Duty of Care request and, from 1 July 2026, 12 months of history per Reporting request.
+- **Support routing:** "Handle any 4xx errors internally. Only reach out to Egencia support for 5xx error codes."
+- **Deprecation** happens at the response-attribute level and is announced only in the dated `api_updates[]` feeds. No `Sunset` or `Deprecation` header, and no operation carries `deprecated: true`.
+
+## API Evangelist artifacts in this repo
+
+- `openapi/` - all seventeen harvested OpenAPI 3.1.0 documents, verbatim
+- `authentication/amex-gbt-authentication.yml`, `scopes/amex-gbt-scopes.yml`
+- `conventions/amex-gbt-conventions.yml` - cross-cutting request/response semantics
+- `errors/amex-gbt-error-codes.yml` - the EGE-ER-* registry; `errors/amex-gbt-problem-types.yml` - the HTTP-status view
+- `changelog/amex-gbt-changelog.yml`, `lifecycle/amex-gbt-lifecycle.yml`
+- `asyncapi/amex-gbt-webhooks.yml` - the five SPI/webhook surfaces
+- `data-model/amex-gbt-data-model.yml`, `conformance/amex-gbt-conformance.yml`
+- `sandbox/amex-gbt-sandbox.yml`, `packages/amex-gbt-packages.yml`, `well-known/amex-gbt-well-known.yml`
+- `security/` - domain security and vulnerability disclosure
+- `skills/` - packaged agent skills grounded in real operationIds
+- `agentic-access/amex-gbt-agentic-access.yml`

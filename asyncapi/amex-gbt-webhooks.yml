@@ -1,0 +1,139 @@
+generated: '2026-07-28'
+method: searched
+source: >-
+  https://apis.egencia.com/openconnect/v1/api-info?name={Booking,Receipt},
+  https://www.egencia.com/openconnect-expensestream-service/v1/api-info,
+  https://www.egencia.com/openconnect-validation-service/v1/api-info,
+  https://www.egencia.com/openconnect-approval-service/v1/api-info, plus
+  openapi/amex-gbt-expense-spi-openapi.json, openapi/amex-gbt-validation-spi-openapi.json,
+  openapi/amex-gbt-approval-customisation-spi-openapi.json
+spec_type: none
+asyncapi_published: false
+notes: >-
+  Amex GBT / Egencia has a real, documented event surface but publishes no AsyncAPI document for
+  it. Egencia calls these interfaces SPIs - Service Provider Interfaces - and the distinction
+  matters: the customer BUILDS AND HOSTS the endpoint, and Egencia calls it. Egencia publishes the
+  contract as an OpenAPI document describing the listener the customer must implement, which is
+  why the Expense SPI's servers[] entry is the placeholder /some.base.path. Two of the five are
+  notification pushes (Expense, Get Booking, Receipt) and two are synchronous decision callbacks
+  inside the checkout flow (Validation, Approval Customisation) - the latter can BLOCK a booking,
+  which is unusual for a webhook surface and is recorded here deliberately.
+  This artifact is the webhook catalogue; no AsyncAPI has been authored, because authoring one
+  would be fabricating a contract the provider does not publish.
+delivery:
+  transport: HTTPS POST from Egencia to a customer-hosted endpoint
+  security: >-
+    Egencia declares no securityScheme on any SPI contract - the customer defines authentication
+    on its own listener. All communication is over TLS ("For Data Security, all the Egencia
+    communication will happen over the SSL/TLS channel").
+  acknowledgement: >-
+    "The web service returns a success message if the message has been taken into account. If the
+    consumer web service doesn't reply on due time Expense SPI will retry few times."
+  retries: >-
+    429, 502, 503 and 504 from the customer's listener are documented as "will be retried 3 times
+    automatically on our side". No exponential-backoff schedule, dead-letter behaviour or replay
+    endpoint is published.
+  ordering: not published
+  signature_verification: not published
+  headers:
+  - {name: message_timestamp, description: 'Time Stamp in format ISO DATE TIME', spec: openapi/amex-gbt-expense-spi-openapi.json}
+  - {name: SGP-Request, spec: openapi/amex-gbt-expense-spi-openapi.json}
+subscriptions:
+  operation: pushSubscriptionNotification
+  path: POST {customer-base}/v1/subscriptions
+  spec: openapi/amex-gbt-expense-spi-openapi.json
+  schemas: [Subscription, SubscriptionEntity, SubscriptionEvent]
+  note: >-
+    "don't forget to subscribe to the receipts/invoices, which ensures that only eligible audience
+    can see invoices and receipts." Subscription events are themselves pushed to the customer.
+webhooks:
+- name: Expense SPI push
+  direction: egencia-to-customer
+  kind: notification
+  operation: pushExpense
+  path: POST {customer-base}/some.path
+  spec: openapi/amex-gbt-expense-spi-openapi.json
+  api: amex-gbt:egencia-expense-spi
+  trigger: >-
+    "Egencia will call this web service for each new and updated booking as well as for
+    associated service fees ... any modification of the Egencia Trip summary is conveyed to the
+    client's listener web service by Expense SPI in real time."
+  documented_triggers:
+  - booking created (hotel, flight, car, rail, ground)
+  - booking item added to an existing trip
+  - approval status change (AWAITING APPROVAL -> BOOKED)
+  - ticket issued
+  - receipt or invoice generated (payload carries the document download link)
+  - ticket exchanged and any resulting extra payment
+  - booking cancelled (credit note generated)
+  payload_schemas: [Expense, Flight, Hotel, Car, Train, GlobalGround, Fee, Payment, ReceiptInfo, Person, Company, CustomDataField, PolicyCompliance, CO2Emission, TicketInformation, Segment, Provider, Partner, PointOfSale]
+  responses: ['200', '400', '429', '502', '503', '504']
+- name: Get Booking SPI push notification
+  direction: egencia-to-customer
+  kind: notification
+  api: amex-gbt:egencia-get-booking-api
+  trigger: >-
+    "Get Booking SPI will notify the partner when a booking is created or updated in Egencia" -
+    booking, update and cancel events. The push carries the mission number and booking ID; the
+    partner then calls GET /v1/bookings/{bookingId} for the detail.
+  payload_fields: [mission_number, booking_id, company_id, organization_parent_id, 'items[].id', 'items[].traveler_id', 'items[].product_type', 'items[].status', 'items[].receipt_info', 'items[].booking_date_time', 'items[].is_agent_assisted', partner.name]
+  follow_up_operations: [getBookingProduct, getBookingItem]
+  note: 'Replaces the legacy T&E solution "receiveDossierExpedia".'
+  spec_published: false
+  spec_note: >-
+    The push payload is documented as a worked JSON example in the Booking api-info document, not
+    as a machine-readable schema. Only the pull side (Get Booking API) has an OpenAPI contract.
+- name: Receipt SPI push notification
+  direction: egencia-to-customer
+  kind: notification
+  api: amex-gbt:egencia-receipt-api
+  trigger: A receipt or invoice is generated for a booking item.
+  payload_fields: [booking_id, item_id, product_type, company_id, traveler_id, organization_parent_id, _links.receipt.href]
+  follow_up_operations: [getReceipt, getReceiptsAsZip]
+  spec_published: false
+- name: Validation SPI callback
+  direction: egencia-to-customer
+  kind: synchronous-decision
+  operation: validateFields
+  path: POST {customer-base}/v1/validateFields
+  spec: openapi/amex-gbt-validation-spi-openapi.json
+  api: amex-gbt:egencia-validation-spi
+  trigger: >-
+    "At checkout time, when the user clicks on the book button. Egencia platform will call the
+    Consumer's web service to send the data. Depending on the web service response the user will
+    either be blocked on the checkout page or will be redirected to her/his trip while the booking
+    has been confirmed."
+  blocking: true
+  payload_schemas: [CDFValidationRequest, ValidationField, Traveler, BookerForThirdParty]
+  response_schemas: [CDFValidationResponse, Error, ErrorField]
+  multi_passenger: >-
+    "In the case of Multi passenger bookings (AKA multi-PAX), the web service can either be called
+    multiple times with one traveler in each call or called once with all the travelers at once."
+  responses: ['200', '400', '401', '403', '500']
+- name: Approval Customisation SPI callback
+  direction: egencia-to-customer
+  kind: synchronous-decision
+  operation: getApprovalDetails
+  path: POST {customer-base}/v1/custom-approval
+  spec: openapi/amex-gbt-approval-customisation-spi-openapi.json
+  api: amex-gbt:egencia-approval-customisation-spi
+  trigger: >-
+    At checkout, Egencia calls the customer's web service with the booking data to decide whether
+    level one and level two approval are required and who the approvers are, then plugs the
+    response into its own approval process.
+  blocking: true
+  payload_schemas: [ApprovalRequest, Company, Traveler, CustomDataField, Price]
+  response_schemas: [ExternalApprovalDetailsResponse, ExternalApprovalDetail, OpenconnectApprovalErrorResponseBean]
+  responses: ['200', '400', '401', '403', '500']
+gaps:
+- No AsyncAPI document, no event catalogue page, no CloudEvents envelope.
+- No published signature or shared-secret scheme for verifying that a push genuinely came from Egencia.
+- No replay, backfill or dead-letter endpoint for missed notifications - a consumer that is down
+  past the retry budget must reconcile through the pull APIs (Get Booking, Reporting) instead.
+- The Get Booking SPI and Receipt SPI payloads are documented only as JSON examples in prose;
+  there is no machine-readable schema for either.
+related:
+- openapi/amex-gbt-expense-spi-openapi.json
+- openapi/amex-gbt-validation-spi-openapi.json
+- openapi/amex-gbt-approval-customisation-spi-openapi.json
+- conventions/amex-gbt-conventions.yml

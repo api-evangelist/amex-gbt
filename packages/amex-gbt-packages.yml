@@ -1,0 +1,55 @@
+generated: '2026-07-28'
+method: searched
+source: npm registry search, PyPI, RubyGems, Packagist, NuGet, crates.io, GitHub, and the Egencia Developer Center
+summary:
+  official_sdks: 0
+  registries_probed:
+  - npm
+  - pypi
+  - rubygems
+  - packagist
+  - nuget
+  - crates.io
+  - pkg.go.dev
+  - maven-central
+packages: []
+findings:
+- registry: npm
+  query: egencia
+  result: >-
+    An @egencia scope exists on npm (@egencia/uitk-react, @egencia/design-tokens,
+    @egencia/uitk-react-foundation, @egencia/uitk-react-text, @egencia/uitk-global-styles,
+    @egencia/uitk-react-spacing, @egencia/uitk-global-styles-6,
+    @egencia/uitk-react-layout-flex). Every one of them carries a description of the form
+    "This is created as a POC for synack. Please do not use this" - they are
+    dependency-confusion / red-team proof-of-concept placeholders published in connection
+    with a security research program, NOT first-party Egencia client libraries. Recorded
+    here so a future round does not mistake them for official SDKs.
+  official: false
+- registry: pypi
+  query: egencia, amexgbt, egencia-api
+  result: 404 - no packages
+- registry: rubygems
+  query: egencia
+  result: 404 - no gem
+- registry: nuget
+  query: egencia
+  result: 0 hits
+- registry: crates.io
+  query: egencia
+  result: 0 hits
+- registry: packagist
+  query: egencia
+  result: no first-party match
+- registry: github
+  query: github.com/egencia, github.com/amexgbt
+  result: >-
+    github.com/egencia does not exist (404). github.com/AMEXGBT is a personal user account
+    with a single repository (TEST-TECH-GDS), not an official engineering organization -
+    no GitHubOrganization pointer was wired.
+notes: >-
+  Amex GBT / Egencia publishes machine-readable OpenAPI 3.1.0 contracts for its whole
+  estate but ships no first-party client libraries in any public package registry. The
+  Developer Center offers "sample codes" inline rather than installable SDKs. The only
+  installable, publicly distributed integration asset is the public Postman collection
+  (see the Postman pointer in apis.yml).

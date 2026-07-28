@@ -1,0 +1,182 @@
+generated: '2026-07-28'
+method: searched
+source: >-
+  https://apis.egencia.com/bi/v1/api-info,
+  https://apis.egencia.com/openconnect/v1/api-info?name={User,Booking},
+  https://apis.egencia.com/dutyofcare/v1/api-info,
+  https://www.egencia.com/openconnect-{expensestream,validation}-service/v1/api-info,
+  plus derivation from all seventeen documents in openapi/
+summary: >-
+  Egencia runs four independently-built services behind one gateway - openconnect, bi, dutyofcare
+  and company - and the cross-cutting conventions are NOT uniform across them. Authentication is
+  the one thing that is: OAuth 2.0 client credentials against a single token endpoint. Everything
+  else (pagination, error envelope, media type, correlation) differs by service. There is no
+  idempotency contract anywhere in the estate, no request-id request header, no ETag or
+  conditional-request support, and no published rate limits - the Reporting API documentation
+  announces a "rate limits" section in its own table of contents and never populates it.
+authentication:
+  style: oauth2-client-credentials
+  token_url: https://apis.egencia.com/auth/v1/token
+  method: POST with HTTP Basic base64(client_id:client_secret)
+  token_ttl: >-
+    "Authentication tokens, generated with client ID and secret, expire after one hour. Renew
+    them by requesting a new token from the authentication endpoint if usage exceeds this
+    duration." (Reporting API Developer Guidelines)
+  presented_as: Bearer token in the Authorization header
+  credential_issue: >-
+    "The values for client id and client secret will be provided to the Client after on-boarding
+    to Egencia API platform." There is no self-serve key issue.
+  scopes: none declared - every OAuth2 securityScheme in every spec declares clientCredentials
+    with an empty scopes map
+  unauthenticated_surfaces:
+  - Validation SPI, Expense SPI and Approval Customisation SPI declare no securitySchemes at all -
+    they are inbound calls Egencia makes to a customer-hosted endpoint, and the customer defines
+    the security on its own listener.
+  - SSO Context API declares no securitySchemes - it is a browser redirect surface.
+  artifact: authentication/amex-gbt-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  evidence: >-
+    No Idempotency-Key or equivalent parameter, header, extension or prose appears in any of the
+    seventeen OpenAPI documents or any api-info document (case-insensitive scan for /idempoten/
+    returns zero matches). Write operations - approve, deny, cancel, delete, createCdfValue,
+    createUser - are not documented as safely retryable, and the cancellation and approval
+    responses return a per-item status list rather than a replayable receipt. No Idempotency
+    pointer is wired in apis.yml because the contract does not exist.
+  retry_guidance: >-
+    The only retry semantics published are on the OUTBOUND side: the Expense SPI states that if
+    the consumer's web service "doesn't reply on due time Expense SPI will retry few times", and
+    its 429/502/503/504 responses are documented as "will be retried 3 times automatically on
+    our side". That is Egencia retrying the customer, not the customer retrying Egencia.
+pagination:
+  uniform: false
+  styles:
+  - name: two-phase report resource (POST to create, GET to page)
+    used_by: [BI Transactions (Reporting) API, Duty of Care API]
+    create: POST /v1/transactions (or /v1/bookings) returns metadata plus HAL _links
+    page: GET /v1/transactions/{reportId} (or /v1/bookings/{resourceId}), optional ?page=
+    response_fields: [metadata.total_pages, metadata.total_records, metadata.page_limit, metadata.current_page, _links.next.href]
+    termination: >-
+      "If there are no more pages, 'next' will be set null." Duty of Care additionally returns the
+      informational code EGE-ER-DS-NO_MORE_BOOKINGS ("All records have been fetched.").
+    media_type: application/hal+json (Reporting API Accept header)
+    note: >-
+      The report resource is created server-side from a filtered query and then paged; it is not
+      a cursor over a live collection.
+  - name: offset/count list
+    used_by: [Company Details API]
+    params: [start, count, sort_by, sort_direction]
+    defaults: {start: 0, count: 100}
+    maximum: {count: 100}
+    response_fields: [start, count, total_results, companies]
+  - name: SCIM 2.0 list response
+    used_by: [User Sync API v2 and v3]
+    params: SCIM standard filter/startIndex/count semantics
+    response_schema: 'urn:ietf:params:scim:api:messages:2.0:ListResponse'
+  incremental_pull_guidance: >-
+    "When making repeated API calls, retrieve data for consecutive dates rather than fixed
+    periods. For daily updates, sequentially pull data for each day and only retrieve historical
+    data as necessary." From 2026-07-01 the Reporting API caps historical extraction at 12
+    months per request.
+filtering:
+  reporting: >-
+    POST body carries the date range and line-of-business/report-type filters; separate endpoints
+    per line of business (/air, /hotel, /car, /train, /ground, /fees) plus a consolidated
+    /v1/transactions summary.
+  duty_of_care: >-
+    POST body carries partner_id (required), company_id[] (max 10 -
+    EGE-ER-DS-EXCEEDED-COUNT-COMPANY-ID), start_date_time and end_date_time. Date range defaults
+    to a 24-hour window when one or both bounds are omitted; future start dates are rejected.
+  scim: standard SCIM filter syntax on /scim/v2/Users and /scim/v3/Users, plus a
+    POST /scim/v1/users/search body form on v1.
+field_expansion:
+  supported: false
+  note: >-
+    No expand, fields or sparse-fieldset parameter exists. Granularity is chosen by picking a
+    different endpoint - Air ticket vs Air segment vs Air leg - rather than by shaping one
+    response.
+metadata:
+  customer_extensibility: >-
+    Custom Data Fields (CDFs) are the customer-extensible metadata surface - client-defined
+    fields for "invoicing, reporting, approval, billing", typically cost centre, billing unit,
+    reason for travel or project code. They are modelled in Egencia's schema and keyed by Egencia
+    definitionId/valueId, and they surface on Duty of Care records, Expense SPI payloads and
+    reporting rows.
+    Managed through openapi/amex-gbt-company-cdf-api-openapi.json.
+  scim_extension: 'urn:ietf:params:scim:schemas:extension:egencia:2.0:User carries companyId,
+    singleSignOnId, arrangers, approvers and customDataFields.'
+request_tracing:
+  request_header: none
+  response_field: >-
+    The Spring platform error envelope emits a "requestId" (observed verbatim:
+    "requestId":"b74906c2-36306"). It appears only on platform-level errors, not on success
+    responses, and there is no documented header a caller can send to set or echo a correlation
+    id.
+  spi_headers:
+  - {name: message_timestamp, direction: inbound to customer, spec: openapi/amex-gbt-expense-spi-openapi.json, description: 'Time Stamp in format ISO DATE TIME'}
+  - {name: SGP-Request, direction: inbound to customer, spec: openapi/amex-gbt-expense-spi-openapi.json, occurrences: 14}
+versioning:
+  style: uri-path major version
+  detail: lifecycle/amex-gbt-lifecycle.yml
+error_envelope:
+  uniform: false
+  count: 4
+  shapes:
+  - {name: Egencia domain error, media_type: application/json, shape: '{"error": {"code": "EGE-ER-*", "message": "..."}}'}
+  - {name: Spring platform error, media_type: application/json, shape: '{"timestamp", "path", "status", "error", "requestId"}'}
+  - {name: SCIM error (RFC 7644), media_type: application/scim+json, schema: ErrorSchema}
+  - {name: ErrorNode, shape: '{"errorCode", "errorDescription"}', used_by: [gdpr controllers]}
+  rfc9457: false
+  note: >-
+    No application/problem+json anywhere. Which envelope a caller receives depends on which tier
+    answered the request, which is a real interoperability hazard for a generated client.
+  catalog: errors/amex-gbt-error-codes.yml
+media_types:
+  request: application/json
+  response:
+  - application/json;charset=utf-8 (openconnect)
+  - application/hal+json (BI Transactions - the documented Accept header)
+  - application/json (Duty of Care)
+  - application/scim+json (User Sync)
+  - 'application/pdf and application/zip (Receipt API: single receipt as PDF, invoice collections as a ZIP archive)'
+hypermedia:
+  style: HAL-style _links
+  used_by: [BI Transactions pagination, Duty of Care pagination, Receipt SPI payload (_links.receipt.href), Booking SPI payload]
+  note: Partial - a response convention, not a full HAL implementation with curies or embedded resources.
+rate_limits:
+  published: false
+  evidence: >-
+    The Reporting API's own info.description advertises a documentation section covering
+    "requests, responses and rate limits" - and no rate-limit numbers, headers or quotas appear
+    anywhere in it or in any other document. No X-RateLimit-* or Retry-After header is declared
+    in any spec. The only quantitative request limit published anywhere in the estate is Duty of
+    Care's cap of 10 company IDs per request (EGE-ER-DS-EXCEEDED-COUNT-COMPANY-ID), joined from
+    2026-07-01 by the Reporting API's 12-month-per-request historical window.
+  signalling: >-
+    HTTP 429 is declared only on the Expense SPI (the customer's listener), never on an Egencia
+    inbound endpoint.
+conditional_requests:
+  etag: false
+  if_none_match: false
+  last_modified: >-
+    Not an HTTP header, but a "last_modified_date" response attribute was added to the Air,
+    Hotel, Train, Car and Ground reporting responses in June 2026, alongside "record_id" - which
+    together make incremental reconciliation possible at the data level.
+bulk_and_export:
+  operation: POST /v1/transactions then GET /v1/transactions/{reportId}
+  detail: >-
+    The documented bulk export of a customer's own transaction history, across air, hotel, car,
+    train, ground and fees. Requires live client credentials, which are tied to an active
+    commercial relationship.
+privacy:
+  erasure: DELETE /gdpr?user_id={id} on every service-level definition (openconnect, bi, dutyofcare, company)
+  validation: GET /gdpr?user_id={id} returns a UserGDPRValidationResponseBean before erasure
+  audit_cleanup: POST /v1/sensitive/audit/clean?year= on bi and dutyofcare
+  note: Erasure is not portability - it deletes, it does not hand data back.
+related:
+- authentication/amex-gbt-authentication.yml
+- errors/amex-gbt-error-codes.yml
+- lifecycle/amex-gbt-lifecycle.yml
+- changelog/amex-gbt-changelog.yml
+- scopes/amex-gbt-scopes.yml

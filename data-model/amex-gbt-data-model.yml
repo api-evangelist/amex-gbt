@@ -1,0 +1,170 @@
+generated: '2026-07-28'
+method: derived
+source: >-
+  path parameters, $ref graphs and id-reference fields across all seventeen documents in
+  openapi/, cross-checked against the published payload examples in the api-info documents
+notes: >-
+  The estate has no single root entity. It has two: the COMPANY (an Egencia corporate account) and
+  the BOOKING (Egencia calls it a trip). Everything else hangs off one of those two. The
+  identifier layer is where the switching cost lives - the transactional keys (company_id,
+  traveler_id, booking_id, item_id, definitionId, valueId, itinerary_number) are Egencia's own,
+  while the reporting layer additionally carries portable industry keys (pnr, record_locator,
+  IATA codes, hotel_chain_code, invoice_number) so a departing customer keeps its booking history
+  in terms a successor TMC can read. There is no shopping, offer, order, payment or ticketing
+  entity anywhere - Amex GBT does not expose the booking funnel over an API at all.
+roots: [Company, Booking]
+entities:
+- name: Company
+  aka: [corporate account, Egencia client]
+  id_field: company_id
+  id_type: integer (int64)
+  portable: false
+  schemas: ['Company Display Name', 'Company Search Response', Company]
+  operations: [searchCompanies, retrieveCompany, getSettings, getAudit, getAgentAssistNotes]
+  spec: openapi/amex-gbt-company-info-api-openapi.json
+  fields_of_note: [companyName, federalTaxId, status, companyAddress, productId, category, travelManager, comcode, activationStatus, auditActivationStatus]
+- name: ECommerceSetting
+  parent: Company
+  schemas: [ECommerceSetting, ECommerceSettingsApiResponse, DkChange, ECommerceAuditApiResponse]
+  enum_setting_type: [INVOICE_SETTING, PAYMENT_SETTING, COMPANY_SETTING]
+  operations: [getSettings, getAudit]
+- name: CustomDataFieldDefinition
+  aka: CDF definition
+  id_field: definitionId
+  portable: false
+  parent: Company
+  operations: [getCdfDefinitions]
+  spec: openapi/amex-gbt-company-cdf-api-openapi.json
+  note: >-
+    Egencia describes CDFs as capturing "invoicing, reporting, approval, billing" detail -
+    commonly department, billing unit, reason for travel or project code. The customer's own
+    cost-allocation taxonomy, modelled inside Egencia's schema.
+- name: CustomDataFieldValue
+  id_field: valueId
+  portable: false
+  parent: CustomDataFieldDefinition
+  operations: [getCdfValues, createCdfValue, getCdfLinkedValue, updateCdfValue, deleteCdfValue, patchCdfValue]
+- name: User
+  aka: [traveller, arranger, approver, admin user]
+  id_field: userId (SCIM) / traveler_id (payloads) / tuid (company travel manager)
+  portable: partial
+  schema_urns:
+  - 'urn:ietf:params:scim:schemas:core:2.0:User'
+  - 'urn:ietf:params:scim:schemas:extension:enterprise:2.0:User'
+  - 'urn:ietf:params:scim:schemas:extension:egencia:2.0:User'
+  extension_fields: [companyId, singleSignOnId, arrangers, approvers, customDataFields]
+  operations: [createUser, getUser, getUsers, updateUser, patchUser, deleteUserUser, createUser_1, getUser_1, getUsers_1, updateUser_1, patchUser_1, deleteUserUser_1, createUser_2, getUser_2, updateUser_2, patchUser_2, deleteUserUser_2, getUserByCondition, getSchemas, getSchemaById]
+  spec: openapi/amex-gbt-user-sync-api-openapi.json
+  note: >-
+    singleSignOnId is customer-controlled and therefore the most portable user key in the estate;
+    the Egencia userId and traveler_id are not.
+- name: AdminUser
+  parent: Company
+  operations: [getAllAdminUsers, createAdminUser, searchAdminUsers, patchAdmin]
+  spec: openapi/amex-gbt-service-openconnect-openapi.json
+  note: SCIM v1 only surface, not exposed on the product-level User Sync API.
+- name: Booking
+  aka: trip
+  id_field: booking_id (also trip_id in Duty of Care and the reporting responses)
+  id_example_shape: '8000-2573-465'
+  portable: false
+  operations: [getBookingProduct, cancelBooking, deleteBooking, approveBooking, denyBooking, search, createBooking]
+  specs: [openapi/amex-gbt-booking-api-openapi.json, openapi/amex-gbt-cancellation-deletion-api-openapi.json, openapi/amex-gbt-approval-workflow-api-openapi.json]
+  note: >-
+    GET /v1/bookings (search) and POST /v1/bookings (createBooking) appear ONLY on the
+    service-level openconnect definition, not on any product-level API. They are undocumented in
+    the Developer Center.
+- name: BookingItem
+  aka: trip item
+  id_field: item_id
+  id_example_shape: 86a508692d9282afa0d96e5f6af
+  portable: false
+  parent: Booking
+  operations: [getBookingItem, cancelBookingItem, deleteBookingItem, approveBookingItem, denyBookingItem]
+  status_enum: [DRAFT, PENDING, APPROVED, DENIED, CANCELLED, BOOKED, DELETED, FAILURE]
+  product_type_enum: [FLIGHT, HOTEL, CAR, TRAIN, GROUND, FEES]
+- name: Approval
+  parent: BookingItem
+  levels: [ONE, TWO, SECURITY]
+  schemas: [ApprovalResponse, ApprovalItemResponse, ApprovalItem, ApprovalRequest, ExternalApprovalDetail, ExternalApprovalDetailsResponse]
+  operations: [approveBooking, denyBooking, approveBookingItem, denyBookingItem, getApprovalDetails]
+- name: Receipt
+  id_field: receiptId
+  parent: BookingItem
+  operations: [getReceipt, getReceipt_1, getReceiptsAsZip]
+  media: 'PDF for a single receipt; ZIP archive when a booking has a collection of invoices and credit notes'
+  schema: ReceiptInfo
+- name: Expense
+  parent: Booking
+  direction: outbound (pushed to the customer)
+  spec: openapi/amex-gbt-expense-spi-openapi.json
+  schemas: [Expense, Fare, Fee, Payment, CreditCardInfo, Price, FirstLevelBreakdown, SecondLevelBreakdown, PolicyCompliance, CO2Emission, CO2EmissionEquivalency, RulesAndRegulations, TicketInformation]
+- name: Subscription
+  parent: Company
+  spec: openapi/amex-gbt-expense-spi-openapi.json
+  schemas: [Subscription, SubscriptionEntity, SubscriptionEvent]
+  operations: [pushSubscriptionNotification]
+- name: DutyOfCareRecord
+  id_field: record_locator
+  parent: Booking
+  spec: openapi/amex-gbt-duty-of-care-api-openapi.json
+  schemas: ['Doc Records List', 'Traveler Details', 'Air Segment Details', 'Hotel Segment Details', 'Car Segment Details', 'Rail Segment Details', 'Custom Data Fields']
+  operations: [getDutyOfCareData, getBookings]
+  note: >-
+    Each line of business within a trip is a SEPARATE record with its own record_locator - "If
+    there are multiple bookings under one trip id, they will be treated as separate records."
+- name: DutyOfCareReportResource
+  id_field: resourceId
+  id_type: opaque UUID
+  parent: none
+  note: A server-side paginated result set created by POST /v1/bookings and consumed by GET /v1/bookings/{resourceId}.
+- name: TransactionReport
+  id_field: reportId
+  id_type: opaque
+  spec: openapi/amex-gbt-reporting-api-openapi.json
+  operations: [queryTransactions, queryTransactionsForAir, queryTransactionsForHotel, queryTransactionsForCar, queryTransactionsForTrain, queryTransactionsForGround, queryTransactionsForFees, getTransactions]
+  note: Same two-phase pattern as Duty of Care - POST creates a filtered report resource, GET pages it.
+- name: Transaction
+  parent: TransactionReport
+  id_fields: [itinerary_number, record_id, pnr, record_locator, confirmation_number, invoice_number, ticket_code]
+  lines_of_business: [ALL, AIR, HOTEL, CAR, TRAIN, GROUND, FEES]
+  granularity: [ticket, segment, leg]
+- name: IATACode
+  spec: openapi/amex-gbt-reporting-api-openapi.json
+  operations: [getIATACode]
+  fields: [iata, pos]
+  portable: true
+  note: The agency accreditation number attached to the programme in each point of sale.
+relationships:
+- {from: Company, to: User, type: has_many, via: companyId, evidence: 'SCIM Egencia extension companyId; Company Details travelManager'}
+- {from: Company, to: CustomDataFieldDefinition, type: has_many, via: 'path /v1/companies/{companyId}/cdfs'}
+- {from: CustomDataFieldDefinition, to: CustomDataFieldValue, type: has_many, via: 'path .../cdfs/{definitionId}/values'}
+- {from: Company, to: ECommerceSetting, type: has_many, via: 'path /v1/companies/ecommerce-settings'}
+- {from: Company, to: Booking, type: has_many, via: company_id}
+- {from: Company, to: Company, type: belongs_to, via: organization_parent_id, note: 'parent-organisation hierarchy, present in every SPI payload'}
+- {from: Booking, to: BookingItem, type: has_many, via: 'path /v1/bookings/{bookingId}/items/{itemId}'}
+- {from: BookingItem, to: Receipt, type: has_many, via: 'path /v2/bookings/{bookingId}/items/{itemId}/receipts/{receiptId}'}
+- {from: BookingItem, to: Approval, type: has_many, via: 'level (ONE|TWO|SECURITY)'}
+- {from: BookingItem, to: User, type: belongs_to, via: traveler_id}
+- {from: Booking, to: Expense, type: has_many, via: booking_id, note: pushed outbound per booking or fee event}
+- {from: Booking, to: DutyOfCareRecord, type: has_many, via: trip_id, note: one record per line of business}
+- {from: DutyOfCareRecord, to: User, type: has_many, via: traveler_details, note: multi-passenger bookings carry several travellers on one record}
+- {from: DutyOfCareRecord, to: CustomDataFieldValue, type: has_many, via: 'traveler_details[].custom_data_fields'}
+- {from: DutyOfCareReportResource, to: DutyOfCareRecord, type: has_many, via: 'record_list + _links.next'}
+- {from: TransactionReport, to: Transaction, type: has_many, via: '_links.next pagination'}
+- {from: Transaction, to: Booking, type: belongs_to, via: 'trip_id / itinerary_number'}
+- {from: Transaction, to: IATACode, type: belongs_to, via: pos}
+- {from: Company, to: Subscription, type: has_many, via: SubscriptionEntity}
+identifier_portability:
+  portable: [pnr, record_locator, confirmation_number, ticket_code, invoice_number, iata, marketing_airline, operating_carrier_segment, ticketing_carrier, carrier_code, airline_alliance, hotel_chain_code, flightDepartureIataCode, flightArrivalIataCode, carPickupIataCode, carDropoffIataCode, train_departure_city_rail_code, train_arrival_city_rail_code]
+  non_portable: [company_id, organization_parent_id, traveler_id, userId, booking_id, trip_id, item_id, itinerary_number, definitionId, valueId, resourceId, reportId, record_id, comcode, tuid, partner_id]
+  partial: [singleSignOnId, property_id, provider]
+absent_entities:
+  note: >-
+    Recorded because their absence is the finding. There is no Offer, Order, Fare Quote, Shopping
+    Session, Availability, Rate, Payment Instrument, Ticket Issuance, Loyalty Account, Content or
+    Imagery entity anywhere in the estate. Booking happens in Egencia's own web checkout; the APIs
+    govern who may book, under what codes, and what data comes back afterwards.
+related:
+- conventions/amex-gbt-conventions.yml
+- conformance/amex-gbt-conformance.yml

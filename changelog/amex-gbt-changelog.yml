@@ -1,0 +1,339 @@
+generated: '2026-07-28'
+method: searched
+source: >-
+  https://apis.egencia.com/bi/v1/api-info,
+  https://apis.egencia.com/openconnect/v1/api-info?name=Booking,
+  https://apis.egencia.com/openconnect/v1/api-info?name=User,
+  https://apis.egencia.com/dutyofcare/v1/api-info,
+  https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  (all HTTP 200, anonymous, retrieved 2026-07-28)
+docs: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/reporting-api
+notes: >-
+  Egencia does not publish a single site-wide changelog page. Each API carries its own dated
+  change feed in the api_updates[] array of its api-info JSON document, which is what the
+  Developer Center renders as the "Recent Updates" section on each API detail page. Those JSON
+  documents are anonymously retrievable from apis.egencia.com even though the HTML pages that
+  render them are behind a Cloudflare bot gate. The BI Transactions (Reporting) API carries by
+  far the richest feed - 42 dated entries back to December 2023 - and is the only surface where
+  Egencia tags entries "Breaking Change" and "Deprecation" and states removal timelines. The
+  Duty of Care and Validation SPI feeds are effectively dormant. This is the recent window;
+  the live api-info documents remain the source of truth.
+scheme: >-
+  Major version in the URI path (/v1/, /v2/, /v3/). Attribute-level additions and deprecations
+  are shipped inside a major version and announced only through these dated feeds - there is no
+  semantic version number, no release tag and no Sunset/Deprecation HTTP header.
+current_versions:
+- api: BI Transactions (Reporting) API
+  version: '1.0'
+  change_description: First stable version.
+- api: Get Booking API
+  version: '1.0'
+  change_description: First stable version.
+- api: User Sync API
+  versions: ['1.0', '2.0', '3.0']
+  change_description: >-
+    api-info publishes 1.0 ("First stable version") and 2.0 ("Second stable version");
+    v3.0 was announced in the 2026-03-16 entry and is live at /scim/v3/Users.
+- api: Duty Of Care API
+  version: '1.0'
+  change_description: First stable version.
+- api: Expense SPI
+  version: '1.0'
+  change_description: First stable version.
+- api: Validation SPI
+  version: '1.0'
+  change_description: First stable version.
+feeds:
+- api: BI Transactions (Reporting) API
+  url: https://apis.egencia.com/bi/v1/api-info
+  field: api_updates
+  entries: 42
+  earliest: '2023-12-21'
+  latest: '2026-07-15'
+- api: Get Booking API
+  url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  field: api_updates
+  entries: 8
+  earliest: '2025-03-17'
+  latest: '2026-03-03'
+- api: Expense SPI
+  url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  field: api_updates
+  entries: 8
+  earliest: '2025-02-25'
+  latest: '2026-02-23'
+- api: User Sync API
+  url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  field: api_updates
+  entries: 4
+  earliest: '2023-09-15'
+  latest: '2026-03-16'
+- api: Duty Of Care API
+  url: https://apis.egencia.com/dutyofcare/v1/api-info
+  field: api_updates
+  entries: 1
+  earliest: '2024-06-06'
+  latest: '2024-06-06'
+- api: Validation SPI
+  url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  field: api_updates
+  entries: 0
+  note: No api_updates array published.
+entries:
+- date: '2026-07-15'
+  api: reporting-api
+  title: New attributes in "Air Ticket" API Response
+  tags: [New Attribute, Air]
+  breaking: false
+  summary: Air response gains ticket-level "prior_ticket_code".
+- date: '2026-06-18'
+  api: reporting-api
+  title: New attributes in "Ground" API Response
+  tags: [New Attribute, Ground]
+  breaking: false
+  summary: Ground response gains "last_modified_date" and "record_id".
+- date: '2026-06-15'
+  api: reporting-api
+  title: 'Reminder 3 - Advance Notice: Limiting Historical Data Access via Reporting API'
+  tags: [Breaking Change, Update]
+  breaking: true
+  effective: '2026-07-01'
+  summary: >-
+    "Starting July 1, 2026, the reporting API will limit historical data extraction to 12 months
+    per request to maintain system performance and stability." Originally scheduled for
+    2026-03-31 and deferred. Third reminder; first announced 2025-08-04.
+- date: '2026-06-01'
+  api: reporting-api
+  title: New attributes in "Air", "Hotel", "Train" and "Car" API Responses
+  tags: [New Attribute, Air, Hotel, Train, Car]
+  breaking: false
+  summary: All four line-of-business responses gain "last_modified_date" and "record_id".
+- date: '2026-05-15'
+  api: reporting-api
+  title: 'Reminder 2 - Advance Notice: Limiting Historical Data Access via Reporting API'
+  tags: [Breaking Change, Update]
+  breaking: true
+  effective: '2026-07-01'
+- date: '2026-04-22'
+  api: reporting-api
+  title: New attributes in "Car" and "Train" API Response
+  tags: [New Attribute, Train, Car]
+  breaking: false
+  summary: >-
+    Car gains "trip_id", "trip_name", "carbon_emissions" (kg and lbs) and "distance" (km and
+    miles); Train gains "meeting_name".
+- date: '2026-04-14'
+  api: reporting-api
+  title: 'Reminder 1 - Advance Notice: Limiting Historical Data Access via Reporting API'
+  tags: [Breaking Change, Update]
+  breaking: true
+  effective: '2026-07-01'
+- date: '2026-03-16'
+  api: user-sync-api
+  title: 'User Sync API Update (Version 3.0): New version launched to support globalized roles'
+  tags: [New feature]
+  breaking: false
+  summary: >-
+    v3.0 introduces management of global user profiles with approval access. Response schema is
+    unchanged from previous versions; the underlying logic now supports global entity
+    relationships across points of sale.
+- date: '2026-03-11'
+  api: reporting-api
+  title: New attributes in "Train Ticket" API Response
+  tags: [New Attribute, Train]
+  breaking: false
+  summary: Train gains ticket-level "trip_id" and "trip_name".
+- date: '2026-03-03'
+  api: booking-api
+  title: Guest travelers tag
+  tags: [Enhancement]
+  breaking: false
+  summary: New "isGuest" flag in the travelers payload distinguishes guests from employees/contractors.
+- date: '2026-03-02'
+  api: reporting-api
+  title: New attributes in "Air" API Response
+  tags: [New Attribute, Air]
+  breaking: false
+  summary: '"flown_cabin_class" added at ticket, segment and leg levels.'
+- date: '2026-02-23'
+  api: expense-spi
+  title: Guest travelers tag
+  tags: [Enhancement]
+  breaking: false
+  summary: '"isGuest" flag added to the Expense SPI travelers payload.'
+- date: '2026-02-17'
+  api: [booking-api, expense-spi]
+  title: Hotel property source details
+  tags: [Enhancement]
+  breaking: false
+  summary: >-
+    Two new attributes link the booked hotel property to the distribution system it came from -
+    "provider" (the distribution system) and "property_id" (that system's property identifier).
+- date: '2026-02-12'
+  api: reporting-api
+  title: New attributes in "Train Ticket" API Response
+  tags: [New Attribute, Train]
+  breaking: false
+  summary: Train gains ticket-level "tax_gst", "tax_hst", "tax_qst" and "tax_pst".
+- date: '2026-02-12'
+  api: reporting-api
+  title: 'Air Leg & Air Segment Reports: Time Zone Update'
+  tags: [Update, Air]
+  breaking: false
+  summary: >-
+    travel start date and travel end date on the Air Leg and Air Segment reports now display in
+    local time instead of UTC, aligning them with the Air Ticket report. No underlying data
+    changed. Announced 2025-12-15, released globally February 2026.
+- date: '2026-02-09'
+  api: [booking-api, expense-spi]
+  title: Receipt provision available flag
+  tags: [Enhancement]
+  breaking: false
+  summary: >-
+    New "receipt_provision_available" flag states ahead of payment whether Egencia will issue
+    the receipt or the traveller must download it from the supplier.
+- date: '2025-12-03'
+  api: reporting-api
+  title: New attributes in All Transactions API response
+  tags: [New Attribute, All Transactions]
+  breaking: false
+  summary: >-
+    Adds "transaction_amount_local", "local_currency", "carbon_emissions" (kg and lbs),
+    "distance" (km and miles), "is_approval_required" and "level_1_approver".
+- date: '2025-11-25'
+  api: reporting-api
+  title: 'Advance Notice: Limiting Historical Data Access via Reporting API'
+  tags: [Breaking Change, Update]
+  breaking: true
+  effective: '2026-07-01'
+- date: '2025-11-04'
+  api: reporting-api
+  title: Updates in "Train" and "All Transactions"
+  tags: [Deprecation, Train, All transactions]
+  breaking: false
+  deprecates: [ticket_number]
+  summary: >-
+    "ticket_number" deprecated under Train Segment details and under the All Transactions
+    "identifier" section; use "ticket_code" instead. Removal planned after the announced window.
+- date: '2025-11-04'
+  api: reporting-api
+  title: Updates in "Train"
+  tags: [Deprecation, Train]
+  breaking: false
+  deprecates: [class_of_service_code]
+  removal_after: '2026-02'
+- date: '2025-10-24'
+  api: reporting-api
+  title: 'Advance Notice: Limiting Historical Data Access via Reporting API'
+  tags: [Breaking Change, Update]
+  breaking: true
+  effective: '2026-03-31'
+  note: Later deferred to 2026-07-01.
+- date: '2025-08-29'
+  api: reporting-api
+  title: New attributes in "Hotel"
+  tags: [New Attribute, Hotel]
+  breaking: false
+  summary: Hotel gains "trip_id" and "trip_name", available globally and backfilled to July 2024.
+- date: '2025-08-07'
+  api: reporting-api
+  title: Data update in Air report
+  tags: [Update, Air]
+  breaking: false
+  summary: >-
+    Amount fields now default to "0" instead of blank; country, airline and airport names are
+    English-only; Location1/Location2 use the Airport Display International Name format.
+- date: '2025-08-04'
+  api: reporting-api
+  title: New Attributes in "Air" and "Train"
+  tags: [New Attribute, Air, Train]
+  breaking: false
+  summary: >-
+    Air gains ticket-level "trip_id" and "trip_name" (EMEA/APAC only, back to August 2024);
+    Train gains segment-level "operating_carrier_segment".
+- date: '2025-07-29'
+  api: [booking-api, expense-spi]
+  title: Invoice download
+  tags: [Enhancement]
+  breaking: false
+  summary: >-
+    The receipt document download link in the Expense SPI payload now also returns invoices and
+    credit notes, retrievable with the Receipt API.
+- date: '2025-07-15'
+  api: reporting-api
+  title: New Attributes in "Car" and "Train"
+  tags: [New Attribute, Car, Train]
+  breaking: false
+  summary: '"violated_policy_1" added to Car and Train under the Policy section.'
+- date: '2025-05-01'
+  api: [booking-api, expense-spi]
+  title: Best fare option
+  tags: [Enhancement]
+  breaking: false
+  summary: >-
+    "best_fare" (currency + amount) added to the "policy_compliance" object on flight bookings.
+- date: '2025-05-01'
+  api: [booking-api, expense-spi]
+  title: Low cost carrier flag
+  tags: [Enhancement]
+  breaking: false
+  summary: '"low_cost_carrier" added to the "marketing_carrier" object.'
+- date: '2025-04-23'
+  api: reporting-api
+  title: New Attributes in "Air"
+  tags: [New Attribute, Air]
+  breaking: false
+  summary: >-
+    Ticket level gains "is_fly_america_compliant", "refundability_type" and "changeability_type".
+- date: '2025-03-13'
+  api: reporting-api
+  title: New Attributes in "Air" and "Hotel"
+  tags: [New Attribute, Air, Hotel]
+  breaking: false
+  summary: Air gains "violated_policy_1"/"violated_policy_2"; Hotel gains "meeting_name".
+- date: '2025-03-03'
+  api: reporting-api
+  title: New Attribute - "miscellaneous_transport_type"
+  tags: [New Attribute]
+  breaking: false
+- date: '2025-01-30'
+  api: reporting-api
+  title: Updates in the "Hotel"
+  tags: [Deprecation]
+  breaking: false
+  deprecates: [feetype, change_fees]
+  removal_after: '2025-10'
+- date: '2024-11-25'
+  api: reporting-api
+  title: Updates in the "Air"
+  breaking: true
+  summary: Previously deprecated Air attributes removed.
+- date: '2024-11-21'
+  api: reporting-api
+  title: Updates in the "Car" & "Ground"
+  breaking: true
+  effective: '2024-12-07'
+  summary: >-
+    Transactions marked "Is Special Request" = "Yes" removed from the Car and Ground endpoints;
+    they remain available on the /v1/transactions endpoint.
+- date: '2024-02-16'
+  api: reporting-api
+  title: 'Alert: Notification about deprecated attributes removal'
+  tags: [Deprecation]
+  breaking: true
+  effective: '2024-06-01'
+  summary: >-
+    "Starting June 1st, 2024, we will remove over 100 deprecated data attributes to improve the
+    reporting API's performance." Removal was subsequently deferred to 1 August 2024 and then
+    phased line-of-business by line-of-business through October 2024.
+- date: '2023-12-21'
+  api: reporting-api
+  title: Updates in "NDC"
+  tags: [New Attribute]
+  breaking: false
+  summary: >-
+    "is_ndc" introduced in the Air response, flagging bookings made through the New Distribution
+    Capability channel, with data back to 2019. This is the only NDC surface in the estate.
+related:
+- lifecycle/amex-gbt-lifecycle.yml
+- conventions/amex-gbt-conventions.yml

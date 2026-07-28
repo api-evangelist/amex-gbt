@@ -1,0 +1,75 @@
+generated: '2026-07-28'
+method: derived
+source: openapi/amex-gbt-approval-workflow-api-openapi.json, openapi/amex-gbt-booking-api-openapi.json,
+  openapi/amex-gbt-cancellation-deletion-api-openapi.json, openapi/amex-gbt-company-cdf-api-openapi.json,
+  openapi/amex-gbt-company-info-api-openapi.json, openapi/amex-gbt-duty-of-care-api-openapi.json,
+  openapi/amex-gbt-receipt-api-openapi.json, openapi/amex-gbt-reporting-api-openapi.json, openapi/amex-gbt-service-bi-openapi.json,
+  openapi/amex-gbt-service-company-openapi.json, openapi/amex-gbt-service-dutyofcare-openapi.json,
+  openapi/amex-gbt-service-openconnect-openapi.json, openapi/amex-gbt-user-sync-api-openapi.json
+schemes:
+- name: OAuth2
+  source: openapi/amex-gbt-approval-workflow-api-openapi.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://apis.egencia.com/auth/v1/token
+- name: OAuth2
+  source: openapi/amex-gbt-booking-api-openapi.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://apis.egencia.com/auth/v1/token
+- name: OAuth2
+  source: openapi/amex-gbt-cancellation-deletion-api-openapi.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://apis.egencia.com/auth/v1/token
+- name: OAuth2
+  source: openapi/amex-gbt-company-cdf-api-openapi.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://apis.egencia.com/auth/v1/token
+- name: oAuth2
+  source: openapi/amex-gbt-company-info-api-openapi.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://apis.egencia.com/auth/v1/token
+- name: OAuth2
+  source: openapi/amex-gbt-duty-of-care-api-openapi.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://apis.egencia.com/auth/v1/token
+- name: OAuth2
+  source: openapi/amex-gbt-receipt-api-openapi.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://apis.egencia.com/auth/v1/token
+- name: OAuth2
+  source: openapi/amex-gbt-reporting-api-openapi.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://apis.egencia.com/auth/v1/token
+- name: OAuth2
+  source: openapi/amex-gbt-service-bi-openapi.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://apis.egencia.com/auth/v1/token
+- name: oAuth2
+  source: openapi/amex-gbt-service-company-openapi.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://apis.egencia.com/auth/v1/token
+- name: OAuth2
+  source: openapi/amex-gbt-service-dutyofcare-openapi.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://apis.egencia.com/auth/v1/token
+- name: OAuth2
+  source: openapi/amex-gbt-service-openconnect-openapi.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://apis.egencia.com/auth/v1/token
+- name: OAuth2
+  source: openapi/amex-gbt-user-sync-api-openapi.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://apis.egencia.com/auth/v1/token
+scopes: []
