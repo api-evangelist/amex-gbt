@@ -454,6 +454,8 @@ apis:
   - type: OpenAPI
     url: openapi/amex-gbt-service-openconnect-openapi.json
 common:
+- type: MCPServer
+  url: mcp/amex-gbt-mcp.yml
 - type: AgenticAccess
   url: agentic-access/amex-gbt-agentic-access.yml
 - type: DomainSecurity
