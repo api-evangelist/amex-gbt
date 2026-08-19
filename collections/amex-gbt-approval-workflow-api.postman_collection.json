@@ -1,0 +1,1916 @@
+{
+  "item": [
+    {
+      "id": "b214417e-cdee-4143-bab2-434bd2766c38",
+      "name": "bookings v1",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4098d432-2be0-4c2b-b4b4-1323433f807a",
+          "name": "Approve the complete booking based on booking ID",
+          "request": {
+            "name": "Approve the complete booking based on booking ID",
+            "description": {
+              "content": "<p>Creates an Approval request (Action: Approve) for a specific booking Id</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Trip id corresponding to each booked product</td>\n        </tr>\n        <tr>\n            <td>approve</td>\n            <td>String</td>\n            <td>Approval action: Approve</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Response Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>booking_id</td>\n            <td>String</td>\n            <td>Trip id corresponding to the booking which is to be approved</td>\n        </tr>\n        <tr>\n            <td>status</td>\n            <td>String</td>\n            <td>Approval action: Approved</td>\n        </tr>\n        <tr>\n            <td>items</td>\n            <td>List</td>\n            <td>List of items to be approved</td>\n        </tr>\n        <tr>\n            <td>item_id</td>\n            <td>String</td>\n            <td>Trip item id which is to be approved</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Success Response</b></p>\n<p>If the request is successful, you will receive the following output:</p>\n<pre>\n    <code>\n    {\n        \"booking_id\": \"123\",\n        \"status\": \"APPROVED\",\n        \"items\": [\n            {\n                \"item_id\": \"1\",\n                \"status\": \"APPROVED\"\n            },\n            {\n                \"item_id\": \"2\",\n                \"status\": \"APPROVED\"\n            }\n        ]\n    }\n    </code>\n</pre>\n<p><b>500 Error Response</b></p>\n<pre>\n   <code>\n   {\n       \"error\": {\n           \"code\": \"EGE-ER-OS-5004\",\n           \"message\": \"There was an error in approving/denying the following items [5fb4d1d3ef80270001a1d1fd, 5fb4d1a7ef80270001a1d1f9]. Please try again.\"\n       }\n   }\n   </code>\n</pre>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bookings",
+                ":bookingId",
+                "approve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bookingId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://apis.egencia.com/auth/v1/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0bf4f6dc-836d-4b61-bf4b-e7523827caf5",
+              "name": "<b>OK</b>.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"bookingId\": \"string\",\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"string\"\n    }\n  ],\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a54563e-ec9f-4cee-b6f9-074a05e9902c",
+              "name": "<b>Bad Request</b> : Invalid input or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0b95da8d-d65b-4709-aa85-d0c3a868d23b",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "858aaf3a-a0ee-4dd5-91f7-a14d85853889",
+              "name": "<b>Forbidden</b> : User is not authorized for the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "152b4c0c-224d-4e57-8de2-bb75e96b76de",
+              "name": "<b>Invalid input</b> : invalid or missing required input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "21931349-5290-4343-9269-6e1302024d4e",
+              "name": "<b>Internal Server Error</b> : unable to process request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b4529c5a-a7a1-419e-9745-ff0ab0da5417",
+              "name": "<b>Not Implemented</b> : Not Implemented.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34009255-734f-45b1-bab2-5fd69c8ee548",
+          "name": "Deny the complete booking based on booking ID",
+          "request": {
+            "name": "Deny the complete booking based on booking ID",
+            "description": {
+              "content": "<p>Creates a Deny request (Action: Deny) for a booking</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Trip id corresponding to the booking which is to be denied</td>\n        </tr>\n        <tr>\n            <td>deny</td>\n            <td>String</td>\n            <td>Approval action: Denied</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Response Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>booking_id</td>\n            <td>String</td>\n            <td>Trip id corresponding to the booking which is to be denied</td>\n        </tr>\n        <tr>\n            <td>status</td>\n            <td>String</td>\n            <td>Approval action: Denied</td>\n        </tr>\n        <tr>\n            <td>item_id</td>\n            <td>String</td>\n            <td>Trip item id which is to be denied</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Success Response</b></p>\n<p>If the request is successful, you will receive the following output:</p>\n<pre>\n    <code>\n    {\n        \"booking_id\": \"123\",\n        \"status\": \"DENIED\",\n        \"items\": [\n            {\n                \"item_id\": \"1\",\n                \"status\": \"DENIED\"\n            },\n            {\n                \"item_id\": \"2\",\n                \"status\": \"DENIED\"\n            }\n        ]\n    }\n    </code>\n</pre>\n<p><b>500 Error Response</b></p>\n<pre>\n   <code>\n   {\n       \"error\": {\n           \"code\": \"EGE-ER-OS-5004\",\n           \"message\": \"There was an error in approving/denying the following items [5fb4d1d3ef80270001a1d1fd, 5fb4d1a7ef80270001a1d1f9]. Please try again.\"\n       }\n   }\n   </code>\n</pre>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bookings",
+                ":bookingId",
+                "deny"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bookingId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://apis.egencia.com/auth/v1/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7602d685-0adb-4d6f-bf84-a1c59f9e1da6",
+              "name": "<b>OK</b>.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "deny"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"bookingId\": \"string\",\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"string\"\n    }\n  ],\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2daee05-d392-4b11-932b-35d2e3faa187",
+              "name": "<b>Bad Request</b> : Invalid input or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "deny"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "408b66c6-e898-4f28-815f-b93c9f1de259",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "deny"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "de38546f-9814-4860-b28d-13e381d43778",
+              "name": "<b>Forbidden</b> : User is not authorized for the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "deny"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f8a0e81e-c732-469d-a77c-7d02dfeb0af6",
+              "name": "<b>Invalid input</b> : invalid or missing required input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "deny"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "48c53344-f085-4a6d-8e2e-88ce3c9a0514",
+              "name": "<b>Internal Server Error</b> : unable to process request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "deny"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "55d75215-5a8a-4f10-8a96-8b1214a6b00f",
+              "name": "<b>Not Implemented</b> : Not Implemented.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "deny"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0fc1049c-0e98-43fe-af29-878ad0c8d145",
+          "name": "Approve a particular booking item based on booking ID and item ID",
+          "request": {
+            "name": "Approve a particular booking item based on booking ID and item ID",
+            "description": {
+              "content": "<p>Creates an Approval request (Action: Approve) for specific item Id.</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Trip id corresponding to the booking which is to be approved</td>\n        </tr>\n        <tr>\n            <td>approve</td>\n            <td>String</td>\n            <td>Approval action: approve</td>\n        </tr>\n        <tr>\n            <td>item_id</td>\n            <td>String</td>\n            <td>Trip item id which is to be approved</td>\n        </tr>\n        <tr>\n            <td>level</td>\n            <td>String (optional)</td>\n            <td>Targets a specific approver level. Allowed values: ONE, TWO, SECURITY. If not provided, the first approver is used.</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Response Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>booking_id</td>\n            <td>String</td>\n            <td>Trip id corresponding to the booking which was approved</td>\n        </tr>\n        <tr>\n            <td>status</td>\n            <td>String</td>\n            <td>Approval action: Approved</td>\n        </tr>\n        <tr>\n            <td>item_id</td>\n            <td>String</td>\n            <td>Trip item id which was approved</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Success Response</b></p>\n<p>If the request is successful, you will receive the following output:</p>\n<pre>\n    <code>\n        {\n            \"booking_id\": \"1\",\n            \"item_id\": \"2\",\n            \"status\": \"APPROVED\"\n        }\n    </code>\n</pre>\n<p><b>500 Error Response</b></p>\n<pre>\n   <code>\n   {\n       \"error\": {\n           \"code\": \"EGE-ER-OS-5004\",\n           \"message\": \"There was an error in approving/denying the following items [5fb4d1d3ef80270001a1d1fd]. Please try again.\"\n       }\n   }\n   </code>\n</pre>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bookings",
+                ":bookingId",
+                "items",
+                ":itemId",
+                "approve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "<string>",
+                  "description": "Targets a specific hierarchical approver level or security level. If not provided, the first approver is used."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bookingId",
+                  "description": "(Required) Booking ID of the trip containing the item to approve"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) ID of the booking item to approve"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://apis.egencia.com/auth/v1/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "84d850cd-fbc6-40f2-b302-52af7cf55462",
+              "name": "<b>OK</b>.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "ONE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking ID of the trip containing the item to approve"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of the booking item to approve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"booking_id\": \"2000-2587-907\",\n  \"item_id\": \"5f964c44e7b72600017fc8bb\",\n  \"status\": \"APPROVED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a6d723b-189e-4d4b-8879-45f6c4cd82d4",
+              "name": "<b>Bad Request</b> : Invalid input or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "ONE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking ID of the trip containing the item to approve"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of the booking item to approve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6eed6d55-badd-4ccf-b145-eb99ed054d95",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "ONE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking ID of the trip containing the item to approve"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of the booking item to approve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "40822a89-db16-4b2d-91e4-fe1018468dcb",
+              "name": "<b>Forbidden</b> : User is not authorized for the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "ONE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking ID of the trip containing the item to approve"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of the booking item to approve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "559428b7-ed59-4fff-b71e-8506c109c306",
+              "name": "<b>Invalid input</b> : invalid or missing required input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "ONE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking ID of the trip containing the item to approve"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of the booking item to approve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8fa82f5b-cabf-4caa-afb8-b7847dae39f4",
+              "name": "<b>Internal Server Error</b> : unable to process request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "ONE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking ID of the trip containing the item to approve"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of the booking item to approve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"EGE-ER-OS-5004\",\n    \"message\": \"There was an error in approving/denying the following items [5f964c44e7b72600017fc8bb]. Please try again.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "231b38b1-ec29-4046-8caa-02f0df11d2d9",
+              "name": "<b>Not Implemented</b> : Not Implemented.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "ONE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking ID of the trip containing the item to approve"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of the booking item to approve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e782a9cf-1465-4773-83a0-95d387be3acb",
+          "name": "Deny a particular booking item based on booking ID and item ID",
+          "request": {
+            "name": "Deny a particular booking item based on booking ID and item ID",
+            "description": {
+              "content": "<p>Creates a Deny request (Action: Deny) for specific item Id.</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Trip id corresponding to the booking which is to be denied</td>\n        </tr>\n        <tr>\n            <td>deny</td>\n            <td>String</td>\n            <td>Approval action: deny</td>\n        </tr>\n        <tr>\n            <td>item_id</td>\n            <td>String</td>\n            <td>Trip item id which is to be denied</td>\n        </tr>\n        <tr>\n            <td>level</td>\n            <td>String (optional)</td>\n            <td>Targets a specific approver level. Allowed values: ONE, TWO, SECURITY. If not provided, the first approver is used.</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Response Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>booking_id</td>\n            <td>String</td>\n            <td>Trip id corresponding to the booking which was denied</td>\n        </tr>\n        <tr>\n            <td>status</td>\n            <td>String</td>\n            <td>Approval action: Denied</td>\n        </tr>\n        <tr>\n            <td>item_id</td>\n            <td>String</td>\n            <td>Trip item id which was denied</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Success Response</b></p>\n<p>If the request is successful, you will receive the following output:</p>\n<pre>\n    <code>\n        {\n            \"booking_id\": \"1\",\n            \"item_id\": \"2\",\n            \"status\": \"DENIED\"\n        }\n    </code>\n</pre>\n<p><b>500 Error Response</b></p>\n<pre>\n   <code>\n   {\n       \"error\": {\n           \"code\": \"EGE-ER-OS-5004\",\n           \"message\": \"There was an error in approving/denying the following items [5fb4d1d3ef80270001a1d1fd]. Please try again.\"\n       }\n   }\n   </code>\n</pre>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bookings",
+                ":bookingId",
+                "items",
+                ":itemId",
+                "deny"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "<string>",
+                  "description": "Targets a specific hierarchical approver level or security level. If not provided, the first approver is used."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bookingId",
+                  "description": "(Required) Booking ID of the trip containing the item to deny"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) ID of the booking item to deny"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://apis.egencia.com/auth/v1/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4064d135-f42e-4e01-bb7f-1ab180c255b2",
+              "name": "<b>OK</b>.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "deny"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "ONE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking ID of the trip containing the item to deny"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of the booking item to deny"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"booking_id\": \"2000-2587-907\",\n  \"item_id\": \"5f964c44e7b72600017fc8bb\",\n  \"status\": \"DENIED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5eebce87-c500-47f7-9058-52b037da8d24",
+              "name": "<b>Bad Request</b> : Invalid input or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "deny"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "ONE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking ID of the trip containing the item to deny"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of the booking item to deny"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e21d19af-ae1b-43a8-bf2d-72d167ccb277",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "deny"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "ONE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking ID of the trip containing the item to deny"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of the booking item to deny"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "73d2de3f-540c-4ef5-a8bb-5f9f18b91663",
+              "name": "<b>Forbidden</b> : User is not authorized for the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "deny"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "ONE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking ID of the trip containing the item to deny"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of the booking item to deny"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1b10562a-f1ce-4ea3-acaa-df6f39fe4b62",
+              "name": "<b>Invalid input</b> : invalid or missing required input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "deny"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "ONE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking ID of the trip containing the item to deny"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of the booking item to deny"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6092d7a3-1580-4f76-9eab-c5941ae028e2",
+              "name": "<b>Internal Server Error</b> : unable to process request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "deny"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "ONE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking ID of the trip containing the item to deny"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of the booking item to deny"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"EGE-ER-OS-5004\",\n    \"message\": \"There was an error in approving/denying the following items [5f964c44e7b72600017fc8bb]. Please try again.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a7f9d64-e22b-4f8e-9a6f-5dfb4f93c6cb",
+              "name": "<b>Not Implemented</b> : Not Implemented.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "deny"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "ONE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking ID of the trip containing the item to deny"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of the booking item to deny"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apis.egencia.com/openconnect/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "12db5929-a466-4e94-86f1-4398a355a74a",
+    "name": "Egencia Approval Workflow API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

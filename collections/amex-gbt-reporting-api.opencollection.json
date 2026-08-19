@@ -1,0 +1,298 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BI API",
+    "version": "v1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "pos-iata-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets IATA code for the specified Point of Sale or all Point of Sales if none specified",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/bi/api/v1/egencia_iata",
+            "params": [
+              {
+                "name": "pos",
+                "value": "US",
+                "type": "query",
+                "description": "Point of Sale code to look up. Returns all Point of Sales if not specified"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Allows clients to access the IATA codes based on the Point of Sales for different transactions\n    obtained from the Transaction API response.</p>\n</br>\n<p> Request Specifications: </p>\n<table class=\"fullWidth\">\n    <thead>\n    <tr>\n  <th>Attribute</th>\n  <th>Required</th>\n  <th>Type</th>\n  <th>Description</th>\n    </tr>\n    </thead>\n    <tbody>\n    <tr>\n  <td colspan=\"1\">\n   <strong>pos</strong>\n  </td>\n  <td colspan=\"1\">Optional</td>\n  <td colspan=\"1\">String</td>\n  <td colspan=\"1\">Point of "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "transaction-service-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create paginated transaction queries for all LOBs summary data based on search criteria",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/bi/api/v1/transactions",
+            "headers": [
+              {
+                "name": "SGP-Request",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>This API call allows the client to submit a request for retrieving transactions for a specified search criteria (All LOB summary).</p>\n<p> Request Specifications: </p>\n<div>\n<table style=\"letter-spacing: 0px; width: 92.2059%; padding: 0px;\" role=\"grid\" resolved=\"\">\n  <colgroup>\n   <col style=\"width: 9.1853%;\">\n   <col>\n   <col style=\"width: 7.7476%;\">\n   <col style=\"width: 83.0671%;\">\n  </colgroup>\n  <thead>\n  <tr>\n   <th data-column=\"0\"\n       tabindex=\"0\" scope=\"col\" role=\"columnheader\" ari"
+        },
+        {
+          "info": {
+            "name": "Create paginated transaction queries for Air LOB data based on search criteria",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/bi/api/v1/transactions/air",
+            "headers": [
+              {
+                "name": "SGP-Request",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>This API call allows the client to submit a request for retrieving transactions for a specified search criteria (Air\n    LOB).</p>\n<p> Request Specifications: </p>\n<div>\n<table style=\"letter-spacing: 0px; width: 92.2059%; padding: 0px;\" role=\"grid\" resolved=\"\">\n  <colgroup>\n   <col style=\"width: 9.1853%;\">\n   <col>\n   <col style=\"width: 7.7476%;\">\n   <col style=\"width: 83.0671%;\">\n  </colgroup>\n  <thead>\n  <tr>\n   <th data-column=\"0\"\n       tabindex=\"0\" scope=\"col\" role=\"columnheader\" aria-di"
+        },
+        {
+          "info": {
+            "name": "Create paginated transaction queries for Car LOB data based on search criteria",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/bi/api/v1/transactions/car",
+            "headers": [
+              {
+                "name": "SGP-Request",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>This API call allows the client to submit a request for retrieving transactions for a specified search criteria (Car LOB).</p>\n<p> Request Specifications: </p>\n<div>\n<table style=\"letter-spacing: 0px; width: 92.2059%; padding: 0px;\" role=\"grid\" resolved=\"\">\n  <colgroup>\n   <col style=\"width: 9.1853%;\">\n   <col>\n   <col style=\"width: 7.7476%;\">\n   <col style=\"width: 83.0671%;\">\n  </colgroup>\n  <thead>\n  <tr>\n   <th data-column=\"0\"\n       tabindex=\"0\" scope=\"col\" role=\"columnheader\" aria-disabl"
+        },
+        {
+          "info": {
+            "name": "Create paginated transaction queries for Fees LOB data based on search criteria",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/bi/api/v1/transactions/fees",
+            "headers": [
+              {
+                "name": "SGP-Request",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>This API call allows the client to submit a request for retrieving transactions for a specified search criteria (Fee LOB).</p>\n<p> Request Specifications: </p>\n<div>\n<table style=\"letter-spacing: 0px; width: 92.2059%; padding: 0px;\" role=\"grid\" resolved=\"\">\n  <colgroup>\n   <col style=\"width: 9.1853%;\">\n   <col>\n   <col style=\"width: 7.7476%;\">\n   <col style=\"width: 83.0671%;\">\n  </colgroup>\n  <thead>\n  <tr>\n   <th data-column=\"0\"\n       tabindex=\"0\" scope=\"col\" role=\"columnheader\" aria-disabl"
+        },
+        {
+          "info": {
+            "name": "Create paginated transaction queries for Ground LOB data based on search criteria",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/bi/api/v1/transactions/ground",
+            "headers": [
+              {
+                "name": "SGP-Request",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>This API call allows the client to submit a request for retrieving transactions for a specified search criteria (Ground LOB).</p>\n<p> Request Specifications: </p>\n<div>\n<table style=\"letter-spacing: 0px; width: 92.2059%; padding: 0px;\" role=\"grid\" resolved=\"\">\n  <colgroup>\n   <col style=\"width: 9.1853%;\">\n   <col>\n   <col style=\"width: 7.7476%;\">\n   <col style=\"width: 83.0671%;\">\n  </colgroup>\n  <thead>\n  <tr>\n   <th data-column=\"0\"\n       tabindex=\"0\" scope=\"col\" role=\"columnheader\" aria-dis"
+        },
+        {
+          "info": {
+            "name": "Create paginated transaction queries for Hotel LOB data based on search criteria",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/bi/api/v1/transactions/hotel",
+            "headers": [
+              {
+                "name": "SGP-Request",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>This API call allows the client to submit a request for retrieving transactions for a specified search criteria (Hotel LOB).</p>\n<p> Request Specifications: </p>\n<div>\n<table style=\"letter-spacing: 0px; width: 92.2059%; padding: 0px;\" role=\"grid\" resolved=\"\">\n  <colgroup>\n   <col style=\"width: 9.1853%;\">\n   <col>\n   <col style=\"width: 7.7476%;\">\n   <col style=\"width: 83.0671%;\">\n  </colgroup>\n  <thead>\n  <tr>\n   <th data-column=\"0\"\n       tabindex=\"0\" scope=\"col\" role=\"columnheader\" aria-disa"
+        },
+        {
+          "info": {
+            "name": "Create paginated transaction queries for Train LOB data based on search criteria",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/bi/api/v1/transactions/train",
+            "headers": [
+              {
+                "name": "SGP-Request",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>This API call allows the client to submit a request for retrieving transactions for a specified search criteria (Train LOB).</p>\n<p> Request Specifications: </p>\n<div>\n<table style=\"letter-spacing: 0px; width: 92.2059%; padding: 0px;\" role=\"grid\" resolved=\"\">\n  <colgroup>\n   <col style=\"width: 9.1853%;\">\n   <col>\n   <col style=\"width: 7.7476%;\">\n   <col style=\"width: 83.0671%;\">\n  </colgroup>\n  <thead>\n  <tr>\n   <th data-column=\"0\"\n       tabindex=\"0\" scope=\"col\" role=\"columnheader\" aria-disa"
+        },
+        {
+          "info": {
+            "name": "Generates transaction data page response based on client provided filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/bi/api/v1/transactions/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Unique report identifier returned from the POST /transactions response"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Page number to retrieve"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Allows to retrieve multiple transactions for a specified search criteria in a paginated manner.</p>\n<p>List of the response attributes will vary based on the submitted query like lob, report level, etc.</p>\n</br>\n<p> Request Specifications: </p>\n<table class=\"fullWidth\">\n    <thead>\n    <tr>\n  <th>Attribute</th>\n  <th>Required</th>\n  <th>Type</th>\n  <th>Description</th>\n    </tr>\n    </thead>\n    <tbody>\n    <tr>\n  <td colspan=\"1\">\n   <strong>report_id</strong>\n  </td>\n  <td colspan=\"1\">Requi"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

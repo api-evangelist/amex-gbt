@@ -1,0 +1,301 @@
+{
+  "item": [
+    {
+      "id": "ad2636cd-477b-440a-aae0-2d99f3297c0e",
+      "name": "Approval",
+      "description": {
+        "content": "Approval interface that will get approval custom detail from external client based on the booking data passed in request",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d79936c-b204-4c4b-afc4-31fe2ec0cbed",
+          "name": "get Approval Details",
+          "request": {
+            "name": "get Approval Details",
+            "description": {
+              "content": "It will return the custom approval details, for example - approvers and approval required for both the level based on the booking data passed in request",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "custom-approval"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"company\": {\n    \"id\": \"<integer>\",\n    \"point_of_sale\": \"<string>\"\n  },\n  \"line_of_business\": \"<string>\",\n  \"travelers\": [\n    {\n      \"custom_data_fields\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"email_id\": \"<string>\",\n      \"price\": {\n        \"currency\": \"<string>\",\n        \"amount\": \"<double>\"\n      },\n      \"guest_traveler\": \"<boolean>\"\n    },\n    {\n      \"custom_data_fields\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"email_id\": \"<string>\",\n      \"price\": {\n        \"currency\": \"<string>\",\n        \"amount\": \"<double>\"\n      },\n      \"guest_traveler\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4d0976c1-8600-466d-803d-7545a5b039e2",
+              "name": "<b>Ok</b> : Approval to execute with provided custom approval details (1st or 2nd level)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "custom-approval"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company\": {\n    \"id\": 6762,\n    \"point_of_sale\": \"string\"\n  },\n  \"line_of_business\": \"<string>\",\n  \"travelers\": [\n    {\n      \"custom_data_fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"email_id\": \"string\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"amount\": 2589.8080817718296\n      },\n      \"guest_traveler\": true\n    },\n    {\n      \"custom_data_fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"email_id\": \"string\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"amount\": 5843.049021138836\n      },\n      \"guest_traveler\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"approval_details\": [\n    {\n      \"level\": \"LEVEL_ONE\",\n      \"required\": true,\n      \"approvers\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"level\": \"LEVEL_TWO\",\n      \"required\": false,\n      \"approvers\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24240122-aa8e-43cf-8f85-adc39349c118",
+              "name": "<b>Bad Request</b> : Approval to execute with provided custom approval details (1st or 2nd level)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "custom-approval"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company\": {\n    \"id\": 6762,\n    \"point_of_sale\": \"string\"\n  },\n  \"line_of_business\": \"<string>\",\n  \"travelers\": [\n    {\n      \"custom_data_fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"email_id\": \"string\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"amount\": 2589.8080817718296\n      },\n      \"guest_traveler\": true\n    },\n    {\n      \"custom_data_fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"email_id\": \"string\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"amount\": 5843.049021138836\n      },\n      \"guest_traveler\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_subcode\": \"string\",\n  \"error_description\": \"string\",\n  \"detail_error_message\": \"string\",\n  \"source\": {\n    \"application_name\": \"string\",\n    \"error_code\": \"string\",\n    \"error_description\": \"string\"\n  },\n  \"data\": [\n    {\n      \"attribute\": \"string\",\n      \"message\": \"string\",\n      \"external_attributes\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      }\n    },\n    {\n      \"attribute\": \"string\",\n      \"message\": \"string\",\n      \"external_attributes\": {\n        \"key_0\": {}\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d4b4739-f101-4352-b83f-04770e3da264",
+              "name": "<b>Unauthorized</b> : Approval to execute with provided custom approval details (1st or 2nd level)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "custom-approval"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company\": {\n    \"id\": 6762,\n    \"point_of_sale\": \"string\"\n  },\n  \"line_of_business\": \"<string>\",\n  \"travelers\": [\n    {\n      \"custom_data_fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"email_id\": \"string\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"amount\": 2589.8080817718296\n      },\n      \"guest_traveler\": true\n    },\n    {\n      \"custom_data_fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"email_id\": \"string\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"amount\": 5843.049021138836\n      },\n      \"guest_traveler\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"approval_details\": [\n    {\n      \"level\": \"LEVEL_ONE\",\n      \"required\": true,\n      \"approvers\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"level\": \"LEVEL_TWO\",\n      \"required\": false,\n      \"approvers\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3a18a8f-8af1-4f5a-b9d5-a7f28e6de550",
+              "name": "<b>Forbidden</b> : Approval to execute with provided custom approval details (1st or 2nd level)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "custom-approval"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company\": {\n    \"id\": 6762,\n    \"point_of_sale\": \"string\"\n  },\n  \"line_of_business\": \"<string>\",\n  \"travelers\": [\n    {\n      \"custom_data_fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"email_id\": \"string\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"amount\": 2589.8080817718296\n      },\n      \"guest_traveler\": true\n    },\n    {\n      \"custom_data_fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"email_id\": \"string\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"amount\": 5843.049021138836\n      },\n      \"guest_traveler\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"approval_details\": [\n    {\n      \"level\": \"LEVEL_ONE\",\n      \"required\": true,\n      \"approvers\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"level\": \"LEVEL_TWO\",\n      \"required\": false,\n      \"approvers\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fd712d7-24ad-4832-a3d2-8e9ad6d08ea3",
+              "name": "<b>Internal Server Error</b> : Failed to execute with custom approval details (1st or 2nd level)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "custom-approval"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company\": {\n    \"id\": 6762,\n    \"point_of_sale\": \"string\"\n  },\n  \"line_of_business\": \"<string>\",\n  \"travelers\": [\n    {\n      \"custom_data_fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"email_id\": \"string\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"amount\": 2589.8080817718296\n      },\n      \"guest_traveler\": true\n    },\n    {\n      \"custom_data_fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"email_id\": \"string\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"amount\": 5843.049021138836\n      },\n      \"guest_traveler\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_subcode\": \"string\",\n  \"error_description\": \"string\",\n  \"detail_error_message\": \"string\",\n  \"source\": {\n    \"application_name\": \"string\",\n    \"error_code\": \"string\",\n    \"error_description\": \"string\"\n  },\n  \"data\": [\n    {\n      \"attribute\": \"string\",\n      \"message\": \"string\",\n      \"external_attributes\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      }\n    },\n    {\n      \"attribute\": \"string\",\n      \"message\": \"string\",\n      \"external_attributes\": {\n        \"key_0\": {}\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apis.egencia.com/openconnect/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "df4f87fe-6f16-415d-a839-15bde166045b",
+    "name": "Openconnect Approval Service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<h1>Introduction to the Document</h1>\n<p>This document provides a detailed overview of the Approval Customisation SPI and how it can be used to customize the approval process as per clients requirements. The document contains both functional and technical details, which are intended to help developers understand the functionality of the SPI and how it can be implemented in their applications.</p>\n<h2>Audience</h2>\n<p>This document is aimed for Egencia customers, partners and software developers who would like to consume the Approval Customisation SPI.</p>\n<h2>Overview</h2>\n<p>Approval Customisation SPI gives Egencia customers greater control over their approval process and allows them to customize certain steps along the approval process. This provides more flexibility to each customer as per their unique and specific approval use case. This document will help you to find links to different SPI endpoints and a general overview of the SPI status codes you can expect from Approval Customisation SPI endpoints.</p>\n\n<h1>Openconnect Approval Service</h1>\n\n<h2>What Is Openconnect Approval Service?</h2>\n<p>Clients will be able to provide the approval required for both level 1 and 2 as well as the approvers for both these levels based on booking data.</p>\n\n<h2>Definitions</h2>\n<div>\n    <table style=\"width:50%; border-spacing:5px\"  border=\"1\" cellpadding=\"5px\">\n        <thead>\n            <tr >\n                <th style=\"padding:10px; width:30%\">Term</th>\n                <th style=\"padding:10px;\">Definition</th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr>\n                <td style=\"padding:10px;\">Third Party Service Provider</td>\n                <td style=\"padding:10px;\">A Company that provides a software to Egencia client, e.g.: Expense Tool provider, ERP provider, HRIS provider.</td>\n            </tr>\n            <tr>\n                <td style=\"padding:10px;\">Connected System</td>\n                <td style=\"padding:10px;\">A Third Party Service Provider or Home built software, e.g.: Expense tool, Enterprise Resource Planning, Reconciliation Tool, Accounting Software. </br> The software that will provide the web service and receive the Expense Data.</td>\n            </tr>\n            <tr>\n                <td style=\"padding:10px;\">Consumer</td>\n                <td style=\"padding:10px;\">Anybody who consumes the API.</td>\n            </tr>\n            <tr>\n                <td style=\"padding:10px;\">Shared Client</td>\n                <td style=\"padding:10px;\">A company that is both client of Egencia and client of the Third Party Service Provider.</td>\n            </tr>\n            <tr>\n                <td style=\"padding:10px;\">Major version</td>\n                <td style=\"padding:10px;\">Please refer to Versions section in this document.</td>\n            </tr>\n            <tr>\n                <td style=\"padding:10px;\">CDF</td>\n                <td style=\"padding:10px;\">Means Custom Data Fields. These are the fields that are configurable for the Customer. They represent the analytical data or reporting data. This information will be in billing data, receipt and invoices. It helps generally for budget allocation and reconciliation.</td>\n            </tr>\n            <tr>\n                <td style=\"padding:10px;\">GDS</td>\n                <td style=\"padding:10px;\">\"A global distribution system (GDS) is a computerised network system owned or operated by a company that enables transactions between travel industry service providers, mainly airlines, hotels, car rental companies, and travel agencies.\" (source: Wikipedia - https://en.wikipedia.org/wiki/Global_distribution_system).</td>\n            </tr>\n            <tr>\n                <td style=\"padding:10px;\">Trip</td>\n                <td style=\"padding:10px;\">A Trip is a functional container which regroups a list of products and services. For example, a Trip Rio can contain a flight from a destination A to Rio and a hotel.</td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n\n<h2>Authentication</h2>\n<p>OAS uses API Key Authentication scheme or Basic Auth Credentials scheme for Authorization access to its API. The authorization is done using the following steps.</p>\n<ol>\n    <li>We send HTTP request to the server with the <i>Api key added to x-api-key header</i> or <i>Base64 encoded credentials added to the Authorization header</i>.</li>\n    <li>The client server decodes and verifies the credentials and authenticates the request if the username & password is valid.</li>\n</ol>\n\n<h3><u>API Key Authentication scheme</u></h3>\n<p>The OAS uses API keys to authenticate requests. An application programming interface key (API key) is a unique identifier used to authenticate a user, developer, or calling program to an API.</p>\n<p>The partner provides API Key. This API Key is securely stored in our Vault and will be used for authenticating with the partner every time we make a call.</p>\n<p>You can authenticate the requests by validating the API Key when you receive an incoming request call from OAS. We will pass the API key with every request and you (the partner) will validate the API Key, if the API key is valid then you can accept and process request.</p>\n\n<h3><u>Basic Auth Credentials scheme</u></h3>\n<p>To work with the Approval Customisation SPIs, the partner will need to share the Auth Credentials to Egencia. Once the Auth credentials are shared, this (username & Password) will be securely stored in our Vault and will be used for authenticating with the partner every time we make a call. While making an authentication request we transmit the credentials as user-id/ password pairs, encoded using Base64.</p>\n<p>To authenticate we send the HTTP requests with the Authorization header that contains the \"Basic\" word followed by a space and a base64 encoded username:password string.</p>\n<p><strong>Signature sample</strong></p>\n<p>\n    <code style=\"display:block;color:black;white-space:pre-wrap;\">Authorization: Basic Zm9vOmJhcg==</code>\n</p>\n<p>The credentials are not encrypted or hashed while transmitting, but are merely encoded with Base64. Therefore, we use basic authentication in conjunction with HTTPS to provide confidentiality.</p>\n\n<p><strong><u>Note:</u> API Key Authentication Scheme is the preferred mode for authentication.</strong></p>\n\n<h3>401- Unauthorized Response</h3>\n<p>401 \"Unauthorized\" response is returned for requests with missing or incorrect credentials or api key. This response includes the WWW-Authenticate header.</p>\n\n\n<h2>Openconnect approval service</h2>\n\n<h3>Functional description</h3>\n<p>When a user clicks on the Book Now button on the Egencia checkout page, the approval process is triggered. During this approval process, the Approval Customisation feature comes into play and provides organisations with greater control over their approvals. Currently in version 1, this feature allows organisations to customize the approval required for both level 1 and level 2, as well as customize the approvers for both levels. We make an API call to the external system with the booking data to fetch this information which is then plugged into the approval process. This enhances the client's approval experience.</p>\n\n<h4>What</h4>\n<p>Clients will be able to provide the approval required for both level 1 and 2 as well as the approvers for both these levels based on booking data.</p>\n\n<h4>When</h4>\n<p>At checkout time, when the user clicks on the book button, Egencia platform will call the clients web service to send the booking data. This booking data is a SPI contract mentioned below. Depending on the clients response, we will plug in the approval required data and approvers into our approval process.</p>\n\n<h4>Mobile / Smartphone</h4>\n<p>The Approval Customisation Interface is compatible with mobile and it will have the same behaviour. Although there might be an impact on response time and processing time due to network/infra related issues.</p>\n\n<h4>Operations and methods</h4>\n<div>\n    <table style=\"width:50%; border-spacing:5px\"  border=\"1\" cellpadding=\"5px\">\n        <thead>\n        <tr >\n            <th style=\"padding:10px;\">Method</th>\n            <th style=\"padding:10px;\">Endpoint</th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td style=\"padding:10px;\">GET</td>\n            <td style=\"padding:10px;\">/v1/approval-details</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n\n<h3>Security</h3>\n<div>\n    <table style=\"width:50%; border-spacing:5px\"  border=\"1\" cellpadding=\"5px\">\n        <thead>\n            <tr >\n                <th style=\"padding:10px;\">Type</th>\n                <th style=\"padding:10px;\">Name</th>\n                <th style=\"padding:10px;\">In</th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr>\n                <td style=\"padding:10px;\">Api Key</td>\n                <td style=\"padding:10px;\">x-api-key</td>\n                <td style=\"padding:10px;\">Header</td>\n            </tr>\n            <tr>\n                <td style=\"padding:10px;\">Basic Auth</td>\n                <td style=\"padding:10px;\">Authorization</td>\n                <td style=\"padding:10px;\">Header</td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n\n<h4>Communication Security</h4>\n<p>For Data Security, all the Egencia communication will happen over the SSL/TLS channel. This ensures that all data that travels between the Egencia server and your program are encrypted. This protects your credentials and the transmitted data.</p>\n\n<h2>Versioning</h2>\n<p>Egencia will notify the client about the availability of new major versions and provide the timeframe for the upgrades. Major version is a new version of the software with a significant change(s). Minor version is a new version of the software with possible backward compatibility and with a minor degree of change. The changes can be structural, and can contain enhancements, major bug fixes, or change of behaviour, endpoint changes, new fields added, or fields removed. The version change log will list all the changes included in the corresponding version from the previous one.</p>\n<h3>Version Change Log</h3>\n<p>You can also see a full API version change log under this heading.</p>\n<div>\n    <table style=\"width:50%; border-spacing:5px\"  border=\"1\" cellpadding=\"5px\">\n        <thead>\n        <tr >\n            <th style=\"padding:10px;\">API</th>\n            <th style=\"padding:10px;\">Current Version</th>\n            <th style=\"padding:10px;\">What has changed?</th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td style=\"padding:10px;\">Approval Customisation SPI</td>\n            <td style=\"padding:10px;\">Version 1</td>\n            <td style=\"padding:10px;\">First stable version.</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n\n<h2>Approval Customisation SPI Details</h2>",
+      "type": "text/plain"
+    }
+  }
+}

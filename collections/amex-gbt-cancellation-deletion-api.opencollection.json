@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Egencia Cancellation/Deletion API",
+    "version": "v1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "bookings v1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cancel trip for a particular booking ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId/cancel",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Creates a cancel request for a specific booking Id</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n"
+        },
+        {
+          "info": {
+            "name": "Delete trip items for a particular booking ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId/delete",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Creates a delete request for a specific booking Id</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

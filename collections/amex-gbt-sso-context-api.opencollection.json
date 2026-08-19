@@ -1,0 +1,199 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SSO Context API",
+    "version": "v1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "redirection-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Redirect to Egencia home page based on the request parameters passed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect-sso-service/v1/newTrip",
+            "params": [
+              {
+                "name": "costCenter1",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "costCenter2",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "costCenter3",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "costCenter4",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "costCenter5",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "freeField1",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "freeField2",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "freeField3",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "itineraryType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "departureDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "arrivalDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "departureTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "arrivalTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "departureLocation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "arrivalLocation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stayLocation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "countryLocation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "checkinDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "checkoutDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pickupDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pickupTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dropoffDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dropoffTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pickupLocation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pickupCountry",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dropoffLocation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dropoffCountry",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "missionNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "travelerId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Redirect to Egencia home page based on the request parameters passed"
+        },
+        {
+          "info": {
+            "name": "Redirect to Egencia home page based on the request parameters passed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect-sso-service/v2/startTrip",
+            "params": [
+              {
+                "name": "request",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "\n            This api takes the values passed in the request and redirects to Egencia home page and pre-populates the context data in the corresponding fields such as search form data, custom data fields.\n            The \"cdf\" param in the \"request\" supports custom data fields for both the region EU as well as NA. The user of this api needs to pass the custom data field as a key value pair where key is the name of the custom data field and value will be the custom data field value. If the custom"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

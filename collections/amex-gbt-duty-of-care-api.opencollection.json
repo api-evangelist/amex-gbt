@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Duty Of Care API",
+    "version": "v1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DutyOfCare Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Metadata based on the Search Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/dutyofcare/api/v1/bookings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>In general, the DoC API uses HTTPs POST requests with JSON arguments and JSON responses. This API call allows the client to submit a request for retrieving paginated booking data for a specified search criterion. </p>\n</br>\n<p> Request Parameters: </p>\n<table class=\"fullWidth\" >\n    <thead >\n    <tr >\n        <th>Field</th>\n        <th>Type</th>\n        <th>Required/Optional</th>\n        <th>Description</th>\n    </tr>\n    </thead>\n    <tbody>\n    <tr>\n        <td colspan=\"1\">\n            <str"
+        },
+        {
+          "info": {
+            "name": "Get the duty of care data as per the Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/dutyofcare/api/v1/bookings/:resourceId",
+            "params": [
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique resource identifier returned from the POST /bookings response"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "page"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<h3><strong>Sample Request </strong></h3>\n<pre>\n    <code>\n<br>\n        GET\n        https://apis.egencia.com/dutyofcare/api/v1/bookings/89ef5828-6d9f-4429-ab73-5ee40cf7b4e7\n<br>\n    </code>\n</pre>\n<br>\n<h3><strong>Sample Response </strong></h3>\n<pre>\n    <code>\n   {\n    \"record_list\": [\n        {\n            \"record_locator\": \"5f19782e74b12400018f9e7d-169294509\",\n            \"company_id\": 35067,\n            \"trip_id\": \"0600-2564-655\",\n            \"booking_status\": \"CONFIRMED\",\n            \"line_"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

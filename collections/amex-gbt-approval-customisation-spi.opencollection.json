@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Openconnect Approval Service",
+    "version": "v1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Approval",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getApprovalDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/custom-approval",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "It will return the custom approval details, for example - approvers and approval required for both the level based on the booking data passed in request"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

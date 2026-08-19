@@ -1,0 +1,273 @@
+{
+  "item": [
+    {
+      "id": "03f4c49a-fdec-4241-b5e3-7290521864b1",
+      "name": "validation",
+      "description": {
+        "content": "Validation interface that will request authorization of booking based on the data provided at checkout time.This is only an example. The path and the host are specific for each implementor. However, the model is fixed and versioned.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0f8ca18e-87bf-4bf6-a102-d1f357e357a4",
+          "name": "Validate the booking fields",
+          "request": {
+            "name": "Validate the booking fields",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "validateFields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"booker\": {\n    \"email\": \"<string>\",\n    \"is_agent\": \"<boolean>\",\n    \"is_arranger\": \"<boolean>\",\n    \"user_id\": \"<long>\"\n  },\n  \"company_id\": \"<integer>\",\n  \"language\": \"<string>\",\n  \"partner_customer_code\": \"<string>\",\n  \"request_timestamp\": \"<string>\",\n  \"travelers\": [\n    {\n      \"email\": \"<string>\",\n      \"user_id\": \"<long>\",\n      \"validation_fields\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"email\": \"<string>\",\n      \"user_id\": \"<long>\",\n      \"validation_fields\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"trip_info\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "085e3ae5-593c-4d8d-9f37-60afc3bbbf5a",
+              "name": "<b>Ok</b> : Booking request will be granted. Booking will happen.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "validateFields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"booker\": {\n    \"email\": \"test@egencia.com\",\n    \"is_agent\": false,\n    \"is_arranger\": false,\n    \"user_id\": 12345\n  },\n  \"company_id\": 654534,\n  \"language\": \"EN\",\n  \"partner_customer_code\": \"JE3B\",\n  \"request_timestamp\": \"2021-06-29T07:36:48Z\",\n  \"travelers\": [\n    {\n      \"email\": \"test@egencia.com\",\n      \"user_id\": 454545,\n      \"validation_fields\": [\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        },\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        }\n      ]\n    },\n    {\n      \"email\": \"test@egencia.com\",\n      \"user_id\": 454545,\n      \"validation_fields\": [\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        },\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        }\n      ]\n    }\n  ],\n  \"trip_info\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"valid\": false,\n  \"errors\": [\n    {\n      \"user_id\": 454545,\n      \"error_fields\": [\n        {\n          \"name\": \"Project Code\",\n          \"expected_value\": \"\",\n          \"error_description\": \"The Project Code is unknown, please try another value.\"\n        },\n        {\n          \"name\": \"Travel Request Id\",\n          \"expected_value\": \"\",\n          \"error_description\": \"Travel Request or Mission Number Not Found.Please verify your entry or create a new Travel Request or Mission Number and request its approval before booking on Egencia.\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d851d616-8979-4212-9d1b-188edcddda63",
+              "name": "<b>Bad Request</b> : Booking will not happen. The User will be blocked in Checkout page.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "validateFields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"booker\": {\n    \"email\": \"test@egencia.com\",\n    \"is_agent\": false,\n    \"is_arranger\": false,\n    \"user_id\": 12345\n  },\n  \"company_id\": 654534,\n  \"language\": \"EN\",\n  \"partner_customer_code\": \"JE3B\",\n  \"request_timestamp\": \"2021-06-29T07:36:48Z\",\n  \"travelers\": [\n    {\n      \"email\": \"test@egencia.com\",\n      \"user_id\": 454545,\n      \"validation_fields\": [\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        },\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        }\n      ]\n    },\n    {\n      \"email\": \"test@egencia.com\",\n      \"user_id\": 454545,\n      \"validation_fields\": [\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        },\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        }\n      ]\n    }\n  ],\n  \"trip_info\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2c24b562-3166-4345-b72f-8f95f44af66a",
+              "name": "<b>Unauthorized</b> : Authentication Failure. Booking will not happen. The User will be blocked in Checkout page with a message telling the User to contact his system administrator as there was an error with his internal software.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "validateFields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"booker\": {\n    \"email\": \"test@egencia.com\",\n    \"is_agent\": false,\n    \"is_arranger\": false,\n    \"user_id\": 12345\n  },\n  \"company_id\": 654534,\n  \"language\": \"EN\",\n  \"partner_customer_code\": \"JE3B\",\n  \"request_timestamp\": \"2021-06-29T07:36:48Z\",\n  \"travelers\": [\n    {\n      \"email\": \"test@egencia.com\",\n      \"user_id\": 454545,\n      \"validation_fields\": [\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        },\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        }\n      ]\n    },\n    {\n      \"email\": \"test@egencia.com\",\n      \"user_id\": 454545,\n      \"validation_fields\": [\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        },\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        }\n      ]\n    }\n  ],\n  \"trip_info\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1b5b1ecf-73b2-446a-b02f-abd2790e22ab",
+              "name": "<b>Forbidden</b> : Booking will not happen. The User will be blocked in Checkout page with a message telling the User to contact his system administrator as there was an error with his internal software.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "validateFields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"booker\": {\n    \"email\": \"test@egencia.com\",\n    \"is_agent\": false,\n    \"is_arranger\": false,\n    \"user_id\": 12345\n  },\n  \"company_id\": 654534,\n  \"language\": \"EN\",\n  \"partner_customer_code\": \"JE3B\",\n  \"request_timestamp\": \"2021-06-29T07:36:48Z\",\n  \"travelers\": [\n    {\n      \"email\": \"test@egencia.com\",\n      \"user_id\": 454545,\n      \"validation_fields\": [\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        },\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        }\n      ]\n    },\n    {\n      \"email\": \"test@egencia.com\",\n      \"user_id\": 454545,\n      \"validation_fields\": [\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        },\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        }\n      ]\n    }\n  ],\n  \"trip_info\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5f4fb336-f4c5-46f9-89cc-56d4b667219d",
+              "name": "<b>Internal Server Error</b> : Booking will not happen. The User will be blocked in Checkout page with a message telling the User to contact his system administrator as there was an error with the internal software.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "validateFields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"booker\": {\n    \"email\": \"test@egencia.com\",\n    \"is_agent\": false,\n    \"is_arranger\": false,\n    \"user_id\": 12345\n  },\n  \"company_id\": 654534,\n  \"language\": \"EN\",\n  \"partner_customer_code\": \"JE3B\",\n  \"request_timestamp\": \"2021-06-29T07:36:48Z\",\n  \"travelers\": [\n    {\n      \"email\": \"test@egencia.com\",\n      \"user_id\": 454545,\n      \"validation_fields\": [\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        },\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        }\n      ]\n    },\n    {\n      \"email\": \"test@egencia.com\",\n      \"user_id\": 454545,\n      \"validation_fields\": [\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        },\n        {\n          \"name\": \"Project Code\",\n          \"value\": \"F_AUTO\"\n        }\n      ]\n    }\n  ],\n  \"trip_info\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apis.egencia.com/openconnect-validation-service",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ff827e24-3dc2-4e35-b7f0-eadb9d5984d4",
+    "name": "Validation SPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

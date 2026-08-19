@@ -1,0 +1,3495 @@
+{
+  "item": [
+    {
+      "id": "4e5e46f2-ce99-4b00-9ab6-94f6789df0ab",
+      "name": "bookings v1",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "225d42f1-5237-4014-9df8-d472c15b1f04",
+          "name": "Retrieve trip details for a particular booking based on booking ID",
+          "request": {
+            "name": "Retrieve trip details for a particular booking based on booking ID",
+            "description": {
+              "content": "<p>Creates a Retrieve Booking details request for a specific Booking Id</p>\n<br>\n<p>The response contains booking level as well as item level action links to approve/deny the booking request. The approve/deny action links will be coming in the response when approval status is PENDING and booking status is BOOKED.</p>\n<br>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Trip id corresponding to the booking which is to be retrieved</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bookings",
+                ":bookingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bookingId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://apis.egencia.com/auth/v1/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "70289cc0-33e7-4deb-a775-a62e611c5dd0",
+              "name": "<b>OK</b>.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"booking_id\": \"2000-2598-094\",\n  \"egencia_trip_link\": \"https://www.egencia.eu/trip-webapp/2000-2598-094?auth_gpid=53590\",\n  \"company\": {\n    \"id\": 53590,\n    \"name\": \"Test SGP EU Approval\",\n    \"organization_parent_id\": 53590\n  },\n  \"point_of_sale\": {\n    \"country_code\": \"FR\"\n  },\n  \"partner\": {\n    \"name\": \"xxx\"\n  },\n  \"total_price\": {\n    \"amount\": 56.98,\n    \"currency\": \"EUR\"\n  },\n  \"items\": [\n    {\n      \"id\": \"5fc5df57d4ccd20001470900\",\n      \"travelers\": [\n        {\n          \"id\": 6532166,\n          \"first_name\": \"Test\",\n          \"last_name\": \"User\",\n          \"email\": \"test.user@example.com\",\n          \"custom_data_fields\": [\n            {\n              \"label\": \"Primary Cost Center\",\n              \"value\": \"cc\"\n            },\n            {\n              \"label\": \"Secondary Cost Center\",\n              \"value\": \"C&D\"\n            },\n            {\n              \"label\": \"Free field 2\",\n              \"value\": \"test\"\n            }\n          ]\n        }\n      ],\n      \"booker\": {\n        \"id\": 6532166,\n        \"first_name\": \"Test\",\n        \"last_name\": \"User\",\n        \"email\": \"test.user@example.com\",\n        \"is_agent\": false\n      },\n      \"price\": {\n        \"currency\": \"EUR\",\n        \"amount\": 52.17,\n        \"cost_to_customer\": 52.17,\n        \"breakdowns\": [\n          {\n            \"type\": \"Base price\",\n            \"currency\": \"EUR\",\n            \"amount\": 28.05\n          },\n          {\n            \"type\": \"Taxes and fees\",\n            \"currency\": \"EUR\",\n            \"amount\": 24.12\n          }\n        ]\n      },\n      \"approval_triggered\": true,\n      \"booking_date_time\": \"2021-09-30T12:35:20.000Z\",\n      \"approval_status\": \"APPROVED\",\n      \"approval_deadline\": \"2021-04-20T20:30:00.000Z\",\n      \"payment_method\": \"DIRECT_BILLING\",\n      \"product_type\": \"CAR\",\n      \"gds_reference\": \"PQ5NK6 (SGP)\",\n      \"vendor_reference\": \"J5980968464\",\n      \"booking_reference\": \"PQ5NK6\",\n      \"mission_number\": \"12345\",\n      \"custom_data_fields\": [\n        {\n          \"label\": \"Primary Cost Center\",\n          \"value\": \"cc\"\n        },\n        {\n          \"label\": \"Secondary Cost Center\",\n          \"value\": \"C&D\"\n        },\n        {\n          \"label\": \"Free field 2\",\n          \"value\": \"test\"\n        }\n      ],\n      \"receipt_provision_available\": \"false\",\n      \"rate_type\": {\n        \"name\": \"CR\",\n        \"code\": \"EGENCIA\"\n      },\n      \"rules_and_regulations\": {\n        \"details\": [\n          \"One Way Information\",\n          \"Miscellaneous\\n\\nVALUE ADDED BENEFITS MAY NOT APPLY TO PERSONAL RENTALS\",\n          \"Miscellaneous\\n\\nVALUE ADDED BENEFITS MAY NOT APPLY TO PERSONAL RENTALS\",\n          \"160 miles included\",\n          \"Vehicle Licensing Fee And Road Tax\",\n          \"Location service charge\",\n          \"Additional Mileage - EUR0.17 MILE\",\n          \"Navigation guaranteed - EUR25.91 for the trip.\",\n          \"Child seat for toddler (4-7YR/15-30KG) - EUR15.55 for the trip.\",\n          \"Child seat for infant (0-12M/0-13KG) - EUR15.55 for the trip.\"\n        ]\n      },\n      \"booking_status\": \"BOOKED\",\n      \"policy_compliance\": {\n        \"is_compliant\": false,\n        \"reasons\": [\n          {\n            \"type\": \"PRICE_LIMIT\",\n            \"message\": \"This car does not comply with your company's daily fixed price policy of EUR100.00\"\n          }\n        ]\n      },\n      \"vendor\": {\n        \"code\": \"ZE\",\n        \"name\": \"Hertz\"\n      },\n      \"vehicle\": {\n        \"name\": \"Vauxhall Corsa or Seat Ibiza\",\n        \"acriss_code\": \"ECMR\",\n        \"category\": \"E\",\n        \"mileage_limit\": \"160 miles\"\n      },\n      \"pick_up\": {\n        \"location\": {\n          \"type\": \"ADDRESS\",\n          \"code\": \"LHR\",\n          \"address\": {\n            \"street_name\": \"LHR-Heathrow, Heathrow Airport, Northrop Rd\",\n            \"country_code\": \"GBR\",\n            \"city_name\": \"London Heathrow\",\n            \"state_province_name\": \"England\",\n            \"postal_code\": \"TW6 2QD\"\n          }\n        },\n        \"date_time\": \"2021-02-01T09:00:00.000Z\"\n      },\n      \"drop_off\": {\n        \"location\": {\n          \"type\": \"ADDRESS\",\n          \"code\": \"LHR\",\n          \"address\": {\n            \"street_name\": \"LHR-Heathrow, Heathrow Airport, Northrop Rd\",\n            \"country_code\": \"GBR\",\n            \"city_name\": \"London Heathrow\",\n            \"state_province_name\": \"England\",\n            \"postal_code\": \"TW6 2QD\"\n          }\n        },\n        \"date_time\": \"2021-02-02T09:00:00.000Z\"\n      },\n      \"amenities\": [],\n      \"number_of_drivers\": 1\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40e5d816-2a2b-4dc0-a740-71221f7b452c",
+              "name": "<b>Bad Request</b> : Invalid input or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3888a24a-4f63-4a8a-a996-091d9ec49b8f",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a1f1a511-2c4a-425e-a103-4671d316fecf",
+              "name": "<b>Forbidden</b> : User is not authorized for the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "07b165ef-f8e7-4087-93cc-40ba8034391b",
+              "name": "<b>Not Found</b> : You are trying to access an invalid or non existent resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "20ba109e-5b37-4fac-9834-fdb8ca01be09",
+              "name": "<b>Invalid input</b> : invalid or missing required input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f5bad80e-3756-446b-abef-f2782dda7813",
+              "name": "<b>Internal Server Error</b> : unable to process request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4887802c-d5f3-4f6e-a364-84469d44cfb4",
+          "name": "Retrieve booking item details for a particular item based on booking item Id",
+          "request": {
+            "name": "Retrieve booking item details for a particular item based on booking item Id",
+            "description": {
+              "content": "<p>Creates a Retrieve Booking Item details request for specific Booking Item Id</p>\n<br>\n<p>The response contains item level action links to approve/deny the booking item. The approve/deny action links will be coming in the response when approval status is PENDING and booking status is BOOKED. The cancel action link will come when booking status is not CANCELLED.</p>\n<br>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Trip id corresponding to the booking which is to be retrieved</td>\n        </tr>\n        <tr>\n            <td>itemId</td>\n            <td>String</td>\n            <td>Trip item id corresponding to the booking which is to be retrieved</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bookings",
+                ":bookingId",
+                "items",
+                ":itemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bookingId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://apis.egencia.com/auth/v1/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2ef0a7b8-cf85-47ec-8fcd-5b3f6b9a44bf",
+              "name": "<b>OK</b>.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"booking_id\": \"0000-3038-770\",\n  \"company\": {\n    \"id\": 53590,\n    \"name\": \"Test SGP EU Approval\",\n    \"organization_parent_id\": 53590\n  },\n  \"point_of_sale\": {\n    \"country_code\": \"FR\"\n  },\n  \"partner\": {\n    \"name\": \"xxx\"\n  },\n  \"id\": \"63882f9d8f517b32f3b1b828\",\n  \"travelers\": [\n    {\n      \"id\": 6532166,\n      \"first_name\": \"Test\",\n      \"last_name\": \"User\",\n      \"email\": \"test.user@example.com\",\n      \"custom_data_fields\": [\n        {\n          \"label\": \"Primary Cost Center\",\n          \"value\": \"cc\"\n        },\n        {\n          \"label\": \"Secondary Cost Center\",\n          \"value\": \"C&D\"\n        },\n        {\n          \"label\": \"Free field 2\",\n          \"value\": \"test\"\n        }\n      ]\n    }\n  ],\n  \"booker\": {\n    \"id\": 6532166,\n    \"first_name\": \"Test\",\n    \"last_name\": \"User\",\n    \"email\": \"test.user@example.com\",\n    \"is_agent\": false\n  },\n  \"price\": {\n    \"currency\": \"EUR\",\n    \"amount\": 52.17,\n    \"cost_to_customer\": 52.17,\n    \"breakdowns\": [\n      {\n        \"type\": \"Base price\",\n        \"currency\": \"EUR\",\n        \"amount\": 28.05\n      },\n      {\n        \"type\": \"Taxes and fees\",\n        \"currency\": \"EUR\",\n        \"amount\": 24.12\n      }\n    ]\n  },\n  \"approval_triggered\": true,\n  \"booking_date_time\": \"2021-09-30T12:35:20.000Z\",\n  \"approval_status\": \"APPROVED\",\n  \"approval_deadline\": \"2021-04-20T20:30:00.000Z\",\n  \"payment_method\": \"DIRECT_BILLING\",\n  \"product_type\": \"CAR\",\n  \"gds_reference\": \"PQ5NK6 (SGP)\",\n  \"vendor_reference\": \"J5980968464\",\n  \"booking_reference\": \"PQ5NK6\",\n  \"mission_number\": \"12345\",\n  \"custom_data_fields\": [\n    {\n      \"label\": \"Primary Cost Center\",\n      \"value\": \"cc\"\n    },\n    {\n      \"label\": \"Secondary Cost Center\",\n      \"value\": \"C&D\"\n    },\n    {\n      \"label\": \"Free field 2\",\n      \"value\": \"test\"\n    }\n  ],\n  \"receipt_provision_available\": \"false\",\n  \"rate_type\": {\n    \"name\": \"CR\",\n    \"code\": \"EGENCIA\"\n  },\n  \"rules_and_regulations\": {\n    \"details\": [\n      \"One Way Information\",\n      \"Miscellaneous\\\\n\\\\nVALUE ADDED BENEFITS MAY NOT APPLY TO PERSONAL RENTALS\",\n      \"Miscellaneous\\\\n\\\\nVALUE ADDED BENEFITS MAY NOT APPLY TO PERSONAL RENTALS\",\n      \"160 miles included\",\n      \"Vehicle Licensing Fee And Road Tax\",\n      \"Location service charge\",\n      \"Additional Mileage - EUR0.17 MILE\",\n      \"Navigation guaranteed - EUR25.91 for the trip.\",\n      \"Child seat for toddler (4-7YR/15-30KG) - EUR15.55 for the trip.\",\n      \"Child seat for infant (0-12M/0-13KG) - EUR15.55 for the trip.\"\n    ]\n  },\n  \"booking_status\": \"BOOKED\",\n  \"policy_compliance\": {\n    \"is_compliant\": false,\n    \"reasons\": [\n      {\n        \"type\": \"PRICE_LIMIT\",\n        \"message\": \"This car does not comply with your company's daily fixed price policy of EUR100.00\"\n      }\n    ]\n  },\n  \"vendor\": {\n    \"code\": \"ZE\",\n    \"name\": \"Hertz\"\n  },\n  \"vehicle\": {\n    \"name\": \"Vauxhall Corsa or Seat Ibiza\",\n    \"acriss_code\": \"ECMR\",\n    \"category\": \"E\",\n    \"mileage_limit\": \"160 miles\"\n  },\n  \"pick_up\": {\n    \"location\": {\n      \"type\": \"ADDRESS\",\n      \"code\": \"LHR\",\n      \"address\": {\n        \"street_name\": \"LHR-Heathrow, Heathrow Airport, Northrop Rd\",\n        \"country_code\": \"GBR\",\n        \"city_name\": \"London Heathrow\",\n        \"state_province_name\": \"England\",\n        \"postal_code\": \"TW6 2QD\"\n      }\n    },\n    \"date_time\": \"2021-02-01T09:00:00.000Z\"\n  },\n  \"drop_off\": {\n    \"location\": {\n      \"type\": \"ADDRESS\",\n      \"code\": \"LHR\",\n      \"address\": {\n        \"street_name\": \"LHR-Heathrow, Heathrow Airport, Northrop Rd\",\n        \"country_code\": \"GBR\",\n        \"city_name\": \"London Heathrow\",\n        \"state_province_name\": \"England\",\n        \"postal_code\": \"TW6 2QD\"\n      }\n    },\n    \"date_time\": \"2021-02-02T09:00:00.000Z\"\n  },\n  \"amenities\": [],\n  \"number_of_drivers\": 1,\n  \"_links\": {\n    \"cancel\": {\n      \"href\": \"https://apis.egencia.eu/openconnect/api/v1/bookings/0000-3038-770/items/63882f9d8f517b32f3b1b828/cancel\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2718d0c1-3dc1-4d9c-a0e2-7cb46b3987ed",
+              "name": "<b>Bad Request</b> : Invalid input or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "55cbd009-022b-4371-aa5e-10340b3a88b2",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f20094b6-da45-4ee6-a644-82e65b534fde",
+              "name": "<b>Forbidden</b> : User is not authorized for the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "558f3743-8c1a-49f0-929e-29d626ccdc71",
+              "name": "<b>Not Found</b> : You are trying to access an invalid or non existent resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3535b92c-ed4e-4581-bdb2-8fe1c6b9366b",
+              "name": "<b>Invalid input</b> : invalid or missing required input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fd709325-fff1-4240-8ff7-c5f2353bdd6d",
+              "name": "<b>Internal Server Error</b> : unable to process request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1407e5e0-3940-4943-a1c8-dbfb2761e802",
+          "name": "Cancel booking item for a particular booking",
+          "request": {
+            "name": "Cancel booking item for a particular booking",
+            "description": {
+              "content": "<p>Creates a cancel request to cancel a particular booking item present in the booking.</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Booking id corresponding to each booked product</td>\n        </tr>\n        <tr>\n            <td>itemId</td>\n            <td>String</td>\n            <td>Booking item id corresponding to booking item which we want to cancel</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Response Parameters in case of successful response</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>booking_id</td>\n            <td>String</td>\n            <td>Booking id corresponding to the booking which is to be cancelled</td>\n        </tr>\n        <tr>\n            <td>status</td>\n            <td>String</td>\n            <td>SUCCESS</td>\n        </tr>\n        <tr>\n            <td>id</td>\n            <td>String</td>\n            <td>Booking item id which is to be cancelled</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Below response with 200 OK HttpStatus</b></p>\n<pre>\n    <code>\n    {\n        \"booking_id\": \"123\",\n        \"status\": \"SUCCESS\",\n        \"id\": \"1\",\n    }\n    </code>\n</pre>\n<br/><p><b>Response Parameters in case of failure response</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>booking_id</td>\n            <td>String</td>\n            <td>Booking id corresponding to the booking which is to be cancelled</td>\n        </tr>\n        <tr>\n            <td>status</td>\n            <td>String</td>\n            <td>FAILURE</td>\n        </tr>\n        <tr>\n            <td>error_code</td>\n            <td>String</td>\n            <td>Error code in case of cancellation</td>\n        </tr>\n        <tr>\n            <td>error_message</td>\n            <td>String</td>\n            <td>Error message in case of cancellation</td>\n        </tr>\n        <tr>\n            <td>id</td>\n            <td>String</td>\n            <td>Booking item id which is to be cancelled</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Below response with 500 Internal Server Error HttpStatus</b></p>\n<div>\n<pre>\n    <code>\n    {\n        \"booking_id\": \"123\",\n        \"status\": \"FAILURE\",\n        \"id\": \"1234\",\n        \"error_code\": \"EGE-ER-OS-5011\",\n        \"error_message\": \"There was an error in cancelling the [1234] items. Please try again.\",\n    }\n    </code>\n</pre>\n</div>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bookings",
+                ":bookingId",
+                "items",
+                ":itemId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bookingId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://apis.egencia.com/auth/v1/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ab0e6ccf-d589-49cc-94ff-9f55dc544974",
+              "name": "<b>Ok</b>.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"bookingId\": \"string\",\n  \"errorCode\": \"string\",\n  \"errorMessage\": \"string\",\n  \"id\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37de5627-8b44-4836-a885-2ba4e4821af8",
+              "name": "<b>Bad Request</b> : Invalid input or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "25c80379-0736-4c72-95ea-a2e3b94a6bac",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "07192567-08a1-45ed-bfbc-94fd91cee3c2",
+              "name": "<b>Forbidden</b> : User is not authorized for the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a6e086d7-58df-48f0-ac32-4ecb021a8f5f",
+              "name": "<b>Not Found</b> : You are trying to access an invalid or non existent resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0689588b-16b7-4536-9f18-110931f30255",
+              "name": "<b>Invalid input</b> : invalid or missing required input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "34a24915-29bb-4b28-8980-da6a8e1b9994",
+              "name": "<b>Internal Server Error</b> : unable to process request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47cb2c2d-64f1-43f7-929a-6fcb77466247",
+          "name": "Delete trip item for a particular booking ID",
+          "request": {
+            "name": "Delete trip item for a particular booking ID",
+            "description": {
+              "content": "<p>Creates a delete request to delete a particular trip item present in the booking.</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Trip id corresponding to each booked product</td>\n        </tr>\n        <tr>\n            <td>itemId</td>\n            <td>String</td>\n            <td>Trip item id corresponding to trip item which we want to delete</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Response Parameters in case of successful response</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>booking_id</td>\n            <td>String</td>\n            <td>Trip id corresponding to the booking which is to be deleted</td>\n        </tr>\n        <tr>\n            <td>status</td>\n            <td>String</td>\n            <td>SUCCESS</td>\n        </tr>\n        <tr>\n            <td>id</td>\n            <td>String</td>\n            <td>Trip item id which is to be deleted</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Below response with 200 OK HttpStatus</b></p>\n<pre>\n    <code>\n    {\n        \"booking_id\": \"123\",\n        \"status\": \"SUCCESS\",\n        \"id\": \"1\",\n    }\n    </code>\n</pre>\n<br/><p><b>Response Parameters in case of failure response</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>booking_id</td>\n            <td>String</td>\n            <td>Trip id corresponding to the booking which is to be deleted</td>\n        </tr>\n        <tr>\n            <td>status</td>\n            <td>String</td>\n            <td>FAILURE</td>\n        </tr>\n        <tr>\n            <td>error_code</td>\n            <td>String</td>\n            <td>Error code in case of deletion</td>\n        </tr>\n        <tr>\n            <td>error_message</td>\n            <td>String</td>\n            <td>Error message in case of deletion</td>\n        </tr>\n        <tr>\n            <td>id</td>\n            <td>String</td>\n            <td>Trip item id which is to be deleted</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Below response with 500 Internal Server Error HttpStatus</b></p>\n<div>\n<pre>\n    <code>\n    {\n        \"booking_id\": \"123\",\n        \"status\": \"FAILURE\",\n        \"id\": \"1234\",\n        \"error_code\": \"EGE-ER-OS-5012\",\n        \"error_message\": \"There was an error in deleting the [1234] items. Please try again.\",\n    }\n    </code>\n</pre>\n</div>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bookings",
+                ":bookingId",
+                "items",
+                ":itemId",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bookingId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://apis.egencia.com/auth/v1/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9c45cfa5-12cd-4d93-acfe-766a6d9b7bea",
+              "name": "<b>Ok</b>.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"bookingId\": \"string\",\n  \"errorCode\": \"string\",\n  \"errorMessage\": \"string\",\n  \"id\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70832555-93dc-42da-af97-3b2f67381e09",
+              "name": "<b>Bad Request</b> : Invalid input or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9914140e-326b-4e73-ae62-c21211c8960e",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "49371417-e89e-43a9-9830-68c02f449f38",
+              "name": "<b>Forbidden</b> : User is not authorized for the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c70572bc-5cea-41af-99d8-92c6994bf637",
+              "name": "<b>Not Found</b> : You are trying to access an invalid or non existent resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d89793e-5bf4-45de-ba56-dac8a78da163",
+              "name": "<b>Invalid input</b> : invalid or missing required input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f8e293d6-39af-4e0f-92e1-35be9827e763",
+              "name": "<b>Internal Server Error</b> : unable to process request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf761e66-ded6-4ff6-99b3-4a8ac040a26f",
+          "name": "Fetch receipt for a booking item",
+          "request": {
+            "name": "Fetch receipt for a booking item",
+            "description": {
+              "content": "<p>Fetch receipt for a booking item</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Id corresponding to the trips summary for which you want to fetch each booking item receipts</td>\n        </tr>\n        <tr>\n            <td>itemId</td>\n            <td>String</td>\n            <td>Id corresponding to the booking item for which we want to fetch receipt</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Response Parameters in case of successful response</b></p>\n<p>In case of successful response receipt pdf will be send to the partner with 200 OK status</p>\n<p><b>Response Parameters in case of failure response</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>code</td>\n            <td>String</td>\n            <td>Error code in case of receipt failure</td>\n        </tr>\n        <tr>\n            <td>message</td>\n            <td>String</td>\n            <td>Error message in case of failure</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Below response with 404 Not Found Error HttpStatus</b></p>\n<div>\n<pre>\n   <code>\n   {\n       \"error\": {\n           \"code\": \"EGE-ER-OS-4010\",\n           \"message\": \"Receipt is unavailable for this booking item.\"\n       }\n   }\n   </code>\n</pre>\n</div>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bookings",
+                ":bookingId",
+                "items",
+                ":itemId",
+                "receipts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bookingId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://apis.egencia.com/auth/v1/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6251db78-4fc9-465c-9059-9c730a6e9387",
+              "name": "<b>OK</b>.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0f67186b-100c-45ae-8676-aa09d20e9733",
+              "name": "<b>Bad Request</b> : Invalid input or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a398d933-7cfb-4111-9bc0-b570324e9c4d",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "42c2e036-9c51-481a-af4d-fd54ffda1233",
+              "name": "<b>Forbidden</b> : User not Validated for operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "71fea0c7-a1bd-4e7a-89ca-b2aca293eb80",
+              "name": "<b>Not Found</b> : You are trying to access an invalid or non existent resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "296fba1a-f51e-482b-a002-dbb80fdcf5f7",
+              "name": "<b>Invalid input</b> : invalid or missing required input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7aa7f67d-bfe3-4919-96bf-f785389dd039",
+              "name": "<b>Internal Server Error</b> : unable to process request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ead94f10-8dfc-4501-9388-844ce81313dc",
+      "name": "bookings v2",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9adc8813-e240-435b-9914-5c44d184cb36",
+          "name": "Fetch all receipts for a booking item as a zip file",
+          "request": {
+            "name": "Fetch all receipts for a booking item as a zip file",
+            "description": {
+              "content": "<p>Fetch all receipts for a booking item as a zip file</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Id corresponding to the trips summary for which you want to fetch all booking item receipts</td>\n        </tr>\n        <tr>\n            <td>itemId</td>\n            <td>String</td>\n            <td>Id corresponding to the booking item for which we want to fetch receipts</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Response Parameters in case of successful response</b></p>\n<p>In case of successful response, receipts zip file will be sent to the partner with 200 OK status</p>\n<p><b>Response Parameters in case of failure response</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>code</td>\n            <td>String</td>\n            <td>Error code in case of failure</td>\n        </tr>\n        <tr>\n            <td>message</td>\n            <td>String</td>\n            <td>Error message in case of failure</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Below response with 404 Not Found Error HttpStatus</b></p>\n<div>\n<pre>\n   <code>\n   {\n       \"error\": {\n           \"code\": \"EGE-ER-OS-4010\",\n           \"message\": \"Receipt is unavailable for this booking item.\"\n       }\n   }\n   </code>\n</pre>\n</div>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bookings",
+                ":bookingId",
+                "items",
+                ":itemId",
+                "receipts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bookingId",
+                  "description": "(Required) Booking id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) Trip item id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://apis.egencia.com/auth/v1/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6c945a28-916d-4a55-bc5b-ba3dac93af76",
+              "name": "<b>OK</b>.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) Trip item id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9c6f3ddb-ef53-4603-93e4-096e62ee8ff2",
+              "name": "<b>Bad Request</b> : Invalid input or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) Trip item id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "41fa9f88-50d6-4a74-9e65-76fdd2ec439a",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) Trip item id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "061ba32d-42e9-47f5-a382-38fbabfdc7dd",
+              "name": "<b>Forbidden</b> : User not Validated for operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) Trip item id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9602f7a6-0e89-4b4b-8c2f-179e3bd2e053",
+              "name": "<b>Not Found</b> : You are trying to access an invalid or non existent resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) Trip item id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4d24d6b5-7a42-42ee-84dc-86515a9f61d5",
+              "name": "<b>Invalid input</b> : invalid or missing required input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) Trip item id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "41b247c2-3b37-4599-b7aa-3328cacecddc",
+              "name": "<b>Internal Server Error</b> : unable to process request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) Trip item id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76ef181a-c42a-4b16-ac04-be227bc73a7b",
+          "name": "Fetch receipt for a booking item by receipt id",
+          "request": {
+            "name": "Fetch receipt for a booking item by receipt id",
+            "description": {
+              "content": "<p>Fetch receipt for a booking item by receipt id</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Id corresponding to the trips summary for which you want to fetch each booking item receipts</td>\n        </tr>\n        <tr>\n            <td>itemId</td>\n            <td>String</td>\n            <td>Id corresponding to the booking item for which we want to fetch receipt</td>\n        </tr>\n        <tr>\n            <td>receiptId</td>\n            <td>String</td>\n            <td>Id corresponding to the receipt we want to fetch</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Response Parameters in case of successful response</b></p>\n<p>In case of successful response, receipt pdf will be sent to the partner with 200 OK status</p>\n<p><b>Response Parameters in case of failure response</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>code</td>\n            <td>String</td>\n            <td>Error code in case of failure</td>\n        </tr>\n        <tr>\n            <td>message</td>\n            <td>String</td>\n            <td>Error message in case of failure</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Below response with 404 Not Found Error HttpStatus</b></p>\n<div>\n<pre>\n   <code>\n   {\n       \"error\": {\n           \"code\": \"EGE-ER-OS-4010\",\n           \"message\": \"Receipt is unavailable for this booking item.\"\n       }\n   }\n   </code>\n</pre>\n</div>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bookings",
+                ":bookingId",
+                "items",
+                ":itemId",
+                "receipts",
+                ":receiptId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale"
+                },
+                {
+                  "disabled": false,
+                  "key": "traveler_id",
+                  "value": "<string>",
+                  "description": "Id of the traveler to whom invoice/receipt is issued"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bookingId",
+                  "description": "(Required) Booking id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) Trip item id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "receiptId",
+                  "description": "(Required) Receipt id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://apis.egencia.com/auth/v1/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c964e8d7-e80e-46c9-9a17-b18034659e5d",
+              "name": "<b>OK</b>.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts",
+                    ":receiptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "traveler_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) Trip item id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "receiptId",
+                      "description": "(Required) Receipt id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d8cdb500-9051-45b9-809e-a2c69d72cc7e",
+              "name": "<b>Bad Request</b> : Invalid input or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts",
+                    ":receiptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "traveler_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) Trip item id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "receiptId",
+                      "description": "(Required) Receipt id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8edcaef4-72cb-49ec-a81c-c67dd1da05cd",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts",
+                    ":receiptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "traveler_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) Trip item id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "receiptId",
+                      "description": "(Required) Receipt id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "52782ea4-ac17-4b0f-81e0-3f9f9a2ea8b2",
+              "name": "<b>Forbidden</b> : User not Validated for operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts",
+                    ":receiptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "traveler_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) Trip item id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "receiptId",
+                      "description": "(Required) Receipt id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "034033e5-f6ee-45cf-9ada-2bea68bc9da0",
+              "name": "<b>Not Found</b> : You are trying to access an invalid or non existent resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts",
+                    ":receiptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "traveler_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) Trip item id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "receiptId",
+                      "description": "(Required) Receipt id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ca17080e-0403-4ab5-a217-a457bb40d96f",
+              "name": "<b>Invalid input</b> : invalid or missing required input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts",
+                    ":receiptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "traveler_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) Trip item id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "receiptId",
+                      "description": "(Required) Receipt id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fb56fae9-38c6-43a4-b71f-ce3eecdda886",
+              "name": "<b>Internal Server Error</b> : unable to process request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bookings",
+                    ":bookingId",
+                    "items",
+                    ":itemId",
+                    "receipts",
+                    ":receiptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "traveler_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) Booking id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) Trip item id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "receiptId",
+                      "description": "(Required) Receipt id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apis.egencia.com/openconnect/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4fe2c422-9f5b-450c-af4b-f82320179a4e",
+    "name": "Egencia Get Booking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

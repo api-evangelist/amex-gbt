@@ -1,0 +1,835 @@
+{
+  "item": [
+    {
+      "id": "9c86d729-6564-49d0-83fe-93880d56d11a",
+      "name": "redirection-controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "14d49843-1c3a-421d-be47-e3e4a7f02690",
+          "name": "Redirect to Egencia home page based on the request parameters passed",
+          "request": {
+            "name": "Redirect to Egencia home page based on the request parameters passed",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "newTrip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "costCenter1",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "costCenter2",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "costCenter3",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "costCenter4",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "costCenter5",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "freeField1",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "freeField2",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "freeField3",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "itineraryType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "departureDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "arrivalDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "departureTime",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "arrivalTime",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "departureLocation",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "arrivalLocation",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "stayLocation",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "countryLocation",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "checkinDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "checkoutDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pickupDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pickupTime",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dropoffDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dropoffTime",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pickupLocation",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pickupCountry",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dropoffLocation",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dropoffCountry",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "missionNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "travelerId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26cfa9ef-1e34-4ec9-a094-8f0e9fc2f419",
+              "name": "<b>Found</b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "newTrip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "costCenter1",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "costCenter2",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "costCenter3",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "costCenter4",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "costCenter5",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "freeField1",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "freeField2",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "freeField3",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "itineraryType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "departureDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "arrivalDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "departureTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "arrivalTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "departureLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "arrivalLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stayLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "checkinDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "checkoutDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pickupDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pickupTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dropoffDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dropoffTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pickupLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pickupCountry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dropoffLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dropoffCountry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "missionNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "travelerId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "GET \"https://xxvanity.egencia-test.com/openconnect-sso-service/v1/newTrip?product=CAR&free_field3=1234&pickup_time=09:00&pickup_date=2020-01-15&pickup_location=Paris&pickup_country=FR&dropoff_time=10:00&dropoff_date=2020-01-30&dropoff_location=Orleans&dropoff_country=FR\"",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4fb1c859-055d-422a-b067-9d4e605af6e0",
+              "name": "<b>Bad Request</b> : Invalid input or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "newTrip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "costCenter1",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "costCenter2",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "costCenter3",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "costCenter4",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "costCenter5",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "freeField1",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "freeField2",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "freeField3",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "itineraryType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "departureDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "arrivalDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "departureTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "arrivalTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "departureLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "arrivalLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stayLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "checkinDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "checkoutDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pickupDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pickupTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dropoffDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dropoffTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pickupLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pickupCountry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dropoffLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dropoffCountry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "missionNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "travelerId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6cf956d0-53ed-4bd3-9e9b-56263543667c",
+              "name": "<b>Internal Server Error</b> : Unable to process request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "newTrip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "costCenter1",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "costCenter2",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "costCenter3",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "costCenter4",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "costCenter5",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "freeField1",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "freeField2",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "freeField3",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "itineraryType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "departureDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "arrivalDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "departureTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "arrivalTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "departureLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "arrivalLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stayLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "checkinDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "checkoutDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pickupDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pickupTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dropoffDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dropoffTime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pickupLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pickupCountry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dropoffLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dropoffCountry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "missionNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "travelerId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a107f7a8-23fa-4fab-81b6-3b75476c95c9",
+          "name": "Redirect to Egencia home page based on the request parameters passed",
+          "request": {
+            "name": "Redirect to Egencia home page based on the request parameters passed",
+            "description": {
+              "content": "\n            This api takes the values passed in the request and redirects to Egencia home page and pre-populates the context data in the corresponding fields such as search form data, custom data fields.\n            The \"cdf\" param in the \"request\" supports custom data fields for both the region EU as well as NA. The user of this api needs to pass the custom data field as a key value pair where key is the name of the custom data field and value will be the custom data field value. If the custom data field is configured as mandatory and non editable, then this api will throw an error otherwise if either name or value is invalid, this api will skip that record.\n            ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "startTrip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "request",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "afaad42a-a4d1-44fa-b5bb-64502416253d",
+              "name": "<b>Found</b>.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "startTrip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "GET \"https://xxvanity.egencia-test.com/openconnect-sso-service/v2/startTrip?request=ewogICJwcm9kdWN0X3R5cGUiOiAiQ0FSIiwKICAibWlzc2lvbl9udW1iZXIiOiAiMTIzNCIsCiAgInRyYXZlbGVycyI6IFsKICAgICI5ODc2NSIKICBdLAogICJkdXJhdGlvbiI6IHsKICAgICJzdGFydF9kYXRlIjogIjIwMjEtMTAtMjUiLAogICAgImVuZF9kYXRlIjogIjIwMjEtMTAtMjgiLAogICAgInN0YXJ0X3RpbWUiOiAiMDk6MDAiLAogICAgImVuZF90aW1lIjogIjA5OjAwIgogIH0sCiAgImNkZnMiOiB7CiAgICAiQ09TVF9DRU5URVJfMSI6ICJURVNUIiwKICAgICJDT1NUX0NFTlRFUl8yIjogIlRFU1QiCiAgfSwKICAibG9jYXRpb25zIjogWwogICAgewogICAgICAidHlwZSI6ICJTVEFSVCIsCiAgICAgICJuYW1lIjogIlRvcm9udG8iLAogICAgICAiY291bnRyeSI6ICJDQSIKICAgIH0sCiAgICB7CiAgICAgICJ0eXBlIjogIkVORCIsCiAgICAgICJuYW1lIjogIlRvcm9udG8iLAogICAgICAiY291bnRyeSI6ICJDQSIKICAgIH0KICBdCn0=\"",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8f5f52c8-35bd-4020-9b1e-ec31a8afaf7f",
+              "name": "<b>Bad Request</b> : Invalid input or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "startTrip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"description\": \"\\n            <h3><p><strong>Error response when custom data field is mandatory and non editable and invalid value is supplied:</strong></p></h3>\\n            <pre>\\n                <code>\\n                   {\\n                       \\\"error\\\": \\\"ERR_OSSO_4000\\\",\\n                       \\\"error_description\\\": \\\"Invalid data provided in the request.\\\",\\n                       \\\"data\\\": [\\n                           {\\n                               \\\"attribute\\\": \\\"cdfs.TEST_CDF_NAME\\\",\\n                               \\\"message\\\": \\\"Requested custom data field value TEST does not exist.\\\",\\n                           }\\n                       ],\\n                       \\\"timestamp\\\": \\\"2022-04-22T13:58:39.703+05:30\\\",\\n                       \\\"status\\\": 400,\\n                       \\\"path\\\": \\\"/openconnect-sso-service/v2/startTrip\\\"\\n                   }\\n                </code>\\n            </pre>\\n            \"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c44f3d07-0bac-4215-9eae-16fcdbabc961",
+              "name": "<b>Internal Server Error</b> : Unable to process request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "startTrip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apis.egencia.com/openconnect-sso-service",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1a3be11a-e6e6-4b1c-8c49-8b5dfbb4407a",
+    "name": "SSO Context API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

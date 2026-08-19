@@ -1,0 +1,657 @@
+{
+  "item": [
+    {
+      "id": "e6b85cef-9532-4eb5-9a45-39ecb48c0334",
+      "name": "Expense SPI",
+      "description": {
+        "content": "Push Expense and Subscription Operation. This is only an example. The path and the host are specific for each implementor. However, the model is fixed and versioned.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "61b25b12-ea74-42aa-b19e-a8fa7a063901",
+          "name": "Push Expense",
+          "request": {
+            "name": "Push Expense",
+            "description": {
+              "content": "<p>The SPI handles all the standard HTTP return codes. The 'Responses' below shows the codes that will trigger an automatic retry mechanism on our side in order to enhance the success of the delivery. For any other error or when the maximum retries has been reached, it will need a manual intervention and we might contact your technical service if the issue comes from your server.</p>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "some.base.path",
+                "some.path"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Time Stamp in format ISO DATE TIME",
+                "key": "message_timestamp",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"company\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"organization_parent_id\": \"<long>\",\n    \"partner_customer_code\": \"<string>\"\n  },\n  \"custom_data_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"drop_off\": {\n    \"date_time\": \"<string>\",\n    \"location\": {\n      \"address\": {\n        \"city_code\": \"<string>\",\n        \"city_name\": \"<string>\",\n        \"country_code\": \"<string>\",\n        \"country_name\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"state_province_code\": \"<string>\",\n        \"state_province_name\": \"<string>\",\n        \"street_name\": \"<string>\"\n      },\n      \"type\": \"<string>\",\n      \"code\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"egencia_item_id\": \"<string>\",\n  \"egencia_trip_id\": \"<string>\",\n  \"egencia_trip_link\": \"<string>\",\n  \"expense_id\": \"<string>\",\n  \"expense_type\": \"<string>\",\n  \"number_of_drivers\": \"<integer>\",\n  \"pick_up\": {\n    \"date_time\": \"<string>\",\n    \"location\": {\n      \"address\": {\n        \"city_code\": \"<string>\",\n        \"city_name\": \"<string>\",\n        \"country_code\": \"<string>\",\n        \"country_name\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"state_province_code\": \"<string>\",\n        \"state_province_name\": \"<string>\",\n        \"street_name\": \"<string>\"\n      },\n      \"type\": \"<string>\",\n      \"code\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"uuid\": \"<uuid>\",\n  \"vendor\": {\n    \"code\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"amenities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"approval_deadline\": \"<string>\",\n  \"approval_status\": \"<string>\",\n  \"approval_triggered\": \"<boolean>\",\n  \"booker\": {\n    \"email\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"custom_data_fields\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"id\": \"<long>\",\n    \"is_agent\": \"<boolean>\",\n    \"is_guest\": \"<boolean>\",\n    \"preferred_language\": \"<string>\"\n  },\n  \"booking_date_time\": \"<string>\",\n  \"booking_reference\": \"<string>\",\n  \"booking_status\": \"<string>\",\n  \"cancellation_date_time\": \"<string>\",\n  \"credit_card\": {\n    \"card_type\": \"<string>\",\n    \"first6_digits\": \"<string>\",\n    \"last4_digits\": \"<string>\"\n  },\n  \"expense_version\": \"<integer>\",\n  \"gds_reference\": \"<string>\",\n  \"is_drop_off_collection\": \"<boolean>\",\n  \"is_pick_up_delivery\": \"<boolean>\",\n  \"links\": [\n    {\n      \"deprecation\": \"<string>\",\n      \"href\": \"<string>\",\n      \"hreflang\": \"<string>\",\n      \"media\": \"<string>\",\n      \"name\": \"<string>\",\n      \"profile\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"deprecation\": \"<string>\",\n      \"href\": \"<string>\",\n      \"hreflang\": \"<string>\",\n      \"media\": \"<string>\",\n      \"name\": \"<string>\",\n      \"profile\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"mission_number\": \"<string>\",\n  \"partner\": {\n    \"name\": \"<string>\"\n  },\n  \"payment_method\": \"<string>\",\n  \"point_of_sale\": {\n    \"country_code\": \"<string>\"\n  },\n  \"policy_compliance\": {\n    \"is_compliant\": \"<boolean>\",\n    \"reasons\": [\n      {\n        \"best_fare\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"message\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"best_fare\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"message\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ]\n  },\n  \"price\": {\n    \"amount\": \"<double>\",\n    \"breakdowns\": [\n      {\n        \"amount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"type\": \"<string>\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      },\n      {\n        \"amount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"type\": \"<string>\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      }\n    ],\n    \"cost_to_customer\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"penalties\": [\n      {\n        \"amount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"type\": \"<string>\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      },\n      {\n        \"amount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"type\": \"<string>\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      }\n    ],\n    \"refunds\": [\n      {\n        \"amount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"type\": \"<string>\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      },\n      {\n        \"amount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"type\": \"<string>\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  \"rate_type\": {\n    \"code\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"receipt_info\": {\n    \"central_bill\": \"<boolean>\",\n    \"document_type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"links\": [\n      {\n        \"deprecation\": \"<string>\",\n        \"href\": \"<string>\",\n        \"hreflang\": \"<string>\",\n        \"media\": \"<string>\",\n        \"name\": \"<string>\",\n        \"profile\": \"<string>\",\n        \"rel\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"deprecation\": \"<string>\",\n        \"href\": \"<string>\",\n        \"hreflang\": \"<string>\",\n        \"media\": \"<string>\",\n        \"name\": \"<string>\",\n        \"profile\": \"<string>\",\n        \"rel\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"payments\": [\n      {\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit_card_info\": {\n          \"card_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"first6_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last4_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": \"<string>\",\n        \"date_time\": \"<string>\",\n        \"line_type\": \"<string>\",\n        \"net_amount\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      {\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit_card_info\": {\n          \"card_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"first6_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last4_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": \"<string>\",\n        \"date_time\": \"<string>\",\n        \"line_type\": \"<string>\",\n        \"net_amount\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    ],\n    \"receipt_date\": \"<string>\",\n    \"receipt_number\": \"<string>\",\n    \"status\": \"<string>\",\n    \"total_amount\": {\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"traveler_id\": \"<long>\",\n    \"version\": \"<integer>\"\n  },\n  \"receipt_provision_available\": \"<boolean>\",\n  \"rules_and_regulations\": {\n    \"details\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"travelers\": [\n    {\n      \"email\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"custom_data_fields\": [\n        {\n          \"label\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"label\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"id\": \"<long>\",\n      \"is_agent\": \"<boolean>\",\n      \"is_guest\": \"<boolean>\",\n      \"preferred_language\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"custom_data_fields\": [\n        {\n          \"label\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"label\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"id\": \"<long>\",\n      \"is_agent\": \"<boolean>\",\n      \"is_guest\": \"<boolean>\",\n      \"preferred_language\": \"<string>\"\n    }\n  ],\n  \"vehicle\": {\n    \"acriss_code\": \"<string>\",\n    \"category\": \"<string>\",\n    \"mileage_limit\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"vendor_reference\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4fe3a2fc-666e-414b-b31a-afd1742b70e5",
+              "name": "Successful operations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "some.base.path",
+                    "some.path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Time Stamp in format ISO DATE TIME",
+                    "key": "message_timestamp",
+                    "value": "2011-12-03T10:15:30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company\": {\n    \"id\": 8543,\n    \"name\": \"string\",\n    \"organization_parent_id\": 6555689,\n    \"partner_customer_code\": \"JE3B\"\n  },\n  \"custom_data_fields\": [\n    {\n      \"label\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"label\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"drop_off\": {\n    \"date_time\": \"2020-04-06T10:20:00.000-05:00\",\n    \"location\": {\n      \"address\": {\n        \"city_code\": \"string\",\n        \"city_name\": \"string\",\n        \"country_code\": \"string\",\n        \"country_name\": \"string\",\n        \"postal_code\": \"string\",\n        \"state_province_code\": \"string\",\n        \"state_province_name\": \"string\",\n        \"street_name\": \"string\"\n      },\n      \"type\": \"AIRPORT\",\n      \"code\": \"CDG\",\n      \"name\": \"Stockholm Arlanda\"\n    }\n  },\n  \"egencia_item_id\": \"string\",\n  \"egencia_trip_id\": \"8006-8583-907\",\n  \"egencia_trip_link\": \"string\",\n  \"expense_id\": \"HL-a9fbb6cc6127cda4a4db8846dd1a9a3a6da7fd0b\",\n  \"expense_type\": \"FLIGHT\",\n  \"number_of_drivers\": 7133,\n  \"pick_up\": {\n    \"date_time\": \"2020-04-06T10:20:00.000-05:00\",\n    \"location\": {\n      \"address\": {\n        \"city_code\": \"string\",\n        \"city_name\": \"string\",\n        \"country_code\": \"string\",\n        \"country_name\": \"string\",\n        \"postal_code\": \"string\",\n        \"state_province_code\": \"string\",\n        \"state_province_name\": \"string\",\n        \"street_name\": \"string\"\n      },\n      \"type\": \"TRAIN_STATION\",\n      \"code\": \"CDG\",\n      \"name\": \"Stockholm Arlanda\"\n    }\n  },\n  \"uuid\": \"426f1976-53c2-90a9-e7ed-4b0165c13e1c\",\n  \"vendor\": {\n    \"code\": \"ZL\",\n    \"name\": \"National Car Rental\"\n  },\n  \"amenities\": [\n    \"HandHeldNavigationSystem\",\n    \"HandHeldNavigationSystem\"\n  ],\n  \"approval_deadline\": \"2021-04-15T15:26:00.000Z\",\n  \"approval_status\": \"APPROVED\",\n  \"approval_triggered\": false,\n  \"booker\": {\n    \"email\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"custom_data_fields\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"id\": 5703,\n    \"is_agent\": true,\n    \"is_guest\": false,\n    \"preferred_language\": \"string\"\n  },\n  \"booking_date_time\": \"string\",\n  \"booking_reference\": \"AZ23D\",\n  \"booking_status\": \"DELETED\",\n  \"cancellation_date_time\": \"string\",\n  \"credit_card\": {\n    \"card_type\": \"string\",\n    \"first6_digits\": \"456123\",\n    \"last4_digits\": \"7878\"\n  },\n  \"expense_version\": 3,\n  \"gds_reference\": \"ZJSZVT\",\n  \"is_drop_off_collection\": false,\n  \"is_pick_up_delivery\": false,\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"mission_number\": \"string\",\n  \"partner\": {\n    \"name\": \"string\"\n  },\n  \"payment_method\": \"COMPANY_FORM_OF_PAYMENT\",\n  \"point_of_sale\": {\n    \"country_code\": \"FR\"\n  },\n  \"policy_compliance\": {\n    \"is_compliant\": true,\n    \"reasons\": [\n      {\n        \"best_fare\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"message\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"best_fare\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"message\": \"string\",\n        \"type\": \"string\"\n      }\n    ]\n  },\n  \"price\": {\n    \"amount\": 119.02880842092678,\n    \"breakdowns\": [\n      {\n        \"amount\": 763.1122827695558,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 3237.2797663479146,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ],\n    \"cost_to_customer\": 3766.497003433391,\n    \"currency\": \"EUR\",\n    \"penalties\": [\n      {\n        \"amount\": 1944.955529035941,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 1321.104636525554,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ],\n    \"refunds\": [\n      {\n        \"amount\": 9484.176298201164,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 3223.2443292734347,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ]\n  },\n  \"rate_type\": {\n    \"code\": \"string\",\n    \"name\": \"string\"\n  },\n  \"receipt_info\": {\n    \"central_bill\": true,\n    \"document_type\": \"string\",\n    \"id\": \"string\",\n    \"links\": [\n      {\n        \"deprecation\": \"string\",\n        \"href\": \"string\",\n        \"hreflang\": \"string\",\n        \"media\": \"string\",\n        \"name\": \"string\",\n        \"profile\": \"string\",\n        \"rel\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"deprecation\": \"string\",\n        \"href\": \"string\",\n        \"hreflang\": \"string\",\n        \"media\": \"string\",\n        \"name\": \"string\",\n        \"profile\": \"string\",\n        \"rel\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"payments\": [\n      {\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit_card_info\": {\n          \"card_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"first6_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last4_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": \"string\",\n        \"date_time\": \"string\",\n        \"line_type\": \"string\",\n        \"net_amount\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      {\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit_card_info\": {\n          \"card_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"first6_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last4_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": \"string\",\n        \"date_time\": \"string\",\n        \"line_type\": \"string\",\n        \"net_amount\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    ],\n    \"receipt_date\": \"string\",\n    \"receipt_number\": \"string\",\n    \"status\": \"string\",\n    \"total_amount\": {\n      \"amount\": 9507.106135397293,\n      \"currency\": \"string\"\n    },\n    \"traveler_id\": 1209,\n    \"version\": 8841\n  },\n  \"receipt_provision_available\": false,\n  \"rules_and_regulations\": {\n    \"details\": [\n      \"Can be modified with a penalty..\",\n      \"Can be modified with a penalty..\"\n    ]\n  },\n  \"travelers\": [\n    {\n      \"email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"custom_data_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"id\": 8235,\n      \"is_agent\": true,\n      \"is_guest\": true,\n      \"preferred_language\": \"string\"\n    },\n    {\n      \"email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"custom_data_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"id\": 7737,\n      \"is_agent\": false,\n      \"is_guest\": true,\n      \"preferred_language\": \"string\"\n    }\n  ],\n  \"vehicle\": {\n    \"acriss_code\": \"IFAR\",\n    \"category\": \"I\",\n    \"mileage_limit\": \"1400 km (Additional Mileage: €0.19 per km)\",\n    \"name\": \"Toyota Rav4\"\n  },\n  \"vendor_reference\": \"366L3FN9E\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"109279f6-c8d8-4a7b-9630-b32e3ec690e2\",\n  \"expense_id\": \"CR-5062d617d50fce1db44d72225419bff237322e79\",\n  \"expense_version\": 1,\n  \"expense_type\": \"CAR\",\n  \"booking_status\": \"BOOKED\",\n  \"rate_type\": {\n    \"code\": \"EGENCIA\",\n    \"name\": \"E1D09\"\n  },\n  \"point_of_sale\": {\n    \"country_code\": \"GB\"\n  },\n  \"policy_compliance\": {\n    \"is_compliant\": true\n  },\n  \"approval_triggered\": false,\n  \"egencia_trip_id\": \"0600-2504-064\",\n  \"egencia_trip_link\": \"https://www.egencia.eu/trip-webapp/0600-2504-064?auth_gpid=41543\",\n  \"company\": {\n    \"id\": 41543,\n    \"name\": \"Test Auto Airfusion FR\",\n    \"organization_parent_id\": 1234567890\n  },\n  \"travelers\": [\n    {\n      \"id\": 5328422,\n      \"first_name\": \"Test\",\n      \"is_guest\": false,\n      \"last_name\": \"User\",\n      \"email\": \"test.user@example.com\",\n      \"preferred_language\": \"fr\"\n    }\n  ],\n  \"booker\": {\n    \"email\": \"test.user@example.com\",\n    \"first_name\": \"Test\",\n    \"last_name\": \"User\",\n    \"id\": 5328421,\n    \"is_agent\": false\n  },\n  \"custom_data_fields\": [\n    {\n      \"label\": \"Legal Entity\",\n      \"value\": \"Wise 42\"\n    },\n    {\n      \"label\": \"Mission number\",\n      \"value\": \"123gdf\"\n    }\n  ],\n  \"receipt_provision_available\": false,\n  \"price\": {\n    \"amount\": 46.27,\n    \"currency\": \"EUR\",\n    \"cost_to_customer\": 46.27,\n    \"breakdowns\": [\n      {\n        \"amount\": 37.33,\n        \"currency\": \"EUR\",\n        \"type\": \"BASE\"\n      },\n      {\n        \"amount\": 8.94,\n        \"currency\": \"EUR\",\n        \"type\": \"FEES\"\n      }\n    ]\n  },\n  \"vehicle\": {\n    \"acriss_code\": \"MBMR\",\n    \"mileage_limit\": \"UNLIMITED\",\n    \"name\": \"Group A - Fiat 500\",\n    \"category\": \"M\"\n  },\n  \"vendor\": {\n    \"code\": \"ZI\",\n    \"name\": \"Avis\"\n  },\n  \"drop_off\": {\n    \"date_time\": \"2019-11-14T09:00:00.000Z\",\n    \"location\": {\n      \"address\": {\n        \"city_name\": \"MANCHESTER\",\n        \"country_code\": \"GBR\",\n        \"country_name\": \"Great Britain\",\n        \"postal_code\": \"2345\",\n        \"street_name\": \"manchester street1 manchester street2\"\n      },\n      \"code\": \"MANCHESTER\",\n      \"name\": \"MANCHESTER airport avis agency\",\n      \"type\": \"ADDRESS\"\n    }\n  },\n  \"pick_up\": {\n    \"date_time\": \"2019-11-13T09:00:00.000Z\",\n    \"location\": {\n      \"address\": {\n        \"city_name\": \"LONDON\",\n        \"country_code\": \"GBR\",\n        \"country_name\": \"Great Britain\",\n        \"postal_code\": \"TW6 2QA\",\n        \"street_name\": \"LONDON HEATHROW AIRPORT\\nLONDON HEATHROW AIRPORT T3-4\"\n      },\n      \"code\": \"LONDON\",\n      \"name\": \"London airport avis agency\",\n      \"type\": \"ADDRESS\"\n    }\n  },\n  \"is_pick_up_delivery\": true,\n  \"is_drop_off_collection\": false,\n  \"number_of_drivers\": 1,\n  \"amenities\": [\n    \"ACD\"\n  ],\n  \"rules_and_regulations\": {\n    \"details\": [\n      \"Guarantee Information\\n\\nRATE GUARANTEED 108 DAYS FROM BOOKING \",\n      \"Extra charge - EUR47.99 per day.\"\n    ]\n  },\n  \"booking_reference\": \"JQPIHQ\",\n  \"gds_reference\": \"22736607DE5\",\n  \"vendor_reference\": \"22736607DE5\",\n  \"payment_method\": \"CREDIT_CARD\",\n  \"credit_card\": {\n    \"first6_digits\": \"411111\",\n    \"last4_digits\": \"1111\"\n  },\n  \"mission_number\": \"123gdf\",\n  \"booking_date_time\": \"2021-09-30T12:35:20.000Z\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://apis.egencia.eu/openconnect/api/v1/bookings/0600-2504-064/items/6450a5b869d5bd432ab9cca7\"\n    },\n    \"trip\": {\n      \"href\": \"https://www.egencia.eu/trip-webapp/0600-2504-064?auth_gpid=41543\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d6b0296-639c-4dbc-938d-f7cbc1060386",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "some.base.path",
+                    "some.path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Time Stamp in format ISO DATE TIME",
+                    "key": "message_timestamp",
+                    "value": "2011-12-03T10:15:30"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company\": {\n    \"id\": 8543,\n    \"name\": \"string\",\n    \"organization_parent_id\": 6555689,\n    \"partner_customer_code\": \"JE3B\"\n  },\n  \"custom_data_fields\": [\n    {\n      \"label\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"label\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"drop_off\": {\n    \"date_time\": \"2020-04-06T10:20:00.000-05:00\",\n    \"location\": {\n      \"address\": {\n        \"city_code\": \"string\",\n        \"city_name\": \"string\",\n        \"country_code\": \"string\",\n        \"country_name\": \"string\",\n        \"postal_code\": \"string\",\n        \"state_province_code\": \"string\",\n        \"state_province_name\": \"string\",\n        \"street_name\": \"string\"\n      },\n      \"type\": \"AIRPORT\",\n      \"code\": \"CDG\",\n      \"name\": \"Stockholm Arlanda\"\n    }\n  },\n  \"egencia_item_id\": \"string\",\n  \"egencia_trip_id\": \"8006-8583-907\",\n  \"egencia_trip_link\": \"string\",\n  \"expense_id\": \"HL-a9fbb6cc6127cda4a4db8846dd1a9a3a6da7fd0b\",\n  \"expense_type\": \"FLIGHT\",\n  \"number_of_drivers\": 7133,\n  \"pick_up\": {\n    \"date_time\": \"2020-04-06T10:20:00.000-05:00\",\n    \"location\": {\n      \"address\": {\n        \"city_code\": \"string\",\n        \"city_name\": \"string\",\n        \"country_code\": \"string\",\n        \"country_name\": \"string\",\n        \"postal_code\": \"string\",\n        \"state_province_code\": \"string\",\n        \"state_province_name\": \"string\",\n        \"street_name\": \"string\"\n      },\n      \"type\": \"TRAIN_STATION\",\n      \"code\": \"CDG\",\n      \"name\": \"Stockholm Arlanda\"\n    }\n  },\n  \"uuid\": \"426f1976-53c2-90a9-e7ed-4b0165c13e1c\",\n  \"vendor\": {\n    \"code\": \"ZL\",\n    \"name\": \"National Car Rental\"\n  },\n  \"amenities\": [\n    \"HandHeldNavigationSystem\",\n    \"HandHeldNavigationSystem\"\n  ],\n  \"approval_deadline\": \"2021-04-15T15:26:00.000Z\",\n  \"approval_status\": \"APPROVED\",\n  \"approval_triggered\": false,\n  \"booker\": {\n    \"email\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"custom_data_fields\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"id\": 5703,\n    \"is_agent\": true,\n    \"is_guest\": false,\n    \"preferred_language\": \"string\"\n  },\n  \"booking_date_time\": \"string\",\n  \"booking_reference\": \"AZ23D\",\n  \"booking_status\": \"DELETED\",\n  \"cancellation_date_time\": \"string\",\n  \"credit_card\": {\n    \"card_type\": \"string\",\n    \"first6_digits\": \"456123\",\n    \"last4_digits\": \"7878\"\n  },\n  \"expense_version\": 3,\n  \"gds_reference\": \"ZJSZVT\",\n  \"is_drop_off_collection\": false,\n  \"is_pick_up_delivery\": false,\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"mission_number\": \"string\",\n  \"partner\": {\n    \"name\": \"string\"\n  },\n  \"payment_method\": \"COMPANY_FORM_OF_PAYMENT\",\n  \"point_of_sale\": {\n    \"country_code\": \"FR\"\n  },\n  \"policy_compliance\": {\n    \"is_compliant\": true,\n    \"reasons\": [\n      {\n        \"best_fare\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"message\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"best_fare\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"message\": \"string\",\n        \"type\": \"string\"\n      }\n    ]\n  },\n  \"price\": {\n    \"amount\": 119.02880842092678,\n    \"breakdowns\": [\n      {\n        \"amount\": 763.1122827695558,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 3237.2797663479146,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ],\n    \"cost_to_customer\": 3766.497003433391,\n    \"currency\": \"EUR\",\n    \"penalties\": [\n      {\n        \"amount\": 1944.955529035941,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 1321.104636525554,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ],\n    \"refunds\": [\n      {\n        \"amount\": 9484.176298201164,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 3223.2443292734347,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ]\n  },\n  \"rate_type\": {\n    \"code\": \"string\",\n    \"name\": \"string\"\n  },\n  \"receipt_info\": {\n    \"central_bill\": true,\n    \"document_type\": \"string\",\n    \"id\": \"string\",\n    \"links\": [\n      {\n        \"deprecation\": \"string\",\n        \"href\": \"string\",\n        \"hreflang\": \"string\",\n        \"media\": \"string\",\n        \"name\": \"string\",\n        \"profile\": \"string\",\n        \"rel\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"deprecation\": \"string\",\n        \"href\": \"string\",\n        \"hreflang\": \"string\",\n        \"media\": \"string\",\n        \"name\": \"string\",\n        \"profile\": \"string\",\n        \"rel\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"payments\": [\n      {\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit_card_info\": {\n          \"card_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"first6_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last4_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": \"string\",\n        \"date_time\": \"string\",\n        \"line_type\": \"string\",\n        \"net_amount\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      {\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit_card_info\": {\n          \"card_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"first6_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last4_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": \"string\",\n        \"date_time\": \"string\",\n        \"line_type\": \"string\",\n        \"net_amount\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    ],\n    \"receipt_date\": \"string\",\n    \"receipt_number\": \"string\",\n    \"status\": \"string\",\n    \"total_amount\": {\n      \"amount\": 9507.106135397293,\n      \"currency\": \"string\"\n    },\n    \"traveler_id\": 1209,\n    \"version\": 8841\n  },\n  \"receipt_provision_available\": false,\n  \"rules_and_regulations\": {\n    \"details\": [\n      \"Can be modified with a penalty..\",\n      \"Can be modified with a penalty..\"\n    ]\n  },\n  \"travelers\": [\n    {\n      \"email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"custom_data_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"id\": 8235,\n      \"is_agent\": true,\n      \"is_guest\": true,\n      \"preferred_language\": \"string\"\n    },\n    {\n      \"email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"custom_data_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"id\": 7737,\n      \"is_agent\": false,\n      \"is_guest\": true,\n      \"preferred_language\": \"string\"\n    }\n  ],\n  \"vehicle\": {\n    \"acriss_code\": \"IFAR\",\n    \"category\": \"I\",\n    \"mileage_limit\": \"1400 km (Additional Mileage: €0.19 per km)\",\n    \"name\": \"Toyota Rav4\"\n  },\n  \"vendor_reference\": \"366L3FN9E\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "02ca30e1-8edd-4476-8650-f013aa55e5f0",
+              "name": "Too many requests: will be retried 3 times automatically on our side.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "some.base.path",
+                    "some.path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Time Stamp in format ISO DATE TIME",
+                    "key": "message_timestamp",
+                    "value": "2011-12-03T10:15:30"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company\": {\n    \"id\": 8543,\n    \"name\": \"string\",\n    \"organization_parent_id\": 6555689,\n    \"partner_customer_code\": \"JE3B\"\n  },\n  \"custom_data_fields\": [\n    {\n      \"label\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"label\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"drop_off\": {\n    \"date_time\": \"2020-04-06T10:20:00.000-05:00\",\n    \"location\": {\n      \"address\": {\n        \"city_code\": \"string\",\n        \"city_name\": \"string\",\n        \"country_code\": \"string\",\n        \"country_name\": \"string\",\n        \"postal_code\": \"string\",\n        \"state_province_code\": \"string\",\n        \"state_province_name\": \"string\",\n        \"street_name\": \"string\"\n      },\n      \"type\": \"AIRPORT\",\n      \"code\": \"CDG\",\n      \"name\": \"Stockholm Arlanda\"\n    }\n  },\n  \"egencia_item_id\": \"string\",\n  \"egencia_trip_id\": \"8006-8583-907\",\n  \"egencia_trip_link\": \"string\",\n  \"expense_id\": \"HL-a9fbb6cc6127cda4a4db8846dd1a9a3a6da7fd0b\",\n  \"expense_type\": \"FLIGHT\",\n  \"number_of_drivers\": 7133,\n  \"pick_up\": {\n    \"date_time\": \"2020-04-06T10:20:00.000-05:00\",\n    \"location\": {\n      \"address\": {\n        \"city_code\": \"string\",\n        \"city_name\": \"string\",\n        \"country_code\": \"string\",\n        \"country_name\": \"string\",\n        \"postal_code\": \"string\",\n        \"state_province_code\": \"string\",\n        \"state_province_name\": \"string\",\n        \"street_name\": \"string\"\n      },\n      \"type\": \"TRAIN_STATION\",\n      \"code\": \"CDG\",\n      \"name\": \"Stockholm Arlanda\"\n    }\n  },\n  \"uuid\": \"426f1976-53c2-90a9-e7ed-4b0165c13e1c\",\n  \"vendor\": {\n    \"code\": \"ZL\",\n    \"name\": \"National Car Rental\"\n  },\n  \"amenities\": [\n    \"HandHeldNavigationSystem\",\n    \"HandHeldNavigationSystem\"\n  ],\n  \"approval_deadline\": \"2021-04-15T15:26:00.000Z\",\n  \"approval_status\": \"APPROVED\",\n  \"approval_triggered\": false,\n  \"booker\": {\n    \"email\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"custom_data_fields\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"id\": 5703,\n    \"is_agent\": true,\n    \"is_guest\": false,\n    \"preferred_language\": \"string\"\n  },\n  \"booking_date_time\": \"string\",\n  \"booking_reference\": \"AZ23D\",\n  \"booking_status\": \"DELETED\",\n  \"cancellation_date_time\": \"string\",\n  \"credit_card\": {\n    \"card_type\": \"string\",\n    \"first6_digits\": \"456123\",\n    \"last4_digits\": \"7878\"\n  },\n  \"expense_version\": 3,\n  \"gds_reference\": \"ZJSZVT\",\n  \"is_drop_off_collection\": false,\n  \"is_pick_up_delivery\": false,\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"mission_number\": \"string\",\n  \"partner\": {\n    \"name\": \"string\"\n  },\n  \"payment_method\": \"COMPANY_FORM_OF_PAYMENT\",\n  \"point_of_sale\": {\n    \"country_code\": \"FR\"\n  },\n  \"policy_compliance\": {\n    \"is_compliant\": true,\n    \"reasons\": [\n      {\n        \"best_fare\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"message\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"best_fare\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"message\": \"string\",\n        \"type\": \"string\"\n      }\n    ]\n  },\n  \"price\": {\n    \"amount\": 119.02880842092678,\n    \"breakdowns\": [\n      {\n        \"amount\": 763.1122827695558,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 3237.2797663479146,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ],\n    \"cost_to_customer\": 3766.497003433391,\n    \"currency\": \"EUR\",\n    \"penalties\": [\n      {\n        \"amount\": 1944.955529035941,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 1321.104636525554,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ],\n    \"refunds\": [\n      {\n        \"amount\": 9484.176298201164,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 3223.2443292734347,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ]\n  },\n  \"rate_type\": {\n    \"code\": \"string\",\n    \"name\": \"string\"\n  },\n  \"receipt_info\": {\n    \"central_bill\": true,\n    \"document_type\": \"string\",\n    \"id\": \"string\",\n    \"links\": [\n      {\n        \"deprecation\": \"string\",\n        \"href\": \"string\",\n        \"hreflang\": \"string\",\n        \"media\": \"string\",\n        \"name\": \"string\",\n        \"profile\": \"string\",\n        \"rel\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"deprecation\": \"string\",\n        \"href\": \"string\",\n        \"hreflang\": \"string\",\n        \"media\": \"string\",\n        \"name\": \"string\",\n        \"profile\": \"string\",\n        \"rel\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"payments\": [\n      {\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit_card_info\": {\n          \"card_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"first6_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last4_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": \"string\",\n        \"date_time\": \"string\",\n        \"line_type\": \"string\",\n        \"net_amount\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      {\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit_card_info\": {\n          \"card_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"first6_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last4_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": \"string\",\n        \"date_time\": \"string\",\n        \"line_type\": \"string\",\n        \"net_amount\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    ],\n    \"receipt_date\": \"string\",\n    \"receipt_number\": \"string\",\n    \"status\": \"string\",\n    \"total_amount\": {\n      \"amount\": 9507.106135397293,\n      \"currency\": \"string\"\n    },\n    \"traveler_id\": 1209,\n    \"version\": 8841\n  },\n  \"receipt_provision_available\": false,\n  \"rules_and_regulations\": {\n    \"details\": [\n      \"Can be modified with a penalty..\",\n      \"Can be modified with a penalty..\"\n    ]\n  },\n  \"travelers\": [\n    {\n      \"email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"custom_data_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"id\": 8235,\n      \"is_agent\": true,\n      \"is_guest\": true,\n      \"preferred_language\": \"string\"\n    },\n    {\n      \"email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"custom_data_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"id\": 7737,\n      \"is_agent\": false,\n      \"is_guest\": true,\n      \"preferred_language\": \"string\"\n    }\n  ],\n  \"vehicle\": {\n    \"acriss_code\": \"IFAR\",\n    \"category\": \"I\",\n    \"mileage_limit\": \"1400 km (Additional Mileage: €0.19 per km)\",\n    \"name\": \"Toyota Rav4\"\n  },\n  \"vendor_reference\": \"366L3FN9E\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8fe5e7a7-6acb-460e-9b2d-82468015d0dd",
+              "name": "Bad gateway: will be retried 3 times automatically on our side.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "some.base.path",
+                    "some.path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Time Stamp in format ISO DATE TIME",
+                    "key": "message_timestamp",
+                    "value": "2011-12-03T10:15:30"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company\": {\n    \"id\": 8543,\n    \"name\": \"string\",\n    \"organization_parent_id\": 6555689,\n    \"partner_customer_code\": \"JE3B\"\n  },\n  \"custom_data_fields\": [\n    {\n      \"label\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"label\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"drop_off\": {\n    \"date_time\": \"2020-04-06T10:20:00.000-05:00\",\n    \"location\": {\n      \"address\": {\n        \"city_code\": \"string\",\n        \"city_name\": \"string\",\n        \"country_code\": \"string\",\n        \"country_name\": \"string\",\n        \"postal_code\": \"string\",\n        \"state_province_code\": \"string\",\n        \"state_province_name\": \"string\",\n        \"street_name\": \"string\"\n      },\n      \"type\": \"AIRPORT\",\n      \"code\": \"CDG\",\n      \"name\": \"Stockholm Arlanda\"\n    }\n  },\n  \"egencia_item_id\": \"string\",\n  \"egencia_trip_id\": \"8006-8583-907\",\n  \"egencia_trip_link\": \"string\",\n  \"expense_id\": \"HL-a9fbb6cc6127cda4a4db8846dd1a9a3a6da7fd0b\",\n  \"expense_type\": \"FLIGHT\",\n  \"number_of_drivers\": 7133,\n  \"pick_up\": {\n    \"date_time\": \"2020-04-06T10:20:00.000-05:00\",\n    \"location\": {\n      \"address\": {\n        \"city_code\": \"string\",\n        \"city_name\": \"string\",\n        \"country_code\": \"string\",\n        \"country_name\": \"string\",\n        \"postal_code\": \"string\",\n        \"state_province_code\": \"string\",\n        \"state_province_name\": \"string\",\n        \"street_name\": \"string\"\n      },\n      \"type\": \"TRAIN_STATION\",\n      \"code\": \"CDG\",\n      \"name\": \"Stockholm Arlanda\"\n    }\n  },\n  \"uuid\": \"426f1976-53c2-90a9-e7ed-4b0165c13e1c\",\n  \"vendor\": {\n    \"code\": \"ZL\",\n    \"name\": \"National Car Rental\"\n  },\n  \"amenities\": [\n    \"HandHeldNavigationSystem\",\n    \"HandHeldNavigationSystem\"\n  ],\n  \"approval_deadline\": \"2021-04-15T15:26:00.000Z\",\n  \"approval_status\": \"APPROVED\",\n  \"approval_triggered\": false,\n  \"booker\": {\n    \"email\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"custom_data_fields\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"id\": 5703,\n    \"is_agent\": true,\n    \"is_guest\": false,\n    \"preferred_language\": \"string\"\n  },\n  \"booking_date_time\": \"string\",\n  \"booking_reference\": \"AZ23D\",\n  \"booking_status\": \"DELETED\",\n  \"cancellation_date_time\": \"string\",\n  \"credit_card\": {\n    \"card_type\": \"string\",\n    \"first6_digits\": \"456123\",\n    \"last4_digits\": \"7878\"\n  },\n  \"expense_version\": 3,\n  \"gds_reference\": \"ZJSZVT\",\n  \"is_drop_off_collection\": false,\n  \"is_pick_up_delivery\": false,\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"mission_number\": \"string\",\n  \"partner\": {\n    \"name\": \"string\"\n  },\n  \"payment_method\": \"COMPANY_FORM_OF_PAYMENT\",\n  \"point_of_sale\": {\n    \"country_code\": \"FR\"\n  },\n  \"policy_compliance\": {\n    \"is_compliant\": true,\n    \"reasons\": [\n      {\n        \"best_fare\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"message\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"best_fare\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"message\": \"string\",\n        \"type\": \"string\"\n      }\n    ]\n  },\n  \"price\": {\n    \"amount\": 119.02880842092678,\n    \"breakdowns\": [\n      {\n        \"amount\": 763.1122827695558,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 3237.2797663479146,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ],\n    \"cost_to_customer\": 3766.497003433391,\n    \"currency\": \"EUR\",\n    \"penalties\": [\n      {\n        \"amount\": 1944.955529035941,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 1321.104636525554,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ],\n    \"refunds\": [\n      {\n        \"amount\": 9484.176298201164,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 3223.2443292734347,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ]\n  },\n  \"rate_type\": {\n    \"code\": \"string\",\n    \"name\": \"string\"\n  },\n  \"receipt_info\": {\n    \"central_bill\": true,\n    \"document_type\": \"string\",\n    \"id\": \"string\",\n    \"links\": [\n      {\n        \"deprecation\": \"string\",\n        \"href\": \"string\",\n        \"hreflang\": \"string\",\n        \"media\": \"string\",\n        \"name\": \"string\",\n        \"profile\": \"string\",\n        \"rel\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"deprecation\": \"string\",\n        \"href\": \"string\",\n        \"hreflang\": \"string\",\n        \"media\": \"string\",\n        \"name\": \"string\",\n        \"profile\": \"string\",\n        \"rel\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"payments\": [\n      {\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit_card_info\": {\n          \"card_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"first6_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last4_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": \"string\",\n        \"date_time\": \"string\",\n        \"line_type\": \"string\",\n        \"net_amount\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      {\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit_card_info\": {\n          \"card_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"first6_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last4_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": \"string\",\n        \"date_time\": \"string\",\n        \"line_type\": \"string\",\n        \"net_amount\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    ],\n    \"receipt_date\": \"string\",\n    \"receipt_number\": \"string\",\n    \"status\": \"string\",\n    \"total_amount\": {\n      \"amount\": 9507.106135397293,\n      \"currency\": \"string\"\n    },\n    \"traveler_id\": 1209,\n    \"version\": 8841\n  },\n  \"receipt_provision_available\": false,\n  \"rules_and_regulations\": {\n    \"details\": [\n      \"Can be modified with a penalty..\",\n      \"Can be modified with a penalty..\"\n    ]\n  },\n  \"travelers\": [\n    {\n      \"email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"custom_data_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"id\": 8235,\n      \"is_agent\": true,\n      \"is_guest\": true,\n      \"preferred_language\": \"string\"\n    },\n    {\n      \"email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"custom_data_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"id\": 7737,\n      \"is_agent\": false,\n      \"is_guest\": true,\n      \"preferred_language\": \"string\"\n    }\n  ],\n  \"vehicle\": {\n    \"acriss_code\": \"IFAR\",\n    \"category\": \"I\",\n    \"mileage_limit\": \"1400 km (Additional Mileage: €0.19 per km)\",\n    \"name\": \"Toyota Rav4\"\n  },\n  \"vendor_reference\": \"366L3FN9E\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c460980f-a50a-4483-bdbf-573fa8656bec",
+              "name": "Service unavailable: will be retried 3 times automatically on our side.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "some.base.path",
+                    "some.path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Time Stamp in format ISO DATE TIME",
+                    "key": "message_timestamp",
+                    "value": "2011-12-03T10:15:30"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company\": {\n    \"id\": 8543,\n    \"name\": \"string\",\n    \"organization_parent_id\": 6555689,\n    \"partner_customer_code\": \"JE3B\"\n  },\n  \"custom_data_fields\": [\n    {\n      \"label\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"label\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"drop_off\": {\n    \"date_time\": \"2020-04-06T10:20:00.000-05:00\",\n    \"location\": {\n      \"address\": {\n        \"city_code\": \"string\",\n        \"city_name\": \"string\",\n        \"country_code\": \"string\",\n        \"country_name\": \"string\",\n        \"postal_code\": \"string\",\n        \"state_province_code\": \"string\",\n        \"state_province_name\": \"string\",\n        \"street_name\": \"string\"\n      },\n      \"type\": \"AIRPORT\",\n      \"code\": \"CDG\",\n      \"name\": \"Stockholm Arlanda\"\n    }\n  },\n  \"egencia_item_id\": \"string\",\n  \"egencia_trip_id\": \"8006-8583-907\",\n  \"egencia_trip_link\": \"string\",\n  \"expense_id\": \"HL-a9fbb6cc6127cda4a4db8846dd1a9a3a6da7fd0b\",\n  \"expense_type\": \"FLIGHT\",\n  \"number_of_drivers\": 7133,\n  \"pick_up\": {\n    \"date_time\": \"2020-04-06T10:20:00.000-05:00\",\n    \"location\": {\n      \"address\": {\n        \"city_code\": \"string\",\n        \"city_name\": \"string\",\n        \"country_code\": \"string\",\n        \"country_name\": \"string\",\n        \"postal_code\": \"string\",\n        \"state_province_code\": \"string\",\n        \"state_province_name\": \"string\",\n        \"street_name\": \"string\"\n      },\n      \"type\": \"TRAIN_STATION\",\n      \"code\": \"CDG\",\n      \"name\": \"Stockholm Arlanda\"\n    }\n  },\n  \"uuid\": \"426f1976-53c2-90a9-e7ed-4b0165c13e1c\",\n  \"vendor\": {\n    \"code\": \"ZL\",\n    \"name\": \"National Car Rental\"\n  },\n  \"amenities\": [\n    \"HandHeldNavigationSystem\",\n    \"HandHeldNavigationSystem\"\n  ],\n  \"approval_deadline\": \"2021-04-15T15:26:00.000Z\",\n  \"approval_status\": \"APPROVED\",\n  \"approval_triggered\": false,\n  \"booker\": {\n    \"email\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"custom_data_fields\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"id\": 5703,\n    \"is_agent\": true,\n    \"is_guest\": false,\n    \"preferred_language\": \"string\"\n  },\n  \"booking_date_time\": \"string\",\n  \"booking_reference\": \"AZ23D\",\n  \"booking_status\": \"DELETED\",\n  \"cancellation_date_time\": \"string\",\n  \"credit_card\": {\n    \"card_type\": \"string\",\n    \"first6_digits\": \"456123\",\n    \"last4_digits\": \"7878\"\n  },\n  \"expense_version\": 3,\n  \"gds_reference\": \"ZJSZVT\",\n  \"is_drop_off_collection\": false,\n  \"is_pick_up_delivery\": false,\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"mission_number\": \"string\",\n  \"partner\": {\n    \"name\": \"string\"\n  },\n  \"payment_method\": \"COMPANY_FORM_OF_PAYMENT\",\n  \"point_of_sale\": {\n    \"country_code\": \"FR\"\n  },\n  \"policy_compliance\": {\n    \"is_compliant\": true,\n    \"reasons\": [\n      {\n        \"best_fare\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"message\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"best_fare\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"message\": \"string\",\n        \"type\": \"string\"\n      }\n    ]\n  },\n  \"price\": {\n    \"amount\": 119.02880842092678,\n    \"breakdowns\": [\n      {\n        \"amount\": 763.1122827695558,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 3237.2797663479146,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ],\n    \"cost_to_customer\": 3766.497003433391,\n    \"currency\": \"EUR\",\n    \"penalties\": [\n      {\n        \"amount\": 1944.955529035941,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 1321.104636525554,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ],\n    \"refunds\": [\n      {\n        \"amount\": 9484.176298201164,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 3223.2443292734347,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ]\n  },\n  \"rate_type\": {\n    \"code\": \"string\",\n    \"name\": \"string\"\n  },\n  \"receipt_info\": {\n    \"central_bill\": true,\n    \"document_type\": \"string\",\n    \"id\": \"string\",\n    \"links\": [\n      {\n        \"deprecation\": \"string\",\n        \"href\": \"string\",\n        \"hreflang\": \"string\",\n        \"media\": \"string\",\n        \"name\": \"string\",\n        \"profile\": \"string\",\n        \"rel\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"deprecation\": \"string\",\n        \"href\": \"string\",\n        \"hreflang\": \"string\",\n        \"media\": \"string\",\n        \"name\": \"string\",\n        \"profile\": \"string\",\n        \"rel\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"payments\": [\n      {\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit_card_info\": {\n          \"card_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"first6_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last4_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": \"string\",\n        \"date_time\": \"string\",\n        \"line_type\": \"string\",\n        \"net_amount\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      {\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit_card_info\": {\n          \"card_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"first6_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last4_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": \"string\",\n        \"date_time\": \"string\",\n        \"line_type\": \"string\",\n        \"net_amount\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    ],\n    \"receipt_date\": \"string\",\n    \"receipt_number\": \"string\",\n    \"status\": \"string\",\n    \"total_amount\": {\n      \"amount\": 9507.106135397293,\n      \"currency\": \"string\"\n    },\n    \"traveler_id\": 1209,\n    \"version\": 8841\n  },\n  \"receipt_provision_available\": false,\n  \"rules_and_regulations\": {\n    \"details\": [\n      \"Can be modified with a penalty..\",\n      \"Can be modified with a penalty..\"\n    ]\n  },\n  \"travelers\": [\n    {\n      \"email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"custom_data_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"id\": 8235,\n      \"is_agent\": true,\n      \"is_guest\": true,\n      \"preferred_language\": \"string\"\n    },\n    {\n      \"email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"custom_data_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"id\": 7737,\n      \"is_agent\": false,\n      \"is_guest\": true,\n      \"preferred_language\": \"string\"\n    }\n  ],\n  \"vehicle\": {\n    \"acriss_code\": \"IFAR\",\n    \"category\": \"I\",\n    \"mileage_limit\": \"1400 km (Additional Mileage: €0.19 per km)\",\n    \"name\": \"Toyota Rav4\"\n  },\n  \"vendor_reference\": \"366L3FN9E\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "55770883-7922-4074-b2b4-5cc5c9763068",
+              "name": "Gateway timeout: will be retried 3 times automatically on our side.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "some.base.path",
+                    "some.path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Time Stamp in format ISO DATE TIME",
+                    "key": "message_timestamp",
+                    "value": "2011-12-03T10:15:30"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company\": {\n    \"id\": 8543,\n    \"name\": \"string\",\n    \"organization_parent_id\": 6555689,\n    \"partner_customer_code\": \"JE3B\"\n  },\n  \"custom_data_fields\": [\n    {\n      \"label\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"label\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"drop_off\": {\n    \"date_time\": \"2020-04-06T10:20:00.000-05:00\",\n    \"location\": {\n      \"address\": {\n        \"city_code\": \"string\",\n        \"city_name\": \"string\",\n        \"country_code\": \"string\",\n        \"country_name\": \"string\",\n        \"postal_code\": \"string\",\n        \"state_province_code\": \"string\",\n        \"state_province_name\": \"string\",\n        \"street_name\": \"string\"\n      },\n      \"type\": \"AIRPORT\",\n      \"code\": \"CDG\",\n      \"name\": \"Stockholm Arlanda\"\n    }\n  },\n  \"egencia_item_id\": \"string\",\n  \"egencia_trip_id\": \"8006-8583-907\",\n  \"egencia_trip_link\": \"string\",\n  \"expense_id\": \"HL-a9fbb6cc6127cda4a4db8846dd1a9a3a6da7fd0b\",\n  \"expense_type\": \"FLIGHT\",\n  \"number_of_drivers\": 7133,\n  \"pick_up\": {\n    \"date_time\": \"2020-04-06T10:20:00.000-05:00\",\n    \"location\": {\n      \"address\": {\n        \"city_code\": \"string\",\n        \"city_name\": \"string\",\n        \"country_code\": \"string\",\n        \"country_name\": \"string\",\n        \"postal_code\": \"string\",\n        \"state_province_code\": \"string\",\n        \"state_province_name\": \"string\",\n        \"street_name\": \"string\"\n      },\n      \"type\": \"TRAIN_STATION\",\n      \"code\": \"CDG\",\n      \"name\": \"Stockholm Arlanda\"\n    }\n  },\n  \"uuid\": \"426f1976-53c2-90a9-e7ed-4b0165c13e1c\",\n  \"vendor\": {\n    \"code\": \"ZL\",\n    \"name\": \"National Car Rental\"\n  },\n  \"amenities\": [\n    \"HandHeldNavigationSystem\",\n    \"HandHeldNavigationSystem\"\n  ],\n  \"approval_deadline\": \"2021-04-15T15:26:00.000Z\",\n  \"approval_status\": \"APPROVED\",\n  \"approval_triggered\": false,\n  \"booker\": {\n    \"email\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"custom_data_fields\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"id\": 5703,\n    \"is_agent\": true,\n    \"is_guest\": false,\n    \"preferred_language\": \"string\"\n  },\n  \"booking_date_time\": \"string\",\n  \"booking_reference\": \"AZ23D\",\n  \"booking_status\": \"DELETED\",\n  \"cancellation_date_time\": \"string\",\n  \"credit_card\": {\n    \"card_type\": \"string\",\n    \"first6_digits\": \"456123\",\n    \"last4_digits\": \"7878\"\n  },\n  \"expense_version\": 3,\n  \"gds_reference\": \"ZJSZVT\",\n  \"is_drop_off_collection\": false,\n  \"is_pick_up_delivery\": false,\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"mission_number\": \"string\",\n  \"partner\": {\n    \"name\": \"string\"\n  },\n  \"payment_method\": \"COMPANY_FORM_OF_PAYMENT\",\n  \"point_of_sale\": {\n    \"country_code\": \"FR\"\n  },\n  \"policy_compliance\": {\n    \"is_compliant\": true,\n    \"reasons\": [\n      {\n        \"best_fare\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"message\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"best_fare\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"message\": \"string\",\n        \"type\": \"string\"\n      }\n    ]\n  },\n  \"price\": {\n    \"amount\": 119.02880842092678,\n    \"breakdowns\": [\n      {\n        \"amount\": 763.1122827695558,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 3237.2797663479146,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ],\n    \"cost_to_customer\": 3766.497003433391,\n    \"currency\": \"EUR\",\n    \"penalties\": [\n      {\n        \"amount\": 1944.955529035941,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 1321.104636525554,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ],\n    \"refunds\": [\n      {\n        \"amount\": 9484.176298201164,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      },\n      {\n        \"amount\": 3223.2443292734347,\n        \"currency\": \"EUR\",\n        \"type\": \"TAXES\",\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"name\": \"Taxes and service fees\"\n      }\n    ]\n  },\n  \"rate_type\": {\n    \"code\": \"string\",\n    \"name\": \"string\"\n  },\n  \"receipt_info\": {\n    \"central_bill\": true,\n    \"document_type\": \"string\",\n    \"id\": \"string\",\n    \"links\": [\n      {\n        \"deprecation\": \"string\",\n        \"href\": \"string\",\n        \"hreflang\": \"string\",\n        \"media\": \"string\",\n        \"name\": \"string\",\n        \"profile\": \"string\",\n        \"rel\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"deprecation\": \"string\",\n        \"href\": \"string\",\n        \"hreflang\": \"string\",\n        \"media\": \"string\",\n        \"name\": \"string\",\n        \"profile\": \"string\",\n        \"rel\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"payments\": [\n      {\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit_card_info\": {\n          \"card_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"first6_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last4_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": \"string\",\n        \"date_time\": \"string\",\n        \"line_type\": \"string\",\n        \"net_amount\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      {\n        \"breakdowns\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit_card_info\": {\n          \"card_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"first6_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last4_digits\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": \"string\",\n        \"date_time\": \"string\",\n        \"line_type\": \"string\",\n        \"net_amount\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    ],\n    \"receipt_date\": \"string\",\n    \"receipt_number\": \"string\",\n    \"status\": \"string\",\n    \"total_amount\": {\n      \"amount\": 9507.106135397293,\n      \"currency\": \"string\"\n    },\n    \"traveler_id\": 1209,\n    \"version\": 8841\n  },\n  \"receipt_provision_available\": false,\n  \"rules_and_regulations\": {\n    \"details\": [\n      \"Can be modified with a penalty..\",\n      \"Can be modified with a penalty..\"\n    ]\n  },\n  \"travelers\": [\n    {\n      \"email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"custom_data_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"id\": 8235,\n      \"is_agent\": true,\n      \"is_guest\": true,\n      \"preferred_language\": \"string\"\n    },\n    {\n      \"email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"custom_data_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"id\": 7737,\n      \"is_agent\": false,\n      \"is_guest\": true,\n      \"preferred_language\": \"string\"\n    }\n  ],\n  \"vehicle\": {\n    \"acriss_code\": \"IFAR\",\n    \"category\": \"I\",\n    \"mileage_limit\": \"1400 km (Additional Mileage: €0.19 per km)\",\n    \"name\": \"Toyota Rav4\"\n  },\n  \"vendor_reference\": \"366L3FN9E\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "efc14bef-4909-4a6f-8416-653e9dac1498",
+          "name": "Push Subscription Events",
+          "request": {
+            "name": "Push Subscription Events",
+            "description": {
+              "content": "The SPI handles all the standard HTTP return codes. The 'Responses' chapter shows the codes that will trigger an automatic retry mechanism on our side in order to enhance the success of the delivery. For any other error or when the maximum retries has been reached, it will need a manual intervention and we might contact your technical service if the issue comes from your server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "some.base.path",
+                "v1",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"partner\": {\n    \"name\": \"<string>\"\n  },\n  \"subscriptions\": [\n    {\n      \"subscribed\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"type\": \"<string>\",\n      \"unsubscribed\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"subscribed\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"type\": \"<string>\",\n      \"unsubscribed\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4ff7da46-8f59-4ad2-b9a7-59b9e900bb84",
+              "name": "Successful operations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "some.base.path",
+                    "v1",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partner\": {\n    \"name\": \"string\"\n  },\n  \"subscriptions\": [\n    {\n      \"subscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"type\": \"COMPANY\",\n      \"unsubscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"subscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"type\": \"COMPANY\",\n      \"unsubscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90eb7b40-ec70-4e1f-adaf-7dff38ba8e3d",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "some.base.path",
+                    "v1",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partner\": {\n    \"name\": \"string\"\n  },\n  \"subscriptions\": [\n    {\n      \"subscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"type\": \"COMPANY\",\n      \"unsubscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"subscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"type\": \"COMPANY\",\n      \"unsubscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f6e82086-c511-48d5-afba-e28dfe64fa28",
+              "name": "Too many requests: will be retried 3 times automatically on our side.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "some.base.path",
+                    "v1",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partner\": {\n    \"name\": \"string\"\n  },\n  \"subscriptions\": [\n    {\n      \"subscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"type\": \"COMPANY\",\n      \"unsubscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"subscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"type\": \"COMPANY\",\n      \"unsubscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b5affc6d-a26f-4850-98d3-ef8bc0e63461",
+              "name": "Bad gateway: will be retried 3 times automatically on our side.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "some.base.path",
+                    "v1",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partner\": {\n    \"name\": \"string\"\n  },\n  \"subscriptions\": [\n    {\n      \"subscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"type\": \"COMPANY\",\n      \"unsubscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"subscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"type\": \"COMPANY\",\n      \"unsubscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "16680b6c-52bd-4f52-9c1d-19dc716e38c8",
+              "name": "Service unavailable: will be retried 3 times automatically on our side.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "some.base.path",
+                    "v1",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partner\": {\n    \"name\": \"string\"\n  },\n  \"subscriptions\": [\n    {\n      \"subscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"type\": \"COMPANY\",\n      \"unsubscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"subscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"type\": \"COMPANY\",\n      \"unsubscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8c3f6785-f0aa-47b1-a352-8859949461bf",
+              "name": "Gateway timeout: will be retried 3 times automatically on our side.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "some.base.path",
+                    "v1",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partner\": {\n    \"name\": \"string\"\n  },\n  \"subscriptions\": [\n    {\n      \"subscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"type\": \"COMPANY\",\n      \"unsubscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"subscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"type\": \"COMPANY\",\n      \"unsubscribed\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apis.egencia.com/openconnect-expensestream-service",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ba2f21df-5587-46d1-a72f-c7ff30a24b42",
+    "name": "Expense SPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<h1>Introduction to the Document</h1>\n<p>This document provides a reference to the Expense SPI. This document includes a series of notes and instructions that outline the Expense SPI.</p>\n<h2>Audience</h2>\n<p>This document is aimed for the Egencia Expense SPI customers, partners and software developers who would like to consume the Expense SPI.</p>\n<h2>Overview</h2>\n<p>The user must implement a web service in compliance with this specification and service contract. Egencia will call this web service for each transaction (each booking, fee when applicable). Each transaction will be sent in JSON format to the consumer through a POST message to the provided endpoint according to the following payload.</p>\n\n<h1>Expense SPI</h1>\n\n<p>Egencia provides an \"Expense capability\" that will push the update in near real-time to the connected client system. Expense SPI will notify the partner when a booking is created or updated in Egencia. </p>\n<ol>\n    <li>When a booking is created or updated in Egencia the Expense SPI will push a message to the connected Partner system (web service).</li>\n    <li>The web service to consume this data has to be built by the client consumer. This web service allows Egencia to notify the partner when a booking is created or updated in the Egencia tools by sending the booking details.</li>\n    <li>The web service returns a success message if the message has been taken into account or not. </li>\n</ol>\n\n<h2>Authentication</h2>\n\n<h3><u>API Key Authentication scheme</u></h3>\n\n<p>The Expense SPI uses API keys to authenticate requests. An application programming interface key (API key) is a unique identifier used to authenticate a user, developer, or calling program to an API.</p>\n<p>The partner provides API Key. This API Key is securely stored in our Vault and will be used for authenticating with the partner every time we make a call.</p>\n<p>You can authenticate the requests by validating the API Key when you receive an incoming request call from Expense SPI. We will pass the API key with every request and you (The Partner) will validate the API Key, if the API key is valid then you can accept and process request. If the API Key provided is invalid, then the authentication fails and we will receive an Authentication Failure error.</p>\n\n<h2>URI Scheme</h2>\n<div>\n    <table style=\"width:50%; border-spacing:5px\"  border=\"1\" cellpadding=\"5px\">\n        <tbody>\n            <tr >\n                <th style=\"padding:10px;text-align: left;\">Request Method</th>\n                <td style=\"padding:10px;\">POST</td>\n            </tr>\n            <tr>\n                <th style=\"padding:10px;text-align: left;\">Host</th>\n                <td style=\"padding:10px;\">any.client-of-expense.com</td>\n            </tr>\n            <tr>\n                <th style=\"padding:10px;text-align: left;\">Base path</th>\n                <td style=\"padding:10px;\">/some.base.path</td>\n            </tr>\n            <tr>\n                <th style=\"padding:10px;text-align: left;\">Schemes</th>\n                <td style=\"padding:10px;\">HTTP, HTTPS</td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n\n<h2>Security</h2>\n<p>Below are the supported authentication mechanisms by the SPI</p>\n<div>\n    <table style=\"width:50%; border-spacing:5px\"  border=\"1\" cellpadding=\"5px\">\n        <thead>\n            <tr >\n                <th style=\"padding:10px;\">Type</th>\n                <th style=\"padding:10px;\">Name</th>\n                <th style=\"padding:10px;\">In</th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr>\n                <td style=\"padding:10px;\">Api Key</td>\n                <td style=\"padding:10px;\">x-api-key</td>\n                <td style=\"padding:10px;\">Header</td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n\n<h2>Versioning</h2>\n<p>Egencia will notify the Client about the availability of new major versions and provide the timeframe for the upgrades. Major version is a new version of the software with a significant change(s). Minor version is a new version of the software with possible backward compatibility and with a minor degree of change. The changes can be structural, and can contain enhancements, major bug fixes, or change of behaviour, endpoint changes, new fields added, or fields removed. The version change log will list all the changes included in the corresponding version from the previous one.</p>\n<h3>Version Change Log</h3>\n<p>You can also see a full API version change log under this heading.</p>\n<div>\n    <table style=\"width:50%; border-spacing:5px\"  border=\"1\" cellpadding=\"5px\">\n        <thead>\n            <tr >\n                <th style=\"padding:10px;\">API</th>\n                <th style=\"padding:10px;\">Current Version</th>\n                <th style=\"padding:10px;\">What has changed?</th>\n            </tr>\n        </thead>\n        <tbody>\n        <tr>\n                <td style=\"padding:10px;\">Expense SPI</td>\n                <td style=\"padding:10px;\">Version 1</td>\n                <td style=\"padding:10px;\">First stable version.</td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n\n<h2>Expense SPI Details</h2>",
+      "type": "text/plain"
+    }
+  }
+}

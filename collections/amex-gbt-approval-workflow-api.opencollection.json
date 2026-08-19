@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Egencia Approval Workflow API",
+    "version": "v1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "bookings v1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Approve the complete booking based on booking ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId/approve",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Creates an Approval request (Action: Approve) for a specific booking Id</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n       "
+        },
+        {
+          "info": {
+            "name": "Deny the complete booking based on booking ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId/deny",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Creates a Deny request (Action: Deny) for a booking</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>"
+        },
+        {
+          "info": {
+            "name": "Approve a particular booking item based on booking ID and item ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId/items/:itemId/approve",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "2000-2587-907",
+                "type": "path",
+                "description": "Booking ID of the trip containing the item to approve"
+              },
+              {
+                "name": "itemId",
+                "value": "5f964c44e7b72600017fc8bb",
+                "type": "path",
+                "description": "ID of the booking item to approve"
+              },
+              {
+                "name": "level",
+                "value": "ONE",
+                "type": "query",
+                "description": "Targets a specific hierarchical approver level or security level. If not provided, the first approver is used."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Creates an Approval request (Action: Approve) for specific item Id.</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n           "
+        },
+        {
+          "info": {
+            "name": "Deny a particular booking item based on booking ID and item ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId/items/:itemId/deny",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "2000-2587-907",
+                "type": "path",
+                "description": "Booking ID of the trip containing the item to deny"
+              },
+              {
+                "name": "itemId",
+                "value": "5f964c44e7b72600017fc8bb",
+                "type": "path",
+                "description": "ID of the booking item to deny"
+              },
+              {
+                "name": "level",
+                "value": "ONE",
+                "type": "query",
+                "description": "Targets a specific hierarchical approver level or security level. If not provided, the first approver is used."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Creates a Deny request (Action: Deny) for specific item Id.</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>Str"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

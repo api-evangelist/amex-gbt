@@ -1,0 +1,577 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Egencia User Sync API",
+    "version": "v1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SCIM User Sync V1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new user in the system with the requested information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v1/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a new user in the system with the requested information."
+        },
+        {
+          "info": {
+            "name": "Return list of users based on the filter condition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v1/users/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return list of users based on the filter condition."
+        },
+        {
+          "info": {
+            "name": "Retrieves the user details for a requested user identifier.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves the user details for a requested user identifier."
+        },
+        {
+          "info": {
+            "name": "Updates an existing user in the system with the requested information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates an existing user in the system with the requested information."
+        },
+        {
+          "info": {
+            "name": "Perform patch operation on the user with the given user Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Perform patch operation on the user with the given user Id."
+        },
+        {
+          "info": {
+            "name": "Delete the user in the system with the given user Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User Id of the user who is to be deleted"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Delete the user with the given user Id in the path</p>\n<p><b>Examples:</b></p>\n<p>Replace {baseUrl} with the actual value of Egencia APIs host. Please refer Base Urls section under API Overview page of Egencia Developer Center.</p>\n<p>Deleting a user with user Id : test_user_id</p>\n<pre>\n    <code>\n        DELETE {baseUrl}/openconnect/api/scim/v1/users/test_user_id\n        <b>Response:</b>\n            -> 204 No Content\n   </code>\n</pre>"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SCIM User Sync V2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return list of users based on the filter condition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v2/Users",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "SCIM compliant filter attribute to take query string. If you are using any external tool to make the API call, please make sure to encode the filter value."
+              },
+              {
+                "name": "startIndex",
+                "value": "",
+                "type": "query",
+                "description": "1-based start index"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of resources to be returned. Maximum supported value is 100"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Search/retrieve users based on the filter string parameter. Please be cautious if you are using organization token, search API will only return users of parent company if company is not provided in the filter criteria.</p>\n<div>\n<p>Results are returned in ascending order of userIds.</p>\n<p><b>Note: We only support search by email, name, userName and singleSignOnId. Since filter attribute contains special characters like square brackets, clients need to encode the filter attribute value.</b></"
+        },
+        {
+          "info": {
+            "name": "Create a new user in the system with the requested information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v2/Users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a new user in the system with the requested information."
+        },
+        {
+          "info": {
+            "name": "Retrieves the user details for a requested user identifier.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v2/Users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the user to be retrieved"
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves the user details for a requested user identifier."
+        },
+        {
+          "info": {
+            "name": "Updates an existing user in the system with the requested information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v2/Users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the user to be updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates an existing user in the system with the requested information."
+        },
+        {
+          "info": {
+            "name": "Perform patch operation on the user with the given user Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v2/Users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the user to be updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Perform patch operation on the user with the given user Id."
+        },
+        {
+          "info": {
+            "name": "Delete the user in the system with the given user Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v2/Users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User Id of the user to be deleted"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Delete the user with the given user Id in the path</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n                Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>userId</td>\n            <td>String</td>\n            <td>User Id of the user to be deleted</td>\n        </t"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SCIM User Sync V3",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return list of users based on the filter condition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v3/Users",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "SCIM compliant filter attribute to take query string. If you are using any external tool to make the API call, please make sure to encode the filter value."
+              },
+              {
+                "name": "startIndex",
+                "value": "",
+                "type": "query",
+                "description": "1-based start index"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of resources to be returned. Maximum supported value is 100"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Search/retrieve users based on the filter string parameter. Please be cautious if you are using organization token, search API will return users of all associated companies of parent company's org id if company is not provided in the filter criteria.</p>\n<div>\n<p>Results are returned in ascending order of userIds.</p>\n<p><b>Note: We only support search by email, name, userName and singleSignOnId. Since filter attribute contains special characters like square brackets, clients need to encode t"
+        },
+        {
+          "info": {
+            "name": "Create a new user in the system with the requested information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v3/Users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a new user in the system with the requested information."
+        },
+        {
+          "info": {
+            "name": "Retrieves the user details for a requested user identifier.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v3/Users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the user to be retrieved"
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves the user details for a requested user identifier."
+        },
+        {
+          "info": {
+            "name": "Updates an existing user in the system with the requested information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v3/Users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the user to be updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates an existing user in the system with the requested information."
+        },
+        {
+          "info": {
+            "name": "Perform patch operation on the user with the given user Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v3/Users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the user to be updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Perform patch operation on the user with the given user Id."
+        },
+        {
+          "info": {
+            "name": "Delete the user in the system with the given user Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v3/Users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User Id of the user to be deleted"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Delete the user with the given user Id in the path</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n                Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>userId</td>\n            <td>String</td>\n            <td>User Id of the user to be deleted</td>\n        </t"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

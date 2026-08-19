@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Validation SPI",
+    "version": "v1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "validation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate the booking fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect-validation-service/v1/validateFields",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate the booking fields"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

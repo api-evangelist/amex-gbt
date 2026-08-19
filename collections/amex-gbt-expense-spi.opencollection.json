@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Expense SPI",
+    "version": "v1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Expense SPI",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Push Expense",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect-expensestream-service/some.base.path/some.path",
+            "headers": [
+              {
+                "name": "message_timestamp",
+                "value": "2011-12-03T10:15:30"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<p>The SPI handles all the standard HTTP return codes. The 'Responses' below shows the codes that will trigger an automatic retry mechanism on our side in order to enhance the success of the delivery. For any other error or when the maximum retries has been reached, it will need a manual intervention and we might contact your technical service if the issue comes from your server.</p>\n"
+        },
+        {
+          "info": {
+            "name": "Push Subscription Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect-expensestream-service/some.base.path/v1/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The SPI handles all the standard HTTP return codes. The 'Responses' chapter shows the codes that will trigger an automatic retry mechanism on our side in order to enhance the success of the delivery. For any other error or when the maximum retries has been reached, it will need a manual intervention and we might contact your technical service if the issue comes from your server."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

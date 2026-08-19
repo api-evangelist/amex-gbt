@@ -2,74 +2,185 @@ generated: '2026-07-28'
 method: derived
 status: none
 published: false
-source: >-
-  live probes on 2026-07-28 plus derivation from the thirteen product OpenAPI documents in
-  openapi/
-notes: >-
-  Amex GBT / Egencia publishes NO Model Context Protocol server. This file records that finding
-  and a derived candidate tool surface for a future round; it is deliberately NOT wired as a
-  `type: MCPServer` pointer in apis.yml, because no MCP server genuinely exists and the pointer
-  would misrepresent the provider. Re-check on the next round.
+source: live probes on 2026-07-28 plus derivation from the thirteen product OpenAPI documents in openapi/
+notes: 'Amex GBT / Egencia publishes NO Model Context Protocol server. This file records that finding
+  and a derived candidate tool surface for a future round; it is deliberately NOT wired as a `type: MCPServer`
+  pointer in apis.yml, because no MCP server genuinely exists and the pointer would misrepresent the provider.
+  Re-check on the next round.'
 probes:
-- {url: 'https://apis.egencia.com/mcp', status: 403, note: Cloudflare interstitial (wildcard), not an MCP endpoint}
-- {url: 'https://mcp.egencia.com/', status: 403, note: Cloudflare interstitial on the egencia.com wildcard, not an MCP endpoint}
-- {url: 'https://apis.egencia.com/llms.txt', status: 403}
-- {url: 'https://www.egencia.com/llms.txt', status: 403}
-- {url: 'https://www.amexglobalbusinesstravel.com/llms.txt', status: 403}
-registries_checked: [npm @modelcontextprotocol scope, npm "egencia", GitHub org egencia/amexgbt/amex-gbt (all 404)]
-agent_readiness_note: >-
-  The contract side of agent readiness is unusually strong for a travel intermediary - seventeen
-  valid OpenAPI 3.1.0 documents retrievable anonymously, so an agent or code generator can be
-  built against the whole surface with no prior relationship. What blocks an agent is the runtime
-  credential, not the contract: every production endpoint returns 401, credentials are issued only
-  after commercial onboarding, and no machine-readable terms, rate limits or OAuth scopes are
-  published, so an agent cannot check what it is permitted to do before calling.
+- url: https://apis.egencia.com/mcp
+  status: 403
+  note: Cloudflare interstitial (wildcard)
+  not an MCP endpoint: null
+- url: https://mcp.egencia.com/
+  status: 403
+  note: Cloudflare interstitial on the egencia.com wildcard
+  not an MCP endpoint: null
+- url: https://apis.egencia.com/llms.txt
+  status: 403
+- url: https://www.egencia.com/llms.txt
+  status: 403
+- url: https://www.amexglobalbusinesstravel.com/llms.txt
+  status: 403
+registries_checked:
+- npm @modelcontextprotocol scope
+- npm "egencia"
+- GitHub org egencia/amexgbt/amex-gbt (all 404)
+agent_readiness_note: 'The contract side of agent readiness is unusually strong for a travel intermediary
+  - seventeen valid OpenAPI 3.1.0 documents retrievable anonymously, so an agent or code generator can
+  be built against the whole surface with no prior relationship. What blocks an agent is the runtime credential,
+  not the contract: every production endpoint returns 401, credentials are issued only after commercial
+  onboarding, and no machine-readable terms, rate limits or OAuth scopes are published, so an agent cannot
+  check what it is permitted to do before calling.'
 candidate_tools:
   method: derived
-  note: >-
-    One candidate tool per public product operation, with the backing operationId. Input schemas
-    are the parameters and requestBody of the named operation in the referenced spec - nothing
-    here is invented. Only read and low-consequence operations are marked agent_safe; approve,
-    deny, cancel and delete change a real corporate travel booking and are marked
-    human_in_the_loop.
+  note: One candidate tool per public product operation, with the backing operationId. Input schemas are
+    the parameters and requestBody of the named operation in the referenced spec - nothing here is invented.
+    Only read and low-consequence operations are marked agent_safe; approve, deny, cancel and delete change
+    a real corporate travel booking and are marked human_in_the_loop.
   tools:
-  - {name: get_booking, description: Retrieve a booking and its trip items, source_operation: 'openapi/amex-gbt-booking-api-openapi.json#getBookingProduct', agent_safe: true}
-  - {name: get_booking_item, description: Retrieve a single trip item, source_operation: 'openapi/amex-gbt-booking-api-openapi.json#getBookingItem', agent_safe: true}
-  - {name: get_booking_item_receipts, description: List receipts attached to a trip item, source_operation: 'openapi/amex-gbt-booking-api-openapi.json#getReceipt_1', agent_safe: true}
-  - {name: get_receipt, description: Download the receipt document for a trip item, source_operation: 'openapi/amex-gbt-receipt-api-openapi.json#getReceipt', agent_safe: true}
-  - {name: get_receipts_archive, description: Download all invoices and credit notes for a trip item as a ZIP, source_operation: 'openapi/amex-gbt-booking-api-openapi.json#getReceiptsAsZip', agent_safe: true}
-  - {name: search_companies, description: Search Egencia corporate accounts, source_operation: 'openapi/amex-gbt-company-info-api-openapi.json#searchCompanies', agent_safe: true}
-  - {name: get_company, description: Retrieve a company by Egencia company_id, source_operation: 'openapi/amex-gbt-company-info-api-openapi.json#retrieveCompany', agent_safe: true}
-  - {name: get_company_ecommerce_settings, description: Retrieve invoice/payment/company settings, source_operation: 'openapi/amex-gbt-company-info-api-openapi.json#getSettings', agent_safe: true}
-  - {name: get_cdf_definitions, description: List a company's custom data field definitions, source_operation: 'openapi/amex-gbt-company-cdf-api-openapi.json#getCdfDefinitions', agent_safe: true}
-  - {name: get_cdf_values, description: List values under a custom data field definition, source_operation: 'openapi/amex-gbt-company-cdf-api-openapi.json#getCdfValues', agent_safe: true}
-  - {name: create_cdf_value, description: Create a custom data field value, source_operation: 'openapi/amex-gbt-company-cdf-api-openapi.json#createCdfValue', agent_safe: false, human_in_the_loop: true}
-  - {name: query_transactions, description: Create a filtered transaction report over a date range, source_operation: 'openapi/amex-gbt-reporting-api-openapi.json#queryTransactions', agent_safe: true}
-  - {name: get_transactions, description: Page a created transaction report, source_operation: 'openapi/amex-gbt-reporting-api-openapi.json#getTransactions', agent_safe: true}
-  - {name: query_air_transactions, description: Air-specific transaction report, source_operation: 'openapi/amex-gbt-reporting-api-openapi.json#queryTransactionsForAir', agent_safe: true}
-  - {name: query_hotel_transactions, description: Hotel-specific transaction report, source_operation: 'openapi/amex-gbt-reporting-api-openapi.json#queryTransactionsForHotel', agent_safe: true}
-  - {name: get_iata_code, description: Get the IATA agency code for a point of sale, source_operation: 'openapi/amex-gbt-reporting-api-openapi.json#getIATACode', agent_safe: true}
-  - {name: query_duty_of_care, description: Create a paginated duty-of-care booking query for a partner over a date range, source_operation: 'openapi/amex-gbt-duty-of-care-api-openapi.json#getDutyOfCareData', agent_safe: true}
-  - {name: get_duty_of_care_page, description: Page a duty-of-care result set, source_operation: 'openapi/amex-gbt-duty-of-care-api-openapi.json#getBookings', agent_safe: true}
-  - {name: list_users, description: List traveller profiles (SCIM v3), source_operation: 'openapi/amex-gbt-user-sync-api-openapi.json#getUsers', agent_safe: true}
-  - {name: get_user, description: Retrieve a traveller profile (SCIM v3), source_operation: 'openapi/amex-gbt-user-sync-api-openapi.json#getUser', agent_safe: true}
-  - {name: create_user, description: Provision a traveller profile (SCIM v3), source_operation: 'openapi/amex-gbt-user-sync-api-openapi.json#createUser', agent_safe: false, human_in_the_loop: true}
-  - {name: patch_user, description: Patch a traveller profile (SCIM v3), source_operation: 'openapi/amex-gbt-user-sync-api-openapi.json#patchUser', agent_safe: false, human_in_the_loop: true}
-  - {name: approve_booking, description: Approve an entire booking, source_operation: 'openapi/amex-gbt-approval-workflow-api-openapi.json#approveBooking', agent_safe: false, human_in_the_loop: true}
-  - {name: deny_booking, description: Deny an entire booking, source_operation: 'openapi/amex-gbt-approval-workflow-api-openapi.json#denyBooking', agent_safe: false, human_in_the_loop: true}
-  - {name: approve_booking_item, description: Approve one trip item at a named approver level, source_operation: 'openapi/amex-gbt-approval-workflow-api-openapi.json#approveBookingItem', agent_safe: false, human_in_the_loop: true}
-  - {name: deny_booking_item, description: Deny one trip item at a named approver level, source_operation: 'openapi/amex-gbt-approval-workflow-api-openapi.json#denyBookingItem', agent_safe: false, human_in_the_loop: true}
-  - {name: cancel_booking, description: Cancel every trip item in a booking, source_operation: 'openapi/amex-gbt-cancellation-deletion-api-openapi.json#cancelBooking', agent_safe: false, human_in_the_loop: true}
-  - {name: delete_booking, description: Delete every trip item in a booking, source_operation: 'openapi/amex-gbt-cancellation-deletion-api-openapi.json#deleteBooking', agent_safe: false, human_in_the_loop: true}
-  - {name: cancel_booking_item, description: Cancel one trip item, source_operation: 'openapi/amex-gbt-booking-api-openapi.json#cancelBookingItem', agent_safe: false, human_in_the_loop: true}
-  - {name: delete_booking_item, description: Delete one trip item, source_operation: 'openapi/amex-gbt-booking-api-openapi.json#deleteBookingItem', agent_safe: false, human_in_the_loop: true}
+  - name: get_booking
+    description: Retrieve a booking and its trip items
+    source_operation: openapi/amex-gbt-booking-api-openapi.json#getBookingProduct
+    agent_safe: true
+  - name: get_booking_item
+    description: Retrieve a single trip item
+    source_operation: openapi/amex-gbt-booking-api-openapi.json#getBookingItem
+    agent_safe: true
+  - name: get_booking_item_receipts
+    description: List receipts attached to a trip item
+    source_operation: openapi/amex-gbt-booking-api-openapi.json#getReceipt_1
+    agent_safe: true
+  - name: get_receipt
+    description: Download the receipt document for a trip item
+    source_operation: openapi/amex-gbt-receipt-api-openapi.json#getReceipt
+    agent_safe: true
+  - name: get_receipts_archive
+    description: Download all invoices and credit notes for a trip item as a ZIP
+    source_operation: openapi/amex-gbt-booking-api-openapi.json#getReceiptsAsZip
+    agent_safe: true
+  - name: search_companies
+    description: Search Egencia corporate accounts
+    source_operation: openapi/amex-gbt-company-info-api-openapi.json#searchCompanies
+    agent_safe: true
+  - name: get_company
+    description: Retrieve a company by Egencia company_id
+    source_operation: openapi/amex-gbt-company-info-api-openapi.json#retrieveCompany
+    agent_safe: true
+  - name: get_company_ecommerce_settings
+    description: Retrieve invoice/payment/company settings
+    source_operation: openapi/amex-gbt-company-info-api-openapi.json#getSettings
+    agent_safe: true
+  - name: get_cdf_definitions
+    description: List a company's custom data field definitions
+    source_operation: openapi/amex-gbt-company-cdf-api-openapi.json#getCdfDefinitions
+    agent_safe: true
+  - name: get_cdf_values
+    description: List values under a custom data field definition
+    source_operation: openapi/amex-gbt-company-cdf-api-openapi.json#getCdfValues
+    agent_safe: true
+  - name: create_cdf_value
+    description: Create a custom data field value
+    source_operation: openapi/amex-gbt-company-cdf-api-openapi.json#createCdfValue
+    agent_safe: false
+    human_in_the_loop: true
+  - name: query_transactions
+    description: Create a filtered transaction report over a date range
+    source_operation: openapi/amex-gbt-reporting-api-openapi.json#queryTransactions
+    agent_safe: true
+  - name: get_transactions
+    description: Page a created transaction report
+    source_operation: openapi/amex-gbt-reporting-api-openapi.json#getTransactions
+    agent_safe: true
+  - name: query_air_transactions
+    description: Air-specific transaction report
+    source_operation: openapi/amex-gbt-reporting-api-openapi.json#queryTransactionsForAir
+    agent_safe: true
+  - name: query_hotel_transactions
+    description: Hotel-specific transaction report
+    source_operation: openapi/amex-gbt-reporting-api-openapi.json#queryTransactionsForHotel
+    agent_safe: true
+  - name: get_iata_code
+    description: Get the IATA agency code for a point of sale
+    source_operation: openapi/amex-gbt-reporting-api-openapi.json#getIATACode
+    agent_safe: true
+  - name: query_duty_of_care
+    description: Create a paginated duty-of-care booking query for a partner over a date range
+    source_operation: openapi/amex-gbt-duty-of-care-api-openapi.json#getDutyOfCareData
+    agent_safe: true
+  - name: get_duty_of_care_page
+    description: Page a duty-of-care result set
+    source_operation: openapi/amex-gbt-duty-of-care-api-openapi.json#getBookings
+    agent_safe: true
+  - name: list_users
+    description: List traveller profiles (SCIM v3)
+    source_operation: openapi/amex-gbt-user-sync-api-openapi.json#getUsers
+    agent_safe: true
+  - name: get_user
+    description: Retrieve a traveller profile (SCIM v3)
+    source_operation: openapi/amex-gbt-user-sync-api-openapi.json#getUser
+    agent_safe: true
+  - name: create_user
+    description: Provision a traveller profile (SCIM v3)
+    source_operation: openapi/amex-gbt-user-sync-api-openapi.json#createUser
+    agent_safe: false
+    human_in_the_loop: true
+  - name: patch_user
+    description: Patch a traveller profile (SCIM v3)
+    source_operation: openapi/amex-gbt-user-sync-api-openapi.json#patchUser
+    agent_safe: false
+    human_in_the_loop: true
+  - name: approve_booking
+    description: Approve an entire booking
+    source_operation: openapi/amex-gbt-approval-workflow-api-openapi.json#approveBooking
+    agent_safe: false
+    human_in_the_loop: true
+  - name: deny_booking
+    description: Deny an entire booking
+    source_operation: openapi/amex-gbt-approval-workflow-api-openapi.json#denyBooking
+    agent_safe: false
+    human_in_the_loop: true
+  - name: approve_booking_item
+    description: Approve one trip item at a named approver level
+    source_operation: openapi/amex-gbt-approval-workflow-api-openapi.json#approveBookingItem
+    agent_safe: false
+    human_in_the_loop: true
+  - name: deny_booking_item
+    description: Deny one trip item at a named approver level
+    source_operation: openapi/amex-gbt-approval-workflow-api-openapi.json#denyBookingItem
+    agent_safe: false
+    human_in_the_loop: true
+  - name: cancel_booking
+    description: Cancel every trip item in a booking
+    source_operation: openapi/amex-gbt-cancellation-deletion-api-openapi.json#cancelBooking
+    agent_safe: false
+    human_in_the_loop: true
+  - name: delete_booking
+    description: Delete every trip item in a booking
+    source_operation: openapi/amex-gbt-cancellation-deletion-api-openapi.json#deleteBooking
+    agent_safe: false
+    human_in_the_loop: true
+  - name: cancel_booking_item
+    description: Cancel one trip item
+    source_operation: openapi/amex-gbt-booking-api-openapi.json#cancelBookingItem
+    agent_safe: false
+    human_in_the_loop: true
+  - name: delete_booking_item
+    description: Delete one trip item
+    source_operation: openapi/amex-gbt-booking-api-openapi.json#deleteBookingItem
+    agent_safe: false
+    human_in_the_loop: true
 excluded:
-  note: >-
-    Deliberately excluded from the candidate surface - DELETE /gdpr (irreversible per-user
-    erasure), POST /v1/sensitive/audit/clean, the /base/liveness|readiness|version platform
-    probes, and the three SPI contracts (Validation, Expense, Approval Customisation), which
-    describe an endpoint the CUSTOMER hosts and Egencia calls, not a tool an agent can invoke.
+  note: Deliberately excluded from the candidate surface - DELETE /gdpr (irreversible per-user erasure),
+    POST /v1/sensitive/audit/clean, the /base/liveness|readiness|version platform probes, and the three
+    SPI contracts (Validation, Expense, Approval Customisation), which describe an endpoint the CUSTOMER
+    hosts and Egencia calls, not a tool an agent can invoke.
 related:
 - agentic-access/amex-gbt-agentic-access.yml
 - skills/_index.yml
 - llms/amex-gbt-llms.txt
+deployment:
+  mode: none
+  verified: derived
+  checked: '2026-08-12'
+  source: catalog MCP census

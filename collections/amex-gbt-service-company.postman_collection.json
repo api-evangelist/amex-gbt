@@ -1,0 +1,2721 @@
+{
+  "item": [
+    {
+      "id": "b0b0bff6-1830-4791-9725-560060862418",
+      "name": "Third Party Acknowledgement",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ffecdb80-b577-432e-9edf-1808626e9912",
+          "name": "save Acknowledgement",
+          "request": {
+            "name": "save Acknowledgement",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "billing-entity",
+                "thirdparty",
+                "response",
+                "gbt-customer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\",\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"transactionId\": \"<string>\",\n  \"errorTyp\": \"<string>\",\n  \"acknowledgementSuccessDetails\": {\n    \"dk_number\": \"<string>\",\n    \"reporting_id\": \"<string>\",\n    \"reporting_name\": \"<string>\",\n    \"timestamp\": \"<long>\",\n    \"billing_dk_number\": \"<string>\",\n    \"client_id\": \"<string>\",\n    \"account_number\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "089528c9-97f4-4c4b-8e6e-9c3f29a1a72d",
+              "name": "<b>Retrieve</b>, indicating that the acknowledgement request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing-entity",
+                    "thirdparty",
+                    "response",
+                    "gbt-customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"transactionId\": \"<string>\",\n  \"errorTyp\": \"<string>\",\n  \"acknowledgementSuccessDetails\": {\n    \"dk_number\": \"string\",\n    \"reporting_id\": \"string\",\n    \"reporting_name\": \"string\",\n    \"timestamp\": 5421,\n    \"billing_dk_number\": \"string\",\n    \"client_id\": \"string\",\n    \"account_number\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b2102d8-b953-43f6-b6a0-5f46fe7617d9",
+              "name": "<b>Created</b>, indicating that the submitted creation request has succeed. The response HTTP header <i>Location</i> contains the resource identifier.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing-entity",
+                    "thirdparty",
+                    "response",
+                    "gbt-customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"transactionId\": \"<string>\",\n  \"errorTyp\": \"<string>\",\n  \"acknowledgementSuccessDetails\": {\n    \"dk_number\": \"string\",\n    \"reporting_id\": \"string\",\n    \"reporting_name\": \"string\",\n    \"timestamp\": 5421,\n    \"billing_dk_number\": \"string\",\n    \"client_id\": \"string\",\n    \"account_number\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3cbbf755-4cbc-4cf4-afe7-acbe30cc6274",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty3, invalid or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing-entity",
+                    "thirdparty",
+                    "response",
+                    "gbt-customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"transactionId\": \"<string>\",\n  \"errorTyp\": \"<string>\",\n  \"acknowledgementSuccessDetails\": {\n    \"dk_number\": \"string\",\n    \"reporting_id\": \"string\",\n    \"reporting_name\": \"string\",\n    \"timestamp\": 5421,\n    \"billing_dk_number\": \"string\",\n    \"client_id\": \"string\",\n    \"account_number\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7a5f4d7-e157-4b99-a906-e760154a5cda",
+              "name": "<b>403 - Forbidden</b>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing-entity",
+                    "thirdparty",
+                    "response",
+                    "gbt-customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"transactionId\": \"<string>\",\n  \"errorTyp\": \"<string>\",\n  \"acknowledgementSuccessDetails\": {\n    \"dk_number\": \"string\",\n    \"reporting_id\": \"string\",\n    \"reporting_name\": \"string\",\n    \"timestamp\": 5421,\n    \"billing_dk_number\": \"string\",\n    \"client_id\": \"string\",\n    \"account_number\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3b39f7f-87eb-4f9b-b983-58ca790a31f6",
+              "name": "<b>Not Found</b> : the resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing-entity",
+                    "thirdparty",
+                    "response",
+                    "gbt-customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"transactionId\": \"<string>\",\n  \"errorTyp\": \"<string>\",\n  \"acknowledgementSuccessDetails\": {\n    \"dk_number\": \"string\",\n    \"reporting_id\": \"string\",\n    \"reporting_name\": \"string\",\n    \"timestamp\": 5421,\n    \"billing_dk_number\": \"string\",\n    \"client_id\": \"string\",\n    \"account_number\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88e5734b-580e-4739-85c1-3c7b0d10b4ef",
+              "name": "<b>Invalid input</b> : invalid or missing required input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing-entity",
+                    "thirdparty",
+                    "response",
+                    "gbt-customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"transactionId\": \"<string>\",\n  \"errorTyp\": \"<string>\",\n  \"acknowledgementSuccessDetails\": {\n    \"dk_number\": \"string\",\n    \"reporting_id\": \"string\",\n    \"reporting_name\": \"string\",\n    \"timestamp\": 5421,\n    \"billing_dk_number\": \"string\",\n    \"client_id\": \"string\",\n    \"account_number\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fff34033-9e71-4485-8275-71800413cddd",
+              "name": "<b>Internal Server Error</b> : unable to process request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing-entity",
+                    "thirdparty",
+                    "response",
+                    "gbt-customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"transactionId\": \"<string>\",\n  \"errorTyp\": \"<string>\",\n  \"acknowledgementSuccessDetails\": {\n    \"dk_number\": \"string\",\n    \"reporting_id\": \"string\",\n    \"reporting_name\": \"string\",\n    \"timestamp\": 5421,\n    \"billing_dk_number\": \"string\",\n    \"client_id\": \"string\",\n    \"account_number\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6db8ed2c-12fe-458d-9e61-54e0ed987802",
+      "name": "Company Details",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "17cc2787-ef06-40a7-be7c-521c8f585239",
+          "name": "search Companies",
+          "request": {
+            "name": "search Companies",
+            "description": {
+              "content": "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>Query Parameters</strong></td></tr>\n           <tr>\n               <td>name</td>\n               <td>String</td>\n               <td>Company name to search for (optional)</td>\n           </tr>\n           <tr>\n               <td>company_id</td>\n               <td>Long</td>\n               <td>Specific company ID (optional)</td>\n           </tr>\n           <tr>\n               <td>status</td>\n               <td>List&lt;String&gt;</td>\n               <td>Filter by company status(es) (optional)</td>\n           </tr>\n           <tr>\n               <td>start</td>\n               <td>Integer</td>\n               <td>Pagination start index (default: 0, optional)</td>\n           </tr>\n           <tr>\n               <td>sfid</td>\n               <td>String</td>\n               <td>Salesforce ID (optional)</td>\n           </tr>\n           <tr>\n               <td>count</td>\n               <td>Integer</td>\n               <td>Number of results per page (default: 100, max: 100, optional)</td>\n           </tr>\n           <tr>\n               <td>sort_by</td>\n               <td>List&lt;String&gt;</td>\n               <td>Fields to sort by (default: [\"company_name\"], optional)</td>\n           </tr>\n           <tr>\n               <td>sort_direction</td>\n               <td>String</td>\n               <td>Sort direction: \"ASC\" or \"DESC\" (default: \"ASC\", optional)</td>\n           </tr>\n           <tr>\n               <td>has_finance_consultant</td>\n               <td>Boolean</td>\n               <td>Filter by finance consultant presence (optional)</td>\n           </tr>\n           <tr>\n               <td>comcode</td>\n               <td>Long</td>\n               <td>Company code filter (optional)</td>\n           </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Examples:</b></p>\n\n<p>Searching companies with multiple filters:</p>\n<pre>\n   <code>\n   GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies?name=Acme&status=ACTIVE&count=50&sort_by=company_name&sort_direction=ASC\n       -> 200 OK\n{\n    \"companies\": [\n        {\n            \"company_id\": 60806,\n            \"company_name\": \"Acme Corp\"\n        },\n        {\n            \"company_id\": 60807,\n            \"company_name\": \"Acme Industries\"\n        }\n    ],\n    \"total_results\": 2,\n    \"start\": 0,\n    \"count\": 50\n}   </code></pre>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "companies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Company name to search for"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_id",
+                  "value": "<long>",
+                  "description": "Specific company ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by company status(es)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by company status(es)"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Pagination start index (default: 0)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sfid",
+                  "value": "<string>",
+                  "description": "Salesforce ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<integer>",
+                  "description": "Number of results per page (default: 100, max: 100)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Fields to sort by (default: [\"company_name\"])"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Fields to sort by (default: [\"company_name\"])"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_direction",
+                  "value": "<string>",
+                  "description": "Sort direction: \"ASC\" or \"DESC\" (default: \"ASC\")"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_finance_consultant",
+                  "value": "<boolean>",
+                  "description": "Filter by finance consultant presence"
+                },
+                {
+                  "disabled": false,
+                  "key": "comcode",
+                  "value": "<long>",
+                  "description": "Company code filter"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7049d975-f1f1-487a-900f-9ccd87b16fee",
+              "name": "<b>Success</b>, indicating that the search request has succeeded. Returns a list of companies matching the criteria.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sfid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_finance_consultant",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "comcode",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"count\": 3120,\n  \"start\": 7525,\n  \"totalResults\": 1255,\n  \"companies\": [\n    {\n      \"companyId\": 350,\n      \"companyName\": \"string\",\n      \"id\": \"string\",\n      \"federalTaxId\": \"string\",\n      \"status\": \"DELETED\",\n      \"companyAddress\": {\n        \"suite\": \"string\",\n        \"street\": \"string\",\n        \"addressLine2\": \"string\",\n        \"province\": \"string\",\n        \"city\": \"string\",\n        \"romanizedCity\": \"string\",\n        \"country\": \"string\",\n        \"countryCode\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"productId\": 299,\n      \"category\": \"string\",\n      \"travelManager\": {\n        \"tuid\": 9810,\n        \"title\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"userId\": \"string\",\n        \"email\": \"string\",\n        \"alternateEmail\": \"string\",\n        \"role\": \"ACCOUNT_MANAGER\",\n        \"phoneNumbers\": [\n          {\n            \"number\": \"string\",\n            \"label\": \"string\"\n          },\n          {\n            \"number\": \"string\",\n            \"label\": \"string\"\n          }\n        ]\n      },\n      \"createdAt\": 7703,\n      \"updatedAt\": 3728,\n      \"createdBy\": \"string\",\n      \"updatedBy\": \"string\",\n      \"language\": \"string\",\n      \"comcode\": 1317,\n      \"bookingBlocked\": true,\n      \"active\": true,\n      \"global\": false,\n      \"activationStatus\": \"BLOCKED_FOR_BOOKING_AND_INVOICING\",\n      \"auditActivationStatus\": [\n        {\n          \"changedBy\": 1408,\n          \"changedAt\": 292,\n          \"oldStatus\": \"BLOCKED_FOR_BOOKING\",\n          \"newStatus\": \"DEACTIVATED\",\n          \"salesforceCaseNumber\": \"string\"\n        },\n        {\n          \"changedBy\": 5291,\n          \"changedAt\": 6698,\n          \"oldStatus\": \"PENDING_ACTIVATION\",\n          \"newStatus\": \"DISABLED\",\n          \"salesforceCaseNumber\": \"string\"\n        }\n      ]\n    },\n    {\n      \"companyId\": 1195,\n      \"companyName\": \"string\",\n      \"id\": \"string\",\n      \"federalTaxId\": \"string\",\n      \"status\": \"PENDING\",\n      \"companyAddress\": {\n        \"suite\": \"string\",\n        \"street\": \"string\",\n        \"addressLine2\": \"string\",\n        \"province\": \"string\",\n        \"city\": \"string\",\n        \"romanizedCity\": \"string\",\n        \"country\": \"string\",\n        \"countryCode\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"productId\": 9716,\n      \"category\": \"string\",\n      \"travelManager\": {\n        \"tuid\": 1063,\n        \"title\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"userId\": \"string\",\n        \"email\": \"string\",\n        \"alternateEmail\": \"string\",\n        \"role\": \"BILLING_CONTACT\",\n        \"phoneNumbers\": [\n          {\n            \"number\": \"string\",\n            \"label\": \"string\"\n          },\n          {\n            \"number\": \"string\",\n            \"label\": \"string\"\n          }\n        ]\n      },\n      \"createdAt\": 1172,\n      \"updatedAt\": 5030,\n      \"createdBy\": \"string\",\n      \"updatedBy\": \"string\",\n      \"language\": \"string\",\n      \"comcode\": 3063,\n      \"bookingBlocked\": false,\n      \"active\": true,\n      \"global\": false,\n      \"activationStatus\": \"PENDING_ACTIVATION\",\n      \"auditActivationStatus\": [\n        {\n          \"changedBy\": 2312,\n          \"changedAt\": 8517,\n          \"oldStatus\": \"BLOCKED_FOR_BOOKING\",\n          \"newStatus\": \"DISABLED\",\n          \"salesforceCaseNumber\": \"string\"\n        },\n        {\n          \"changedBy\": 4557,\n          \"changedAt\": 9286,\n          \"oldStatus\": \"PENDING_ACTIVATION\",\n          \"newStatus\": \"BLOCKED_FOR_BOOKING\",\n          \"salesforceCaseNumber\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d39ff0ee-ce27-4957-8c63-5d849a681159",
+              "name": "<b>Bad Request</b> : invalid query parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sfid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_finance_consultant",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "comcode",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"count\": 3120,\n  \"start\": 7525,\n  \"totalResults\": 1255,\n  \"companies\": [\n    {\n      \"companyId\": 350,\n      \"companyName\": \"string\",\n      \"id\": \"string\",\n      \"federalTaxId\": \"string\",\n      \"status\": \"DELETED\",\n      \"companyAddress\": {\n        \"suite\": \"string\",\n        \"street\": \"string\",\n        \"addressLine2\": \"string\",\n        \"province\": \"string\",\n        \"city\": \"string\",\n        \"romanizedCity\": \"string\",\n        \"country\": \"string\",\n        \"countryCode\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"productId\": 299,\n      \"category\": \"string\",\n      \"travelManager\": {\n        \"tuid\": 9810,\n        \"title\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"userId\": \"string\",\n        \"email\": \"string\",\n        \"alternateEmail\": \"string\",\n        \"role\": \"ACCOUNT_MANAGER\",\n        \"phoneNumbers\": [\n          {\n            \"number\": \"string\",\n            \"label\": \"string\"\n          },\n          {\n            \"number\": \"string\",\n            \"label\": \"string\"\n          }\n        ]\n      },\n      \"createdAt\": 7703,\n      \"updatedAt\": 3728,\n      \"createdBy\": \"string\",\n      \"updatedBy\": \"string\",\n      \"language\": \"string\",\n      \"comcode\": 1317,\n      \"bookingBlocked\": true,\n      \"active\": true,\n      \"global\": false,\n      \"activationStatus\": \"BLOCKED_FOR_BOOKING_AND_INVOICING\",\n      \"auditActivationStatus\": [\n        {\n          \"changedBy\": 1408,\n          \"changedAt\": 292,\n          \"oldStatus\": \"BLOCKED_FOR_BOOKING\",\n          \"newStatus\": \"DEACTIVATED\",\n          \"salesforceCaseNumber\": \"string\"\n        },\n        {\n          \"changedBy\": 5291,\n          \"changedAt\": 6698,\n          \"oldStatus\": \"PENDING_ACTIVATION\",\n          \"newStatus\": \"DISABLED\",\n          \"salesforceCaseNumber\": \"string\"\n        }\n      ]\n    },\n    {\n      \"companyId\": 1195,\n      \"companyName\": \"string\",\n      \"id\": \"string\",\n      \"federalTaxId\": \"string\",\n      \"status\": \"PENDING\",\n      \"companyAddress\": {\n        \"suite\": \"string\",\n        \"street\": \"string\",\n        \"addressLine2\": \"string\",\n        \"province\": \"string\",\n        \"city\": \"string\",\n        \"romanizedCity\": \"string\",\n        \"country\": \"string\",\n        \"countryCode\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"productId\": 9716,\n      \"category\": \"string\",\n      \"travelManager\": {\n        \"tuid\": 1063,\n        \"title\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"userId\": \"string\",\n        \"email\": \"string\",\n        \"alternateEmail\": \"string\",\n        \"role\": \"BILLING_CONTACT\",\n        \"phoneNumbers\": [\n          {\n            \"number\": \"string\",\n            \"label\": \"string\"\n          },\n          {\n            \"number\": \"string\",\n            \"label\": \"string\"\n          }\n        ]\n      },\n      \"createdAt\": 1172,\n      \"updatedAt\": 5030,\n      \"createdBy\": \"string\",\n      \"updatedBy\": \"string\",\n      \"language\": \"string\",\n      \"comcode\": 3063,\n      \"bookingBlocked\": false,\n      \"active\": true,\n      \"global\": false,\n      \"activationStatus\": \"PENDING_ACTIVATION\",\n      \"auditActivationStatus\": [\n        {\n          \"changedBy\": 2312,\n          \"changedAt\": 8517,\n          \"oldStatus\": \"BLOCKED_FOR_BOOKING\",\n          \"newStatus\": \"DISABLED\",\n          \"salesforceCaseNumber\": \"string\"\n        },\n        {\n          \"changedBy\": 4557,\n          \"changedAt\": 9286,\n          \"oldStatus\": \"PENDING_ACTIVATION\",\n          \"newStatus\": \"BLOCKED_FOR_BOOKING\",\n          \"salesforceCaseNumber\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ff23267-25b7-4d6c-9e38-0be7d3038841",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sfid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_finance_consultant",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "comcode",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"count\": 3120,\n  \"start\": 7525,\n  \"totalResults\": 1255,\n  \"companies\": [\n    {\n      \"companyId\": 350,\n      \"companyName\": \"string\",\n      \"id\": \"string\",\n      \"federalTaxId\": \"string\",\n      \"status\": \"DELETED\",\n      \"companyAddress\": {\n        \"suite\": \"string\",\n        \"street\": \"string\",\n        \"addressLine2\": \"string\",\n        \"province\": \"string\",\n        \"city\": \"string\",\n        \"romanizedCity\": \"string\",\n        \"country\": \"string\",\n        \"countryCode\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"productId\": 299,\n      \"category\": \"string\",\n      \"travelManager\": {\n        \"tuid\": 9810,\n        \"title\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"userId\": \"string\",\n        \"email\": \"string\",\n        \"alternateEmail\": \"string\",\n        \"role\": \"ACCOUNT_MANAGER\",\n        \"phoneNumbers\": [\n          {\n            \"number\": \"string\",\n            \"label\": \"string\"\n          },\n          {\n            \"number\": \"string\",\n            \"label\": \"string\"\n          }\n        ]\n      },\n      \"createdAt\": 7703,\n      \"updatedAt\": 3728,\n      \"createdBy\": \"string\",\n      \"updatedBy\": \"string\",\n      \"language\": \"string\",\n      \"comcode\": 1317,\n      \"bookingBlocked\": true,\n      \"active\": true,\n      \"global\": false,\n      \"activationStatus\": \"BLOCKED_FOR_BOOKING_AND_INVOICING\",\n      \"auditActivationStatus\": [\n        {\n          \"changedBy\": 1408,\n          \"changedAt\": 292,\n          \"oldStatus\": \"BLOCKED_FOR_BOOKING\",\n          \"newStatus\": \"DEACTIVATED\",\n          \"salesforceCaseNumber\": \"string\"\n        },\n        {\n          \"changedBy\": 5291,\n          \"changedAt\": 6698,\n          \"oldStatus\": \"PENDING_ACTIVATION\",\n          \"newStatus\": \"DISABLED\",\n          \"salesforceCaseNumber\": \"string\"\n        }\n      ]\n    },\n    {\n      \"companyId\": 1195,\n      \"companyName\": \"string\",\n      \"id\": \"string\",\n      \"federalTaxId\": \"string\",\n      \"status\": \"PENDING\",\n      \"companyAddress\": {\n        \"suite\": \"string\",\n        \"street\": \"string\",\n        \"addressLine2\": \"string\",\n        \"province\": \"string\",\n        \"city\": \"string\",\n        \"romanizedCity\": \"string\",\n        \"country\": \"string\",\n        \"countryCode\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"productId\": 9716,\n      \"category\": \"string\",\n      \"travelManager\": {\n        \"tuid\": 1063,\n        \"title\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"userId\": \"string\",\n        \"email\": \"string\",\n        \"alternateEmail\": \"string\",\n        \"role\": \"BILLING_CONTACT\",\n        \"phoneNumbers\": [\n          {\n            \"number\": \"string\",\n            \"label\": \"string\"\n          },\n          {\n            \"number\": \"string\",\n            \"label\": \"string\"\n          }\n        ]\n      },\n      \"createdAt\": 1172,\n      \"updatedAt\": 5030,\n      \"createdBy\": \"string\",\n      \"updatedBy\": \"string\",\n      \"language\": \"string\",\n      \"comcode\": 3063,\n      \"bookingBlocked\": false,\n      \"active\": true,\n      \"global\": false,\n      \"activationStatus\": \"PENDING_ACTIVATION\",\n      \"auditActivationStatus\": [\n        {\n          \"changedBy\": 2312,\n          \"changedAt\": 8517,\n          \"oldStatus\": \"BLOCKED_FOR_BOOKING\",\n          \"newStatus\": \"DISABLED\",\n          \"salesforceCaseNumber\": \"string\"\n        },\n        {\n          \"changedBy\": 4557,\n          \"changedAt\": 9286,\n          \"oldStatus\": \"PENDING_ACTIVATION\",\n          \"newStatus\": \"BLOCKED_FOR_BOOKING\",\n          \"salesforceCaseNumber\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "acc9c213-7047-416d-b533-8e3f74142f70",
+          "name": "retrieve Company",
+          "request": {
+            "name": "retrieve Company",
+            "description": {
+              "content": "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company for which Company Display Name needs to be fetched</td>\n           </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Examples:</b></p>\n\n<p>Retrieving Company Display Name for company_id : 60806</p>\n<pre>\n   <code>\n   GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/{companyId}\n       -> 200 OK\n{\n    \"company_id\": 60806,\n    \"company_name\": \"TMS Demo Aus\"\n}   </code></pre>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "companies",
+                ":company_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "company_id",
+                  "description": "(Required) Company Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0ef6cd4-7663-4efb-9f43-47405018ba42",
+              "name": "<b>Retrieve</b>, indicating that the submitted retrieval request has succeeded. The response HTTP header <i>Location</i> contains the resource identifier.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies",
+                    ":company_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "company_id",
+                      "description": "(Required) Company Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"companyId\": 8475,\n  \"companyName\": \"string\",\n  \"id\": \"string\",\n  \"federalTaxId\": \"string\",\n  \"status\": \"DISABLED\",\n  \"companyAddress\": {\n    \"suite\": \"string\",\n    \"street\": \"string\",\n    \"addressLine2\": \"string\",\n    \"province\": \"string\",\n    \"city\": \"string\",\n    \"romanizedCity\": \"string\",\n    \"country\": \"string\",\n    \"countryCode\": \"string\",\n    \"postalCode\": \"string\"\n  },\n  \"productId\": 56,\n  \"category\": \"string\",\n  \"travelManager\": {\n    \"tuid\": 8194,\n    \"title\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"userId\": \"string\",\n    \"email\": \"string\",\n    \"alternateEmail\": \"string\",\n    \"role\": \"ACCOUNT_MANAGER\",\n    \"phoneNumbers\": [\n      {\n        \"number\": \"string\",\n        \"label\": \"string\"\n      },\n      {\n        \"number\": \"string\",\n        \"label\": \"string\"\n      }\n    ]\n  },\n  \"createdAt\": 1797,\n  \"updatedAt\": 4582,\n  \"createdBy\": \"string\",\n  \"updatedBy\": \"string\",\n  \"language\": \"string\",\n  \"comcode\": 6977,\n  \"bookingBlocked\": false,\n  \"active\": false,\n  \"global\": false,\n  \"activationStatus\": \"ACTIVE\",\n  \"auditActivationStatus\": [\n    {\n      \"changedBy\": 9906,\n      \"changedAt\": 7142,\n      \"oldStatus\": \"BLOCKED_FOR_BOOKING_AND_INVOICING\",\n      \"newStatus\": \"ACTIVE\",\n      \"salesforceCaseNumber\": \"string\"\n    },\n    {\n      \"changedBy\": 3212,\n      \"changedAt\": 8761,\n      \"oldStatus\": \"DISABLED\",\n      \"newStatus\": \"PENDING_ACTIVATION\",\n      \"salesforceCaseNumber\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6ec5519-238f-46f3-8c6b-4fe26a97c1bc",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies",
+                    ":company_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "company_id",
+                      "description": "(Required) Company Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"companyId\": 8475,\n  \"companyName\": \"string\",\n  \"id\": \"string\",\n  \"federalTaxId\": \"string\",\n  \"status\": \"DISABLED\",\n  \"companyAddress\": {\n    \"suite\": \"string\",\n    \"street\": \"string\",\n    \"addressLine2\": \"string\",\n    \"province\": \"string\",\n    \"city\": \"string\",\n    \"romanizedCity\": \"string\",\n    \"country\": \"string\",\n    \"countryCode\": \"string\",\n    \"postalCode\": \"string\"\n  },\n  \"productId\": 56,\n  \"category\": \"string\",\n  \"travelManager\": {\n    \"tuid\": 8194,\n    \"title\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"userId\": \"string\",\n    \"email\": \"string\",\n    \"alternateEmail\": \"string\",\n    \"role\": \"ACCOUNT_MANAGER\",\n    \"phoneNumbers\": [\n      {\n        \"number\": \"string\",\n        \"label\": \"string\"\n      },\n      {\n        \"number\": \"string\",\n        \"label\": \"string\"\n      }\n    ]\n  },\n  \"createdAt\": 1797,\n  \"updatedAt\": 4582,\n  \"createdBy\": \"string\",\n  \"updatedBy\": \"string\",\n  \"language\": \"string\",\n  \"comcode\": 6977,\n  \"bookingBlocked\": false,\n  \"active\": false,\n  \"global\": false,\n  \"activationStatus\": \"ACTIVE\",\n  \"auditActivationStatus\": [\n    {\n      \"changedBy\": 9906,\n      \"changedAt\": 7142,\n      \"oldStatus\": \"BLOCKED_FOR_BOOKING_AND_INVOICING\",\n      \"newStatus\": \"ACTIVE\",\n      \"salesforceCaseNumber\": \"string\"\n    },\n    {\n      \"changedBy\": 3212,\n      \"changedAt\": 8761,\n      \"oldStatus\": \"DISABLED\",\n      \"newStatus\": \"PENDING_ACTIVATION\",\n      \"salesforceCaseNumber\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33a55a5d-0108-4b73-95f2-13d62ad3143d",
+              "name": "<b>Not Found</b> : the resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies",
+                    ":company_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "company_id",
+                      "description": "(Required) Company Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"companyId\": 8475,\n  \"companyName\": \"string\",\n  \"id\": \"string\",\n  \"federalTaxId\": \"string\",\n  \"status\": \"DISABLED\",\n  \"companyAddress\": {\n    \"suite\": \"string\",\n    \"street\": \"string\",\n    \"addressLine2\": \"string\",\n    \"province\": \"string\",\n    \"city\": \"string\",\n    \"romanizedCity\": \"string\",\n    \"country\": \"string\",\n    \"countryCode\": \"string\",\n    \"postalCode\": \"string\"\n  },\n  \"productId\": 56,\n  \"category\": \"string\",\n  \"travelManager\": {\n    \"tuid\": 8194,\n    \"title\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"userId\": \"string\",\n    \"email\": \"string\",\n    \"alternateEmail\": \"string\",\n    \"role\": \"ACCOUNT_MANAGER\",\n    \"phoneNumbers\": [\n      {\n        \"number\": \"string\",\n        \"label\": \"string\"\n      },\n      {\n        \"number\": \"string\",\n        \"label\": \"string\"\n      }\n    ]\n  },\n  \"createdAt\": 1797,\n  \"updatedAt\": 4582,\n  \"createdBy\": \"string\",\n  \"updatedBy\": \"string\",\n  \"language\": \"string\",\n  \"comcode\": 6977,\n  \"bookingBlocked\": false,\n  \"active\": false,\n  \"global\": false,\n  \"activationStatus\": \"ACTIVE\",\n  \"auditActivationStatus\": [\n    {\n      \"changedBy\": 9906,\n      \"changedAt\": 7142,\n      \"oldStatus\": \"BLOCKED_FOR_BOOKING_AND_INVOICING\",\n      \"newStatus\": \"ACTIVE\",\n      \"salesforceCaseNumber\": \"string\"\n    },\n    {\n      \"changedBy\": 3212,\n      \"changedAt\": 8761,\n      \"oldStatus\": \"DISABLED\",\n      \"newStatus\": \"PENDING_ACTIVATION\",\n      \"salesforceCaseNumber\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "455a64fb-2753-4de1-a7e3-23685918d841",
+      "name": "Agent Assist Notes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aa786284-d82d-4c8b-b987-c76262ae27ff",
+          "name": "get Agent Assist Notes",
+          "request": {
+            "name": "get Agent Assist Notes",
+            "description": {
+              "content": "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company for which AgentAssistNotes needs to be fetched</td>\n           </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Examples:</b></p>\n\n<p>Retrieving AgentAssistNotes for company_id : 60806</p>\n<pre>\n   <code>\n   GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/{companyId}/agent-assist-notes\n       -> 200 OK\n       {\n{\n    \"company_id\": 60806,\n    \"agent_assist_note\": [\n        {\n            \"note_id\": \"1675325615806-bb28fb98\",\n            \"title\": \"Travel Managers\",\n            \"message\": \"travel manager details\",\n            \"created_at\": 1675325615806,\n            \"updated_at\": 1678197261234\n        },\n        {\n            \"note_id\": \"1675751952010-15b89dc8\",\n            \"title\": \"Service Team\",\n            \"message\": \"Service Teams second \",\n            \"created_at\": 1675751952010,\n            \"updated_at\": 1675762783745\n        },\n        {\n            \"note_id\": \"1680240558150-ef44ae1a\",\n            \"title\": \"test\",\n            \"message\": \"tee\",\n            \"created_at\": 1680240558150,\n            \"updated_at\": 1680240558150\n        },\n        {\n            \"note_id\": \"1680324192666-a29143f7\",\n            \"title\": \"ff\",\n            \"message\": \"hh\",\n            \"created_at\": 1680324192666,\n            \"updated_at\": 1680324192666\n        },\n        {\n            \"note_id\": \"1680340488384-85cc5c67\",\n            \"title\": \"test title 5\",\n            \"message\": \"test message 6\",\n            \"created_at\": 1680340488384,\n            \"updated_at\": 1680340488384\n        }\n    ]\n}\n   </code></pre>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "companies",
+                ":company_id",
+                "agent-assist-notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "company_id",
+                  "description": "(Required) Company Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d961b80f-619f-4eeb-ab57-695e4d3d24da",
+              "name": "<b>Created</b>, indicating that the submitted creation request has succeed. The response HTTP header <i>Location</i> contains the resource identifier.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies",
+                    ":company_id",
+                    "agent-assist-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "company_id",
+                      "description": "(Required) Company Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"companyId\": 6031,\n  \"agent_assist_note\": [\n    {\n      \"noteId\": \"string\",\n      \"title\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"noteId\": \"string\",\n      \"title\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "156d0aa5-9d0e-4ff3-9780-92bbd77369c5",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty3, invalid or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies",
+                    ":company_id",
+                    "agent-assist-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "company_id",
+                      "description": "(Required) Company Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"companyId\": 6031,\n  \"agent_assist_note\": [\n    {\n      \"noteId\": \"string\",\n      \"title\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"noteId\": \"string\",\n      \"title\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3add25b-795d-4497-b404-0d9d98b77b94",
+              "name": "<b>403 - Forbidden</b>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies",
+                    ":company_id",
+                    "agent-assist-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "company_id",
+                      "description": "(Required) Company Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"companyId\": 6031,\n  \"agent_assist_note\": [\n    {\n      \"noteId\": \"string\",\n      \"title\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"noteId\": \"string\",\n      \"title\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d9fcf2a-de5c-497a-8e08-17244fb0dfb4",
+              "name": "<b>Invalid input</b> : invalid or missing required input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies",
+                    ":company_id",
+                    "agent-assist-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "company_id",
+                      "description": "(Required) Company Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"companyId\": 6031,\n  \"agent_assist_note\": [\n    {\n      \"noteId\": \"string\",\n      \"title\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"noteId\": \"string\",\n      \"title\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16574fd1-2ab1-422a-8cc3-cac30a139aed",
+              "name": "<b>Internal Server Error</b> : unable to process request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies",
+                    ":company_id",
+                    "agent-assist-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "company_id",
+                      "description": "(Required) Company Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"companyId\": 6031,\n  \"agent_assist_note\": [\n    {\n      \"noteId\": \"string\",\n      \"title\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"noteId\": \"string\",\n      \"title\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1b111922-6e87-48a2-b775-78340595edd7",
+      "name": "ecommerce-settings-controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "84531526-caf3-44e8-90e4-cf2ad11f9333",
+          "name": "get Settings",
+          "request": {
+            "name": "get Settings",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "companies",
+                "ecommerce-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "billing_dk",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "traveler_dk",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "setting_type",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "878c92fb-964d-4882-9e22-a8c0577f7ea9",
+              "name": "<b>Retrieve</b>, indicating that the submitted retrieval request has succeeded. The response HTTP header <i>Location</i> contains the resource identifier.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies",
+                    "ecommerce-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "billing_dk",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "traveler_dk",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "setting_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"ecommerceSettings\": [\n    {\n      \"settingType\": \"PAYMENT_SETTING\",\n      \"setting\": \"\"\n    },\n    {\n      \"settingType\": \"COMPANY_SETTING\",\n      \"setting\": \"\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd4db4bf-5f14-4c1e-ae65-ca3263622330",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies",
+                    "ecommerce-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "billing_dk",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "traveler_dk",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "setting_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"ecommerceSettings\": [\n    {\n      \"settingType\": \"PAYMENT_SETTING\",\n      \"setting\": \"\"\n    },\n    {\n      \"settingType\": \"COMPANY_SETTING\",\n      \"setting\": \"\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5f4cafa-203b-4348-bab9-92196c043390",
+              "name": "<b>Not Found</b> : the resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies",
+                    "ecommerce-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "billing_dk",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "traveler_dk",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "setting_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"ecommerceSettings\": [\n    {\n      \"settingType\": \"PAYMENT_SETTING\",\n      \"setting\": \"\"\n    },\n    {\n      \"settingType\": \"COMPANY_SETTING\",\n      \"setting\": \"\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ec7fdcc-771c-4859-9195-d4b59fce9de9",
+          "name": "get Audit",
+          "request": {
+            "name": "get Audit",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "companies",
+                "ecommerce-settings",
+                "audit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<dateTime>",
+                  "description": "(Required) Start Timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<dateTime>",
+                  "description": "(Required) End Timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "setting_type",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da8f0f91-29f8-438e-8b4c-7f9e85592704",
+              "name": "<b>Retrieve</b>, indicating that the submitted retrieval request has succeeded. The response HTTP header <i>Location</i> contains the resource identifier.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies",
+                    "ecommerce-settings",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "setting_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"billingDkChanges\": [\n    {\n      \"dkNumber\": \"string\",\n      \"updatedAt\": \"1980-04-04T06:12:58.572Z\",\n      \"settingType\": \"INVOICE_SETTING\"\n    },\n    {\n      \"dkNumber\": \"string\",\n      \"updatedAt\": \"1968-04-15T15:35:17.329Z\",\n      \"settingType\": \"COMPANY_SETTING\"\n    }\n  ],\n  \"travelerDkChanges\": [\n    {\n      \"dkNumber\": \"string\",\n      \"updatedAt\": \"2007-03-27T01:56:33.608Z\",\n      \"settingType\": \"COMPANY_SETTING\"\n    },\n    {\n      \"dkNumber\": \"string\",\n      \"updatedAt\": \"1996-09-22T05:08:19.478Z\",\n      \"settingType\": \"INVOICE_SETTING\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd8d610b-df08-4e78-ba69-ad4a24d2d62a",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies",
+                    "ecommerce-settings",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "setting_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"billingDkChanges\": [\n    {\n      \"dkNumber\": \"string\",\n      \"updatedAt\": \"1980-04-04T06:12:58.572Z\",\n      \"settingType\": \"INVOICE_SETTING\"\n    },\n    {\n      \"dkNumber\": \"string\",\n      \"updatedAt\": \"1968-04-15T15:35:17.329Z\",\n      \"settingType\": \"COMPANY_SETTING\"\n    }\n  ],\n  \"travelerDkChanges\": [\n    {\n      \"dkNumber\": \"string\",\n      \"updatedAt\": \"2007-03-27T01:56:33.608Z\",\n      \"settingType\": \"COMPANY_SETTING\"\n    },\n    {\n      \"dkNumber\": \"string\",\n      \"updatedAt\": \"1996-09-22T05:08:19.478Z\",\n      \"settingType\": \"INVOICE_SETTING\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9736e830-f3d6-45d4-97d6-e23b7251e64d",
+              "name": "<b>Not Found</b> : the resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "companies",
+                    "ecommerce-settings",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "setting_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"billingDkChanges\": [\n    {\n      \"dkNumber\": \"string\",\n      \"updatedAt\": \"1980-04-04T06:12:58.572Z\",\n      \"settingType\": \"INVOICE_SETTING\"\n    },\n    {\n      \"dkNumber\": \"string\",\n      \"updatedAt\": \"1968-04-15T15:35:17.329Z\",\n      \"settingType\": \"COMPANY_SETTING\"\n    }\n  ],\n  \"travelerDkChanges\": [\n    {\n      \"dkNumber\": \"string\",\n      \"updatedAt\": \"2007-03-27T01:56:33.608Z\",\n      \"settingType\": \"COMPANY_SETTING\"\n    },\n    {\n      \"dkNumber\": \"string\",\n      \"updatedAt\": \"1996-09-22T05:08:19.478Z\",\n      \"settingType\": \"INVOICE_SETTING\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8c0360d3-70c2-4c55-9cfb-d64a8f42518c",
+      "name": "gdpr-controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3ad59061-9390-400f-8c5e-b46d0b06a35a",
+          "name": "validate",
+          "request": {
+            "name": "validate",
+            "description": {},
+            "url": {
+              "path": [
+                "gdpr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0c10aec-bde9-4fa4-a68a-5ac8d5b72505",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userId\": 9113,\n  \"actionStatus\": \"string\",\n  \"validationMessages\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf7ec83b-75d1-431e-8958-e56d9efab3b6",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ede3f64-22ec-41c4-8c16-642adc53b8aa",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70069e81-ff9a-4346-a407-0399051c5b62",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "839aa684-01e8-41f3-b4a3-49a89e7d55c4",
+          "name": "process",
+          "request": {
+            "name": "process",
+            "description": {},
+            "url": {
+              "path": [
+                "gdpr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2215d8cc-3bd6-4618-9f8d-0c96267c3937",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"416 REQUESTED_RANGE_NOT_SATISFIABLE\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5116e163-9065-4f6f-8aa0-f05ff22e45ea",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4a0b0ad-69b3-40a2-9ee0-7e4284707592",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc3513b0-253c-48cd-9951-325c31d960fb",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "95bff390-6daf-4299-84fc-d1505d473886",
+      "name": "availability-probes-controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5b5b2a69-da63-494b-b433-77efb42c8d23",
+          "name": "readiness",
+          "request": {
+            "name": "readiness",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "readiness"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "75602da4-1116-4f0c-83e1-f07fe97b21ce",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "readiness"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"status\": \"string\",\n  \"details\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f647bec-b274-4ce8-89c4-60fbb4f04f6d",
+          "name": "liveness",
+          "request": {
+            "name": "liveness",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "liveness"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea05c13f-9603-4112-8fba-f8f9d4013122",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "liveness"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"status\": \"string\",\n  \"details\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7762f976-556e-49f5-8fdb-19d97597d384",
+      "name": "version-controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e5d43a8a-5a4c-408c-ab4a-ff8217067111",
+          "name": "version",
+          "request": {
+            "name": "version",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "990a006e-a6d1-4303-a511-d5a498a50cef",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"applicationName\": \"string\",\n  \"activeProfiles\": \"string\",\n  \"datacenter\": \"string\",\n  \"stage\": \"string\",\n  \"buildVersion\": \"string\",\n  \"buildNumber\": \"string\",\n  \"buildDate\": \"string\",\n  \"machineName\": \"string\",\n  \"deploymentDate\": \"string\",\n  \"applicationData\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3eca22c-fa09-4db8-952b-337c62ba8e2a",
+          "name": "version 2",
+          "request": {
+            "name": "version 2",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79f84603-4aa3-4f9b-9e4a-ead76833c26b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"applicationName\": \"string\",\n  \"activeProfiles\": \"string\",\n  \"datacenter\": \"string\",\n  \"stage\": \"string\",\n  \"buildVersion\": \"string\",\n  \"buildNumber\": \"string\",\n  \"buildDate\": \"string\",\n  \"machineName\": \"string\",\n  \"deploymentDate\": \"string\",\n  \"applicationData\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d269cb7c-7ddc-4bd2-aef4-f0b56972e10a",
+          "name": "version 1",
+          "request": {
+            "name": "version 1",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28b31fb5-7ab7-4da5-97dd-3104ef678489",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"applicationName\": \"string\",\n  \"activeProfiles\": \"string\",\n  \"datacenter\": \"string\",\n  \"stage\": \"string\",\n  \"buildVersion\": \"string\",\n  \"buildNumber\": \"string\",\n  \"buildDate\": \"string\",\n  \"machineName\": \"string\",\n  \"deploymentDate\": \"string\",\n  \"applicationData\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00b36d59-3165-48e7-8d6b-f53a131c296e",
+          "name": "version 3",
+          "request": {
+            "name": "version 3",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a522499e-0ddb-4716-a5dc-77b14b71c334",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"applicationName\": \"string\",\n  \"activeProfiles\": \"string\",\n  \"datacenter\": \"string\",\n  \"stage\": \"string\",\n  \"buildVersion\": \"string\",\n  \"buildNumber\": \"string\",\n  \"buildDate\": \"string\",\n  \"machineName\": \"string\",\n  \"deploymentDate\": \"string\",\n  \"applicationData\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "433ea1c5-c6d7-4f58-bc71-d1e4071ca788",
+          "name": "version 6",
+          "request": {
+            "name": "version 6",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd3e949e-dc68-44c2-9b3f-d1f22423e11b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"applicationName\": \"string\",\n  \"activeProfiles\": \"string\",\n  \"datacenter\": \"string\",\n  \"stage\": \"string\",\n  \"buildVersion\": \"string\",\n  \"buildNumber\": \"string\",\n  \"buildDate\": \"string\",\n  \"machineName\": \"string\",\n  \"deploymentDate\": \"string\",\n  \"applicationData\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e56fc231-0d20-4600-af2b-c8376a1b9938",
+          "name": "version 5",
+          "request": {
+            "name": "version 5",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "HEAD",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34fcb46f-0086-4e90-8a16-f4679b84a6d5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"applicationName\": \"string\",\n  \"activeProfiles\": \"string\",\n  \"datacenter\": \"string\",\n  \"stage\": \"string\",\n  \"buildVersion\": \"string\",\n  \"buildNumber\": \"string\",\n  \"buildDate\": \"string\",\n  \"machineName\": \"string\",\n  \"deploymentDate\": \"string\",\n  \"applicationData\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d5e0eda-cb2a-450b-9ecc-a48bbc90d503",
+          "name": "version 4",
+          "request": {
+            "name": "version 4",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d53b6c0-a4a5-47a2-bf5f-13da356fff60",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"applicationName\": \"string\",\n  \"activeProfiles\": \"string\",\n  \"datacenter\": \"string\",\n  \"stage\": \"string\",\n  \"buildVersion\": \"string\",\n  \"buildNumber\": \"string\",\n  \"buildDate\": \"string\",\n  \"machineName\": \"string\",\n  \"deploymentDate\": \"string\",\n  \"applicationData\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apis.egencia.com/openconnect/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ef033010-68c0-4260-a9f6-46194d073724",
+    "name": "OpenAPI definition",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

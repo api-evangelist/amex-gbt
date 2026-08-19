@@ -1,0 +1,1895 @@
+{
+  "item": [
+    {
+      "id": "94bad235-2a9d-45e1-8d1c-13c3100d54c9",
+      "name": "availability-probes-controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b9a81dc4-48ac-4cfa-9a67-106746fc824e",
+          "name": "liveness",
+          "request": {
+            "name": "liveness",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "liveness"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "240725a0-1701-4fd9-b3bf-67825960a6b3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "liveness"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"details\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63446cf0-c80e-4402-ab80-8e2dce960d83",
+          "name": "readiness",
+          "request": {
+            "name": "readiness",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "readiness"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eefc7c63-9ced-4f39-90f9-1ae9ca54d82d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "readiness"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"details\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c368221f-0ab3-4751-9cfa-002bb623590b",
+      "name": "version-controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "07d3205d-e58b-4778-a68b-d5f03cf08748",
+          "name": "version 3",
+          "request": {
+            "name": "version 3",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ef0ba7f-f1ae-4e32-87c4-5d994c0b505d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"activeProfiles\": \"string\",\n  \"applicationData\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"applicationName\": \"string\",\n  \"buildDate\": \"string\",\n  \"buildNumber\": \"string\",\n  \"buildVersion\": \"string\",\n  \"datacenter\": \"string\",\n  \"deploymentDate\": \"string\",\n  \"machineName\": \"string\",\n  \"stage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66442120-593e-4548-8557-5b63c5d1eac2",
+          "name": "version",
+          "request": {
+            "name": "version",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3fad3c06-0898-4d33-aad0-1269ea02a83e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"activeProfiles\": \"string\",\n  \"applicationData\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"applicationName\": \"string\",\n  \"buildDate\": \"string\",\n  \"buildNumber\": \"string\",\n  \"buildVersion\": \"string\",\n  \"datacenter\": \"string\",\n  \"deploymentDate\": \"string\",\n  \"machineName\": \"string\",\n  \"stage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4997809-0a7d-4760-9b6f-581ff709810b",
+          "name": "version 5",
+          "request": {
+            "name": "version 5",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "HEAD",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b6b0486-9406-4b18-9d76-5fe988346809",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"activeProfiles\": \"string\",\n  \"applicationData\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"applicationName\": \"string\",\n  \"buildDate\": \"string\",\n  \"buildNumber\": \"string\",\n  \"buildVersion\": \"string\",\n  \"datacenter\": \"string\",\n  \"deploymentDate\": \"string\",\n  \"machineName\": \"string\",\n  \"stage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0d48b8c-ac59-4887-a05f-603b370fe2fc",
+          "name": "version 6",
+          "request": {
+            "name": "version 6",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd8c94bf-a048-4ccc-8aa7-ddaeba5295bc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"activeProfiles\": \"string\",\n  \"applicationData\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"applicationName\": \"string\",\n  \"buildDate\": \"string\",\n  \"buildNumber\": \"string\",\n  \"buildVersion\": \"string\",\n  \"datacenter\": \"string\",\n  \"deploymentDate\": \"string\",\n  \"machineName\": \"string\",\n  \"stage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dad0b773-92b2-4a46-8bf2-ec08f79615a6",
+          "name": "version 4",
+          "request": {
+            "name": "version 4",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f35931d0-7b78-4d89-b3ce-99c7904a3663",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"activeProfiles\": \"string\",\n  \"applicationData\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"applicationName\": \"string\",\n  \"buildDate\": \"string\",\n  \"buildNumber\": \"string\",\n  \"buildVersion\": \"string\",\n  \"datacenter\": \"string\",\n  \"deploymentDate\": \"string\",\n  \"machineName\": \"string\",\n  \"stage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "462590b9-6365-4af6-8801-722660630d7a",
+          "name": "version 1",
+          "request": {
+            "name": "version 1",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd2a7590-175f-4d24-88b4-66dfb621e5ee",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"activeProfiles\": \"string\",\n  \"applicationData\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"applicationName\": \"string\",\n  \"buildDate\": \"string\",\n  \"buildNumber\": \"string\",\n  \"buildVersion\": \"string\",\n  \"datacenter\": \"string\",\n  \"deploymentDate\": \"string\",\n  \"machineName\": \"string\",\n  \"stage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b787ae63-fb06-4073-b453-b416690e26d9",
+          "name": "version 2",
+          "request": {
+            "name": "version 2",
+            "description": {},
+            "url": {
+              "path": [
+                "base",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01b6dcae-7453-48e2-b60f-6d204e4e707f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "base",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"activeProfiles\": \"string\",\n  \"applicationData\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"applicationName\": \"string\",\n  \"buildDate\": \"string\",\n  \"buildNumber\": \"string\",\n  \"buildVersion\": \"string\",\n  \"datacenter\": \"string\",\n  \"deploymentDate\": \"string\",\n  \"machineName\": \"string\",\n  \"stage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c0e66a6e-7d92-4722-a014-e0950562d07a",
+      "name": "gdpr-controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "69ba3342-3fdb-4e94-83db-37983310edc9",
+          "name": "process",
+          "request": {
+            "name": "process",
+            "description": {},
+            "url": {
+              "path": [
+                "gdpr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "775d6899-20ad-4329-92e0-1887781588fc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"EARLY_HINTS\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81cd7bd8-62f2-45b2-9e68-a6131ef0ac6f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85200082-7ade-41de-81d5-a7ae7c622966",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3baf3ba-393e-4e8c-8348-2e189fb0ca86",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "436c3a15-f616-4c52-98e8-76fcfe10048a",
+          "name": "validate",
+          "request": {
+            "name": "validate",
+            "description": {},
+            "url": {
+              "path": [
+                "gdpr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb37daf0-e946-412a-9e82-3a6eeae1f585",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"actionStatus\": \"string\",\n  \"userId\": 7606,\n  \"validationMessages\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8199d82-b5cd-4c54-bdf0-1e5f20c29599",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7a879a8-bd39-4381-98ef-4a7858c476bb",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a001e2c9-b5b8-4fdc-a9ed-848205b8b9e9",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "cf4a4203-0494-446d-a1ae-344f58a9316a",
+      "name": "DutyOfCare Data",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9c0ea77c-9b92-4c11-87a8-e585390a44ff",
+          "name": "Create Metadata based on the Search Request",
+          "request": {
+            "name": "Create Metadata based on the Search Request",
+            "description": {
+              "content": "<p>In general, the DoC API uses HTTPs POST requests with JSON arguments and JSON responses. This API call allows the client to submit a request for retrieving paginated booking data for a specified search criterion. </p>\n</br>\n<p> Request Parameters: </p>\n<table class=\"fullWidth\" >\n    <thead >\n    <tr >\n        <th>Field</th>\n        <th>Type</th>\n        <th>Required/Optional</th>\n        <th>Description</th>\n    </tr>\n    </thead>\n    <tbody>\n    <tr>\n        <td colspan=\"1\">\n            <strong>partner_id</strong>\n        </td>\n        <td colspan=\"1\">Integer</td>\n        <td colspan=\"1\">Required</td>\n        <td colspan=\"1\">Unique identifier provided to partner by Egencia.</td>\n    </tr>\n    <tr>\n        <td colspan=\"1\">\n            <strong>company_id</strong>\n        </td>\n        <td colspan=\"1\">Integer</td>\n        <td colspan=\"1\">Optional</td>\n        <td colspan=\"1\">The company ID list. Company ID is a Unique Identifier for the company.</td>\n    </tr>\n    <tr>\n        <td colspan=\"1\">\n            <strong>start_date_time</strong>\n        </td>\n        <td colspan=\"1\">String</td>\n        <td colspan=\"1\">Optional</td>\n        <td colspan=\"1\">The date-time range to fetch the booking data. Timestamp in ISO 8601 <br> format: YYYY-MM-\n            DDTHH:MM:SSZ Example: 2020-01-21T10:07:41.208Z.\n            The date range should come as a pair.\n            <ul>\n            <li> Future date is not allowed as start date.</li>\n            <li>If the only start date-time is given, the range will be automatically set to next 24 hours from the start date-time.</li>\n            <li>If the only end date-time is given, the range will be automatically set to last 24 hours from the end date-time.</li>\n            <li>Missing both start and end date-time will be considered as the latest 24 hours.</li>\n            </ul>\n          *Default timezone is GMT.\n        </td>\n    </tr>\n    <tr>\n        <td colspan=\"1\">\n            <strong>end_date_time</strong>\n        </td>\n        <td colspan=\"1\">String</td>\n        <td colspan=\"1\">Optional</td>\n        <td colspan=\"1\">The date-time range to fetch the booking data. Timestamp in ISO 8601 <br>format: YYYY-MM-\n            DDTHH:MM:SSZ Example: 2020-01-21T10:07:41.208Z.\n            The date range should come as a pair.\n            <ul>\n            <li> Future date is not allowed as start date.</li>\n            <li>If the only start date-time is given, the range will be automatically set to next 24 hours from the start date-time.</li>\n            <li>If the only end date-time is given, the range will be automatically set to last 24 hours from the end date-time.</li>\n            <li>Missing both start and end date-time will be considered as the latest 24 hours.</li>\n            </ul>\n          *Default timezone is GMT.\n        </td>\n    </tr>\n    </tbody>\n</table>\n\n<br><br>\n<h5> <strong>Request Parameters: </strong></h5>\n<h3>Success Response - 200 OK</h3>\n<p>\n    The request has succeeded. This endpoint will return metadata of the resource for the given request. If there is no content available or no more records available, it will return the below success messages.\n\n</p>\n\n<table class=\"fullWidth\" >\n    <thead >\n    <tr >\n        <th>Response Code</th>\n        <th>Description</th>\n    </tr>\n    </thead>\n    <thead>\n    <tr>\n        <td>200</td>\n        <td colspan=\"1\">\n            <ul>\n                <li>200 OK; BOOKINGS_NOT_AVAILABLE(\"No bookings available for this particular request\")</li>\n                <li>200 OK; NO MORE BOOKING(“ All records have been fetched. No more bookings available for this request.”)</li>\n            </ul>\n        </td>\n    </tr>\n    </thead>\n</table>\n<br><br>\n<h3>Pagination Response</h3>\n<p>This API will return the metadata (hyperlinks) of the resource from where you can fetch all the qualified booking records in a paginated manner. You can page through the resource by making a GET request to the NextPage URL provided in the paginated response. If there are no more pages, NextPage will be set to ‘null’.</p>\n<br>\n<p>\n    <strong>\n        Response Parameter\n    </strong>\n</p>\n<table>\n    <thead>\n    <tr>\n        <th>Attribute</th>\n        <th>Type</th>\n        <th>Description</th>\n    </tr>\n    </thead>\n    <tbody>\n    <tr>\n        <td colspan=\"1\"><strong>total_pages</strong></td>\n        <td colspan=\"1\">Integer</td>\n        <td colspan=\"1\">Total Pages in the response.</td>\n    </tr>\n    <tr>\n        <td colspan=\"1\"><strong>page_limit</strong></td>\n        <td colspan=\"1\">Integer</td>\n        <td colspan=\"1\">The maximum number of records allowed in a single page.</td>\n    </tr>\n    <tr>\n        <td colspan=\"1\"><strong>total_records</strong></td>\n        <td colspan=\"1\">Integer</td>\n        <td colspan=\"1\">Total number of records in the response.</td>\n    </tr>\n    <tr>\n        <td colspan=\"1\"><strong>Current_page</strong></td>\n        <td colspan=\"1\">Integer</td>\n        <td colspan=\"1\">Page number of the displayed record..</td>\n    </tr>\n    </tbody>\n</table>\n\n<b>Examples:</b><br>\n\n<p>Consider a trip from Los Angeles to Dublin. The trip contains two flight booking from Los Angeles to Paris and Paris to Dublin. Also the trip contains a hotel booking in Dublin for 2 days. </p>\n<br>\n<strong>Trip Details </strong><br>\n<div style=\"background: #E8E6E3;\">\n    <i>company_id\": \"35067\", </i><br>\n    <i>Booking 1: Hotel booking</i><br>\n    <i>Booking 2: Car booking</i><br>\n</div>\n<br>\n<p>In this booking there are 2 records. The hotel and car booking will be considered as two separate records.</p>\n<br>\n<strong>Note:</strong>\n<ul>The sample response is for reference purpose only.</ul>\n<br>\n<h3><strong>Sample Request </strong></h3>\n<pre>\n    <code>\n        curl 'https://apis.egencia.com/ dutyofcare/api/v1/bookings' -X POST\n         -H 'Content-Type: application/json;charset=UTF-8' \\\n         -H 'Accept: application/json' \\\n         -d '{\n            \"partner_id\" :\"92\",\n            \"company_id\" :[35067],\n             \"start_date_time\": \"2020-06-21T00:00:11Z\",\n             \"end_date_time\": \"2020-06-31T23:59:59Z\"\n          }'\n    </code>\n</pre>\n<br>\n<h3><strong>Sample Response</strong></h3>\n<pre>\n    <code>\n{\n    \"metadata\": {\n       \"total_pages\": 5,\n       \"total_records\" : 10,\n       \"page_limit\" : 2,\n       \"current_page\": 0\n    },\n    \"_links\": {\n        \"next\": {\n            \"href\": \"https:// apis.egencia.com/dutyofcare/api /v1/bookings/89ef5828-6d9f-4429-ab73-5ee40cf7b4e7\"\n        }\n    }\n}\n    </code>\n</pre>\n</br>\n\n<p>Fetching Duty of care data: </p>\n</br>\n\n<p>This API will return all booking data for all the lob's like FLIGHT, TRAIN, CAR and HOTEL</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bookings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://apis.egencia.com/auth/v1/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyId\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"endDateTime\": \"<string>\",\n  \"partnerId\": \"<integer>\",\n  \"startDateTime\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8811f0fa-9411-47df-b844-1c55554abcff",
+              "name": "<b>OK</b> : booking data pulled successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"endDateTime\": \"<string>\",\n  \"partnerId\": \"<integer>\",\n  \"startDateTime\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": 5764,\n    \"pageLimit\": 5941,\n    \"totalPages\": 4749,\n    \"totalRecords\": 3180\n  },\n  \"recordList\": [\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 1615,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    },\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 7074,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1cb12654-7761-4957-8299-2579eb8ac0f3",
+              "name": "<b>Bad Request</b> : request body is malformed, or contains invalid values",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"endDateTime\": \"<string>\",\n  \"partnerId\": \"<integer>\",\n  \"startDateTime\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": 5764,\n    \"pageLimit\": 5941,\n    \"totalPages\": 4749,\n    \"totalRecords\": 3180\n  },\n  \"recordList\": [\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 1615,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    },\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 7074,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d7ba724-8eb9-4fd9-90d9-bc25a03d4ab0",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"endDateTime\": \"<string>\",\n  \"partnerId\": \"<integer>\",\n  \"startDateTime\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": 5764,\n    \"pageLimit\": 5941,\n    \"totalPages\": 4749,\n    \"totalRecords\": 3180\n  },\n  \"recordList\": [\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 1615,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    },\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 7074,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92fffd8a-34f1-435c-926c-e72025ae38e6",
+              "name": "<b>Forbidden</b> : user do not have the permission to access data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"endDateTime\": \"<string>\",\n  \"partnerId\": \"<integer>\",\n  \"startDateTime\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": 5764,\n    \"pageLimit\": 5941,\n    \"totalPages\": 4749,\n    \"totalRecords\": 3180\n  },\n  \"recordList\": [\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 1615,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    },\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 7074,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d29d2270-b0b1-4518-9435-fb4e8a2da15e",
+              "name": "<b>Not found</b> : data which satisfying provided input details does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"endDateTime\": \"<string>\",\n  \"partnerId\": \"<integer>\",\n  \"startDateTime\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": 5764,\n    \"pageLimit\": 5941,\n    \"totalPages\": 4749,\n    \"totalRecords\": 3180\n  },\n  \"recordList\": [\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 1615,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    },\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 7074,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ab43382-5e49-4ef4-b42c-b1fa32efbab3",
+              "name": "<b>Internal error</b> : no data, or other unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"endDateTime\": \"<string>\",\n  \"partnerId\": \"<integer>\",\n  \"startDateTime\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": 5764,\n    \"pageLimit\": 5941,\n    \"totalPages\": 4749,\n    \"totalRecords\": 3180\n  },\n  \"recordList\": [\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 1615,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    },\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 7074,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48f23686-b1b5-4ca3-947d-bd52ed7e7615",
+          "name": "Get the duty of care data as per the Request",
+          "request": {
+            "name": "Get the duty of care data as per the Request",
+            "description": {
+              "content": "<h3><strong>Sample Request </strong></h3>\n<pre>\n    <code>\n<br>\n        GET\n        https://apis.egencia.com/dutyofcare/api/v1/bookings/89ef5828-6d9f-4429-ab73-5ee40cf7b4e7\n<br>\n    </code>\n</pre>\n<br>\n<h3><strong>Sample Response </strong></h3>\n<pre>\n    <code>\n   {\n    \"record_list\": [\n        {\n            \"record_locator\": \"5f19782e74b12400018f9e7d-169294509\",\n            \"company_id\": 35067,\n            \"trip_id\": \"0600-2564-655\",\n            \"booking_status\": \"CONFIRMED\",\n            \"line_of_business\": \"HOTEL\",\n            \"booking_reference\": \"51820505181\",\n            \"traveler_details\": [\n                {\n                    \"first_name\": \"Bruce\",\n                    \"last_name\": \"Wayne\",\n                    \"email\": \"Brucebat@egencia.com\",\n                    \"phone\": \"NA\",\n                    \"custom_data_fields\": [\n                        {\n                            \"name\": \"Main cost centre\",\n                            \"value\": \"CC1-2\"\n                        }\n                    ]\n                }\n            ],\n            \"hotel_segment_details\": [\n                {\n                    \"hotel_checkin_datetime\": \"2020-07-30T00:00:00+0200\",\n                    \"hotel_checkout_datetime\": \"2020-07-31T00:00:00+0200\",\n                    \"hotel_name\": \"Novum Hotel Savoy Hamburg Mitte\",\n                    \"hotel_address\": \"Steindamm 54, Hamburg, HH, 20099, DEU\",\n                    \"hotel_phone\": \"49 40 18881160\",\n                    \"hotel_longitude\": \"10.014033\",\n                    \"hotel_latitude\": \"53.554398\"\n                }\n            ]\n        },\n        {\n            \"record_locator\": \"5f197a4d74b12400018f9e88-169294510\",\n            \"company_id\": 35067,\n            \"trip_id\": \"0600-2564-655\",\n            \"booking_status\": \"CONFIRMED\",\n            \"line_of_business\": \"CAR\",\n            \"booking_reference\": \"R3935B\",\n            \"traveler_details\": [\n                {\n                    \"first_name\": \"Bruce\",\n                    \"last_name\": \"Wayne\",\n                    \"email\": \" Brucebat@egencia.com\",\n                    \"phone\": \"NA\",\n                    \"custom_data_fields\": [\n                        {\n                            \"name\": \"Main cost centre\",\n                            \"value\": \"CC1-2\"\n                        }\n                    ]\n                }\n            ],\n            \"car_segment_details\": [\n                {\n                    \"car_pickup_iata_code\": \"DEU\",\n                    \"car_pickup_datetime\": \"2020-07-30T12:00:00+0200\",\n                    \"car_dropoff_iata_code\": \"DEU\",\n                    \"car_dropoff_datetime\": \"2020-07-31T12:00:00+0200\",\n                    \"car_vendor_name\": \"Enterprise\",\n                    \"car_vendor_code\": \"ET\"\n                }\n            ]\n        }\n    ],\n    \"metadata\": {\n        \"total_pages\": 5,\n        \"total_records\": 10,\n        \"page_limit\": 2,\n        \"current_page\": 2\n    },\n    \"_links\": {\n        \"next\": {\n            \"href\": \"https:// apis.egencia.com/dutyofcare/api /v1/bookings/89ef5828-6d9f-4429-ab73-5ee40cf7b4e7\"\n        }\n    }\n   }\n<br>\n    </code>\n</pre>\n<br><br>\n<p>\n   Each record will have multiple fields associated with it. You can see a full list of available fields in LOB wise records below.\n</p>\n\n<p>\n   <strong>Note: </strong>\n   <br>\n<ul>\n   <i>\n      Each booking (Air segment booking, Train segment booking, Car segment booking, Hotel segment booking) is considered as separate records with unique Record Locators. If there are multiple bookings under one trip id, they will be treated as separate records\n   </i>\n</ul>\n\n</p>\n\n<p>\n   <strong>\n      Multi Traveler Booking Example\n   </strong>\n</p>\n<pre>\n    <code>\n   {\n    \"record_list\": [{\n        \"record_locator\": \"5f1974f874b12400018f9e6f-169294506\",\n        \"company_id\": 35067,\n        \"trip_id\": \"0600-2564-652\",\n        \"booking_status\": \"CONFIRMED\",\n        \"line_of_business\": \"TRAIN\",\n        \"booking_reference\": \"296896444, 187123510\",\n        \"traveler_details\": [{\n                \"first_name\": \"Bruce\",\n                \"last_name\": \"Wayne\",\n                \"email\": \"Brucebat@egencia.com\",\n                \"phone\": \"456789\",\n                \"custom_data_fields\": [{\n                    \"name\": \"Main cost centre\",\n                    \"value\": \"CC1-2\"\n                }]\n            },\n            {\n                \"first_name\": \"natasha\",\n                \"last_name\": \"romanof\",\n                \"email\": \"natroma@egencia.com\",\n                \"phone\": \"12345\",\n                \"custom_data_fields\": [{\n                    \"name\": \"Main cost centre\",\n                    \"value\": \"CC1-2\"\n                }]\n            }\n        ],\n        \"train_segment_details\": [{\n                \"carrier_code\": \"DBA\",\n                \"train_departure_city_rail_code\": \"8098160\",\n                \"train_arrival_city_rail_code\": \"8002549\",\n                \"train_departure_datetime\": \"2020-07-30T16:38:00+0200\",\n                \"train_arrival_datetime\": \"2020-07-30T18:22:00+0200\",\n                \"train_departure_latitude\": \"52.525085\",\n                \"train_departure_longitude\": \"13.369402\",\n                \"train_arrival_latitude\": \"53.552925\",\n                \"train_arrival_longitude\": \"10.006604\"\n                \"train_departure_station_name\": \"Amsterdam Centraal\",\n                \"train_arrival_station_name\": \"Rotterdam Centraal\",\n                \"train_number\": \"9870\"\n            },\n            {\n                \"carrier_code\": \"DBA\",\n                \"train_departure_city_rail_code\": \"8002549\",\n                \"train_arrival_city_rail_code\": \"8098160\",\n                \"train_departure_datetime\": \"2020-07-31T06:35:00+0200\",\n                \"train_arrival_datetime\": \"2020-07-31T08:20:00+0200\",\n                \"train_departure_latitude\": \"53.552925\",\n                \"train_departure_longitude\": \"10.006604\",\n                \"train_arrival_latitude\": \"52.525085\",\n                \"train_arrival_longitude\": \"13.369402\"\n                \"train_departure_station_name\": \"Rotterdam Centraal\",\n                \"train_arrival_station_name\": \"Amsterdam Centraal\",\n                \"train_number\": \"9870\"\n            }\n        ]\n    }],\n    \"metadata\": {\n        \"total_pages\": 11,\n        \"total_records\": 11,\n        \"page_limit\": 1,\n        \"current_page\": 4\n    },\n    \"_links\": {\n        \"next\": {\n            \"href\": \"https://apis-us-west-2.lab.egencia.cloud/dutyofcare/api/v1/bookings/90ab1f54-9c91-4eba-b8c8-93f8328ee178\"\n        }\n    }\n   }\n<br>\n    </code>\n</pre>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bookings",
+                ":resourceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceId",
+                  "description": "(Required) Unique resource identifier returned from the POST /bookings response"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://apis.egencia.com/auth/v1/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9125b973-e1c2-402a-ac8e-661751e62542",
+              "name": "<b>OK</b> : duty of care booking data returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceId",
+                      "description": "(Required) Unique resource identifier returned from the POST /bookings response"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": 5764,\n    \"pageLimit\": 5941,\n    \"totalPages\": 4749,\n    \"totalRecords\": 3180\n  },\n  \"recordList\": [\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 1615,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    },\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 7074,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b049b56b-3700-49ef-b8fe-e1c5cfb19d19",
+              "name": "<b>Bad Request</b> : request contains invalid values, e.g. non-numeric page parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceId",
+                      "description": "(Required) Unique resource identifier returned from the POST /bookings response"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": 5764,\n    \"pageLimit\": 5941,\n    \"totalPages\": 4749,\n    \"totalRecords\": 3180\n  },\n  \"recordList\": [\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 1615,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    },\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 7074,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36f9272a-cf8d-4730-9add-8b772654291e",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceId",
+                      "description": "(Required) Unique resource identifier returned from the POST /bookings response"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": 5764,\n    \"pageLimit\": 5941,\n    \"totalPages\": 4749,\n    \"totalRecords\": 3180\n  },\n  \"recordList\": [\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 1615,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    },\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 7074,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "acb3a560-217e-4bf0-a816-3f15dcff34c6",
+              "name": "<b>Forbidden</b> : user do not have the permission to access data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceId",
+                      "description": "(Required) Unique resource identifier returned from the POST /bookings response"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": 5764,\n    \"pageLimit\": 5941,\n    \"totalPages\": 4749,\n    \"totalRecords\": 3180\n  },\n  \"recordList\": [\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 1615,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    },\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 7074,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdd875e5-d63e-4d09-ab90-d71ee704ae45",
+              "name": "<b>Internal error</b> : no data, or other unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceId",
+                      "description": "(Required) Unique resource identifier returned from the POST /bookings response"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": [\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"rel\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": 5764,\n    \"pageLimit\": 5941,\n    \"totalPages\": 4749,\n    \"totalRecords\": 3180\n  },\n  \"recordList\": [\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 1615,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    },\n    {\n      \"airSegmentDetails\": [\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        },\n        {\n          \"airlineCode\": \"string\",\n          \"flightArrivalDatetime\": \"string\",\n          \"flightArrivalIataCode\": \"string\",\n          \"flightDepartureDatetime\": \"string\",\n          \"flightDepartureIataCode\": \"string\",\n          \"flightNumber\": \"string\"\n        }\n      ],\n      \"bookingReference\": \"string\",\n      \"bookingStatus\": \"string\",\n      \"carSegmentDetails\": [\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        },\n        {\n          \"carDropoffDatetime\": \"string\",\n          \"carDropoffIataCode\": \"string\",\n          \"carPickupDatetime\": \"string\",\n          \"carPickupIataCode\": \"string\",\n          \"carVendorCode\": \"string\",\n          \"carVendorName\": \"string\"\n        }\n      ],\n      \"companyId\": 7074,\n      \"gdsReference\": \"string\",\n      \"hotelSegmentDetails\": [\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        },\n        {\n          \"hotelAddress\": \"string\",\n          \"hotelCheckinDatetime\": \"string\",\n          \"hotelCheckoutDatetime\": \"string\",\n          \"hotelLatitude\": \"string\",\n          \"hotelLongitude\": \"string\",\n          \"hotelName\": \"string\",\n          \"hotelPhone\": \"string\"\n        }\n      ],\n      \"lineOfBusiness\": \"string\",\n      \"recordLocator\": \"string\",\n      \"trainSegmentDetails\": [\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        },\n        {\n          \"carrierCode\": \"string\",\n          \"trainArrivalCityRailCode\": \"string\",\n          \"trainArrivalDatetime\": \"string\",\n          \"trainArrivalLatitude\": \"string\",\n          \"trainArrivalLongitude\": \"string\",\n          \"trainArrivalStationName\": \"string\",\n          \"trainDepartureCityRailCode\": \"string\",\n          \"trainDepartureDatetime\": \"string\",\n          \"trainDepartureLatitude\": \"string\",\n          \"trainDepartureLongitude\": \"string\",\n          \"trainDepartureStationName\": \"string\",\n          \"trainNumber\": \"string\"\n        }\n      ],\n      \"travelerDetails\": [\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        },\n        {\n          \"customDataFields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"email\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"tripId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "65fb1333-c997-45b6-98e8-cfcb3ff04d01",
+      "name": "doc-audit-clean-up-controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "37d3ebe3-3e41-423c-8458-f874d932b17c",
+          "name": "cleanup",
+          "request": {
+            "name": "cleanup",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "sensitive",
+                "audit",
+                "clean"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "year",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "660c02ae-d1d4-4a7f-bde4-07b875c5c2c2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sensitive",
+                    "audit",
+                    "clean"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "year",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apis.egencia.com/dutyofcare/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "54d3c905-a8f2-4c16-a38f-58ee5ad737db",
+    "name": "Duty Of Care API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

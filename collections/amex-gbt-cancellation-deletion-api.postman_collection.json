@@ -1,0 +1,856 @@
+{
+  "item": [
+    {
+      "id": "073f8a9b-b75f-4415-9944-9b7f799fa8f4",
+      "name": "bookings v1",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "78025992-5125-4a3e-9e7a-975e5609fced",
+          "name": "Cancel trip for a particular booking ID",
+          "request": {
+            "name": "Cancel trip for a particular booking ID",
+            "description": {
+              "content": "<p>Creates a cancel request for a specific booking Id</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Trip id corresponding to each booked product</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Response Parameters in case of successful response</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>booking_id</td>\n            <td>String</td>\n            <td>Trip id corresponding to the booking which is to be cancelled</td>\n        </tr>\n        <tr>\n            <td>status</td>\n            <td>String</td>\n            <td>CANCELLED</td>\n        </tr>\n        <tr>\n            <td><strong>items</strong></td>\n            <td>List</td>\n            <td>List of items to be cancelled</td>\n        </tr>\n        <tr>\n            <td>id</td>\n            <td>String</td>\n            <td>Trip item id which is to be cancelled</td>\n        </tr>\n        <tr>\n            <td>status</td>\n            <td>String</td>\n            <td>Status of the particular item. The status will always be “CANCELLED” in case of success response.</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Below response with 200 OK HttpStatus</b></p>\n<pre>\n    <code>\n    {\n        \"booking_id\": \"123\",\n        \"status\": \"CANCELLED\",\n        \"items\": [\n            {\n                \"id\": \"1\",\n                \"status\": \"CANCELLED\"\n            },\n            {\n                \"id\": \"2\",\n                \"status\": \"CANCELLED\"\n            }\n        ]\n    }\n    </code>\n</pre>\n<br/><p><b>Response Parameters in case of failure response</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>booking_id</td>\n            <td>String</td>\n            <td>Trip id corresponding to the booking which is to be cancelled</td>\n        </tr>\n        <tr>\n            <td>status</td>\n            <td>String</td>\n            <td>FAILURE</td>\n        </tr>\n        <tr>\n            <td>error_code</td>\n            <td>String</td>\n            <td>Error code in case of failure</td>\n        </tr>\n        <tr>\n            <td>error_message</td>\n            <td>String</td>\n            <td>Error message in case of failure</td>\n        </tr>\n        <tr>\n            <td><strong>items</strong></td>\n            <td>List</td>\n            <td>List of items to be cancelled</td>\n        </tr>\n        <tr>\n            <td>id</td>\n            <td>String</td>\n            <td>Trip item id which is to be cancelled</td>\n        </tr>\n        <tr>\n            <td>status</td>\n            <td>String</td>\n            <td>Status of the particular item. The status can be “CANCELLED” or “FAILURE”.</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Below response with 500 Internal Server Error HttpStatus</b></p>\n<div>\n<pre>\n    <code>\n    {\n        \"booking_id\": \"123\",\n        \"status\": \"FAILURE\",\n        \"error_code\": \"EGE-ER-OS-5011\",\n        \"error_message\": \"There was an error in cancelling the [1234, 9876] items. Please try again.\",\n        \"items\": [\n            {\n                \"id\": \"1\",\n                \"status\": \"CANCELLED\"\n            },\n            {\n                \"id\": \"1234\",\n                \"status\": \"FAILURE\"\n            },\n            {\n                \"id\": \"9876\",\n                \"status\": \"FAILURE\"\n            }\n        ]\n    }\n    </code>\n</pre>\n</div>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bookings",
+                ":bookingId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bookingId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://apis.egencia.com/auth/v1/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "72406cd3-c776-4c47-9bbd-8a664cdbcb70",
+              "name": "<b>Ok</b>.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"bookingId\": \"string\",\n  \"errorCode\": \"string\",\n  \"errorMessage\": \"string\",\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"string\"\n    }\n  ],\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78bac1ee-db46-47b8-8bb0-6983a9fa5af6",
+              "name": "<b>Bad Request</b> : Invalid input or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "914f4de5-f9ef-46de-8437-db9a0a4c81de",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a5a6d932-b467-4d1e-96a9-22ca26f69999",
+              "name": "<b>Forbidden</b> : User is not authorized for the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "65c7f744-5f05-49da-b371-286d55966fd6",
+              "name": "<b>Not Found</b> : You are trying to access an invalid or non existent resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "80d8a9c0-aa90-49dc-8edd-b97d5281ab8f",
+              "name": "<b>Invalid input</b> : invalid or missing required input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "980d154e-5bf6-4cd9-b797-6d955c65e8d0",
+              "name": "<b>Internal Server Error</b> : unable to process request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10e96a05-6c17-40a9-99c3-cfa9259d5748",
+          "name": "Delete trip items for a particular booking ID",
+          "request": {
+            "name": "Delete trip items for a particular booking ID",
+            "description": {
+              "content": "<p>Creates a delete request for a specific booking Id</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Trip id corresponding to each booked product</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Response Parameters in case of successful response</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>booking_id</td>\n            <td>String</td>\n            <td>Trip id corresponding to the booking which is to be deleted</td>\n        </tr>\n        <tr>\n            <td>status</td>\n            <td>String</td>\n            <td>SUCCESS</td>\n        </tr>\n        <tr>\n            <td><strong>items</strong></td>\n            <td>List</td>\n            <td>List of items to be deleted</td>\n        </tr>\n        <tr>\n            <td>id</td>\n            <td>String</td>\n            <td>Trip item id which is to be deleted</td>\n        </tr>\n        <tr>\n            <td>status</td>\n            <td>String</td>\n            <td>Status of the particular item. The status will be booking status of the trip item.</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Below response with 200 OK HttpStatus</b></p>\n<pre>\n    <code>\n    {\n        \"booking_id\": \"123\",\n        \"status\": \"SUCCESS\",\n        \"items\": [\n            {\n                \"id\": \"1\",\n                \"status\": \"DELETED\"\n            },\n            {\n                \"id\": \"2\",\n                \"status\": \"DELETED\"\n            }\n        ]\n    }\n    </code>\n</pre>\n<br/><p><b>Response Parameters in case of failure response</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>booking_id</td>\n            <td>String</td>\n            <td>Trip id corresponding to the booking which is to be deleted</td>\n        </tr>\n        <tr>\n            <td>status</td>\n            <td>String</td>\n            <td>FAILURE</td>\n        </tr>\n        <tr>\n            <td>error_code</td>\n            <td>String</td>\n            <td>Error code in case of deletion</td>\n        </tr>\n        <tr>\n            <td>error_message</td>\n            <td>String</td>\n            <td>Error message in case of deletion</td>\n        </tr>\n        <tr>\n            <td><strong>items</strong></td>\n            <td>List</td>\n            <td>List of items to be deleted</td>\n        </tr>\n        <tr>\n            <td>id</td>\n            <td>String</td>\n            <td>Trip item id which is to be deleted</td>\n        </tr>\n        <tr>\n            <td>status</td>\n            <td>String</td>\n            <td>Status of the particular item. The status will be the booking status of the trip item</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Below response with 500 Internal Server Error HttpStatus</b></p>\n<div>\n<pre>\n    <code>\n    {\n        \"booking_id\": \"123\",\n        \"status\": \"FAILURE\",\n        \"error_code\": \"EGE-ER-OS-5012\",\n        \"error_message\": \"There was an error in deleting the [1234, 9876] items. Please try again.\",\n        \"items\": [\n            {\n                \"id\": \"1\",\n                \"status\": \"CANCELLED\"\n            },\n            {\n                \"id\": \"1234\",\n                \"status\": \"FAILURE\"\n            },\n            {\n                \"id\": \"9876\",\n                \"status\": \"FAILURE\"\n            }\n        ]\n    }\n    </code>\n</pre>\n</div>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bookings",
+                ":bookingId",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bookingId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://apis.egencia.com/auth/v1/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bad6aed2-0e06-4fc7-bdd4-8bf9102a47b2",
+              "name": "<b>Ok</b>.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"bookingId\": \"string\",\n  \"errorCode\": \"string\",\n  \"errorMessage\": \"string\",\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"string\"\n    }\n  ],\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c5c0561-2df0-4d4d-8e84-61dfb2b17d17",
+              "name": "<b>Bad Request</b> : Invalid input or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c0164a89-95bc-492d-aaf8-b983323e15ce",
+              "name": "<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c3c4463f-7c3f-4604-87e8-1c87a636ddc2",
+              "name": "<b>Forbidden</b> : User is not authorized for the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "943ccd5b-c73f-4d95-807b-7d72816b182b",
+              "name": "<b>Not Found</b> : You are trying to access an invalid or non existent resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "823d8297-b195-4ebd-b027-4a630bbf5944",
+              "name": "<b>Invalid input</b> : invalid or missing required input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "71e31d16-144c-43c2-8a78-3332b45a3e3c",
+              "name": "<b>Internal Server Error</b> : unable to process request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookings",
+                    ":bookingId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bookingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apis.egencia.com/openconnect/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b162b46a-930d-4e17-9f5f-d95c0ad2100c",
+    "name": "Egencia Cancellation/Deletion API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,371 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenAPI definition",
+    "version": "v0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Third Party Acknowledgement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "saveAcknowledgement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/billing-entity/thirdparty/response/gbt-customer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Company Details",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "searchCompanies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v1/companies",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Company name to search for"
+              },
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "Specific company ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by company status(es)"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Pagination start index (default: 0)"
+              },
+              {
+                "name": "sfid",
+                "value": "",
+                "type": "query",
+                "description": "Salesforce ID"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (default: 100, max: 100)"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Fields to sort by (default: [\"company_name\"])"
+              },
+              {
+                "name": "sort_direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction: \"ASC\" or \"DESC\" (default: \"ASC\")"
+              },
+              {
+                "name": "has_finance_consultant",
+                "value": "",
+                "type": "query",
+                "description": "Filter by finance consultant presence"
+              },
+              {
+                "name": "comcode",
+                "value": "",
+                "type": "query",
+                "description": "Company code filter"
+              }
+            ]
+          },
+          "docs": "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>Query Parameters</strong></td></tr>\n           <tr>\n               <td>name</td>\n               <td>String</td>\n               <td>Company name to search f"
+        },
+        {
+          "info": {
+            "name": "retrieveCompany",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v1/companies/:company_id",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "path",
+                "description": "Company Id"
+              }
+            ]
+          },
+          "docs": "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company for whic"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Agent Assist Notes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getAgentAssistNotes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v1/companies/:company_id/agent-assist-notes",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "path",
+                "description": "Company Id"
+              }
+            ]
+          },
+          "docs": "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company for whic"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ecommerce-settings-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v1/companies/ecommerce-settings",
+            "params": [
+              {
+                "name": "billing_dk",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "traveler_dk",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "setting_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAudit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v1/companies/ecommerce-settings/audit",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start Timestamp"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End Timestamp"
+              },
+              {
+                "name": "setting_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "gdpr-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "validate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/gdpr",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "process",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apis.egencia.com/openconnect/api/gdpr",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "availability-probes-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "readiness",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/base/readiness"
+          }
+        },
+        {
+          "info": {
+            "name": "liveness",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/base/liveness"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "version-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/base/version"
+          }
+        },
+        {
+          "info": {
+            "name": "version_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/base/version"
+          }
+        },
+        {
+          "info": {
+            "name": "version_2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apis.egencia.com/openconnect/api/base/version"
+          }
+        },
+        {
+          "info": {
+            "name": "version_4",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apis.egencia.com/openconnect/api/base/version"
+          }
+        },
+        {
+          "info": {
+            "name": "version_3",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apis.egencia.com/openconnect/api/base/version"
+          }
+        },
+        {
+          "info": {
+            "name": "version_5",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://apis.egencia.com/openconnect/api/base/version"
+          }
+        },
+        {
+          "info": {
+            "name": "version_6",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://apis.egencia.com/openconnect/api/base/version"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

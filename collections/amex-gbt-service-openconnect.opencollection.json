@@ -1,0 +1,1773 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenAPI definition",
+    "version": "v0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "availability-probes-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "liveness",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/base/liveness"
+          }
+        },
+        {
+          "info": {
+            "name": "readiness",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/base/readiness"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "version-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/base/version"
+          }
+        },
+        {
+          "info": {
+            "name": "version_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/base/version"
+          }
+        },
+        {
+          "info": {
+            "name": "version_2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apis.egencia.com/openconnect/api/base/version"
+          }
+        },
+        {
+          "info": {
+            "name": "version_4",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apis.egencia.com/openconnect/api/base/version"
+          }
+        },
+        {
+          "info": {
+            "name": "version_3",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apis.egencia.com/openconnect/api/base/version"
+          }
+        },
+        {
+          "info": {
+            "name": "version_5",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://apis.egencia.com/openconnect/api/base/version"
+          }
+        },
+        {
+          "info": {
+            "name": "version_6",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://apis.egencia.com/openconnect/api/base/version"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "gdpr-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "validate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/gdpr",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "process",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apis.egencia.com/openconnect/api/gdpr",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "scim-v1-admin-users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all admin users in the system based on status.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v1/admin-users",
+            "params": [
+              {
+                "name": "startIndex",
+                "value": "",
+                "type": "query",
+                "description": "1-based index of the first query result"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of query results per page"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status of the admin user"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<html>\n  <body>\n    <div class=\"full-height-container\">\n      <div id=\"content\" class=\"split\" style=\"width: calc(85% - 5px);\">\n        <div class=\"wiki-page\">\n          <div class=\"wiki-content\">\n            <a name=\"Bookmark2\"></a>\n            <h2 id=\"Bookmark2\">\n              <span class=\"nh-number\">1. </span>Create\n            </h2>\n            <a name=\"Bookmark3\"></a>\n            <h3 id=\"Bookmark3\">\n              <span class=\"nh-number\">1.1. </span>API Details\n            </h3>\n            <"
+        },
+        {
+          "info": {
+            "name": "Create a new admin user in the system with the requested information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v1/admin-users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<html>\n  <body>\n    <div class=\"full-height-container\">\n      <div id=\"content\" class=\"split\" style=\"width: calc(85% - 5px);\">\n        <div class=\"wiki-page\">\n          <div class=\"wiki-content\">\n            <a name=\"Bookmark2\"></a>\n            <h2 id=\"Bookmark2\">\n              <span class=\"nh-number\">1. </span>Create\n            </h2>\n            <a name=\"Bookmark3\"></a>\n            <h3 id=\"Bookmark3\">\n              <span class=\"nh-number\">1.1. </span>API Details\n            </h3>\n            <"
+        },
+        {
+          "info": {
+            "name": "Return list of admin users based on the filter condition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v1/admin-users/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<html>\n  <head>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n    <link rel=\"stylesheet\" href=\"combined.css\">\n    <script src=\"split/split.min.js\"></script>\n    <link rel=\"stylesheet\" href=\"inline_styles.css\">\n    <style type=\"text/css\">\n      /* \n< ![CDATA[ */\n      \"+      /* ]]> */\"+\n    </style>\n  </head>\n  <body>\n    <div class=\"full-height-container\">\n      <div id=\"content\" class=\"split\" style=\"width: calc(85% - 5px);\">\n        <div class=\"wiki-page\">\n          <"
+        },
+        {
+          "info": {
+            "name": "Updates an existing user in the system with the requested information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v1/admin-users/:userName",
+            "params": [
+              {
+                "name": "userName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<html><body><h2 class=\"auto-cursor-target\" id=\"Create&amp;SearchAdminUserAPIContract-Modify[NOTavailableonlab]\">\n  <span class=\"nh-number\">3. </span>Modify [NOT available on lab]\n</h2>\n<h3 id=\"Create&amp;SearchAdminUserAPIContract-APIDetails.2\">\n  <span class=\"nh-number\">3.1. </span>API Details\n</h3>\n<div class=\"table-wrap\">\n  <table style=\"border-collapse:collapse\" border=\"1\" border=\"1\" class=\"wrapped confluenceTable\">\n    <tbody>\n      <tr>\n        <td class=\"confluenceTd\">\n          <strong>M"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SCIM User Sync V1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new user in the system with the requested information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v1/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a new user in the system with the requested information."
+        },
+        {
+          "info": {
+            "name": "Return list of users based on the filter condition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v1/users/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return list of users based on the filter condition."
+        },
+        {
+          "info": {
+            "name": "Retrieves the user details for a requested user identifier.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves the user details for a requested user identifier."
+        },
+        {
+          "info": {
+            "name": "Updates an existing user in the system with the requested information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates an existing user in the system with the requested information."
+        },
+        {
+          "info": {
+            "name": "Perform patch operation on the user with the given user Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Perform patch operation on the user with the given user Id."
+        },
+        {
+          "info": {
+            "name": "Delete the user in the system with the given user Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User Id of the user who is to be deleted"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Delete the user with the given user Id in the path</p>\n<p><b>Examples:</b></p>\n<p>Replace {baseUrl} with the actual value of Egencia APIs host. Please refer Base Urls section under API Overview page of Egencia Developer Center.</p>\n<p>Deleting a user with user Id : test_user_id</p>\n<pre>\n    <code>\n        DELETE {baseUrl}/openconnect/api/scim/v1/users/test_user_id\n        <b>Response:</b>\n            -> 204 No Content\n   </code>\n</pre>"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SCIM User Sync V2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return list of users based on the filter condition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v2/Users",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "SCIM compliant filter attribute to take query string. If you are using any external tool to make the API call, please make sure to encode the filter value."
+              },
+              {
+                "name": "startIndex",
+                "value": "",
+                "type": "query",
+                "description": "1-based start index"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of resources to be returned. Maximum supported value is 100"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Search/retrieve users based on the filter string parameter. Please be cautious if you are using organization token, search API will only return users of parent company if company is not provided in the filter criteria.</p>\n<div>\n<p>Results are returned in ascending order of userIds.</p>\n<p><b>Note: We only support search by email, name, userName and singleSignOnId. Since filter attribute contains special characters like square brackets, clients need to encode the filter attribute value.</b></"
+        },
+        {
+          "info": {
+            "name": "Create a new user in the system with the requested information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v2/Users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a new user in the system with the requested information."
+        },
+        {
+          "info": {
+            "name": "Retrieves the user details for a requested user identifier.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v2/Users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the user to be retrieved"
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves the user details for a requested user identifier."
+        },
+        {
+          "info": {
+            "name": "Updates an existing user in the system with the requested information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v2/Users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the user to be updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates an existing user in the system with the requested information."
+        },
+        {
+          "info": {
+            "name": "Perform patch operation on the user with the given user Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v2/Users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the user to be updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Perform patch operation on the user with the given user Id."
+        },
+        {
+          "info": {
+            "name": "Delete the user in the system with the given user Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v2/Users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User Id of the user to be deleted"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Delete the user with the given user Id in the path</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n                Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>userId</td>\n            <td>String</td>\n            <td>User Id of the user to be deleted</td>\n        </t"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SCIM User Sync V3",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return list of users based on the filter condition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v3/Users",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "SCIM compliant filter attribute to take query string. If you are using any external tool to make the API call, please make sure to encode the filter value."
+              },
+              {
+                "name": "startIndex",
+                "value": "",
+                "type": "query",
+                "description": "1-based start index"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of resources to be returned. Maximum supported value is 100"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Search/retrieve users based on the filter string parameter. Please be cautious if you are using organization token, search API will return users of all associated companies of parent company's org id if company is not provided in the filter criteria.</p>\n<div>\n<p>Results are returned in ascending order of userIds.</p>\n<p><b>Note: We only support search by email, name, userName and singleSignOnId. Since filter attribute contains special characters like square brackets, clients need to encode t"
+        },
+        {
+          "info": {
+            "name": "Create a new user in the system with the requested information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v3/Users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a new user in the system with the requested information."
+        },
+        {
+          "info": {
+            "name": "Retrieves the user details for a requested user identifier.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v3/Users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the user to be retrieved"
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves the user details for a requested user identifier."
+        },
+        {
+          "info": {
+            "name": "Updates an existing user in the system with the requested information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v3/Users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the user to be updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates an existing user in the system with the requested information."
+        },
+        {
+          "info": {
+            "name": "Perform patch operation on the user with the given user Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v3/Users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the user to be updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Perform patch operation on the user with the given user Id."
+        },
+        {
+          "info": {
+            "name": "Delete the user in the system with the given user Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apis.egencia.com/openconnect/api/scim/v3/Users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User Id of the user to be deleted"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Delete the user with the given user Id in the path</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n                Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>userId</td>\n            <td>String</td>\n            <td>User Id of the user to be deleted</td>\n        </t"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "bookings v1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "search trip details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings",
+            "params": [
+              {
+                "name": "metadossier_id",
+                "value": "",
+                "type": "query",
+                "description": "Metadossier id"
+              },
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "Company id"
+              },
+              {
+                "name": "booking_start_after",
+                "value": "",
+                "type": "query",
+                "description": "Date on or after which the booking starts, Format : YYYY-mm-dd"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start count of the booking"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of bookings to be retrieved"
+              },
+              {
+                "name": "fact_id",
+                "value": "",
+                "type": "query",
+                "description": "Fact id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Search booking details request based on specific criteria like metadossierid etc</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>metadossier_i"
+        },
+        {
+          "info": {
+            "name": "createBooking",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Retrieve trip details for a particular booking based on booking ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Creates a Retrieve Booking details request for a specific Booking Id</p>\n<br>\n<p>The response contains booking level as well as item level action links to approve/deny the booking request. The approve/deny action links will be coming in the response when approval status is PENDING and booking status is BOOKED.</p>\n<br>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Typ"
+        },
+        {
+          "info": {
+            "name": "Approve the complete booking based on booking ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId/approve",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Creates an Approval request (Action: Approve) for a specific booking Id</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n       "
+        },
+        {
+          "info": {
+            "name": "Cancel trip for a particular booking ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId/cancel",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Creates a cancel request for a specific booking Id</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n"
+        },
+        {
+          "info": {
+            "name": "Delete trip items for a particular booking ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId/delete",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Creates a delete request for a specific booking Id</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n"
+        },
+        {
+          "info": {
+            "name": "Deny the complete booking based on booking ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId/deny",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Creates a Deny request (Action: Deny) for a booking</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>"
+        },
+        {
+          "info": {
+            "name": "Retrieve booking item details for a particular item based on booking item Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId/items/:itemId",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Creates a Retrieve Booking Item details request for specific Booking Item Id</p>\n<br>\n<p>The response contains item level action links to approve/deny the booking item. The approve/deny action links will be coming in the response when approval status is PENDING and booking status is BOOKED. The cancel action link will come when booking status is not CANCELLED.</p>\n<br>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n   "
+        },
+        {
+          "info": {
+            "name": "Approve a particular booking item based on booking ID and item ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId/items/:itemId/approve",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "2000-2587-907",
+                "type": "path",
+                "description": "Booking ID of the trip containing the item to approve"
+              },
+              {
+                "name": "itemId",
+                "value": "5f964c44e7b72600017fc8bb",
+                "type": "path",
+                "description": "ID of the booking item to approve"
+              },
+              {
+                "name": "level",
+                "value": "ONE",
+                "type": "query",
+                "description": "Targets a specific hierarchical approver level or security level. If not provided, the first approver is used."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Creates an Approval request (Action: Approve) for specific item Id.</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n           "
+        },
+        {
+          "info": {
+            "name": "Cancel booking item for a particular booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId/items/:itemId/cancel",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Creates a cancel request to cancel a particular booking item present in the booking.</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId"
+        },
+        {
+          "info": {
+            "name": "Delete trip item for a particular booking ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId/items/:itemId/delete",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Creates a delete request to delete a particular trip item present in the booking.</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</t"
+        },
+        {
+          "info": {
+            "name": "Deny a particular booking item based on booking ID and item ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId/items/:itemId/deny",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "2000-2587-907",
+                "type": "path",
+                "description": "Booking ID of the trip containing the item to deny"
+              },
+              {
+                "name": "itemId",
+                "value": "5f964c44e7b72600017fc8bb",
+                "type": "path",
+                "description": "ID of the booking item to deny"
+              },
+              {
+                "name": "level",
+                "value": "ONE",
+                "type": "query",
+                "description": "Targets a specific hierarchical approver level or security level. If not provided, the first approver is used."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Creates a Deny request (Action: Deny) for specific item Id.</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n        <tr>\n            <td>bookingId</td>\n            <td>Str"
+        },
+        {
+          "info": {
+            "name": "Fetch receipt for a booking item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v1/bookings/:bookingId/items/:itemId/receipts",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Fetch receipt for a booking item</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Id corresponding to the trips summary for which you want to fetch "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Custom Data Fields (CDF)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch all CDF definitions for a company or corresponding to a CDF name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v1/companies/:companyId/cdfs",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company for whic"
+        },
+        {
+          "info": {
+            "name": "Fetch all CDF values for a company and a CDF definition or corresponding to a CDF value",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v1/companies/:companyId/cdfs/:definitionId/values",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "value",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company</td>\n   "
+        },
+        {
+          "info": {
+            "name": "Create a new CDF value for a CDF of field type List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.egencia.com/openconnect/api/v1/companies/:companyId/cdfs/:definitionId/values",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company</td>\n   "
+        },
+        {
+          "info": {
+            "name": "Fetch all linked CDF values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v1/companies/:companyId/cdfs/:definitionId/values/:valueId",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "valueId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_links",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p><b>Request Parameters</b></p>\n            <div>\n                <table>\n                    <thead>\n                    <tr>\n                        <th>\n                           Attribute\n                        </th>\n                        <th>\n                            Type\n                        </th>\n                        <th>\n                            Description\n                        </th>\n                    </tr>\n                    </thead>\n                    <tbody>\n  "
+        },
+        {
+          "info": {
+            "name": "Update a CDF value for a CDF of field type List",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apis.egencia.com/openconnect/api/v1/companies/:companyId/cdfs/:definitionId/values/:valueId",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "valueId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company</td>\n   "
+        },
+        {
+          "info": {
+            "name": "Delete a CDF value for a CDF of field type List",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apis.egencia.com/openconnect/api/v1/companies/:companyId/cdfs/:definitionId/values/:valueId",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "valueId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company</td>\n   "
+        },
+        {
+          "info": {
+            "name": "Update CDF Value by adding or removing child/parent links. This endpoint is available for CC1/CC2 linking for offices in EU/APAC.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apis.egencia.com/openconnect/api/v1/companies/:companyId/cdfs/:definitionId/values/:valueId/link",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "valueId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company</td>\n   "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "receipts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch receipt for a booking item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v1/receipts/:itemId",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Fetch receipt for a booking item</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Id corresponding to the trips summary for which you want to fetch "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "resolve-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getResolveInfo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v1/resolve",
+            "params": [
+              {
+                "name": "request",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "schemas-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getSchemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v2/Schemas"
+          }
+        },
+        {
+          "info": {
+            "name": "getSchemaById",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v2/Schemas/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "bookings v2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch all receipts for a booking item as a zip file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v2/bookings/:bookingId/items/:itemId/receipts",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "",
+                "type": "path",
+                "description": "Booking id"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Trip item id"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "Locale"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Fetch all receipts for a booking item as a zip file</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Id corresponding to the trips summary for which"
+        },
+        {
+          "info": {
+            "name": "Fetch receipt for a booking item by receipt id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.egencia.com/openconnect/api/v2/bookings/:bookingId/items/:itemId/receipts/:receiptId",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "",
+                "type": "path",
+                "description": "Booking id"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Trip item id"
+              },
+              {
+                "name": "receiptId",
+                "value": "",
+                "type": "path",
+                "description": "Receipt id"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "Locale"
+              },
+              {
+                "name": "traveler_id",
+                "value": "",
+                "type": "query",
+                "description": "Id of the traveler to whom invoice/receipt is issued"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://apis.egencia.com/auth/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "<p>Fetch receipt for a booking item by receipt id</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Id corresponding to the trips summary for which you "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
