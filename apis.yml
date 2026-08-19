@@ -58,7 +58,7 @@ tags:
 - Reporting
 created: '2026-07-28'
 modified: '2026-07-28'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: amex-gbt:egencia-user-sync-api
   name: Egencia User Sync API
