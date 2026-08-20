@@ -76,6 +76,12 @@ apis:
     https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
+  - User
+  - SCIM
+  - Identity
+  - Provisioning
+  - Single Sign-On
+  tags_raw:
   - Users
   - SCIM
   - Identity
@@ -211,6 +217,12 @@ apis:
   - Expense
   - Bookings
   - Webhook
+  - Notification
+  - SPI
+  tags_raw:
+  - Expense
+  - Bookings
+  - Webhook
   - Notifications
   - SPI
   properties:
@@ -287,6 +299,11 @@ apis:
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - Approvals
+  - Workflows
+  - Policy
+  - Bookings
+  tags_raw:
+  - Approvals
   - Workflow
   - Policy
   - Bookings
@@ -311,6 +328,11 @@ apis:
     https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/approval-customisation-spi
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
+  - Approvals
+  - Workflows
+  - Webhook
+  - SPI
+  tags_raw:
   - Approvals
   - Workflow
   - Webhook
@@ -391,6 +413,15 @@ apis:
     https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/reporting-api
   baseURL: https://apis.egencia.com/bi/api
   tags:
+  - Reporting
+  - Business Intelligence
+  - Transaction
+  - Data Export
+  - Air
+  - Hotel
+  - Rail
+  - Car Rental
+  tags_raw:
   - Reporting
   - Business Intelligence
   - Transactions
