@@ -60,431 +60,1803 @@ created: '2026-07-28'
 modified: '2026-07-28'
 specificationVersion: '0.23'
 apis:
-- aid: amex-gbt:egencia-user-sync-api
-  name: Egencia User Sync API
+- aid: amex-gbt:amex-gbt-agent-assist-notes-api
+  name: American Express Global Business Travel Agent Assist Notes API
   description: >-
-    SCIM-based user provisioning for an Egencia corporate travel programme. Egencia's own overview states
-    the API "supports SCIM, or System for Cross-domain Identity Management, an open standard that allows
-    automating user provisioning using REST API and JSON" and that it "follows version 2.0 of the SCIM
-    protocol". Three concurrent versions are published - /scim/v1/users, /scim/v2/Users and /scim/v3/Users
-    - supporting create, retrieve, search, replace, patch and delete of traveller profiles, with an Egencia
-    SCIM extension schema (urn:ietf:params:scim:schemas:extension:egencia:2.0:User) carrying companyId,
-    singleSignOnId, arrangers, approvers and custom data fields. This is the most portable interface in
-    the estate and the reason the interface shape is recorded as standard-plus-proprietary rather than
-    proprietary.
+    The Agent Assist Notes API from American Express Global Business Travel — 1 operation(s) for agent
+    assist notes.
   humanURL: >-
     https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
-  - User
-  - SCIM
-  - Identity
-  - Provisioning
-  - Single Sign-On
-  tags_raw:
-  - Users
-  - SCIM
-  - Identity
-  - Provisioning
-  - Single Sign-On
+  - Agent Assist Notes
   properties:
   - type: OpenAPI
-    url: openapi/amex-gbt-user-sync-api-openapi.json
-  - type: Overlay
-    url: overlays/amex-gbt-user-sync-api-overlay.yaml
+    url: openapi/amex-gbt-agent-assist-notes-api-openapi.yml
   - type: APIReference
     url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
   - type: Documentation
     url: https://apis.egencia.com/openconnect/v1/api-info?name=User
   - type: Authentication
     url: https://apis.egencia.com/auth/v1/token
-- aid: amex-gbt:egencia-context-sso-api
-  name: Egencia Context SSO API
-  description: >-
-    Single sign-on entry point that carries contextual data into the Egencia booking flow at authentication
-    time. Documented endpoints are GET /v1/newTrip and GET /v2/startTrip, which accept trip context -
-    origin, destination, dates and custom data fields such as TravelRequest, PurchaseOrder and MissionOrder
-    - and pre-populate the search form and checkout, with that context flowing back out through the Expense
-    SPI. This is the hand-off point between a customer's own intranet or travel-request system and the
-    Egencia platform.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/context-sso-api
-  baseURL: https://apis.egencia.com/openconnect-sso-service
-  tags:
-  - Single Sign-On
-  - Authentication
-  - Context
-  - Booking
-  properties:
-  - type: OpenAPI
-    url: openapi/amex-gbt-sso-context-api-openapi.json
-  - type: Overlay
-    url: overlays/amex-gbt-sso-context-api-overlay.yaml
   - type: APIReference
     url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
   - type: Documentation
     url: https://www.egencia.com/openconnect-sso-service/v1/api-info
-- aid: amex-gbt:egencia-company-details-api
-  name: Egencia Company Details API
-  description: >-
-    Retrieves company information for an Egencia corporate account - name, display name and related detail
-    - plus e-commerce settings and an audit view of those settings. Documented operations are GET /v1/companies,
-    GET /v1/companies/{company_id}, GET /v1/companies/ecommerce-settings and GET /v1/companies/ecommerce-settings/audit.
-    The company_id it returns is an Egencia internal key, not an industry identifier.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/company-info-api
-  baseURL: https://apis.egencia.com/openconnect/api
-  tags:
-  - Company
-  - Account
-  - Configuration
-  properties:
-  - type: OpenAPI
-    url: openapi/amex-gbt-company-info-api-openapi.json
-  - type: Overlay
-    url: overlays/amex-gbt-company-info-api-overlay.yaml
   - type: APIReference
     url: https://apis.egencia.com/company/docs/api-docs/company-info-api
   - type: Documentation
     url: https://apis.egencia.com/company/v1/api-info?name=company-details
-- aid: amex-gbt:egencia-company-cdf-api
-  name: Egencia Company CDF API
-  description: >-
-    Manages custom data fields - the client-defined fields Egencia describes as capturing "invoicing,
-    reporting, approval, billing" detail, commonly department, billing unit, reason for travel or project
-    code. Documented operations cover GET /v1/companies/{companyId}/cdfs, list, create, replace and delete
-    of CDF values under a definition, and PATCH of the value link. Custom data fields are a significant
-    proprietary lock-in surface - a customer's own cost-allocation taxonomy is modelled inside Egencia's
-    schema and keyed by Egencia definition and value IDs.
-  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/cdf-api
-  baseURL: https://apis.egencia.com/openconnect/api
-  tags:
-  - Custom Data Fields
-  - Company
-  - Cost Allocation
-  - Reporting
-  properties:
-  - type: OpenAPI
-    url: openapi/amex-gbt-company-cdf-api-openapi.json
-  - type: Overlay
-    url: overlays/amex-gbt-company-cdf-api-overlay.yaml
   - type: APIReference
     url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
   - type: Documentation
     url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
-- aid: amex-gbt:egencia-validation-spi
-  name: Egencia Validation SPI
-  description: >-
-    A service provider interface, not a consumable API - Egencia calls the customer. At checkout, when
-    a traveller presses book, Egencia posts the booking payload to a web service the customer must build
-    and implement, and the customer's response authorises or blocks the booking. The published contract
-    is POST /v1/validateFields on https://apis.egencia.com/openconnect-validation-service. The integration
-    burden sits on the customer's side, which is why an SPI raises switching cost even though the contract
-    is published openly.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/validation-spi
-  baseURL: https://apis.egencia.com/openconnect-validation-service
-  tags:
-  - Validation
-  - Booking
-  - Policy
-  - Webhook
-  - SPI
-  properties:
-  - type: OpenAPI
-    url: openapi/amex-gbt-validation-spi-openapi.json
-  - type: Overlay
-    url: overlays/amex-gbt-validation-spi-overlay.yaml
   - type: APIReference
     url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
   - type: Documentation
     url: https://www.egencia.com/openconnect-validation-service/v1/api-info
   - type: Webhooks
     url: asyncapi/amex-gbt-webhooks.yml
-- aid: amex-gbt:egencia-expense-spi
-  name: Egencia Expense SPI
-  description: >-
-    Near real-time push of booking and expense data out of Egencia into a customer's expense or ERP system.
-    Egencia describes it as an "Expense capability" that pushes a message to a connected partner web service
-    whenever a booking is created or updated, carrying either receipt or invoice information depending
-    on company configuration, with retries if the consumer does not acknowledge. The published contract
-    documents a subscription registration operation and the push payload. This is the principal outbound
-    data path for a customer's own travel spend.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/expense-spi
-  baseURL: https://apis.egencia.com/openconnect-expensestream-service
-  tags:
-  - Expense
-  - Bookings
-  - Webhook
-  - Notification
-  - SPI
-  tags_raw:
-  - Expense
-  - Bookings
-  - Webhook
-  - Notifications
-  - SPI
-  properties:
-  - type: OpenAPI
-    url: openapi/amex-gbt-expense-spi-openapi.json
-  - type: Overlay
-    url: overlays/amex-gbt-expense-spi-overlay.yaml
   - type: APIReference
     url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
   - type: Documentation
     url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
-  - type: Webhooks
-    url: asyncapi/amex-gbt-webhooks.yml
-- aid: amex-gbt:egencia-get-booking-api
-  name: Egencia Get Booking API
-  description: >-
-    Retrieval of a booking and its individual trip items, plus the receipts attached to an item. Documented
-    operations are GET /v1/bookings/{bookingId}, GET /v1/bookings/{bookingId}/items/{itemId}, GET and
-    v2 GET of item receipts, and the item-level cancel and delete actions. Paired with the Get Booking
-    SPI push notification, which tells a partner system that a booking was created, updated or cancelled
-    so it can fetch the detail. Booking and item identifiers are Egencia keys; the supplier PNR and record
-    locator travel with the data.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/booking-api
-  baseURL: https://apis.egencia.com/openconnect/api
-  tags:
-  - Bookings
-  - Trips
-  - Receipts
-  - Itinerary
-  properties:
-  - type: OpenAPI
-    url: openapi/amex-gbt-booking-api-openapi.json
-  - type: Overlay
-    url: overlays/amex-gbt-booking-api-overlay.yaml
   - type: APIReference
     url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
   - type: Documentation
     url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
-  - type: Webhooks
-    url: asyncapi/amex-gbt-webhooks.yml
-- aid: amex-gbt:egencia-cancellation-deletion-api
-  name: Egencia Expense Cancellation and Deletion API
-  description: >-
-    Trip-level cancellation and deletion of bookings. Documented operations are POST /v1/bookings/{bookingId}/cancel
-    and POST /v1/bookings/{bookingId}/delete, which act on every trip item in the booking and return a
-    CANCELLED status per item or a FAILURE status with an error code. Item-level equivalents are documented
-    on the Get Booking API.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/cancel-delete-api
-  baseURL: https://apis.egencia.com/openconnect/api
-  tags:
-  - Bookings
-  - Cancellation
-  - Servicing
-  properties:
-  - type: OpenAPI
-    url: openapi/amex-gbt-cancellation-deletion-api-openapi.json
-  - type: Overlay
-    url: overlays/amex-gbt-cancellation-deletion-api-overlay.yaml
   - type: APIReference
     url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
   - type: Documentation
     url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
-- aid: amex-gbt:egencia-approval-workflow-api
-  name: Egencia Approval Workflow API
-  description: >-
-    Programmatic approval or denial of booking requests, at trip level and at trip-item level. Documented
-    operations are POST /v1/bookings/{bookingId}/approve, /deny and the matching /items/{itemId}/approve
-    and /deny. Egencia positions it as eliminating manual trip approval for individual travellers and
-    groups.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/approval-api
-  baseURL: https://apis.egencia.com/openconnect/api
-  tags:
-  - Approvals
-  - Workflows
-  - Policy
-  - Bookings
-  tags_raw:
-  - Approvals
-  - Workflow
-  - Policy
-  - Bookings
-  properties:
-  - type: OpenAPI
-    url: openapi/amex-gbt-approval-workflow-api-openapi.json
-  - type: Overlay
-    url: overlays/amex-gbt-approval-workflow-api-overlay.yaml
   - type: APIReference
     url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
   - type: Documentation
     url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
-- aid: amex-gbt:egencia-approval-customisation-spi
-  name: Egencia Approval Customisation SPI
-  description: >-
-    An outbound service provider interface that lets a customer decide, at checkout time, whether level
-    one and level two approval are required for a booking and who the approvers are. Egencia calls the
-    customer's web service with the booking data and plugs the response into its own approval process.
-    The published contract is POST /v1/custom-approval. As with the Validation SPI, the customer builds
-    and hosts the implementation.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/approval-customisation-spi
-  baseURL: https://apis.egencia.com/openconnect/api
-  tags:
-  - Approvals
-  - Workflows
-  - Webhook
-  - SPI
-  tags_raw:
-  - Approvals
-  - Workflow
-  - Webhook
-  - SPI
-  properties:
-  - type: OpenAPI
-    url: openapi/amex-gbt-approval-customisation-spi-openapi.json
-  - type: Overlay
-    url: overlays/amex-gbt-approval-customisation-spi-overlay.yaml
   - type: APIReference
     url: https://apis.egencia.com/approval/docs/api-docs
   - type: Documentation
     url: https://www.egencia.com/openconnect-approval-service/v1/api-info
-  - type: Webhooks
-    url: asyncapi/amex-gbt-webhooks.yml
-- aid: amex-gbt:egencia-receipt-api
-  name: Egencia Receipt API
-  description: >-
-    Retrieval of the receipt for a booked trip item, via GET /v1/receipts/{itemId}, paired with a Receipt
-    SPI that pushes a notification to a customer-built web service whenever a receipt is generated. The
-    documented push payload carries booking_id, item_id, product_type, company_id, traveler_id, organization_parent_id
-    and a HAL-style _links.receipt href back into the Egencia API - a clear illustration of how the record
-    stays anchored to Egencia keys.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/receipts-api
-  baseURL: https://apis.egencia.com/openconnect/api
-  tags:
-  - Receipts
-  - Invoices
-  - Expense
-  - Payments
-  properties:
-  - type: OpenAPI
-    url: openapi/amex-gbt-receipt-api-openapi.json
-  - type: Overlay
-    url: overlays/amex-gbt-receipt-api-overlay.yaml
   - type: APIReference
     url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
   - type: Documentation
     url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
-  - type: Webhooks
-    url: asyncapi/amex-gbt-webhooks.yml
-- aid: amex-gbt:egencia-duty-of-care-api
-  name: Egencia Duty of Care API
-  description: >-
-    Traveller-tracking data for risk and duty-of-care programmes. Egencia documents POST https://apis.egencia.com/dutyofcare/api/v1/bookings
-    to create a paginated query of booking data for a partner ID over a date range, then GET /v1/bookings/{resourceId}
-    to page through the result. This is the surface a risk management vendor integrates against to locate
-    travellers during a disruption.
-  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/doc-api
-  baseURL: https://apis.egencia.com/dutyofcare/api
-  tags:
-  - Duty of Care
-  - Traveler Tracking
-  - Risk Management
-  - Bookings
-  properties:
-  - type: OpenAPI
-    url: openapi/amex-gbt-duty-of-care-api-openapi.json
-  - type: Overlay
-    url: overlays/amex-gbt-duty-of-care-api-overlay.yaml
   - type: APIReference
     url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
   - type: Documentation
     url: https://apis.egencia.com/dutyofcare/v1/api-info
-- aid: amex-gbt:egencia-reporting-api
-  name: Egencia Reporting API (BI Transactions)
-  description: >-
-    Consolidated booking transaction data out of Egencia, and the closest thing in the estate to a documented
-    exit path. POST /v1/transactions creates a filtered report over a date range and returns pagination
-    links; GET /v1/transactions/{reportId} pages the result. Line-of-business variants cover air, hotel,
-    car, train, ground and fees, with segment, leg and ticketing detail. The response schemas carry portable
-    industry identifiers - pnr and record_locator, marketing, operating and ticketing carrier codes, hotel_chain_code,
-    ticket_code, confirmation_number and invoice_number - alongside Egencia's own itinerary_number. A
-    separate GET /v1/egencia_iata returns the IATA agency code for a given point of sale, and an is_ndc
-    flag records whether an air booking was made through NDC.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/reporting-api
-  baseURL: https://apis.egencia.com/bi/api
-  tags:
-  - Reporting
-  - Business Intelligence
-  - Transaction
-  - Data Export
-  - Air
-  - Hotel
-  - Rail
-  - Car Rental
-  tags_raw:
-  - Reporting
-  - Business Intelligence
-  - Transactions
-  - Data Export
-  - Air
-  - Hotel
-  - Rail
-  - Car Rental
-  properties:
-  - type: OpenAPI
-    url: openapi/amex-gbt-reporting-api-openapi.json
-  - type: Overlay
-    url: overlays/amex-gbt-reporting-api-overlay.yaml
   - type: APIReference
     url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
   - type: Documentation
     url: https://apis.egencia.com/bi/v1/api-info
-- aid: amex-gbt:amex-gbt-service-bi-openapi
-  name: American Express Global Business Travel BI API
+- aid: amex-gbt:amex-gbt-approval-api
+  name: American Express Global Business Travel Approval API
   description: >-
-    American Express Global Business Travel BI API from American Express Global Business Travel — 14 path(s)
-    described in OpenAPI.
+    Approval interface that will get approval custom detail from external client based on the booking
+    data passed in request
   humanURL: >-
     https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - Approval
   properties:
   - type: OpenAPI
-    url: openapi/amex-gbt-service-bi-openapi.json
-- aid: amex-gbt:amex-gbt-service-company-openapi
-  name: American Express Global Business Travel OpenAPI definition (Amex Gbt Service Company)
+    url: openapi/amex-gbt-approval-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-availability-probes-controller-api
+  name: American Express Global Business Travel Availability Probes Controller API
   description: >-
-    American Express Global Business Travel OpenAPI definition from American Express Global Business Travel
-    — 10 path(s) described in OpenAPI.
+    The availability-probes-controller API from American Express Global Business Travel — 2 operation(s)
+    for availability-probes-controller.
   humanURL: >-
     https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - availability-probes-controller
   properties:
   - type: OpenAPI
-    url: openapi/amex-gbt-service-company-openapi.json
-- aid: amex-gbt:amex-gbt-service-dutyofcare-openapi
-  name: American Express Global Business Travel Duty Of Care API
+    url: openapi/amex-gbt-availability-probes-controller-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-bookings-v1-api
+  name: American Express Global Business Travel bookings v1 API
   description: >-
-    American Express Global Business Travel Duty Of Care API from American Express Global Business Travel
-    — 7 path(s) described in OpenAPI.
+    The bookings v1 API from American Express Global Business Travel — 12 operation(s) for bookings v1.
   humanURL: >-
     https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - bookings v1
   properties:
   - type: OpenAPI
-    url: openapi/amex-gbt-service-dutyofcare-openapi.json
-- aid: amex-gbt:amex-gbt-service-openconnect-openapi
-  name: >-
-    American Express Global Business Travel OpenAPI definition (Amex Gbt Service Openconnect)
+    url: openapi/amex-gbt-bookings-v1-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-bookings-v2-api
+  name: American Express Global Business Travel bookings v2 API
   description: >-
-    American Express Global Business Travel OpenAPI definition from American Express Global Business Travel
-    — 36 path(s) described in OpenAPI.
+    The bookings v2 API from American Express Global Business Travel — 2 operation(s) for bookings v2.
   humanURL: >-
     https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - bookings v2
   properties:
   - type: OpenAPI
-    url: openapi/amex-gbt-service-openconnect-openapi.json
+    url: openapi/amex-gbt-bookings-v2-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-company-details-api
+  name: American Express Global Business Travel Company Details API
+  description: >-
+    The Company Details API from American Express Global Business Travel — 2 operation(s) for company
+    details.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - Company Details
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-company-details-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-custom-data-field-cleanup-controller-api
+  name: American Express Global Business Travel Custom Data Field Cleanup Controller API
+  description: >-
+    The custom-data-field-cleanup-controller API from American Express Global Business Travel — 1 operation(s)
+    for custom-data-field-cleanup-controller.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - custom-data-field-cleanup-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-custom-data-field-cleanup-controller-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-custom-data-fields-cdf-api
+  name: American Express Global Business Travel Custom Data Fields (CDF) API
+  description: CDF APIs to retrieve Definitions and Manage Values.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - Custom Data Fields (CDF)
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-custom-data-fields-cdf-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-doc-audit-clean-up-controller-api
+  name: American Express Global Business Travel Doc Audit Clean Up Controller API
+  description: >-
+    The doc-audit-clean-up-controller API from American Express Global Business Travel — 1 operation(s)
+    for doc-audit-clean-up-controller.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - doc-audit-clean-up-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-doc-audit-clean-up-controller-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-dutyofcare-data-api
+  name: American Express Global Business Travel DutyOfCare Data API
+  description: >-
+    The DutyOfCare Data API from American Express Global Business Travel — 2 operation(s) for dutyofcare
+    data.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - DutyOfCare Data
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-dutyofcare-data-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-ecommerce-settings-controller-api
+  name: American Express Global Business Travel Ecommerce Settings Controller API
+  description: >-
+    The ecommerce-settings-controller API from American Express Global Business Travel — 2 operation(s)
+    for ecommerce-settings-controller.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - ecommerce-settings-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-ecommerce-settings-controller-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-expense-spi-api
+  name: American Express Global Business Travel Expense SPI API
+  description: >-
+    Push Expense and Subscription Operation. This is only an example. The path and the host are specific
+    for each implementor. However, the model is fixed and versioned.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - Expense SPI
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-expense-spi-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-gdpr-controller-api
+  name: American Express Global Business Travel Gdpr Controller API
+  description: >-
+    The gdpr-controller API from American Express Global Business Travel — 1 operation(s) for gdpr-controller.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - gdpr-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-gdpr-controller-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-pos-iata-controller-api
+  name: American Express Global Business Travel Pos Iata Controller API
+  description: >-
+    The pos-iata-controller API from American Express Global Business Travel — 1 operation(s) for pos-iata-controller.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - pos-iata-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-pos-iata-controller-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-receipts-api
+  name: American Express Global Business Travel Receipts API
+  description: >-
+    The receipts API from American Express Global Business Travel — 1 operation(s) for receipts.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - receipts
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-receipts-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-redirection-controller-api
+  name: American Express Global Business Travel Redirection Controller API
+  description: >-
+    The redirection-controller API from American Express Global Business Travel — 2 operation(s) for redirection-controller.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - redirection-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-redirection-controller-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-resolve-controller-api
+  name: American Express Global Business Travel Resolve Controller API
+  description: >-
+    The resolve-controller API from American Express Global Business Travel — 1 operation(s) for resolve-controller.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - resolve-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-resolve-controller-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-schemas-controller-api
+  name: American Express Global Business Travel Schemas Controller API
+  description: >-
+    The schemas-controller API from American Express Global Business Travel — 2 operation(s) for schemas-controller.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - schemas-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-schemas-controller-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-scim-user-sync-v1-api
+  name: American Express Global Business Travel SCIM User Sync V1 API
+  description: SCIM 2.0 compliant user sync APIs
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - SCIM User Sync V1
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-scim-user-sync-v1-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-scim-user-sync-v2-api
+  name: American Express Global Business Travel SCIM User Sync V2 API
+  description: SCIM 2.0 compliant user sync APIs version 2.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - SCIM User Sync V2
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-scim-user-sync-v2-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-scim-user-sync-v3-api
+  name: American Express Global Business Travel SCIM User Sync V3 API
+  description: SCIM 2.0 compliant user sync APIs version 3.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - SCIM User Sync V3
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-scim-user-sync-v3-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-scim-v1-admin-users-api
+  name: American Express Global Business Travel SCIM V1 Admin Users API
+  description: SCIM 2.0 compliant admin-users sync APIs
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - scim-v1-admin-users
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-scim-v1-admin-users-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-third-party-acknowledgement-api
+  name: American Express Global Business Travel Third Party Acknowledgement API
+  description: >-
+    The Third Party Acknowledgement API from American Express Global Business Travel — 1 operation(s)
+    for third party acknowledgement.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - Third Party Acknowledgement
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-third-party-acknowledgement-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-transaction-service-controller-api
+  name: American Express Global Business Travel Transaction Service Controller API
+  description: Transaction data operations
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - transaction-service-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-transaction-service-controller-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-validation-api
+  name: American Express Global Business Travel Validation API
+  description: >-
+    Validation interface that will request authorization of booking based on the data provided at checkout
+    time.This is only an example. The path and the host are specific for each implementor. However, the
+    model is fixed and versioned.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - validation
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-validation-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
+- aid: amex-gbt:amex-gbt-version-controller-api
+  name: American Express Global Business Travel Version Controller API
+  description: >-
+    The version-controller API from American Express Global Business Travel — 1 operation(s) for version-controller.
+  humanURL: >-
+    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  baseURL: https://apis.egencia.com/openconnect/api
+  tags:
+  - version-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/amex-gbt-version-controller-api-openapi.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/UserSyncAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=User
+  - type: Authentication
+    url: https://apis.egencia.com/auth/v1/token
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-sso/docs/api-docs/sso
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-sso-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/company/docs/api-docs/company-info-api
+  - type: Documentation
+    url: https://apis.egencia.com/company/v1/api-info?name=company-details
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CompanyCDFAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CompanyCustomData
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-validation/docs/api-docs/validation
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-validation-service/v1/api-info
+  - type: Webhooks
+    url: asyncapi/amex-gbt-webhooks.yml
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect-expense/docs/api-docs/expense
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-expensestream-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/GetBookingAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Booking
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/CancellationDeletionAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=CancelAndDelete
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ApprovalWorkflowAPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Approval
+  - type: APIReference
+    url: https://apis.egencia.com/approval/docs/api-docs
+  - type: Documentation
+    url: https://www.egencia.com/openconnect-approval-service/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/openconnect/docs/api-docs/ReceiptAPISPI
+  - type: Documentation
+    url: https://apis.egencia.com/openconnect/v1/api-info?name=Receipt
+  - type: APIReference
+    url: https://apis.egencia.com/dutyofcare/docs/api-docs/doc-service
+  - type: Documentation
+    url: https://apis.egencia.com/dutyofcare/v1/api-info
+  - type: APIReference
+    url: https://apis.egencia.com/bi/docs/api-docs/transaction-data-service
+  - type: Documentation
+    url: https://apis.egencia.com/bi/v1/api-info
 common:
+- type: Overlay
+  url: overlays/amex-gbt-sso-context-api-overlay.yaml
+- type: Overlay
+  url: overlays/amex-gbt-company-info-api-overlay.yaml
+- type: Overlay
+  url: overlays/amex-gbt-company-cdf-api-overlay.yaml
+- type: Overlay
+  url: overlays/amex-gbt-validation-spi-overlay.yaml
+- type: Overlay
+  url: overlays/amex-gbt-expense-spi-overlay.yaml
+- type: Overlay
+  url: overlays/amex-gbt-booking-api-overlay.yaml
+- type: Overlay
+  url: overlays/amex-gbt-cancellation-deletion-api-overlay.yaml
+- type: Overlay
+  url: overlays/amex-gbt-approval-workflow-api-overlay.yaml
+- type: Overlay
+  url: overlays/amex-gbt-approval-customisation-spi-overlay.yaml
+- type: Overlay
+  url: overlays/amex-gbt-receipt-api-overlay.yaml
+- type: Overlay
+  url: overlays/amex-gbt-duty-of-care-api-overlay.yaml
 - type: MCPServer
   url: mcp/amex-gbt-mcp.yml
 - type: AgenticAccess
