@@ -26,6 +26,18 @@ description: American Express Global Business Travel (Amex GBT, NYSE GBTG, headq
   401 to an anonymous caller. So - public contracts, gated runtime, a real documented
   bulk data export in the BI Transactions API, and API terms Egencia reserves the
   right to change in its sole discretion.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: customer-account-required
