@@ -1847,6 +1847,9 @@ apis:
   - type: Documentation
     url: https://apis.egencia.com/bi/v1/api-info
 common:
+- type: CapabilityMap
+  url: capabilities/amex-gbt-capability-edges.yml
+  name: American Express Global Business Travel Business Capability Map
 - type: Overlay
   url: overlays/amex-gbt-sso-context-api-overlay.yaml
 - type: Overlay
