@@ -1040,6 +1040,8 @@ apis:
     https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
+  - Receipts
+  tags_raw:
   - receipts
   properties:
   - type: OpenAPI
@@ -1718,6 +1720,8 @@ apis:
     https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
+  - Validation
+  tags_raw:
   - validation
   properties:
   - type: OpenAPI
