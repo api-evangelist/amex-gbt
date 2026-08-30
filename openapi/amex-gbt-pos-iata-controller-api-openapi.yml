@@ -1,0 +1,92 @@
+openapi: 3.2.0
+info:
+  title: Amex Gbt Pos Iata Controller API
+  version: v1.0
+  description: 'Operations tagged pos-iata-controller across 2 of this provider''s published API definitions: amex-gbt-reporting-api-openapi.json, amex-gbt-service-bi-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://apis.egencia.com/bi/api
+  description: Generated server url
+tags:
+- name: pos-iata-controller
+paths:
+  /v1/egencia_iata:
+    get:
+      description: "<p>Allows clients to access the IATA codes based on the Point of Sales for different transactions\n    obtained from the Transaction API response.</p>\n</br>\n<p> Request Specifications: </p>\n<table class=\"fullWidth\">\n    <thead>\n    <tr>\n  <th>Attribute</th>\n  <th>Required</th>\n  <th>Type</th>\n  <th>Description</th>\n    </tr>\n    </thead>\n    <tbody>\n    <tr>\n  <td colspan=\"1\">\n   <strong>pos</strong>\n  </td>\n  <td colspan=\"1\">Optional</td>\n  <td colspan=\"1\">String</td>\n  <td colspan=\"1\">Point of Sale for which the user wants to get the IATA code.</td>\n    </tr>\n    </tbody>\n</table>\n\n<b>Examples:</b></br>\n\n<p>Fetching IATA codes for specified Point of Sale</p>\n</br>\n<pre>\n<code>\n  GET https://apis.egencia.com/bi/api/v1/egencia_iata?pos=France\n   -> 200 OK\n   [\n       {\n           \"pos\":\"France\",\n           \"iata\":\"1234567\"\n       }\n   ]\n</code>\n</pre>\n</br>\n<p>Fetching IATA codes for all available Point of Sales</p>\n<pre>\n<code>\n  GET https://apis.egencia.com/bi/api/v1/egencia_iata\n   -> 200 OK\n   [\n       {\n           \"pos\":\"France\",\n           \"iata\":\"1234567\"\n       },\n       {\n           \"pos\":\"India\",\n           \"iata\":\"563489\"\n       },\n       {\n           \"pos\":\"United States of America\",\n           \"iata\":\"824485\"\n       },\n       {\n           \"pos\":\"United Kingdom\",\n           \"iata\":\"4593557\"\n       },\n       {\n           \"pos\":\"Australia\",\n           \"iata\":\"45983645\"\n       }\n       {\n           \"pos\":\"Denmark\",\n           \"iata\":\"9876543\"\n       },\n       {\n           \"pos\":\"Norway\",\n           \"iata\":\"609843\"\n       }\n   ]\n</code>\n</pre>\n</br>\n<p>This API will return the Point of Sales and their corresponding IATA Codes</p>"
+      operationId: getIATACode
+      parameters:
+      - description: Point of Sale code to look up. Returns all Point of Sales if not specified
+        example: US
+        in: query
+        name: pos
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IATA_Code_response'
+          description: '<b>OK</b> : IATA code(s) returned successfully'
+        '400':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IATA_Code_response'
+          description: '<b>Bad Request</b> : invalid query parameter'
+        '401':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IATA_Code_response'
+          description: '<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired'
+        '403':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IATA_Code_response'
+          description: '<b>Forbidden</b> : user does not have the permission to access data'
+        '500':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IATA_Code_response'
+          description: '<b>Internal Server Error</b> : unable to process request'
+      security:
+      - OAuth2: []
+      summary: Gets IATA code for the specified Point of Sale or all Point of Sales if none specified
+      tags:
+      - pos-iata-controller
+    servers:
+    - url: https://apis.egencia.com/bi/api
+      description: Generated server url
+components:
+  schemas:
+    IATA_Code_response:
+      description: IATA Code API response based on provided Point of Sale
+      properties:
+        iata:
+          type: string
+          description: IATA Code for the particular Point of Sale
+        pos:
+          type: string
+          description: Point of Sale
+  securitySchemes:
+    OAuth2:
+      flows:
+        clientCredentials:
+          tokenUrl: https://apis.egencia.com/auth/v1/token
+      type: oauth2
+x-refined-from:
+- amex-gbt-reporting-api-openapi.json
+- amex-gbt-service-bi-openapi.json

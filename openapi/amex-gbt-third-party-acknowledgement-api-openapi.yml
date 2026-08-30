@@ -1,0 +1,115 @@
+openapi: 3.2.0
+info:
+  title: OpenAPI definition Third Party Acknowledgement API
+  version: v0
+servers:
+- url: https://apis.egencia.com/openconnect/api
+  description: API Server
+tags:
+- name: Third Party Acknowledgement
+paths:
+  /v1/billing-entity/thirdparty/response/gbt-customer:
+    post:
+      tags:
+      - Third Party Acknowledgement
+      operationId: saveAcknowledgement
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GbtCapAckRequest'
+        required: true
+      responses:
+        '200':
+          description: <b>Retrieve</b>, indicating that the acknowledgement request has succeeded.
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/ErrorNode'
+        '401':
+          description: '<b>Unauthorized</b> : <i>authentication token</i> empty3, invalid or expired'
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/ErrorNode'
+        '404':
+          description: '<b>Not Found</b> : the resource does not exist.'
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/ErrorNode'
+        '201':
+          description: <b>Created</b>, indicating that the submitted creation request has succeed. The response HTTP header <i>Location</i> contains the resource identifier.
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/ErrorNode'
+        '403':
+          description: <b>403 - Forbidden</b>
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/ErrorNode'
+        '422':
+          description: '<b>Invalid input</b> : invalid or missing required input.'
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/ErrorNode'
+        '500':
+          description: '<b>Internal Server Error</b> : unable to process request'
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/ErrorNode'
+components:
+  schemas:
+    GbtCapAckRequestData:
+      type: object
+      properties:
+        dk_number:
+          type: string
+        reporting_id:
+          type: string
+        reporting_name:
+          type: string
+        timestamp:
+          type: integer
+          format: int64
+        billing_dk_number:
+          type: string
+        client_id:
+          type: string
+        account_number:
+          type: string
+    GbtCapAckRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - ERROR
+        code:
+          type: string
+        message:
+          type: string
+        transactionId:
+          type: string
+        errorTyp:
+          type: string
+        acknowledgementSuccessDetails:
+          $ref: '#/components/schemas/GbtCapAckRequestData'
+    ErrorNode:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorDescription:
+          type: string
+  securitySchemes:
+    oAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://apis.egencia.com/auth/v1/token

@@ -1,0 +1,154 @@
+openapi: 3.2.0
+info:
+  title: Amex Gbt Ecommerce Settings Controller API
+  version: '1.0'
+  description: 'Operations tagged ecommerce-settings-controller across 2 of this provider''s published API definitions: amex-gbt-company-info-api-openapi.json, amex-gbt-service-company-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://apis.egencia.com/openconnect/api
+  description: API Server
+tags:
+- name: ecommerce-settings-controller
+paths:
+  /v1/companies/ecommerce-settings:
+    get:
+      tags:
+      - ecommerce-settings-controller
+      operationId: getSettings
+      parameters:
+      - name: billing_dk
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: traveler_dk
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: setting_type
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: <b>Retrieve</b>, indicating that the submitted retrieval request has succeeded. The response HTTP header <i>Location</i> contains the resource identifier.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ECommerceSettingsApiResponse'
+        '401':
+          description: '<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired'
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ECommerceSettingsApiResponse'
+        '404':
+          description: '<b>Not Found</b> : the resource does not exist.'
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ECommerceSettingsApiResponse'
+    servers:
+    - url: https://apis.egencia.com/openconnect/api
+      description: API Server
+  /v1/companies/ecommerce-settings/audit:
+    get:
+      tags:
+      - ecommerce-settings-controller
+      operationId: getAudit
+      parameters:
+      - name: start
+        in: query
+        description: Start Timestamp
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        description: End Timestamp
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: setting_type
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: <b>Retrieve</b>, indicating that the submitted retrieval request has succeeded. The response HTTP header <i>Location</i> contains the resource identifier.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ECommerceAuditApiResponse'
+        '401':
+          description: '<b>Unauthorized</b> : <i>authentication token</i> empty, invalid or expired'
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ECommerceAuditApiResponse'
+        '404':
+          description: '<b>Not Found</b> : the resource does not exist.'
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ECommerceAuditApiResponse'
+    servers:
+    - url: https://apis.egencia.com/openconnect/api
+      description: API Server
+components:
+  schemas:
+    ECommerceSettingsApiResponse:
+      type: object
+      properties:
+        ecommerceSettings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ECommerceSetting'
+    ECommerceSetting:
+      type: object
+      properties:
+        settingType:
+          type: string
+          enum:
+          - INVOICE_SETTING
+          - PAYMENT_SETTING
+          - COMPANY_SETTING
+        setting: {}
+    ECommerceAuditApiResponse:
+      type: object
+      properties:
+        billingDkChanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/DkChange'
+        travelerDkChanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/DkChange'
+    DkChange:
+      type: object
+      properties:
+        dkNumber:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+        settingType:
+          type: string
+          enum:
+          - INVOICE_SETTING
+          - PAYMENT_SETTING
+          - COMPANY_SETTING
+  securitySchemes:
+    oAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://apis.egencia.com/auth/v1/token
+x-refined-from:
+- amex-gbt-company-info-api-openapi.json
+- amex-gbt-service-company-openapi.json

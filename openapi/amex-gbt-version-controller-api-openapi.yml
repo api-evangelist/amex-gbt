@@ -1,0 +1,212 @@
+openapi: 3.2.0
+info:
+  title: Amex Gbt Version Controller API
+  version: '1.0'
+  description: 'Operations tagged version-controller across 4 of this provider''s published API definitions: amex-gbt-service-bi-openapi.json, amex-gbt-service-company-openapi.json, amex-gbt-service-dutyofcare-openapi.json, amex-gbt-service-openconnect-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://apis.egencia.com/bi/api
+  description: Generated server url
+- url: https://apis.egencia.com/openconnect/api
+  description: API Server
+- url: https://apis.egencia.com/dutyofcare/api
+  description: Generated server url
+tags:
+- name: version-controller
+paths:
+  /base/version:
+    delete:
+      operationId: version_3
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Version'
+          description: OK
+      tags:
+      - version-controller
+    get:
+      operationId: version
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Version'
+          description: OK
+      tags:
+      - version-controller
+    head:
+      operationId: version_5
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Version'
+          description: OK
+      tags:
+      - version-controller
+    options:
+      operationId: version_6
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Version'
+          description: OK
+      tags:
+      - version-controller
+    patch:
+      operationId: version_4
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Version'
+          description: OK
+      tags:
+      - version-controller
+    post:
+      operationId: version_1
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Version'
+          description: OK
+      tags:
+      - version-controller
+    put:
+      operationId: version_2
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Version'
+          description: OK
+      tags:
+      - version-controller
+    servers:
+    - url: https://apis.egencia.com/bi/api
+      description: Generated server url
+components:
+  schemas:
+    Version:
+      properties:
+        active_profiles:
+          type: string
+        application_data:
+          type: object
+          additionalProperties:
+            type: string
+        application_name:
+          type: string
+        build_date:
+          type: string
+        build_number:
+          type: string
+        build_version:
+          type: string
+        datacenter:
+          type: string
+        deployment_date:
+          type: string
+        machine_name:
+          type: string
+        stage:
+          type: string
+    Version_2:
+      type: object
+      properties:
+        applicationName:
+          type: string
+        activeProfiles:
+          type: string
+        datacenter:
+          type: string
+        stage:
+          type: string
+        buildVersion:
+          type: string
+        buildNumber:
+          type: string
+        buildDate:
+          type: string
+        machineName:
+          type: string
+        deploymentDate:
+          type: string
+        applicationData:
+          type: object
+          additionalProperties:
+            type: string
+    Version_3:
+      properties:
+        activeProfiles:
+          type: string
+        applicationData:
+          type: object
+          additionalProperties:
+            type: string
+        applicationName:
+          type: string
+        buildDate:
+          type: string
+        buildNumber:
+          type: string
+        buildVersion:
+          type: string
+        datacenter:
+          type: string
+        deploymentDate:
+          type: string
+        machineName:
+          type: string
+        stage:
+          type: string
+    Version_4:
+      type: object
+      properties:
+        activeProfiles:
+          type: string
+        applicationData:
+          type: object
+          additionalProperties:
+            type: string
+        applicationName:
+          type: string
+        buildDate:
+          type: string
+        buildNumber:
+          type: string
+        buildVersion:
+          type: string
+        datacenter:
+          type: string
+        deploymentDate:
+          type: string
+        machineName:
+          type: string
+        stage:
+          type: string
+  securitySchemes:
+    OAuth2:
+      flows:
+        clientCredentials:
+          tokenUrl: https://apis.egencia.com/auth/v1/token
+      type: oauth2
+    oAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://apis.egencia.com/auth/v1/token
+x-refined-from:
+- amex-gbt-service-bi-openapi.json
+- amex-gbt-service-company-openapi.json
+- amex-gbt-service-dutyofcare-openapi.json
+- amex-gbt-service-openconnect-openapi.json

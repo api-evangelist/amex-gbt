@@ -1,0 +1,246 @@
+openapi: 3.2.0
+info:
+  title: Amex Gbt Gdpr Controller API
+  version: '1.0'
+  description: 'Operations tagged gdpr-controller across 4 of this provider''s published API definitions: amex-gbt-service-bi-openapi.json, amex-gbt-service-company-openapi.json, amex-gbt-service-dutyofcare-openapi.json, amex-gbt-service-openconnect-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://apis.egencia.com/bi/api
+  description: Generated server url
+- url: https://apis.egencia.com/openconnect/api
+  description: API Server
+- url: https://apis.egencia.com/dutyofcare/api
+  description: Generated server url
+tags:
+- name: gdpr-controller
+paths:
+  /gdpr:
+    delete:
+      operationId: process
+      parameters:
+      - in: query
+        name: user_id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+                enum:
+                - CONTINUE
+                - SWITCHING_PROTOCOLS
+                - PROCESSING
+                - EARLY_HINTS
+                - OK
+                - CREATED
+                - ACCEPTED
+                - NON_AUTHORITATIVE_INFORMATION
+                - NO_CONTENT
+                - RESET_CONTENT
+                - PARTIAL_CONTENT
+                - MULTI_STATUS
+                - ALREADY_REPORTED
+                - IM_USED
+                - MULTIPLE_CHOICES
+                - MOVED_PERMANENTLY
+                - FOUND
+                - SEE_OTHER
+                - NOT_MODIFIED
+                - TEMPORARY_REDIRECT
+                - PERMANENT_REDIRECT
+                - BAD_REQUEST
+                - UNAUTHORIZED
+                - PAYMENT_REQUIRED
+                - FORBIDDEN
+                - NOT_FOUND
+                - METHOD_NOT_ALLOWED
+                - NOT_ACCEPTABLE
+                - PROXY_AUTHENTICATION_REQUIRED
+                - REQUEST_TIMEOUT
+                - CONFLICT
+                - GONE
+                - LENGTH_REQUIRED
+                - PRECONDITION_FAILED
+                - CONTENT_TOO_LARGE
+                - PAYLOAD_TOO_LARGE
+                - URI_TOO_LONG
+                - UNSUPPORTED_MEDIA_TYPE
+                - REQUESTED_RANGE_NOT_SATISFIABLE
+                - EXPECTATION_FAILED
+                - I_AM_A_TEAPOT
+                - MISDIRECTED_REQUEST
+                - UNPROCESSABLE_CONTENT
+                - UNPROCESSABLE_ENTITY
+                - LOCKED
+                - FAILED_DEPENDENCY
+                - TOO_EARLY
+                - UPGRADE_REQUIRED
+                - PRECONDITION_REQUIRED
+                - TOO_MANY_REQUESTS
+                - REQUEST_HEADER_FIELDS_TOO_LARGE
+                - UNAVAILABLE_FOR_LEGAL_REASONS
+                - INTERNAL_SERVER_ERROR
+                - NOT_IMPLEMENTED
+                - BAD_GATEWAY
+                - SERVICE_UNAVAILABLE
+                - GATEWAY_TIMEOUT
+                - HTTP_VERSION_NOT_SUPPORTED
+                - VARIANT_ALSO_NEGOTIATES
+                - INSUFFICIENT_STORAGE
+                - LOOP_DETECTED
+                - BANDWIDTH_LIMIT_EXCEEDED
+                - NOT_EXTENDED
+                - NETWORK_AUTHENTICATION_REQUIRED
+          description: OK
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorNode'
+          description: Forbidden
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorNode'
+          description: Internal Server Error
+        '501':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorNode'
+          description: Not Implemented
+      tags:
+      - gdpr-controller
+    get:
+      operationId: validate
+      parameters:
+      - in: query
+        name: user_id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGDPRValidationResponseBean'
+          description: OK
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorNode'
+          description: Forbidden
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorNode'
+          description: Internal Server Error
+        '501':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorNode'
+          description: Not Implemented
+      tags:
+      - gdpr-controller
+    servers:
+    - url: https://apis.egencia.com/bi/api
+      description: Generated server url
+components:
+  schemas:
+    UserGDPRValidationResponseBean:
+      properties:
+        action_status:
+          type: string
+        user_id:
+          type: integer
+          format: int32
+        validation_messages:
+          type: array
+          items:
+            type: string
+    ErrorNode:
+      properties:
+        error_code:
+          type: string
+        error_description:
+          type: string
+    UserGDPRValidationResponseBean_2:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int32
+        actionStatus:
+          type: string
+        validationMessages:
+          type: array
+          items:
+            type: string
+    ErrorNode_2:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorDescription:
+          type: string
+    UserGDPRValidationResponseBean_3:
+      properties:
+        actionStatus:
+          type: string
+        userId:
+          type: integer
+          format: int32
+        validationMessages:
+          type: array
+          items:
+            type: string
+    ErrorNode_3:
+      properties:
+        errorCode:
+          type: string
+        errorDescription:
+          type: string
+    UserGDPRValidationResponseBean_4:
+      type: object
+      properties:
+        actionStatus:
+          type: string
+        userId:
+          type: integer
+          format: int32
+        validationMessages:
+          type: array
+          items:
+            type: string
+    ErrorNode_4:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorDescription:
+          type: string
+  securitySchemes:
+    OAuth2:
+      flows:
+        clientCredentials:
+          tokenUrl: https://apis.egencia.com/auth/v1/token
+      type: oauth2
+    oAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://apis.egencia.com/auth/v1/token
+x-refined-from:
+- amex-gbt-service-bi-openapi.json
+- amex-gbt-service-company-openapi.json
+- amex-gbt-service-dutyofcare-openapi.json
+- amex-gbt-service-openconnect-openapi.json

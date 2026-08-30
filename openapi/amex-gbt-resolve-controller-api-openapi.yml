@@ -1,0 +1,52 @@
+openapi: 3.2.0
+info:
+  title: OpenAPI definition Resolve Controller API
+  version: v0
+servers:
+- url: https://apis.egencia.com/openconnect/api
+  description: Generated server url
+tags:
+- name: resolve-controller
+paths:
+  /v1/resolve:
+    get:
+      operationId: getResolveInfo
+      parameters:
+      - in: query
+        name: request
+        required: true
+        schema:
+          $ref: '#/components/schemas/ResolveInfoRequest'
+      responses:
+        '200':
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/ResolveInfoResponse'
+          description: OK
+      tags:
+      - resolve-controller
+components:
+  schemas:
+    ResolveInfoResponse:
+      type: object
+      properties:
+        companyId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int32
+    ResolveInfoRequest:
+      type: object
+      properties:
+        legacy_company_id:
+          type: string
+        legacy_user_id:
+          type: string
+  securitySchemes:
+    OAuth2:
+      flows:
+        clientCredentials:
+          tokenUrl: https://apis.egencia.com/auth/v1/token
+      type: oauth2

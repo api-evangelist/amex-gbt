@@ -1,0 +1,31 @@
+openapi: 3.2.0
+info:
+  title: Duty Of Care Doc Audit Clean Up Controller API
+  version: v1.0
+servers:
+- url: https://apis.egencia.com/dutyofcare/api
+  description: Generated server url
+tags:
+- name: doc-audit-clean-up-controller
+paths:
+  /v1/sensitive/audit/clean:
+    post:
+      operationId: cleanup
+      parameters:
+      - in: query
+        name: year
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - doc-audit-clean-up-controller
+components:
+  securitySchemes:
+    OAuth2:
+      flows:
+        clientCredentials:
+          tokenUrl: https://apis.egencia.com/auth/v1/token
+      type: oauth2

@@ -1,0 +1,87 @@
+openapi: 3.2.0
+info:
+  title: OpenAPI definition Agent Assist Notes API
+  version: v0
+servers:
+- url: https://apis.egencia.com/openconnect/api
+  description: API Server
+tags:
+- name: Agent Assist Notes
+paths:
+  /v1/companies/{company_id}/agent-assist-notes:
+    get:
+      tags:
+      - Agent Assist Notes
+      description: "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company for which AgentAssistNotes needs to be fetched</td>\n           </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Examples:</b></p>\n\n<p>Retrieving AgentAssistNotes for company_id : 60806</p>\n<pre>\n   <code>\n   GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/{companyId}/agent-assist-notes\n       -> 200 OK\n       {\n{\n    \"company_id\": 60806,\n    \"agent_assist_note\": [\n        {\n            \"note_id\": \"1675325615806-bb28fb98\",\n            \"title\": \"Travel Managers\",\n            \"message\": \"travel manager details\",\n            \"created_at\": 1675325615806,\n            \"updated_at\": 1678197261234\n        },\n        {\n            \"note_id\": \"1675751952010-15b89dc8\",\n            \"title\": \"Service Team\",\n            \"message\": \"Service Teams second \",\n            \"created_at\": 1675751952010,\n            \"updated_at\": 1675762783745\n        },\n        {\n            \"note_id\": \"1680240558150-ef44ae1a\",\n            \"title\": \"test\",\n            \"message\": \"tee\",\n            \"created_at\": 1680240558150,\n            \"updated_at\": 1680240558150\n        },\n        {\n            \"note_id\": \"1680324192666-a29143f7\",\n            \"title\": \"ff\",\n            \"message\": \"hh\",\n            \"created_at\": 1680324192666,\n            \"updated_at\": 1680324192666\n        },\n        {\n            \"note_id\": \"1680340488384-85cc5c67\",\n            \"title\": \"test title 5\",\n            \"message\": \"test message 6\",\n            \"created_at\": 1680340488384,\n            \"updated_at\": 1680340488384\n        }\n    ]\n}\n   </code></pre>"
+      operationId: getAgentAssistNotes
+      parameters:
+      - name: company_id
+        in: path
+        description: Company Id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '201':
+          description: <b>Created</b>, indicating that the submitted creation request has succeed. The response HTTP header <i>Location</i> contains the resource identifier.
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Agent_Assist_Notes'
+        '401':
+          description: '<b>Unauthorized</b> : <i>authentication token</i> empty3, invalid or expired'
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Agent_Assist_Notes'
+        '403':
+          description: <b>403 - Forbidden</b>
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Agent_Assist_Notes'
+        '422':
+          description: '<b>Invalid input</b> : invalid or missing required input.'
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Agent_Assist_Notes'
+        '500':
+          description: '<b>Internal Server Error</b> : unable to process request'
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Agent_Assist_Notes'
+components:
+  schemas:
+    AgentAssistNoteDTO:
+      type: object
+      properties:
+        noteId:
+          type: string
+        title:
+          type: string
+        message:
+          type: string
+    Agent_Assist_Notes:
+      type: object
+      description: ' List of Agent Assist Notes'
+      properties:
+        companyId:
+          type: integer
+          format: int64
+          description: company id
+        agent_assist_note:
+          type: array
+          description: list of Agent Assist Notes
+          items:
+            $ref: '#/components/schemas/AgentAssistNoteDTO'
+      required:
+      - companyId
+  securitySchemes:
+    oAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://apis.egencia.com/auth/v1/token

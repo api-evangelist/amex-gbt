@@ -1,0 +1,93 @@
+openapi: 3.2.0
+info:
+  title: Amex Gbt Availability Probes Controller API
+  version: '1.0'
+  description: 'Operations tagged availability-probes-controller across 4 of this provider''s published API definitions: amex-gbt-service-bi-openapi.json, amex-gbt-service-company-openapi.json, amex-gbt-service-dutyofcare-openapi.json, amex-gbt-service-openconnect-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://apis.egencia.com/bi/api
+  description: Generated server url
+- url: https://apis.egencia.com/openconnect/api
+  description: API Server
+- url: https://apis.egencia.com/dutyofcare/api
+  description: Generated server url
+tags:
+- name: availability-probes-controller
+paths:
+  /base/liveness:
+    get:
+      operationId: liveness
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: OK
+      tags:
+      - availability-probes-controller
+    servers:
+    - url: https://apis.egencia.com/bi/api
+      description: Generated server url
+  /base/readiness:
+    get:
+      operationId: readiness
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: OK
+      tags:
+      - availability-probes-controller
+    servers:
+    - url: https://apis.egencia.com/bi/api
+      description: Generated server url
+components:
+  schemas:
+    Health:
+      properties:
+        description:
+          type: string
+        details:
+          type: object
+          additionalProperties:
+            type: object
+        status:
+          type: string
+    Health_2:
+      type: object
+      properties:
+        description:
+          type: string
+        status:
+          type: string
+        details:
+          type: object
+          additionalProperties: {}
+    Health_3:
+      type: object
+      properties:
+        description:
+          type: string
+        details:
+          type: object
+          additionalProperties: {}
+        status:
+          type: string
+  securitySchemes:
+    OAuth2:
+      flows:
+        clientCredentials:
+          tokenUrl: https://apis.egencia.com/auth/v1/token
+      type: oauth2
+    oAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://apis.egencia.com/auth/v1/token
+x-refined-from:
+- amex-gbt-service-bi-openapi.json
+- amex-gbt-service-company-openapi.json
+- amex-gbt-service-dutyofcare-openapi.json
+- amex-gbt-service-openconnect-openapi.json
