@@ -3,29 +3,24 @@ url: https://raw.githubusercontent.com/api-evangelist/amex-gbt/refs/heads/main/a
 name: American Express Global Business Travel
 kind: company
 humanURL: https://www.amexglobalbusinesstravel.com/
-description: American Express Global Business Travel (Amex GBT, NYSE GBTG, headquartered
-  in New York) is the largest business-to-business travel platform in the world, operating
-  in more than 140 countries under the Amex GBT, Egencia and Ovation brands, with CWT
-  acquired in September 2025. Its home market is the United States. In the travel
-  distribution chain Amex GBT is an intermediary rather than a supplier - a travel
-  management company that aggregates air, hotel, rail, car and ground content sourced
-  through the GDS layer, through NDC and through direct supplier connections, then
-  resells it to corporate travel programmes with policy, approval, duty-of-care and
-  reporting wrapped around it. It holds no inventory of its own, but it does hold the
-  booking record, and that is where the switching cost lives. Its API posture is
-  genuinely open at the documentation layer and firmly closed at the runtime layer.
-  The Egencia Developer Center publishes thirteen named APIs and SPIs, and every one
-  of them serves a real, anonymously retrievable OpenAPI 3.1.0 document from
-  apis.egencia.com - no login, no key, no click-through. The identity surface is
-  standards-based (SCIM 2.0 user provisioning over OAuth 2.0 client credentials); the
-  booking, approval, expense, receipt, duty-of-care and reporting surfaces are
-  proprietary Egencia shapes with no OpenTravel, HTNG or IATA NDC schema anywhere in
-  them. Runtime access is customer-account gated - Egencia's own documentation states
-  that "the values for client id and client secret will be provided to the Client
-  after on-boarding to Egencia API platform", and every production endpoint returns
-  401 to an anonymous caller. So - public contracts, gated runtime, a real documented
-  bulk data export in the BI Transactions API, and API terms Egencia reserves the
-  right to change in its sole discretion.
+description: American Express Global Business Travel (Amex GBT, NYSE GBTG, headquartered in New York)
+  is the largest business-to-business travel platform in the world, operating in more than 140 countries
+  under the Amex GBT, Egencia and Ovation brands, with CWT acquired in September 2025. Its home market
+  is the United States. In the travel distribution chain Amex GBT is an intermediary rather than a supplier
+  - a travel management company that aggregates air, hotel, rail, car and ground content sourced through
+  the GDS layer, through NDC and through direct supplier connections, then resells it to corporate travel
+  programmes with policy, approval, duty-of-care and reporting wrapped around it. It holds no inventory
+  of its own, but it does hold the booking record, and that is where the switching cost lives. Its API
+  posture is genuinely open at the documentation layer and firmly closed at the runtime layer. The Egencia
+  Developer Center publishes thirteen named APIs and SPIs, and every one of them serves a real, anonymously
+  retrievable OpenAPI 3.1.0 document from apis.egencia.com - no login, no key, no click-through. The identity
+  surface is standards-based (SCIM 2.0 user provisioning over OAuth 2.0 client credentials); the booking,
+  approval, expense, receipt, duty-of-care and reporting surfaces are proprietary Egencia shapes with
+  no OpenTravel, HTNG or IATA NDC schema anywhere in them. Runtime access is customer-account gated -
+  Egencia's own documentation states that "the values for client id and client secret will be provided
+  to the Client after on-boarding to Egencia API platform", and every production endpoint returns 401
+  to an anonymous caller. So - public contracts, gated runtime, a real documented bulk data export in
+  the BI Transactions API, and API terms Egencia reserves the right to change in its sole discretion.
 deliveryModel:
   model: saas
   open_source: false
@@ -69,16 +64,14 @@ tags:
 - Duty of Care
 - Reporting
 created: '2026-07-28'
-modified: '2026-07-28'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: amex-gbt:amex-gbt-agent-assist-notes-api
   name: American Express Global Business Travel Agent Assist Notes API
-  description: >-
-    The Agent Assist Notes API from American Express Global Business Travel — 1 operation(s) for agent
-    assist notes.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: The Agent Assist Notes API from American Express Global Business Travel — 1 operation(s)
+    for agent assist notes.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - Agent Assist Notes
@@ -143,11 +136,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-approval-api
   name: American Express Global Business Travel Approval API
-  description: >-
-    Approval interface that will get approval custom detail from external client based on the booking
-    data passed in request
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: Approval interface that will get approval custom detail from external client based on the
+    booking data passed in request
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - Approval
@@ -212,11 +203,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-availability-probes-controller-api
   name: American Express Global Business Travel Availability Probes Controller API
-  description: >-
-    The availability-probes-controller API from American Express Global Business Travel — 2 operation(s)
-    for availability-probes-controller.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: The availability-probes-controller API from American Express Global Business Travel — 2
+    operation(s) for availability-probes-controller.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - availability-probes-controller
@@ -281,10 +270,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-bookings-v1-api
   name: American Express Global Business Travel bookings v1 API
-  description: >-
-    The bookings v1 API from American Express Global Business Travel — 12 operation(s) for bookings v1.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: The bookings v1 API from American Express Global Business Travel — 12 operation(s) for
+    bookings v1.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - bookings v1
@@ -349,10 +337,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-bookings-v2-api
   name: American Express Global Business Travel bookings v2 API
-  description: >-
-    The bookings v2 API from American Express Global Business Travel — 2 operation(s) for bookings v2.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: The bookings v2 API from American Express Global Business Travel — 2 operation(s) for bookings
+    v2.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - bookings v2
@@ -417,11 +404,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-company-details-api
   name: American Express Global Business Travel Company Details API
-  description: >-
-    The Company Details API from American Express Global Business Travel — 2 operation(s) for company
-    details.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: The Company Details API from American Express Global Business Travel — 2 operation(s) for
+    company details.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - Company Details
@@ -486,11 +471,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-custom-data-field-cleanup-controller-api
   name: American Express Global Business Travel Custom Data Field Cleanup Controller API
-  description: >-
-    The custom-data-field-cleanup-controller API from American Express Global Business Travel — 1 operation(s)
-    for custom-data-field-cleanup-controller.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: The custom-data-field-cleanup-controller API from American Express Global Business Travel
+    — 1 operation(s) for custom-data-field-cleanup-controller.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - custom-data-field-cleanup-controller
@@ -556,8 +539,7 @@ apis:
 - aid: amex-gbt:amex-gbt-custom-data-fields-cdf-api
   name: American Express Global Business Travel Custom Data Fields (CDF) API
   description: CDF APIs to retrieve Definitions and Manage Values.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - Custom Data Fields (CDF)
@@ -622,11 +604,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-doc-audit-clean-up-controller-api
   name: American Express Global Business Travel Doc Audit Clean Up Controller API
-  description: >-
-    The doc-audit-clean-up-controller API from American Express Global Business Travel — 1 operation(s)
-    for doc-audit-clean-up-controller.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: The doc-audit-clean-up-controller API from American Express Global Business Travel — 1
+    operation(s) for doc-audit-clean-up-controller.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - doc-audit-clean-up-controller
@@ -691,11 +671,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-dutyofcare-data-api
   name: American Express Global Business Travel DutyOfCare Data API
-  description: >-
-    The DutyOfCare Data API from American Express Global Business Travel — 2 operation(s) for dutyofcare
-    data.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: The DutyOfCare Data API from American Express Global Business Travel — 2 operation(s) for
+    dutyofcare data.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - DutyOfCare Data
@@ -760,11 +738,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-ecommerce-settings-controller-api
   name: American Express Global Business Travel Ecommerce Settings Controller API
-  description: >-
-    The ecommerce-settings-controller API from American Express Global Business Travel — 2 operation(s)
-    for ecommerce-settings-controller.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: The ecommerce-settings-controller API from American Express Global Business Travel — 2
+    operation(s) for ecommerce-settings-controller.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - ecommerce-settings-controller
@@ -829,11 +805,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-expense-spi-api
   name: American Express Global Business Travel Expense SPI API
-  description: >-
-    Push Expense and Subscription Operation. This is only an example. The path and the host are specific
-    for each implementor. However, the model is fixed and versioned.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: Push Expense and Subscription Operation. This is only an example. The path and the host
+    are specific for each implementor. However, the model is fixed and versioned.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - Expense SPI
@@ -898,10 +872,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-gdpr-controller-api
   name: American Express Global Business Travel Gdpr Controller API
-  description: >-
-    The gdpr-controller API from American Express Global Business Travel — 1 operation(s) for gdpr-controller.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: The gdpr-controller API from American Express Global Business Travel — 1 operation(s) for
+    gdpr-controller.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - gdpr-controller
@@ -966,10 +939,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-pos-iata-controller-api
   name: American Express Global Business Travel Pos Iata Controller API
-  description: >-
-    The pos-iata-controller API from American Express Global Business Travel — 1 operation(s) for pos-iata-controller.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: The pos-iata-controller API from American Express Global Business Travel — 1 operation(s)
+    for pos-iata-controller.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - pos-iata-controller
@@ -1034,10 +1006,8 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-receipts-api
   name: American Express Global Business Travel Receipts API
-  description: >-
-    The receipts API from American Express Global Business Travel — 1 operation(s) for receipts.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: The receipts API from American Express Global Business Travel — 1 operation(s) for receipts.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - Receipts
@@ -1104,10 +1074,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-redirection-controller-api
   name: American Express Global Business Travel Redirection Controller API
-  description: >-
-    The redirection-controller API from American Express Global Business Travel — 2 operation(s) for redirection-controller.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: The redirection-controller API from American Express Global Business Travel — 2 operation(s)
+    for redirection-controller.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - redirection-controller
@@ -1172,10 +1141,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-resolve-controller-api
   name: American Express Global Business Travel Resolve Controller API
-  description: >-
-    The resolve-controller API from American Express Global Business Travel — 1 operation(s) for resolve-controller.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: The resolve-controller API from American Express Global Business Travel — 1 operation(s)
+    for resolve-controller.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - resolve-controller
@@ -1240,10 +1208,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-schemas-controller-api
   name: American Express Global Business Travel Schemas Controller API
-  description: >-
-    The schemas-controller API from American Express Global Business Travel — 2 operation(s) for schemas-controller.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: The schemas-controller API from American Express Global Business Travel — 2 operation(s)
+    for schemas-controller.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - schemas-controller
@@ -1309,8 +1276,7 @@ apis:
 - aid: amex-gbt:amex-gbt-scim-user-sync-v1-api
   name: American Express Global Business Travel SCIM User Sync V1 API
   description: SCIM 2.0 compliant user sync APIs
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - SCIM User Sync V1
@@ -1376,8 +1342,7 @@ apis:
 - aid: amex-gbt:amex-gbt-scim-user-sync-v2-api
   name: American Express Global Business Travel SCIM User Sync V2 API
   description: SCIM 2.0 compliant user sync APIs version 2.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - SCIM User Sync V2
@@ -1443,8 +1408,7 @@ apis:
 - aid: amex-gbt:amex-gbt-scim-user-sync-v3-api
   name: American Express Global Business Travel SCIM User Sync V3 API
   description: SCIM 2.0 compliant user sync APIs version 3.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - SCIM User Sync V3
@@ -1510,8 +1474,7 @@ apis:
 - aid: amex-gbt:amex-gbt-scim-v1-admin-users-api
   name: American Express Global Business Travel SCIM V1 Admin Users API
   description: SCIM 2.0 compliant admin-users sync APIs
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - scim-v1-admin-users
@@ -1576,11 +1539,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-third-party-acknowledgement-api
   name: American Express Global Business Travel Third Party Acknowledgement API
-  description: >-
-    The Third Party Acknowledgement API from American Express Global Business Travel — 1 operation(s)
+  description: The Third Party Acknowledgement API from American Express Global Business Travel — 1 operation(s)
     for third party acknowledgement.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - Third Party Acknowledgement
@@ -1646,8 +1607,7 @@ apis:
 - aid: amex-gbt:amex-gbt-transaction-service-controller-api
   name: American Express Global Business Travel Transaction Service Controller API
   description: Transaction data operations
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - transaction-service-controller
@@ -1712,12 +1672,10 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-validation-api
   name: American Express Global Business Travel Validation API
-  description: >-
-    Validation interface that will request authorization of booking based on the data provided at checkout
-    time.This is only an example. The path and the host are specific for each implementor. However, the
-    model is fixed and versioned.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: Validation interface that will request authorization of booking based on the data provided
+    at checkout time.This is only an example. The path and the host are specific for each implementor.
+    However, the model is fixed and versioned.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - Validation
@@ -1784,10 +1742,9 @@ apis:
     url: https://apis.egencia.com/bi/v1/api-info
 - aid: amex-gbt:amex-gbt-version-controller-api
   name: American Express Global Business Travel Version Controller API
-  description: >-
-    The version-controller API from American Express Global Business Travel — 1 operation(s) for version-controller.
-  humanURL: >-
-    https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
+  description: The version-controller API from American Express Global Business Travel — 1 operation(s)
+    for version-controller.
+  humanURL: https://www.amexglobalbusinesstravel.com/egencia-developer-center/api-details/user-sync-api
   baseURL: https://apis.egencia.com/openconnect/api
   tags:
   - version-controller
@@ -1888,8 +1845,8 @@ common:
   url: authentication/amex-gbt-authentication.yml
 - type: Conventions
   url: conventions/amex-gbt-conventions.yml
-  name: Cross-cutting request/response semantics - auth style, pagination (three distinct
-    styles), error envelopes (four), media types, tracing, rate-limit signalling
+  name: Cross-cutting request/response semantics - auth style, pagination (three distinct styles), error
+    envelopes (four), media types, tracing, rate-limit signalling
 - type: ErrorCatalog
   url: errors/amex-gbt-error-codes.yml
   name: The EGE-ER-* error code registry across the openconnect and dutyofcare services
@@ -1900,12 +1857,12 @@ common:
   url: lifecycle/amex-gbt-lifecycle.yml
 - type: Deprecation
   url: changelog/amex-gbt-changelog.yml
-  name: Deprecation is announced in the dated per-API change feeds with named attributes and
-    stated removal windows; no standalone policy page and no Sunset header
+  name: Deprecation is announced in the dated per-API change feeds with named attributes and stated removal
+    windows; no standalone policy page and no Sunset header
 - type: ChangeLog
   url: changelog/amex-gbt-changelog.yml
-  name: Dated change feed harvested from the api_updates[] arrays of the Egencia api-info
-    documents (42 entries on the Reporting API alone, back to 2023-12-21)
+  name: Dated change feed harvested from the api_updates[] arrays of the Egencia api-info documents (42
+    entries on the Reporting API alone, back to 2023-12-21)
 - type: ChangeLog
   url: https://apis.egencia.com/bi/v1/api-info
   name: Live Reporting API change feed (api_updates)
@@ -1915,12 +1872,12 @@ common:
   url: data-model/amex-gbt-data-model.yml
 - type: Webhooks
   url: asyncapi/amex-gbt-webhooks.yml
-  name: The five Egencia SPI/webhook surfaces - Expense push, Get Booking push, Receipt push,
-    and the two blocking checkout callbacks (Validation, Approval Customisation)
+  name: The five Egencia SPI/webhook surfaces - Expense push, Get Booking push, Receipt push, and the
+    two blocking checkout callbacks (Validation, Approval Customisation)
 - type: Sandbox
   url: sandbox/amex-gbt-sandbox.yml
-  name: The apis-us-west-2 and apis-eu-west-1 lab environments; gated, no self-serve keys and
-    no published test values
+  name: The apis-us-west-2 and apis-eu-west-1 lab environments; gated, no self-serve keys and no published
+    test values
 - type: Packages
   url: packages/amex-gbt-packages.yml
   name: No first-party client library exists in any public package registry
@@ -1930,15 +1887,14 @@ common:
   url: llms/amex-gbt-llms.txt
 - type: AgentSkill
   url: skills/_index.yml
-  name: Six packaged agent skills grounded in real operationIds - authenticate, export
-    transactions, provision travellers over SCIM, approve/service bookings, duty-of-care
-    tracking, receive the Expense SPI push
+  name: Six packaged agent skills grounded in real operationIds - authenticate, export transactions, provision
+    travellers over SCIM, approve/service bookings, duty-of-care tracking, receive the Expense SPI push
 - type: VulnerabilityDisclosure
   url: security/amex-gbt-vulnerability-disclosure.yml
 - type: Security
   url: https://amexgbt.responsibledisclosure.com/hc/en-us
-  name: Amex GBT Responsible Disclosure programme (Synack-operated); 48-business-hour
-    acknowledgement and researcher safe harbour
+  name: Amex GBT Responsible Disclosure programme (Synack-operated); 48-business-hour acknowledgement
+    and researcher safe harbour
 - type: Overlay
   url: overlays/amex-gbt-reporting-api-overlay.yaml
   name: API Evangelist enhancements for the BI Transactions (Reporting) API
@@ -1959,8 +1915,8 @@ common:
   name: OpenConnect service API reference (Swagger UI over the published OpenAPI)
 - type: GettingStarted
   url: https://apis.egencia.com/bi/v1/api-info
-  name: Reporting API developer guidelines - the estate's onboarding, token-lifetime, incremental
-    pull, optional-attribute and support-routing instructions, published verbatim
+  name: Reporting API developer guidelines - the estate's onboarding, token-lifetime, incremental pull,
+    optional-attribute and support-routing instructions, published verbatim
 - type: Support
   url: https://www.egencia.com/en/contact-questions
   name: Egencia contact and help centre; technical API support is raised as a community case
@@ -1976,23 +1932,22 @@ common:
 - type: Authentication
   url: https://apis.egencia.com/auth/v1/token
 - type: OpenAPI
-  url: openapi/amex-gbt-service-openconnect-openapi.json
-  name: Egencia OpenConnect service definition (all user, booking, approval, CDF and
-    receipt operations plus /gdpr erasure and health probes)
+  url: openapi/_original/amex-gbt-service-openconnect-openapi.json
+  name: Egencia OpenConnect service definition (all user, booking, approval, CDF and receipt operations
+    plus /gdpr erasure and health probes)
 - type: OpenAPI
-  url: openapi/amex-gbt-service-bi-openapi.json
-  name: Egencia BI service definition (all transaction and IATA operations plus /gdpr
-    erasure and health probes)
+  url: openapi/_original/amex-gbt-service-bi-openapi.json
+  name: Egencia BI service definition (all transaction and IATA operations plus /gdpr erasure and health
+    probes)
 - type: OpenAPI
-  url: openapi/amex-gbt-service-dutyofcare-openapi.json
+  url: openapi/_original/amex-gbt-service-dutyofcare-openapi.json
   name: Egencia Duty of Care service definition
 - type: OpenAPI
-  url: openapi/amex-gbt-service-company-openapi.json
+  url: openapi/_original/amex-gbt-service-company-openapi.json
   name: Egencia Company service definition
 - type: PostmanCollection
   url: https://www.postman.com/egenciaapi/egencia-api/collection/n9n3gk7/egencia-api
-  name: Egencia API public Postman workspace (168 requests, publisher handle
-    egenciaapi, not Postman-verified)
+  name: Egencia API public Postman workspace (168 requests, publisher handle egenciaapi, not Postman-verified)
 - type: Company
   url: https://www.amexglobalbusinesstravel.com/about/
 - type: Egencia
