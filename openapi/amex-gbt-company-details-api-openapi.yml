@@ -1,8 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Amex Gbt Company Details API
-  version: '1.0'
-  description: 'Operations tagged Company Details across 2 of this provider''s published API definitions: amex-gbt-company-info-api-openapi.json, amex-gbt-service-company-openapi.json. Each path carries the servers of the definition it was published in.'
+  title: OpenAPI definition Company Details API
+  version: v0
 servers:
 - url: https://apis.egencia.com/openconnect/api
   description: API Server
@@ -13,7 +12,130 @@ paths:
     get:
       tags:
       - Company Details
-      description: "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>Query Parameters</strong></td></tr>\n           <tr>\n               <td>name</td>\n               <td>String</td>\n               <td>Company name to search for (optional)</td>\n           </tr>\n           <tr>\n               <td>company_id</td>\n               <td>Long</td>\n               <td>Specific company ID (optional)</td>\n           </tr>\n           <tr>\n               <td>status</td>\n               <td>List&lt;String&gt;</td>\n               <td>Filter by company status(es) (optional)</td>\n           </tr>\n           <tr>\n               <td>start</td>\n               <td>Integer</td>\n               <td>Pagination start index (default: 0, optional)</td>\n           </tr>\n           <tr>\n               <td>sfid</td>\n               <td>String</td>\n               <td>Salesforce ID (optional)</td>\n           </tr>\n           <tr>\n               <td>count</td>\n               <td>Integer</td>\n               <td>Number of results per page (default: 100, max: 100, optional)</td>\n           </tr>\n           <tr>\n               <td>sort_by</td>\n               <td>List&lt;String&gt;</td>\n               <td>Fields to sort by (default: [\"company_name\"], optional)</td>\n           </tr>\n           <tr>\n               <td>sort_direction</td>\n               <td>String</td>\n               <td>Sort direction: \"ASC\" or \"DESC\" (default: \"ASC\", optional)</td>\n           </tr>\n           <tr>\n               <td>has_finance_consultant</td>\n               <td>Boolean</td>\n               <td>Filter by finance consultant presence (optional)</td>\n           </tr>\n           <tr>\n               <td>comcode</td>\n               <td>Long</td>\n               <td>Company code filter (optional)</td>\n           </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Examples:</b></p>\n\n<p>Searching companies with multiple filters:</p>\n<pre>\n   <code>\n   GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies?name=Acme&status=ACTIVE&count=50&sort_by=company_name&sort_direction=ASC\n       -> 200 OK\n{\n    \"companies\": [\n        {\n            \"company_id\": 60806,\n            \"company_name\": \"Acme Corp\"\n        },\n        {\n            \"company_id\": 60807,\n            \"company_name\": \"Acme Industries\"\n        }\n    ],\n    \"total_results\": 2,\n    \"start\": 0,\n    \"count\": 50\n}   </code></pre>"
+      description: 'Request Parameters
+
+
+        Attribute
+
+
+        Type
+
+
+        Description
+
+
+        Query Parameters
+
+
+        name
+
+        String
+
+        Company name to search for (optional)
+
+
+        company_id
+
+        Long
+
+        Specific company ID (optional)
+
+
+        status
+
+        List<String>
+
+        Filter by company status(es) (optional)
+
+
+        start
+
+        Integer
+
+        Pagination start index (default: 0, optional)
+
+
+        sfid
+
+        String
+
+        Salesforce ID (optional)
+
+
+        count
+
+        Integer
+
+        Number of results per page (default: 100, max: 100, optional)
+
+
+        sort_by
+
+        List<String>
+
+        Fields to sort by (default: ["company_name"], optional)
+
+
+        sort_direction
+
+        String
+
+        Sort direction: "ASC" or "DESC" (default: "ASC", optional)
+
+
+        has_finance_consultant
+
+        Boolean
+
+        Filter by finance consultant presence (optional)
+
+
+        comcode
+
+        Long
+
+        Company code filter (optional)
+
+
+        Examples:
+
+
+        Searching companies with multiple filters:
+
+
+        GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies?name=Acme&status=ACTIVE&count=50&sort_by=company_name&sort_direction=ASC
+
+        -> 200 OK
+
+        {
+
+        "companies": [
+
+        {
+
+        "company_id": 60806,
+
+        "company_name": "Acme Corp"
+
+        },
+
+        {
+
+        "company_id": 60807,
+
+        "company_name": "Acme Industries"
+
+        }
+
+        ],
+
+        "total_results": 2,
+
+        "start": 0,
+
+        "count": 50
+
+        }'
       operationId: searchCompanies
       parameters:
       - name: name
@@ -103,14 +225,51 @@ paths:
             application/json;charset=utf-8:
               schema:
                 $ref: '#/components/schemas/Company_Search_Response'
-    servers:
-    - url: https://apis.egencia.com/openconnect/api
-      description: API Server
+      summary: Search companies
+      x-summary-source: derived
   /v1/companies/{company_id}:
     get:
       tags:
       - Company Details
-      description: "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company for which Company Display Name needs to be fetched</td>\n           </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Examples:</b></p>\n\n<p>Retrieving Company Display Name for company_id : 60806</p>\n<pre>\n   <code>\n   GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/{companyId}\n       -> 200 OK\n{\n    \"company_id\": 60806,\n    \"company_name\": \"TMS Demo Aus\"\n}   </code></pre>"
+      description: 'Request Parameters
+
+
+        Attribute
+
+
+        Type
+
+
+        Description
+
+
+        metadata
+
+
+        companyId
+
+        Integer
+
+        Id of the company for which Company Display Name needs to be fetched
+
+
+        Examples:
+
+
+        Retrieving Company Display Name for company_id : 60806
+
+
+        GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/{companyId}
+
+        -> 200 OK
+
+        {
+
+        "company_id": 60806,
+
+        "company_name": "TMS Demo Aus"
+
+        }'
       operationId: retrieveCompany
       parameters:
       - name: company_id
@@ -139,11 +298,31 @@ paths:
             application/json;charset=utf-8:
               schema:
                 $ref: '#/components/schemas/Company_Display_Name'
-    servers:
-    - url: https://apis.egencia.com/openconnect/api
-      description: API Server
+      summary: Retrieve company
+      x-summary-source: derived
 components:
   schemas:
+    Company_Search_Response:
+      type: object
+      description: Company search results with pagination information
+      properties:
+        count:
+          type: integer
+          format: int32
+          description: Number of results returned
+        start:
+          type: integer
+          format: int32
+          description: Start index for pagination
+        totalResults:
+          type: integer
+          format: int32
+          description: Total number of results found
+        companies:
+          type: array
+          description: List of companies matching search criteria
+          items:
+            $ref: '#/components/schemas/Company_Display_Name'
     PhoneNumber:
       type: object
       properties:
@@ -180,6 +359,33 @@ components:
           - DEACTIVATED
         salesforceCaseNumber:
           type: string
+    User:
+      type: object
+      properties:
+        tuid:
+          type: integer
+          format: int64
+        title:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        userId:
+          type: string
+        email:
+          type: string
+        alternateEmail:
+          type: string
+        role:
+          type: string
+          enum:
+          - ACCOUNT_MANAGER
+          - BILLING_CONTACT
+        phoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
     Address:
       type: object
       properties:
@@ -201,27 +407,6 @@ components:
           type: string
         postalCode:
           type: string
-    Company_Search_Response:
-      type: object
-      description: Company search results with pagination information
-      properties:
-        count:
-          type: integer
-          format: int32
-          description: Number of results returned
-        start:
-          type: integer
-          format: int32
-          description: Start index for pagination
-        totalResults:
-          type: integer
-          format: int32
-          description: Total number of results found
-        companies:
-          type: array
-          description: List of companies matching search criteria
-          items:
-            $ref: '#/components/schemas/Company_Display_Name'
     Company_Display_Name:
       type: object
       description: ' Company Display Name with ComapnyId'
@@ -297,39 +482,9 @@ components:
       required:
       - companyId
       - companyName
-    User:
-      type: object
-      properties:
-        tuid:
-          type: integer
-          format: int64
-        title:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        userId:
-          type: string
-        email:
-          type: string
-        alternateEmail:
-          type: string
-        role:
-          type: string
-          enum:
-          - ACCOUNT_MANAGER
-          - BILLING_CONTACT
-        phoneNumbers:
-          type: array
-          items:
-            $ref: '#/components/schemas/PhoneNumber'
   securitySchemes:
     oAuth2:
       type: oauth2
       flows:
         clientCredentials:
           tokenUrl: https://apis.egencia.com/auth/v1/token
-x-refined-from:
-- amex-gbt-company-info-api-openapi.json
-- amex-gbt-service-company-openapi.json

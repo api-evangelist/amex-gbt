@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Amex Gbt Custom Data Fields (CDF) API
-  version: '1.0'
-  description: 'Operations tagged Custom Data Fields (CDF) across 2 of this provider''s published API definitions: amex-gbt-company-cdf-api-openapi.json, amex-gbt-service-openconnect-openapi.json. Each path carries the servers of the definition it was published in.'
+  title: OpenAPI definition Custom Data Fields (CDF) API
+  version: v0
+  description: CDF APIs to retrieve Definitions and Manage Values.
 servers:
 - url: https://apis.egencia.com/openconnect/api
   description: Generated server url
@@ -12,7 +12,108 @@ tags:
 paths:
   /v1/companies/{companyId}/cdfs:
     get:
-      description: "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company for which CDFs needs to be fetched</td>\n           </tr>\n           <tr>\n               <td>name</td>\n               <td>String</td>\n               <td>Name of the CDF if only a particular CDF needs to be fetched</td>\n           </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Examples:</b></p>\n\n<p>Retrieving CDFs for company_id : 42219</p>\n<pre>\n   <code>\n   GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/42219/cdfs\n       -> 200 OK\n       {\n           \"cdfs\": [\n               {\n                   \"id\": 27,\n                   \"name\": \"Main cost centre\",\n                   \"code\": \"COST_CENTER_1\",\n                   \"status\": \"ACTIVE\",\n                   \"field_type\": \"LIST\"\n               },\n               {\n                   \"id\": 30,\n                   \"name\": \"Secondary cost centre\",\n                   \"code\": \"COST_CENTER_2\",\n                   \"status\": \"ACTIVE\",\n                   \"field_type\": \"LIST\"\n               },\n               {\n                   \"id\": 1884,\n                   \"name\": \"Employee ID\",\n                   \"code\": \"COST_CENTER_3\",\n                   \"status\": \"ACTIVE\",\n                   \"field_type\": \"FREE_FIELD\"\n               },\n               {\n                   \"id\": 31,\n                   \"name\": \"Free field 1\",\n                   \"code\": \"BDC\",\n                   \"status\": \"ACTIVE\",\n                   \"field_type\": \"FREE_FIELD\"\n               }\n           ]\n       }\n   </code></pre>"
+      description: 'Request Parameters
+
+
+        Attribute
+
+
+        Type
+
+
+        Description
+
+
+        metadata
+
+
+        companyId
+
+        Integer
+
+        Id of the company for which CDFs needs to be fetched
+
+
+        name
+
+        String
+
+        Name of the CDF if only a particular CDF needs to be fetched
+
+
+        Examples:
+
+
+        Retrieving CDFs for company_id : 42219
+
+
+        GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/42219/cdfs
+
+        -> 200 OK
+
+        {
+
+        "cdfs": [
+
+        {
+
+        "id": 27,
+
+        "name": "Main cost centre",
+
+        "code": "COST_CENTER_1",
+
+        "status": "ACTIVE",
+
+        "field_type": "LIST"
+
+        },
+
+        {
+
+        "id": 30,
+
+        "name": "Secondary cost centre",
+
+        "code": "COST_CENTER_2",
+
+        "status": "ACTIVE",
+
+        "field_type": "LIST"
+
+        },
+
+        {
+
+        "id": 1884,
+
+        "name": "Employee ID",
+
+        "code": "COST_CENTER_3",
+
+        "status": "ACTIVE",
+
+        "field_type": "FREE_FIELD"
+
+        },
+
+        {
+
+        "id": 31,
+
+        "name": "Free field 1",
+
+        "code": "BDC",
+
+        "status": "ACTIVE",
+
+        "field_type": "FREE_FIELD"
+
+        }
+
+        ]
+
+        }'
       operationId: getCdfDefinitions
       parameters:
       - in: path
@@ -50,12 +151,171 @@ paths:
       summary: Fetch all CDF definitions for a company or corresponding to a CDF name
       tags:
       - Custom Data Fields (CDF)
-    servers:
-    - url: https://apis.egencia.com/openconnect/api
-      description: Generated server url
   /v1/companies/{companyId}/cdfs/{definitionId}/values:
     get:
-      description: "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company</td>\n           </tr>\n           <tr>\n               <td>definitionId</td>\n               <td>Integer</td>\n               <td>Id of the CDF definition for which values needs to be fetched</td>\n           </tr>\n           <tr>\n               <td>value</td>\n               <td>String</td>\n               <td>CDF value to search based on display value/label</td>\n           </tr>\n           <tr>\n               <td>count</td>\n               <td>Integer</td>\n               <td>Count of CDF values to be fetched</td>\n           </tr>\n           <tr>\n               <td>start</td>\n               <td>Integer</td>\n               <td>Start to support pagination</td>\n           </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Examples:</b></p>\n\n<p>Successful response while retrieving CDF values for company_id : 42219 and definition_id : 27</p>\n<pre>\n   <code>\n   GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/42219/cdfs/27/values?count=2&start=0\n       -> 200 OK\n       {\n           \"values\": [\n               {\n                   \"id\": 84429607,\n                   \"value\": \"test A&B\",\n                   \"description\" : \"test A&B\"\n               },\n               {\n                   \"id\": 84740706,\n                   \"value\": \"test AB\",\n                   \"description\" : \"test AB\"\n               }\n           ],\n           \"_links\": {\n               \"next\": {\n                   \"href\": \"https://apis-eu-west-1.lab.egencia.cloud/openconnect-service/v1/companies/42219/cdfs/27/values?count=2&start=2\"\n               }\n           }\n       }\n   </code></pre><br/><p>Successful response to search CDF value : test for company_id : 42219 and definition_id : 27</p>\n<pre>\n   <code>\n   GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/42219/cdfs/27/values?value=test\n       -> 200 OK\n       {\n           \"values\": [\n               {\n                   \"id\": 83932305,\n                   \"value\": \"Testcc1\",\n                   \"child_count\":0\n               },\n               {\n                   \"id\": 84429607,\n                   \"value\": \"testValue1\",\n                   \"child_count\":0\n               },\n               {\n                   \"id\": 84429608,\n                   \"value\": \"testingCdf\",\n                   \"child_count\":0\n               }\n           ]\n       }\n   </code></pre><br/><p>Error response while retrieving CDF values for company_id : 42219 and definition_id : 1884</p>\n<pre>\n   <code>\n   GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/42219/cdfs/1884/values?count=2&start=0\n       -> 422 Unprocessable Entity\n       {\n           \"error\": {\n               \"code\": \"EGE-ER-OS-4006\",\n               \"message\": \"CDF given in request has field type as free field.\"\n           }\n       }\n   </code></pre>"
+      description: 'Request Parameters
+
+
+        Attribute
+
+
+        Type
+
+
+        Description
+
+
+        metadata
+
+
+        companyId
+
+        Integer
+
+        Id of the company
+
+
+        definitionId
+
+        Integer
+
+        Id of the CDF definition for which values needs to be fetched
+
+
+        value
+
+        String
+
+        CDF value to search based on display value/label
+
+
+        count
+
+        Integer
+
+        Count of CDF values to be fetched
+
+
+        start
+
+        Integer
+
+        Start to support pagination
+
+
+        Examples:
+
+
+        Successful response while retrieving CDF values for company_id : 42219 and definition_id : 27
+
+
+        GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/42219/cdfs/27/values?count=2&start=0
+
+        -> 200 OK
+
+        {
+
+        "values": [
+
+        {
+
+        "id": 84429607,
+
+        "value": "test A&B",
+
+        "description" : "test A&B"
+
+        },
+
+        {
+
+        "id": 84740706,
+
+        "value": "test AB",
+
+        "description" : "test AB"
+
+        }
+
+        ],
+
+        "_links": {
+
+        "next": {
+
+        "href": "https://apis-eu-west-1.lab.egencia.cloud/openconnect-service/v1/companies/42219/cdfs/27/values?count=2&start=2"
+
+        }
+
+        }
+
+        }
+
+
+        Successful response to search CDF value : test for company_id : 42219 and definition_id : 27
+
+
+        GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/42219/cdfs/27/values?value=test
+
+        -> 200 OK
+
+        {
+
+        "values": [
+
+        {
+
+        "id": 83932305,
+
+        "value": "Testcc1",
+
+        "child_count":0
+
+        },
+
+        {
+
+        "id": 84429607,
+
+        "value": "testValue1",
+
+        "child_count":0
+
+        },
+
+        {
+
+        "id": 84429608,
+
+        "value": "testingCdf",
+
+        "child_count":0
+
+        }
+
+        ]
+
+        }
+
+
+        Error response while retrieving CDF values for company_id : 42219 and definition_id : 1884
+
+
+        GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/42219/cdfs/1884/values?count=2&start=0
+
+        -> 422 Unprocessable Entity
+
+        {
+
+        "error": {
+
+        "code": "EGE-ER-OS-4006",
+
+        "message": "CDF given in request has field type as free field."
+
+        }
+
+        }'
       operationId: getCdfValues
       parameters:
       - in: path
@@ -111,11 +371,79 @@ paths:
           description: '<b>Internal Server Error</b> : unable to process request'
       security:
       - OAuth2: []
-      summary: Fetch all CDF values for a company and a CDF definition or corresponding to a CDF value
+      summary: Fetch all CDF values for a company and a CDF definition or corresponding to a…
       tags:
       - Custom Data Fields (CDF)
     post:
-      description: "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company</td>\n           </tr>\n           <tr>\n               <td>definitionId</td>\n               <td>Integer</td>\n               <td>Id of the CDF definition</td>\n           </tr>\n           <tr>\n               <td>value</td>\n               <td>String</td>\n               <td>Value of the CDF</td>\n           </tr>\n           <tr>\n               <td>description</td>\n               <td>String</td>\n               <td>Description of the CDF Value</td>\n           </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Examples:</b></p>\n\n<p>Creating CDF value : testws for company_id : 42219 and definition_id : 27</p>\n<pre>\n   <code>\n   POST https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/42219/cdfs/27/values\n       {\n           \"value\":\"testws\",\n           \"description\":\"testws\"\n       }\n   <br>\n   Successful Response: \n       -> 201 Created\n       {\n           \"id\": 84736648\n       }\n   </code></pre>"
+      description: 'Request Parameters
+
+
+        Attribute
+
+
+        Type
+
+
+        Description
+
+
+        metadata
+
+
+        companyId
+
+        Integer
+
+        Id of the company
+
+
+        definitionId
+
+        Integer
+
+        Id of the CDF definition
+
+
+        value
+
+        String
+
+        Value of the CDF
+
+
+        description
+
+        String
+
+        Description of the CDF Value
+
+
+        Examples:
+
+
+        Creating CDF value : testws for company_id : 42219 and definition_id : 27
+
+
+        POST https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/42219/cdfs/27/values
+
+        {
+
+        "value":"testws",
+
+        "description":"testws"
+
+        }
+
+
+        Successful Response:
+
+        -> 201 Created
+
+        {
+
+        "id": 84736648
+
+        }'
       operationId: createCdfValue
       parameters:
       - in: path
@@ -160,12 +488,56 @@ paths:
       summary: Create a new CDF value for a CDF of field type List
       tags:
       - Custom Data Fields (CDF)
-    servers:
-    - url: https://apis.egencia.com/openconnect/api
-      description: Generated server url
   /v1/companies/{companyId}/cdfs/{definitionId}/values/{valueId}:
     delete:
-      description: "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company</td>\n           </tr>\n           <tr>\n               <td>definitionId</td>\n               <td>Integer</td>\n               <td>Id of the CDF definition</td>\n           </tr>\n           <tr>\n               <td>valueId</td>\n               <td>Integer</td>\n               <td>Id of the CDF value for which values needs to be updated</td>\n           </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Examples:</b></p>\n\n<p>Delete CDF value with id : 676598 for company_id : 42219 and definition_id : 27</p>\n<pre>\n   <code>\n   DELETE https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/42219/cdfs/27/values/676598\n   <br>\n   Successful Response: \n       -> 204 No Content\n   </code></pre>"
+      description: 'Request Parameters
+
+
+        Attribute
+
+
+        Type
+
+
+        Description
+
+
+        metadata
+
+
+        companyId
+
+        Integer
+
+        Id of the company
+
+
+        definitionId
+
+        Integer
+
+        Id of the CDF definition
+
+
+        valueId
+
+        Integer
+
+        Id of the CDF value for which values needs to be updated
+
+
+        Examples:
+
+
+        Delete CDF value with id : 676598 for company_id : 42219 and definition_id : 27
+
+
+        DELETE https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/42219/cdfs/27/values/676598
+
+
+        Successful Response:
+
+        -> 204 No Content'
       operationId: deleteCdfValue
       parameters:
       - in: path
@@ -203,7 +575,144 @@ paths:
       tags:
       - Custom Data Fields (CDF)
     get:
-      description: "<p><b>Request Parameters</b></p>\n            <div>\n                <table>\n                    <thead>\n                    <tr>\n                        <th>\n                           Attribute\n                        </th>\n                        <th>\n                            Type\n                        </th>\n                        <th>\n                            Description\n                        </th>\n                    </tr>\n                    </thead>\n                    <tbody>\n                       <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n                       <tr>\n                           <td>companyId</td>\n                           <td>Integer</td>\n                           <td>Id of the company</td>\n                       </tr>\n                       <tr>\n                           <td>definitionId</td>\n                           <td>Integer</td>\n                           <td>Id of the CDF definition for which values needs to be fetched</td>\n                       </tr>\n                       <tr>\n                           <td>value</td>\n                           <td>String</td>\n                           <td>CDF value to search based on display value/label</td>\n                       </tr>\n                       <tr>\n                           <td>count</td>\n                           <td>Integer</td>\n                           <td>Count of CDF values to be fetched</td>\n                       </tr>\n                       <tr>\n                           <td>start</td>\n                           <td>Integer</td>\n                           <td>Start to support pagination</td>\n                       </tr>\n                       <tr>\n                           <td>include_links</td>\n                           <td>Boolean</td>\n                           <td>Fetch CDF Links Flag</td>\n                       </tr>\n                    </tbody>\n                </table>\n            </div>\n            <p><b>Examples:</b></p>\n            <p>Successful response while retrieving linked CDF values for company_id : 53092, definition_id : 27, value=84428977</p>\n            <pre>\n               <code>\n               GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/53092/cdfs/27/values/84428977?start=0&count=100&include_links=false\n                   -> 200 OK\n                   {\n                       {\n                         \"id\": 84428977,\n                         \"value\": \"Value 1\",\n                         \"child_count\": 4\n                   }\n               </code>\n            </pre>\n            <br/>\n            <p>Successful response to retrieve linked CDF value : test for company_id : 53092, definition_id : 27, value : 84428977</p>\n            <pre>\n               <code>\n               GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api//v1/companies/53092/cdfs/27/values/84428977?start=0&count=100&include_links=true\n                   -> 200 OK\n                   {\n                    {\n                      \"id\": 84428977,\n                      \"value\": \"Value 1\",\n                      \"child_count\": 4,\n                      \"links\": {\n                       \"child\": [\n                         {\n                           \"value\": \"Link with CC1 - 1\",\n                           \"id\": \"6171129\"\n                         },\n                         {\n                           \"value\": \"Link with CC1 - 2\",\n                           \"id\": \"6171130\"\n                         },\n                         {\n                           \"value\": \"Link with CC1 - 3\",\n                           \"id\": \"6171131\"\n                         },\n                         {\n                           \"value\": \"Link with CC1 - 4\",\n                           \"id\": \"7685276\"\n                         }\n                       ]\n                       }\n                      }\n               </code>\n            </pre>\n            <br/>\n"
+      description: 'Request Parameters
+
+
+        Attribute
+
+
+        Type
+
+
+        Description
+
+
+        metadata
+
+
+        companyId
+
+        Integer
+
+        Id of the company
+
+
+        definitionId
+
+        Integer
+
+        Id of the CDF definition for which values needs to be fetched
+
+
+        value
+
+        String
+
+        CDF value to search based on display value/label
+
+
+        count
+
+        Integer
+
+        Count of CDF values to be fetched
+
+
+        start
+
+        Integer
+
+        Start to support pagination
+
+
+        include_links
+
+        Boolean
+
+        Fetch CDF Links Flag
+
+
+        Examples:
+
+
+        Successful response while retrieving linked CDF values for company_id : 53092, definition_id : 27, value=84428977
+
+
+        GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/53092/cdfs/27/values/84428977?start=0&count=100&include_links=false
+
+        -> 200 OK
+
+        {
+
+        {
+
+        "id": 84428977,
+
+        "value": "Value 1",
+
+        "child_count": 4
+
+        }
+
+
+        Successful response to retrieve linked CDF value : test for company_id : 53092, definition_id : 27, value : 84428977
+
+
+        GET https://apis-eu-west-1.lab.egencia.cloud/openconnect/api//v1/companies/53092/cdfs/27/values/84428977?start=0&count=100&include_links=true
+
+        -> 200 OK
+
+        {
+
+        {
+
+        "id": 84428977,
+
+        "value": "Value 1",
+
+        "child_count": 4,
+
+        "links": {
+
+        "child": [
+
+        {
+
+        "value": "Link with CC1 - 1",
+
+        "id": "6171129"
+
+        },
+
+        {
+
+        "value": "Link with CC1 - 2",
+
+        "id": "6171130"
+
+        },
+
+        {
+
+        "value": "Link with CC1 - 3",
+
+        "id": "6171131"
+
+        },
+
+        {
+
+        "value": "Link with CC1 - 4",
+
+        "id": "7685276"
+
+        }
+
+        ]
+
+        }
+
+        }'
       operationId: getCdfLinkedValue
       parameters:
       - in: path
@@ -268,7 +777,76 @@ paths:
       tags:
       - Custom Data Fields (CDF)
     put:
-      description: "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company</td>\n           </tr>\n           <tr>\n               <td>definitionId</td>\n               <td>Integer</td>\n               <td>Id of the CDF definition</td>\n           </tr>\n           <tr>\n               <td>valueId</td>\n               <td>Integer</td>\n               <td>Id of the CDF value for which values needs to be updated</td>\n           </tr>\n           <tr>\n               <td>value</td>\n               <td>String</td>\n               <td>Value of the CDF</td>\n           </tr>\n           <tr>\n               <td>description</td>\n               <td>String</td>\n               <td>Description of the CDF Value</td>\n           </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Examples:</b></p>\n\n<p>Updating CDF value for company_id : 42219, definition_id : 27 and value_id : 676598</p>\n<pre>\n   <code>\n   PUT https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/42219/cdfs/27/values/676598\n       {\n           \"value\":\"testWSNew\",\n           \"description\":\"testWSNew\"\n       }\n   <br>\n   Successful Response: \n       -> 204 No Content\n   </code></pre>"
+      description: 'Request Parameters
+
+
+        Attribute
+
+
+        Type
+
+
+        Description
+
+
+        metadata
+
+
+        companyId
+
+        Integer
+
+        Id of the company
+
+
+        definitionId
+
+        Integer
+
+        Id of the CDF definition
+
+
+        valueId
+
+        Integer
+
+        Id of the CDF value for which values needs to be updated
+
+
+        value
+
+        String
+
+        Value of the CDF
+
+
+        description
+
+        String
+
+        Description of the CDF Value
+
+
+        Examples:
+
+
+        Updating CDF value for company_id : 42219, definition_id : 27 and value_id : 676598
+
+
+        PUT https://apis-eu-west-1.lab.egencia.cloud/openconnect/api/v1/companies/42219/cdfs/27/values/676598
+
+        {
+
+        "value":"testWSNew",
+
+        "description":"testWSNew"
+
+        }
+
+
+        Successful Response:
+
+        -> 204 No Content'
       operationId: updateCdfValue
       parameters:
       - in: path
@@ -315,12 +893,63 @@ paths:
       summary: Update a CDF value for a CDF of field type List
       tags:
       - Custom Data Fields (CDF)
-    servers:
-    - url: https://apis.egencia.com/openconnect/api
-      description: Generated server url
   /v1/companies/{companyId}/cdfs/{definitionId}/values/{valueId}/link:
     patch:
-      description: "<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n           <tr><td colspan=\"3\"><strong>metadata</strong></td></tr>\n           <tr>\n               <td>companyId</td>\n               <td>Integer</td>\n               <td>Id of the company</td>\n           </tr>\n           <tr>\n               <td>definitionId</td>\n               <td>Integer</td>\n               <td>Id of the CDF definition</td>\n           </tr>\n           <tr>\n               <td>valueId</td>\n               <td>Integer</td>\n               <td>Id of the CDF value for which values needs to be updated</td>\n           </tr>\n           <tr>\n               <td>op</td>\n               <td>String</td>\n               <td>Operation to be perfomed on Cdf Link</td>\n           </tr>\n           <tr>\n               <td>link</td>\n               <td>String</td>\n               <td>Cdf link on which operation is to be perfomed</td>\n           </tr>\n           <tr>\n               <td>value</td>\n               <td>List</td>\n               <td>Value of the CDF which should be numeric</td>\n           </tr>\n        </tbody>\n    </table>\n</div>\n"
+      description: 'Request Parameters
+
+
+        Attribute
+
+
+        Type
+
+
+        Description
+
+
+        metadata
+
+
+        companyId
+
+        Integer
+
+        Id of the company
+
+
+        definitionId
+
+        Integer
+
+        Id of the CDF definition
+
+
+        valueId
+
+        Integer
+
+        Id of the CDF value for which values needs to be updated
+
+
+        op
+
+        String
+
+        Operation to be perfomed on Cdf Link
+
+
+        link
+
+        String
+
+        Cdf link on which operation is to be perfomed
+
+
+        value
+
+        List
+
+        Value of the CDF which should be numeric'
       operationId: patchCdfValue
       parameters:
       - in: path
@@ -404,88 +1033,11 @@ paths:
           description: '<b>Internal Server Error</b> : unable to process request'
       security:
       - OAuth2: []
-      summary: Update CDF Value by adding or removing child/parent links. This endpoint is available for CC1/CC2 linking for offices in EU/APAC.
+      summary: Update CDF Value by adding or removing child/parent links.
       tags:
       - Custom Data Fields (CDF)
-    servers:
-    - url: https://apis.egencia.com/openconnect/api
-      description: Generated server url
 components:
   schemas:
-    CdfDefinition:
-      type: object
-      description: CDF Definition
-      properties:
-        code:
-          type: string
-          description: CDF definition code
-        fieldType:
-          type: string
-          description: CDF type
-          enum:
-          - FREE_FIELD, LIST
-        id:
-          type: integer
-          format: int64
-          description: CDF definition id
-        maxLength:
-          type: integer
-          format: int32
-          description: CDF max length
-        name:
-          type: string
-          description: CDF definition name
-        rules:
-          type: array
-          description: CDF definition rule
-          items:
-            $ref: '#/components/schemas/CdfDefinitionRule'
-        status:
-          type: string
-          description: CDF definition status
-          enum:
-          - ACTIVE
-          - PENDING
-          - DELETED
-          - INACTIVE
-      title: CDFDefinition
-    CdfValuesResponse:
-      type: object
-      description: CDF values response based on different user filters
-      properties:
-        _links:
-          $ref: '#/components/schemas/Links'
-        values:
-          type: array
-          description: CDF Values
-          items:
-            $ref: '#/components/schemas/CdfValue'
-      title: CDFValuesResponse
-    Links:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/Link'
-    CdfLinkValue:
-      type: object
-      description: Link values
-      properties:
-        id:
-          type: string
-          description: Linked CDF id
-        value:
-          type: string
-          description: Linked CDF value
-      title: LinkValues
-    CdfDefinitions:
-      type: object
-      description: CDF Definitions
-      properties:
-        cdfs:
-          type: array
-          description: List of CDF Definitions for the company
-          items:
-            $ref: '#/components/schemas/CdfDefinition'
-      title: CDFDefinitions
     JsonPatchRequest:
       type: object
       properties:
@@ -537,32 +1089,6 @@ components:
           type: string
         type:
           type: string
-    CdfValue:
-      type: object
-      description: CDF value response based on different user filters
-      properties:
-        childCount:
-          type: integer
-          format: int32
-          description: Count of child links
-        description:
-          type: string
-          description: CDF value description. This field is mandatory for creating/updating NA Department Code CDF values
-        id:
-          type: integer
-          format: int64
-          description: CDF value ID
-        parentCount:
-          type: integer
-          format: int32
-          description: Count of parent links
-        value:
-          type: string
-          description: CDF value name. By default, maximum supported characters is 30 for LIST type and 50 for FREE_FIELD.
-          minLength: 1
-      required:
-      - value
-      title: CDFValueResponse
     CdfValueLinks:
       type: object
       description: Linked CDF value response based on different user filters
@@ -592,6 +1118,33 @@ components:
       required:
       - value
       title: CdfValueLinks
+    CdfLinkValue:
+      type: object
+      description: Link values
+      properties:
+        id:
+          type: string
+          description: Linked CDF id
+        value:
+          type: string
+          description: Linked CDF value
+      title: LinkValues
+    CdfValuesResponse:
+      type: object
+      description: CDF values response based on different user filters
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        values:
+          type: array
+          description: CDF Values
+          items:
+            $ref: '#/components/schemas/CdfValue'
+      title: CDFValuesResponse
+    Links:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/Link'
     CdfLinks:
       type: object
       description: Linked CDF value
@@ -607,12 +1160,82 @@ components:
           items:
             $ref: '#/components/schemas/CdfLinkValue'
       title: Links
+    CdfValue:
+      type: object
+      description: CDF value response based on different user filters
+      properties:
+        childCount:
+          type: integer
+          format: int32
+          description: Count of child links
+        description:
+          type: string
+          description: CDF value description. This field is mandatory for creating/updating NA Department Code CDF values
+        id:
+          type: integer
+          format: int64
+          description: CDF value ID
+        parentCount:
+          type: integer
+          format: int32
+          description: Count of parent links
+        value:
+          type: string
+          description: CDF value name. By default, maximum supported characters is 30 for LIST type and 50 for FREE_FIELD.
+          minLength: 1
+      required:
+      - value
+      title: CDFValueResponse
+    CdfDefinition:
+      type: object
+      description: CDF Definition
+      properties:
+        code:
+          type: string
+          description: CDF definition code
+        fieldType:
+          type: string
+          description: CDF type
+          enum:
+          - FREE_FIELD, LIST
+        id:
+          type: integer
+          format: int64
+          description: CDF definition id
+        maxLength:
+          type: integer
+          format: int32
+          description: CDF max length
+        name:
+          type: string
+          description: CDF definition name
+        rules:
+          type: array
+          description: CDF definition rule
+          items:
+            $ref: '#/components/schemas/CdfDefinitionRule'
+        status:
+          type: string
+          description: CDF definition status
+          enum:
+          - ACTIVE
+          - PENDING
+          - DELETED
+          - INACTIVE
+      title: CDFDefinition
+    CdfDefinitions:
+      type: object
+      description: CDF Definitions
+      properties:
+        cdfs:
+          type: array
+          description: List of CDF Definitions for the company
+          items:
+            $ref: '#/components/schemas/CdfDefinition'
+      title: CDFDefinitions
   securitySchemes:
     OAuth2:
       flows:
         clientCredentials:
           tokenUrl: https://apis.egencia.com/auth/v1/token
       type: oauth2
-x-refined-from:
-- amex-gbt-company-cdf-api-openapi.json
-- amex-gbt-service-openconnect-openapi.json

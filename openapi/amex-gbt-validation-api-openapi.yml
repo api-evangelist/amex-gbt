@@ -8,7 +8,7 @@ servers:
   description: Generated server url
 tags:
 - description: Validation interface that will request authorization of booking based on the data provided at checkout time.This is only an example. The path and the host are specific for each implementor. However, the model is fixed and versioned.
-  name: validation
+  name: Validation
 paths:
   /v1/validateFields:
     post:
@@ -57,24 +57,51 @@ paths:
       - Basic Auth Credentials scheme: []
       summary: Validate the booking fields
       tags:
-      - validation
+      - Validation
 components:
   schemas:
-    ErrorField:
-      description: Validation error field
+    ValidationField:
+      description: Validation field
       properties:
-        error_description:
-          type: string
-          description: 'The error description provided by the Consumer in the language specified in the request.
-
-            This messages will be displayed to the user so that he can understand and correct the information in the form.'
-        expected_value:
-          type: string
-          description: The expected value for the field. Currently not supported in this version.
         name:
           type: string
-          description: The name of field which is not valid.
-      title: Validation error field
+          description: The name of field which needs to be validated for.
+          example: Project Code
+        value:
+          type: string
+          description: The Value of the corresponding field.
+          example: F_AUTO
+      title: Validation field
+    Traveler:
+      description: Traveler details
+      properties:
+        email:
+          type: string
+          description: Email address of the traveler.
+          example: test@egencia.com
+        user_id:
+          type: integer
+          format: int64
+          description: TUID (Egencia Travelers Unique Identifier) of the traveler.
+          example: 454545
+        validation_fields:
+          type: array
+          description: The list of the fields and their corresponding values which needs to be validated.
+          items:
+            $ref: '#/components/schemas/ValidationField'
+      title: Traveler
+    CDFValidationResponse:
+      description: Validation response
+      properties:
+        errors:
+          type: array
+          description: The List of errors for the traveler.
+          items:
+            $ref: '#/components/schemas/Error'
+        valid:
+          type: boolean
+          description: The value describes whether validation was successful or failure.
+      title: Validation Response
     CDFValidationRequest:
       description: Validation request
       properties:
@@ -114,49 +141,6 @@ components:
             type: object
             description: Placeholder that can accommodate trip Information.
       title: Validation Request
-    ValidationField:
-      description: Validation field
-      properties:
-        name:
-          type: string
-          description: The name of field which needs to be validated for.
-          example: Project Code
-        value:
-          type: string
-          description: The Value of the corresponding field.
-          example: F_AUTO
-      title: Validation field
-    Error:
-      description: Validation error
-      properties:
-        error_fields:
-          type: array
-          description: The list of field which are not valid.
-          items:
-            $ref: '#/components/schemas/ErrorField'
-        user_id:
-          type: integer
-          format: int32
-          description: TUID (Egencia Travelers Unique Identifier) of the traveler.
-      title: Validation error
-    Traveler:
-      description: Traveler details
-      properties:
-        email:
-          type: string
-          description: Email address of the traveler.
-          example: test@egencia.com
-        user_id:
-          type: integer
-          format: int64
-          description: TUID (Egencia Travelers Unique Identifier) of the traveler.
-          example: 454545
-        validation_fields:
-          type: array
-          description: The list of the fields and their corresponding values which needs to be validated.
-          items:
-            $ref: '#/components/schemas/ValidationField'
-      title: Traveler
     BookerForThirdParty:
       description: Booker details
       properties:
@@ -178,15 +162,31 @@ components:
           description: TUID (Egencia Travelers Unique Identifier) of the user who is doing the booking.
           example: 12345
       title: Booker
-    CDFValidationResponse:
-      description: Validation response
+    ErrorField:
+      description: Validation error field
       properties:
-        errors:
+        error_description:
+          type: string
+          description: 'The error description provided by the Consumer in the language specified in the request.
+
+            This messages will be displayed to the user so that he can understand and correct the information in the form.'
+        expected_value:
+          type: string
+          description: The expected value for the field. Currently not supported in this version.
+        name:
+          type: string
+          description: The name of field which is not valid.
+      title: Validation error field
+    Error:
+      description: Validation error
+      properties:
+        error_fields:
           type: array
-          description: The List of errors for the traveler.
+          description: The list of field which are not valid.
           items:
-            $ref: '#/components/schemas/Error'
-        valid:
-          type: boolean
-          description: The value describes whether validation was successful or failure.
-      title: Validation Response
+            $ref: '#/components/schemas/ErrorField'
+        user_id:
+          type: integer
+          format: int32
+          description: TUID (Egencia Travelers Unique Identifier) of the traveler.
+      title: Validation error

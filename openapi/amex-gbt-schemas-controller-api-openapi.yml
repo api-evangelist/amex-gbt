@@ -20,6 +20,8 @@ paths:
           description: OK
       tags:
       - schemas-controller
+      summary: Get schemas
+      x-summary-source: derived
   /v2/Schemas/{id}:
     get:
       operationId: getSchemaById
@@ -38,8 +40,157 @@ paths:
           description: OK
       tags:
       - schemas-controller
+      summary: Get schema by id
+      x-summary-source: derived
 components:
   schemas:
+    SearchResponse:
+      type: object
+      description: The complex model containing filtered fields from user schema.
+      properties:
+        emails:
+          type: array
+          description: The email addresses associated with the user account.
+          items:
+            $ref: '#/components/schemas/EmailSchema'
+          maxItems: 1
+          minItems: 1
+        name:
+          $ref: '#/components/schemas/NameSchema'
+          description: The name details of the user like first name, last name, etc. This is a mandatory property.
+        urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse:
+          $ref: '#/components/schemas/AdminUserSchema'
+          description: Extended custom attributes specific to Egencia travel management system.
+        userName:
+          type: string
+          description: The username of the user
+      required:
+      - emails
+      - name
+      - urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse
+    PointOfSaleSchema:
+      type: object
+      description: The complex model containing point of sale association.
+      properties:
+        operation:
+          type: string
+          description: The operation for point of sale
+          enum:
+          - REMOVE
+          - ADD
+          - UPDATE
+          - STATUS_CHANGE
+        pointOfSaleId:
+          type: integer
+          format: int64
+          description: The point of sale id
+          minimum: 1
+        role:
+          type: string
+          description: The role of the user against POS
+        status:
+          type: string
+          description: The admin user status
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - PENDING
+          - DELETED
+        userId:
+          type: integer
+          format: int64
+          description: The admin user id
+      required:
+      - pointOfSaleId
+      - role
+      title: Name
+    Meta:
+      type: 'null'
+      properties:
+        created:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastModified:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        location:
+          type:
+          - string
+          - 'null'
+          format: uri
+        resourceType:
+          type:
+          - string
+          - 'null'
+        version:
+          type:
+          - string
+          - 'null'
+    NameSchema:
+      type: object
+      description: The complex model containing name attributes of the user.
+      properties:
+        familyName:
+          type: string
+          description: The family or last name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
+          maxLength: 40
+          minLength: 0
+        formatted:
+          type: string
+          description: The formatted name of the user
+        givenName:
+          type: string
+          description: The given or first name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
+          maxLength: 40
+          minLength: 0
+        middleName:
+          type: string
+          description: The middle name of the user. Maximum supported characters is 40.
+          maxLength: 40
+          minLength: 0
+      required:
+      - familyName
+      - givenName
+      title: Name
+    AdminUserSchema:
+      type: object
+      description: The extended custom attributes specific to Egencia travel management system.
+      properties:
+        department:
+          type: string
+          description: The department of the admin user.
+          maxLength: 40
+          minLength: 0
+        geography:
+          type: string
+          description: The geography of the admin user.
+          maxLength: 40
+          minLength: 0
+        partner:
+          type: string
+          description: The partner of the admin user.
+          maxLength: 40
+          minLength: 0
+        pointOfSales:
+          type: array
+          description: The pointOfSales of the admin user.
+          items:
+            $ref: '#/components/schemas/PointOfSaleSchema'
+          maxItems: 2147483647
+          minItems: 1
+        status:
+          type: string
+          description: To update status for all Point Of Sales
+      required:
+      - department
+      - geography
+      - partner
+      - pointOfSales
+      title: Admin user
     AttributeDefinition:
       type: object
       properties:
@@ -113,42 +264,6 @@ components:
       - required
       - returned
       - type
-    PointOfSaleSchema:
-      type: object
-      description: The complex model containing point of sale association.
-      properties:
-        operation:
-          type: string
-          description: The operation for point of sale
-          enum:
-          - REMOVE
-          - ADD
-          - UPDATE
-          - STATUS_CHANGE
-        pointOfSaleId:
-          type: integer
-          format: int64
-          description: The point of sale id
-          minimum: 1
-        role:
-          type: string
-          description: The role of the user against POS
-        status:
-          type: string
-          description: The admin user status
-          enum:
-          - ACTIVE
-          - INACTIVE
-          - PENDING
-          - DELETED
-        userId:
-          type: integer
-          format: int64
-          description: The admin user id
-      required:
-      - pointOfSaleId
-      - role
-      title: Name
     SchemaResource:
       type: object
       properties:
@@ -182,67 +297,6 @@ components:
       required:
       - attributes
       - id
-    AdminUserSchema:
-      type: object
-      description: The extended custom attributes specific to Egencia travel management system.
-      properties:
-        department:
-          type: string
-          description: The department of the admin user.
-          maxLength: 40
-          minLength: 0
-        geography:
-          type: string
-          description: The geography of the admin user.
-          maxLength: 40
-          minLength: 0
-        partner:
-          type: string
-          description: The partner of the admin user.
-          maxLength: 40
-          minLength: 0
-        pointOfSales:
-          type: array
-          description: The pointOfSales of the admin user.
-          items:
-            $ref: '#/components/schemas/PointOfSaleSchema'
-          maxItems: 2147483647
-          minItems: 1
-        status:
-          type: string
-          description: To update status for all Point Of Sales
-      required:
-      - department
-      - geography
-      - partner
-      - pointOfSales
-      title: Admin user
-    NameSchema:
-      type: object
-      description: The complex model containing name attributes of the user.
-      properties:
-        familyName:
-          type: string
-          description: The family or last name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-        formatted:
-          type: string
-          description: The formatted name of the user
-        givenName:
-          type: string
-          description: The given or first name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-        middleName:
-          type: string
-          description: The middle name of the user. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-      required:
-      - familyName
-      - givenName
-      title: Name
     EmailSchema:
       type: object
       description: The complex model containing email details of the user.
@@ -263,76 +317,6 @@ components:
       - type
       - value
       title: Email
-    Meta:
-      type: 'null'
-      properties:
-        created:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        lastModified:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        location:
-          type:
-          - string
-          - 'null'
-          format: uri
-        resourceType:
-          type:
-          - string
-          - 'null'
-        version:
-          type:
-          - string
-          - 'null'
-    SearchResponse:
-      type: object
-      description: The complex model containing filtered fields from user schema.
-      properties:
-        emails:
-          type: array
-          description: The email addresses associated with the user account.
-          items:
-            $ref: '#/components/schemas/EmailSchema'
-          maxItems: 1
-          minItems: 1
-        name:
-          $ref: '#/components/schemas/NameSchema'
-          description: The name details of the user like first name, last name, etc. This is a mandatory property.
-        urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse:
-          $ref: '#/components/schemas/AdminUserSchema'
-          description: Extended custom attributes specific to Egencia travel management system.
-        userName:
-          type: string
-          description: The username of the user
-      required:
-      - emails
-      - name
-      - urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse
-    MetaSchema:
-      type: object
-      description: A complex attribute containing resource metadata.
-      properties:
-        created:
-          type: string
-          format: date-time
-          description: The creation time metadata.
-        lastModified:
-          type: string
-          format: date-time
-          description: The last modification time.
-        location:
-          type: string
-          format: uri
-          description: The location of the user resource accessible by URI.
-        version:
-          type: string
-          description: The version of the resource.
-      title: Meta
     ListResponse:
       type: object
       description: This is a list response schema containing the resources returned based on the filtering condition.
@@ -362,6 +346,26 @@ components:
       required:
       - schemas
       title: User Search Response schema
+    MetaSchema:
+      type: object
+      description: A complex attribute containing resource metadata.
+      properties:
+        created:
+          type: string
+          format: date-time
+          description: The creation time metadata.
+        lastModified:
+          type: string
+          format: date-time
+          description: The last modification time.
+        location:
+          type: string
+          format: uri
+          description: The location of the user resource accessible by URI.
+        version:
+          type: string
+          description: The version of the resource.
+      title: Meta
   securitySchemes:
     OAuth2:
       flows:

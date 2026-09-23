@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Amex Gbt SCIM User Sync V3 API
-  version: '1.0'
-  description: 'Operations tagged SCIM User Sync V3 across 2 of this provider''s published API definitions: amex-gbt-service-openconnect-openapi.json, amex-gbt-user-sync-api-openapi.json. Each path carries the servers of the definition it was published in.'
+  title: OpenAPI definition SCIM User Sync V3 API
+  version: v0
+  description: SCIM 2.0 compliant user sync APIs version 3.
 servers:
 - url: https://apis.egencia.com/openconnect/api
   description: Generated server url
@@ -12,7 +12,20 @@ tags:
 paths:
   /scim/v3/Users:
     get:
-      description: "<p>Search/retrieve users based on the filter string parameter. Please be cautious if you are using organization token, search API will return users of all associated companies of parent company's org id if company is not provided in the filter criteria.</p>\n<div>\n<p>Results are returned in ascending order of userIds.</p>\n<p><b>Note: We only support search by email, name, userName and singleSignOnId. Since filter attribute contains special characters like square brackets, clients need to encode the filter attribute value.</b></p>\n<pre>\n    <code>\n        For search by email with value as test@egencia.com, you need to pass encoded value in filter which will be :\n        filter = emails%5Bvalue%20eq%20%22test%40egencia.com%22%5D\n        which is the encoded value for filter = emails[value eq \"test@egencia.com\"]\n    </code>\n</pre>\n"
+      description: 'Search/retrieve users based on the filter string parameter. Please be cautious if you are using organization token, search API will return users of all associated companies of parent company''s org id if company is not provided in the filter criteria.
+
+
+        Results are returned in ascending order of userIds.
+
+
+        Note: We only support search by email, name, userName and singleSignOnId. Since filter attribute contains special characters like square brackets, clients need to encode the filter attribute value.
+
+
+        For search by email with value as test@egencia.com, you need to pass encoded value in filter which will be :
+
+        filter = emails%5Bvalue%20eq%20%22test%40egencia.com%22%5D
+
+        which is the encoded value for filter = emails[value eq "test@egencia.com"]'
       operationId: getUsers
       parameters:
       - description: SCIM compliant filter attribute to take query string. If you are using any external tool to make the API call, please make sure to encode the filter value.
@@ -243,7 +256,7 @@ paths:
           description: '<b>Service unavailable</b> : Unable to process request at the moment.'
       security:
       - OAuth2: []
-      summary: Return list of users based on the filter condition.
+      summary: Return list of users based on the filter condition
       tags:
       - SCIM User Sync V3
     post:
@@ -821,15 +834,47 @@ paths:
           description: '<b>Service unavailable</b> : Unable to process request at the moment.'
       security:
       - OAuth2: []
-      summary: Create a new user in the system with the requested information.
+      summary: Create a new user in the system with the requested information
       tags:
       - SCIM User Sync V3
-    servers:
-    - url: https://apis.egencia.com/openconnect/api
-      description: Generated server url
   /scim/v3/Users/{userId}:
     delete:
-      description: "<p>Delete the user with the given user Id in the path</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n                Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>userId</td>\n            <td>String</td>\n            <td>User Id of the user to be deleted</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Examples:</b></p>\n<p>Replace {baseUrl} with the actual value of Egencia APIs host. Please refer Base Urls section under API Overview page of Egencia Developer Center.</p>\n<p>Deleting a user with user Id : test_user_id</p>\n<pre>\n    <code>\n        DELETE {baseUrl}/openconnect/api/scim/v3/Users/test_user_id\n        <b>Response:</b>\n            -> 204 No Content\n   </code>\n</pre>\n"
+      description: 'Delete the user with the given user Id in the path
+
+
+        Request Parameters
+
+
+        Attribute
+
+
+        Type
+
+
+        Description
+
+
+        userId
+
+        String
+
+        User Id of the user to be deleted
+
+
+        Examples:
+
+
+        Replace {baseUrl} with the actual value of Egencia APIs host. Please refer Base Urls section under API Overview page of Egencia Developer Center.
+
+
+        Deleting a user with user Id : test_user_id
+
+
+        DELETE {baseUrl}/openconnect/api/scim/v3/Users/test_user_id
+
+        Response:
+
+        -> 204 No Content'
       operationId: deleteUserUser
       parameters:
       - description: User Id of the user to be deleted
@@ -908,7 +953,7 @@ paths:
           description: '<b>Service unavailable</b> : Unable to process request at the moment.'
       security:
       - OAuth2: []
-      summary: Delete the user in the system with the given user Id.
+      summary: Delete the user in the system with the given user Id
       tags:
       - SCIM User Sync V3
     get:
@@ -1110,7 +1155,7 @@ paths:
           description: '<b>Service unavailable</b> : Unable to process request at the moment.'
       security:
       - OAuth2: []
-      summary: Retrieves the user details for a requested user identifier.
+      summary: Retrieves the user details for a requested user identifier
       tags:
       - SCIM User Sync V3
     patch:
@@ -1627,7 +1672,7 @@ paths:
           description: '<b>Service unavailable</b> : Unable to process request at the moment.'
       security:
       - OAuth2: []
-      summary: Perform patch operation on the user with the given user Id.
+      summary: Perform patch operation on the user with the given user Id
       tags:
       - SCIM User Sync V3
     put:
@@ -2216,12 +2261,9 @@ paths:
           description: '<b>Service unavailable</b> : Unable to process request at the moment.'
       security:
       - OAuth2: []
-      summary: Updates an existing user in the system with the requested information.
+      summary: Updates an existing user in the system with the requested information
       tags:
       - SCIM User Sync V3
-    servers:
-    - url: https://apis.egencia.com/openconnect/api
-      description: Generated server url
 components:
   schemas:
     UserSchemaV2:
@@ -2309,6 +2351,264 @@ components:
       - schemas
       - userType
       title: UserSchemaV2
+    ApproverSchemaV2:
+      type: object
+      description: The complex model containing approver's id, userName, and externalId.
+      properties:
+        externalId:
+          type: string
+          description: External id of the approver associated with the user.
+        id:
+          type: string
+          description: User id of the approver associated with the user.
+          pattern: ([1-9]([0-9]*))
+        userName:
+          type: string
+          description: Username of the approver associated with the user.
+      title: ApproverSchemaV2
+    UserSettingsSchema:
+      type: object
+      description: Schema to denote the user settings.
+      properties:
+        notifications:
+          $ref: '#/components/schemas/UserNotificationsSchema'
+          description: User Notifications Schema
+      title: UserSettingSchema
+    ScimPatchSchema:
+      type: object
+      description: The user patch request schema.
+      properties:
+        Operations:
+          type: array
+          description: List of scim patch operations.
+          items:
+            $ref: '#/components/schemas/ScimPatchOperationSchema'
+          maxItems: 2147483647
+          minItems: 1
+        meta:
+          $ref: '#/components/schemas/MetaSchema'
+          description: The attribute containing the resource metadata.
+        schemas:
+          type: array
+          description: The schema urns for the associated resource.
+          items:
+            type: string
+          uniqueItems: true
+      required:
+      - Operations
+      - schemas
+      title: ScimPatchSchema
+    AddressSchema:
+      type: object
+      description: The complex model containing contact address attributes of the user.
+      properties:
+        country:
+          type: string
+          description: The value of the user address country. It should be 3 letters (alpha-3) or 2 letters (alpha-2) ISO country code of the address. This field is mandatory and cannot be empty. Version 1 of the APIs support 3 letter country code while version 2 supports 2 letter country code
+          maxLength: 3
+          minLength: 2
+        formatted:
+          type: string
+          description: The formatted address value.
+        locality:
+          type: string
+          description: The locality of the contact address.
+        postalCode:
+          type: string
+          description: The postal code of the address. This field is mandatory and cannot be empty.
+          minLength: 1
+        region:
+          type: string
+          description: The region or city of the contact address. This field is mandatory and cannot be empty.
+        streetAddress:
+          type: string
+          description: The value of the street address or address line 1. This field is mandatory and cannot be empty.
+          minLength: 1
+        type:
+          type: string
+          description: The type of physical address.
+          enum:
+          - HOME
+      required:
+      - country
+      - postalCode
+      - region
+      - streetAddress
+      - type
+      title: AddressSchema
+    ContactSchema:
+      type: object
+      description: The complex model containing contact attributes of the user.
+      properties:
+        primary:
+          type: boolean
+          description: Identifier flag to determine whether the contact is primary or not.
+        type:
+          type: string
+          description: The type of contact e.g. home, work, mobile, etc.
+        value:
+          type: string
+          description: 'The value of the contact in international format. The number should follow this pattern : +[country code]-[area code][phone number] eg. +44-1234512345, or +[country code][area code][phone number] eg. +441234512345.  Please follow this link to know more : https://www.itu.int/rec/T-REC-E.123-200102-I/en'
+          minLength: 1
+      required:
+      - type
+      - value
+      title: ContactSchema
+    EnterpriseUserSchemaV2:
+      type: object
+      description: Enterprise attributes for User profile.
+      properties:
+        employeeNumber:
+          type: string
+          description: The employee number of the requested user. This field is only supported for EU point of sale.
+      title: EnterpriseUserSchemaV2
+    PreferenceSchema:
+      type: object
+      description: The complex model containing details of the user preferences.
+      properties:
+        lob:
+          type: string
+          description: The line of business type to which preference is associated e.g. AIR, CAR, HOTEL, RAIL. This field is mandatory and cannot be empty. Please refer the <a href='#LOB type'>Enumerations</a> section for the values supported.
+          minLength: 1
+        mealType:
+          type: string
+          description: The preferred meal type. (applicable to Air only)
+        preferredDepartureAirport:
+          type: string
+          description: The IATA code of the preferred departure airport. (applicable to Air only)
+        seatDirection:
+          type: string
+          description: The preferred seat direction e.g. Forward, Any, etc. (applicable to Rail only)
+        seatFreeOfCharge:
+          type: string
+          description: The flag to specify if a seat free of charge is to be booked (applicable to Rail only).
+          enum:
+          - 0, 1
+        seatRoom:
+          type: string
+          description: The preferred seat room e.g. Upper, Lower, Any. (applicable to Rail only)
+        seatSolo:
+          type: string
+          description: The flag to specify if a solo seat is preferred for first class (applicable to Rail only).
+          enum:
+          - 0, 1
+        seatType:
+          type: string
+          description: The preferred seat type e.g. Window, Aisle, etc.
+        smoking:
+          type: string
+          description: The smoking room preference e.g. Smoking, Non-smoking, Any. (applicable to Hotel only).
+          enum:
+          - 0, 1, 2
+        specialRequest:
+          type: string
+          description: Any special request. The value cannot be greater than 80 characters
+          maxLength: 80
+          minLength: 1
+      required:
+      - lob
+      title: PreferenceSchema
+    ScimPatchOperationSchema:
+      type: object
+      description: A complex object for scim patch oeration.
+      properties:
+        op:
+          type: string
+        path:
+          type: string
+        value: {}
+      title: ScimPatchOperation
+    GroupSchema:
+      type: object
+      description: The complex model containing details of traveller group to which user is associated.
+      properties:
+        display:
+          type: string
+          description: The displayable value of the group.
+        value:
+          type: string
+          description: Egencia Traveler Group - the value of the group to which the user is associated. This field is mandatory and cannot be empty and must match with value on Egencia website.
+          minLength: 1
+      required:
+      - value
+      title: GroupSchema
+    DocumentSchema:
+      type: object
+      description: The complex model containing user document details like passport, Id card, etc.
+      properties:
+        expirationDate:
+          type: string
+          format: date
+          description: The expiration date of the document. (ISO 8601 date format YYYY-MM-DD)
+        issueCountry:
+          type: string
+          description: The value of the document issue country. It should be 3 letters (alpha-3) or 2 letters (alpha-2) ISO country code of the document issuing country. Version 1 of the APIs support 3 letter country code while version 2 supports 2 letter country code
+          maxLength: 3
+          minLength: 2
+        issueDate:
+          type: string
+          format: date
+          description: The issuing date of the document. (ISO 8601 date format YYYY-MM-DD)
+        issueLocation:
+          type: string
+          description: The name of the document issuing city.
+        type:
+          type: string
+          description: The type code of the document e.g. passport, ID card, etc. Except China and Hong Kong, for rest of the countries we only support documents of type PAS, ID & DL. Please refer the <a href='#Document type'>Enumerations</a> section for the values supported
+        value:
+          type: string
+          description: The value of the document. This field is mandatory and cannot be empty.
+          minLength: 1
+      required:
+      - type
+      - value
+      title: DocumentSchema
+    MetaSchema:
+      type: object
+      description: A complex attribute containing resource metadata.
+      properties:
+        created:
+          type: string
+          format: date-time
+          description: The creation time metadata.
+        lastModified:
+          type: string
+          format: date-time
+          description: The last modification time.
+        location:
+          type: string
+          format: uri
+          description: The location of the user resource accessible by URI.
+        version:
+          type: string
+          description: The version of the resource.
+      title: Meta
+    NameSchema:
+      type: object
+      description: The complex model containing name attributes of the user.
+      properties:
+        familyName:
+          type: string
+          description: The family or last name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
+          maxLength: 40
+          minLength: 0
+        formatted:
+          type: string
+          description: The formatted name of the user
+        givenName:
+          type: string
+          description: The given or first name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
+          maxLength: 40
+          minLength: 0
+        middleName:
+          type: string
+          description: The middle name of the user. Maximum supported characters is 40.
+          maxLength: 40
+          minLength: 0
+      required:
+      - familyName
+      - givenName
+      title: Name
     LoyaltyProgramSchema:
       type: object
       description: The complex model containing details of loyalty programs associated with the user.
@@ -2354,144 +2654,26 @@ components:
       - name
       - value
       title: LoyaltyProgramSchema
-    NameSchema:
+    AllApproversSchemaV2:
       type: object
-      description: The complex model containing name attributes of the user.
+      description: Approver details for the user like level 1, level 2 approvers etc. Approver of a user must already exist and its unique id needs to be passed to associate that approver with a user. The Username (email value) or TUID (Egencia ID) to be set as the Approver of the user.
       properties:
-        familyName:
-          type: string
-          description: The family or last name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-        formatted:
-          type: string
-          description: The formatted name of the user
-        givenName:
-          type: string
-          description: The given or first name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-        middleName:
-          type: string
-          description: The middle name of the user. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-      required:
-      - familyName
-      - givenName
-      title: Name
-    EnterpriseUserSchemaV2:
-      type: object
-      description: Enterprise attributes for User profile.
-      properties:
-        employeeNumber:
-          type: string
-          description: The employee number of the requested user. This field is only supported for EU point of sale.
-      title: EnterpriseUserSchemaV2
-    GroupSchema:
-      type: object
-      description: The complex model containing details of traveller group to which user is associated.
-      properties:
-        display:
-          type: string
-          description: The displayable value of the group.
-        value:
-          type: string
-          description: Egencia Traveler Group - the value of the group to which the user is associated. This field is mandatory and cannot be empty and must match with value on Egencia website.
-          minLength: 1
-      required:
-      - value
-      title: GroupSchema
-    AddressSchema:
-      type: object
-      description: The complex model containing contact address attributes of the user.
-      properties:
-        country:
-          type: string
-          description: The value of the user address country. It should be 3 letters (alpha-3) or 2 letters (alpha-2) ISO country code of the address. This field is mandatory and cannot be empty. Version 1 of the APIs support 3 letter country code while version 2 supports 2 letter country code
-          maxLength: 3
-          minLength: 2
-        formatted:
-          type: string
-          description: The formatted address value.
-        locality:
-          type: string
-          description: The locality of the contact address.
-        postalCode:
-          type: string
-          description: The postal code of the address. This field is mandatory and cannot be empty.
-          minLength: 1
-        region:
-          type: string
-          description: The region or city of the contact address. This field is mandatory and cannot be empty.
-        streetAddress:
-          type: string
-          description: The value of the street address or address line 1. This field is mandatory and cannot be empty.
-          minLength: 1
-        type:
-          type: string
-          description: The type of physical address.
-          enum:
-          - HOME
-      required:
-      - country
-      - postalCode
-      - region
-      - streetAddress
-      - type
-      title: AddressSchema
-    UserSettingsSchema:
-      type: object
-      description: Schema to denote the user settings.
-      properties:
-        notifications:
-          $ref: '#/components/schemas/UserNotificationsSchema'
-          description: User Notifications Schema
-      title: UserSettingSchema
-    UserNotificationsSchema:
-      type: object
-      description: Schema to denote user notifications settings.
-      properties:
-        outOfPolicyPurchaseEmails:
+        delegateApprovers:
           type: array
-          description: Email ids of users to notify when a purchase is out of policy.
+          description: Delegate Approver details for the user. Delegate Approver of a user must already exist and its unique id needs to be passed to associate that as a delegate to a user with Approver role
           items:
-            type: string
-        reservationEmail:
-          type: string
-          description: 'The reservation email setting of user. Valid values are : {ALL, NONE_EXCEPT_MY_ETICKETS, NORMAL}. Default value is NORMAL. ALL is supported only for Travel Directors and Manage User roles. Please refer the <a href=''#ReservationEmail''>Enumerations</a> section for the values supported.'
-      title: UserNotificationSchema
-    ApproverSchemaV2:
-      type: object
-      description: The complex model containing approver's id, userName, and externalId.
-      properties:
-        externalId:
-          type: string
-          description: External id of the approver associated with the user.
-        id:
-          type: string
-          description: User id of the approver associated with the user.
-          pattern: ([1-9]([0-9]*))
-        userName:
-          type: string
-          description: Username of the approver associated with the user.
+            $ref: '#/components/schemas/ApproverSchemaV2'
+        level1Approvers:
+          type: array
+          description: Level 1 approvers associated with the user.
+          items:
+            $ref: '#/components/schemas/ApproverSchemaV2'
+        level2Approvers:
+          type: array
+          description: Level 2 approvers associated with the user.
+          items:
+            $ref: '#/components/schemas/ApproverSchemaV2'
       title: ApproverSchemaV2
-    CustomDataFieldSchema:
-      type: object
-      description: Egencia reporting fields. A complex attribute containing custom data fields associated with the user.
-      properties:
-        name:
-          type: string
-          description: The name of the custom data field definition. This field is mandatory and cannot be empty. By default, maximum supported characters is 50.
-          minLength: 1
-        value:
-          type: string
-          description: The value of the custom data field code which needs to be associated with the user. This field is mandatory and cannot be empty. If the custom data field is of LIST type, the value provided must match with value on Egencia website. By default, maximum supported characters is 30 for LIST type and 50 for FREE_FIELD.
-          minLength: 1
-      required:
-      - name
-      - value
-      title: CustomDataFieldSchema
     EmailSchema:
       type: object
       description: The complex model containing email details of the user.
@@ -2512,44 +2694,22 @@ components:
       - type
       - value
       title: Email
-    ScimPatchSchema:
+    CustomDataFieldSchema:
       type: object
-      description: The user patch request schema.
+      description: Egencia reporting fields. A complex attribute containing custom data fields associated with the user.
       properties:
-        Operations:
-          type: array
-          description: List of scim patch operations.
-          items:
-            $ref: '#/components/schemas/ScimPatchOperationSchema'
-          maxItems: 2147483647
-          minItems: 1
-        meta:
-          $ref: '#/components/schemas/MetaSchema'
-          description: The attribute containing the resource metadata.
-        schemas:
-          type: array
-          description: The schema urns for the associated resource.
-          items:
-            type: string
-          uniqueItems: true
+        name:
+          type: string
+          description: The name of the custom data field definition. This field is mandatory and cannot be empty. By default, maximum supported characters is 50.
+          minLength: 1
+        value:
+          type: string
+          description: The value of the custom data field code which needs to be associated with the user. This field is mandatory and cannot be empty. If the custom data field is of LIST type, the value provided must match with value on Egencia website. By default, maximum supported characters is 30 for LIST type and 50 for FREE_FIELD.
+          minLength: 1
       required:
-      - Operations
-      - schemas
-      title: ScimPatchSchema
-    ArrangerSchema:
-      type: object
-      description: The complex model containing arrangers of the user.
-      properties:
-        email:
-          type: string
-        id:
-          type: string
-          description: User id of the arranger associated with the user.
-          pattern: ([1-9]([0-9]*))
-        userName:
-          type: string
-          description: Username of the arranger associated with the user.
-      title: ArrangerSchema
+      - name
+      - value
+      title: CustomDataFieldSchema
     EgenciaExtensionUserSchemaV2:
       type: object
       description: The extended custom attributes specific to Egencia travel management system.
@@ -2614,226 +2774,36 @@ components:
           type: string
           description: The case sensitive Authentication mode of the user. Values supported are LOGIN or SSO. It is mandatory if the company is SSO_OR_LOGIN.
       title: EgenciaExtensionUserSchemaV2
-    DocumentSchema:
+    UserNotificationsSchema:
       type: object
-      description: The complex model containing user document details like passport, Id card, etc.
+      description: Schema to denote user notifications settings.
       properties:
-        expirationDate:
-          type: string
-          format: date
-          description: The expiration date of the document. (ISO 8601 date format YYYY-MM-DD)
-        issueCountry:
-          type: string
-          description: The value of the document issue country. It should be 3 letters (alpha-3) or 2 letters (alpha-2) ISO country code of the document issuing country. Version 1 of the APIs support 3 letter country code while version 2 supports 2 letter country code
-          maxLength: 3
-          minLength: 2
-        issueDate:
-          type: string
-          format: date
-          description: The issuing date of the document. (ISO 8601 date format YYYY-MM-DD)
-        issueLocation:
-          type: string
-          description: The name of the document issuing city.
-        type:
-          type: string
-          description: The type code of the document e.g. passport, ID card, etc. Except China and Hong Kong, for rest of the countries we only support documents of type PAS, ID & DL. Please refer the <a href='#Document type'>Enumerations</a> section for the values supported
-        value:
-          type: string
-          description: The value of the document. This field is mandatory and cannot be empty.
-          minLength: 1
-      required:
-      - type
-      - value
-      title: DocumentSchema
-    ContactSchema:
-      type: object
-      description: The complex model containing contact attributes of the user.
-      properties:
-        primary:
-          type: boolean
-          description: Identifier flag to determine whether the contact is primary or not.
-        type:
-          type: string
-          description: The type of contact e.g. home, work, mobile, etc.
-        value:
-          type: string
-          description: 'The value of the contact in international format. The number should follow this pattern : +[country code]-[area code][phone number] eg. +44-1234512345, or +[country code][area code][phone number] eg. +441234512345.  Please follow this link to know more : https://www.itu.int/rec/T-REC-E.123-200102-I/en'
-          minLength: 1
-      required:
-      - type
-      - value
-      title: ContactSchema
-    PreferenceSchema:
-      type: object
-      description: The complex model containing details of the user preferences.
-      properties:
-        lob:
-          type: string
-          description: The line of business type to which preference is associated e.g. AIR, CAR, HOTEL, RAIL. This field is mandatory and cannot be empty. Please refer the <a href='#LOB type'>Enumerations</a> section for the values supported.
-          minLength: 1
-        mealType:
-          type: string
-          description: The preferred meal type. (applicable to Air only)
-        preferredDepartureAirport:
-          type: string
-          description: The IATA code of the preferred departure airport. (applicable to Air only)
-        seatDirection:
-          type: string
-          description: The preferred seat direction e.g. Forward, Any, etc. (applicable to Rail only)
-        seatFreeOfCharge:
-          type: string
-          description: The flag to specify if a seat free of charge is to be booked (applicable to Rail only).
-          enum:
-          - 0, 1
-        seatRoom:
-          type: string
-          description: The preferred seat room e.g. Upper, Lower, Any. (applicable to Rail only)
-        seatSolo:
-          type: string
-          description: The flag to specify if a solo seat is preferred for first class (applicable to Rail only).
-          enum:
-          - 0, 1
-        seatType:
-          type: string
-          description: The preferred seat type e.g. Window, Aisle, etc.
-        smoking:
-          type: string
-          description: The smoking room preference e.g. Smoking, Non-smoking, Any. (applicable to Hotel only).
-          enum:
-          - 0, 1, 2
-        specialRequest:
-          type: string
-          description: Any special request. The value cannot be greater than 80 characters
-          maxLength: 80
-          minLength: 1
-      required:
-      - lob
-      title: PreferenceSchema
-    ScimPatchOperationSchema:
-      type: object
-      description: A complex object for scim patch oeration.
-      properties:
-        op:
-          type: string
-        path:
-          type: string
-        value: {}
-      title: ScimPatchOperation
-    AllApproversSchemaV2:
-      type: object
-      description: Approver details for the user like level 1, level 2 approvers etc. Approver of a user must already exist and its unique id needs to be passed to associate that approver with a user. The Username (email value) or TUID (Egencia ID) to be set as the Approver of the user.
-      properties:
-        delegateApprovers:
+        outOfPolicyPurchaseEmails:
           type: array
-          description: Delegate Approver details for the user. Delegate Approver of a user must already exist and its unique id needs to be passed to associate that as a delegate to a user with Approver role
+          description: Email ids of users to notify when a purchase is out of policy.
           items:
-            $ref: '#/components/schemas/ApproverSchemaV2'
-        level1Approvers:
-          type: array
-          description: Level 1 approvers associated with the user.
-          items:
-            $ref: '#/components/schemas/ApproverSchemaV2'
-        level2Approvers:
-          type: array
-          description: Level 2 approvers associated with the user.
-          items:
-            $ref: '#/components/schemas/ApproverSchemaV2'
-      title: ApproverSchemaV2
-    MetaSchema:
+            type: string
+        reservationEmail:
+          type: string
+          description: 'The reservation email setting of user. Valid values are : {ALL, NONE_EXCEPT_MY_ETICKETS, NORMAL}. Default value is NORMAL. ALL is supported only for Travel Directors and Manage User roles. Please refer the <a href=''#ReservationEmail''>Enumerations</a> section for the values supported.'
+      title: UserNotificationSchema
+    ArrangerSchema:
       type: object
-      description: A complex attribute containing resource metadata.
+      description: The complex model containing arrangers of the user.
       properties:
-        created:
+        email:
           type: string
-          format: date-time
-          description: The creation time metadata.
-        lastModified:
+        id:
           type: string
-          format: date-time
-          description: The last modification time.
-        location:
+          description: User id of the arranger associated with the user.
+          pattern: ([1-9]([0-9]*))
+        userName:
           type: string
-          format: uri
-          description: The location of the user resource accessible by URI.
-        version:
-          type: string
-          description: The version of the resource.
-      title: Meta
-    NameSchema_2:
-      type: object
-      description: The complex model containing name attributes of the user.
-      properties:
-        familyName:
-          type: string
-          description: The family or last name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-        formatted:
-          type: string
-          description: The formatted name of the user
-        givenName:
-          type: string
-          description: The given or first name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-        honorificPrefix:
-          type: string
-          description: The honorific prefix(es) of the User, or title in most Western languages (e.g., "Ms". given the full name "Ms. Barbara Jane Jensen, III"). This field is mandatory except for companies located in US for which it's ignored. Please refer the <a href='#Honorific Prefix'>Enumerations</a> section for the values supported. You need to pass label in this field. This field is not supported in version 1 of user APIs.
-        middleName:
-          type: string
-          description: The middle name of the user. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-      required:
-      - familyName
-      - givenName
-      title: NameSchema
-    EmailSchema_2:
-      type: object
-      description: The complex model containing email details of the user.
-      properties:
-        primary:
-          type: boolean
-          description: Identifier flag to determine whether the address is primary or not.
-        type:
-          type: string
-          description: Type of email. Ex. WORK. Please refer the <a href='#Email type'>Enumerations</a> section for the values supported.
-          enum:
-          - WORK
-        value:
-          type: string
-          description: The value of the email address. It needs to be in a standard format and cannot be empty.
-          minLength: 1
-      required:
-      - type
-      - value
-      title: EmailSchema
-    MetaSchema_2:
-      type: object
-      description: A complex attribute containing resource metadata.
-      properties:
-        created:
-          type: string
-          format: date-time
-          description: The creation time metadata.
-        lastModified:
-          type: string
-          format: date-time
-          description: The last modification time.
-        location:
-          type: string
-          format: uri
-          description: The location of the user resource accessible by URI.
-        version:
-          type: string
-          description: The version of the resource.
-      title: MetaSchema
+          description: Username of the arranger associated with the user.
+      title: ArrangerSchema
   securitySchemes:
     OAuth2:
       flows:
         clientCredentials:
           tokenUrl: https://apis.egencia.com/auth/v1/token
       type: oauth2
-x-refined-from:
-- amex-gbt-service-openconnect-openapi.json
-- amex-gbt-user-sync-api-openapi.json

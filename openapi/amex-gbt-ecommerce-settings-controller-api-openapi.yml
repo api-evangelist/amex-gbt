@@ -1,8 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Amex Gbt Ecommerce Settings Controller API
-  version: '1.0'
-  description: 'Operations tagged ecommerce-settings-controller across 2 of this provider''s published API definitions: amex-gbt-company-info-api-openapi.json, amex-gbt-service-company-openapi.json. Each path carries the servers of the definition it was published in.'
+  title: OpenAPI definition Ecommerce Settings Controller API
+  version: v0
 servers:
 - url: https://apis.egencia.com/openconnect/api
   description: API Server
@@ -49,9 +48,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ECommerceSettingsApiResponse'
-    servers:
-    - url: https://apis.egencia.com/openconnect/api
-      description: API Server
+      summary: Get settings
+      x-summary-source: derived
   /v1/companies/ecommerce-settings/audit:
     get:
       tags:
@@ -96,18 +94,10 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ECommerceAuditApiResponse'
-    servers:
-    - url: https://apis.egencia.com/openconnect/api
-      description: API Server
+      summary: Get audit
+      x-summary-source: derived
 components:
   schemas:
-    ECommerceSettingsApiResponse:
-      type: object
-      properties:
-        ecommerceSettings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ECommerceSetting'
     ECommerceSetting:
       type: object
       properties:
@@ -118,17 +108,13 @@ components:
           - PAYMENT_SETTING
           - COMPANY_SETTING
         setting: {}
-    ECommerceAuditApiResponse:
+    ECommerceSettingsApiResponse:
       type: object
       properties:
-        billingDkChanges:
+        ecommerceSettings:
           type: array
           items:
-            $ref: '#/components/schemas/DkChange'
-        travelerDkChanges:
-          type: array
-          items:
-            $ref: '#/components/schemas/DkChange'
+            $ref: '#/components/schemas/ECommerceSetting'
     DkChange:
       type: object
       properties:
@@ -143,12 +129,20 @@ components:
           - INVOICE_SETTING
           - PAYMENT_SETTING
           - COMPANY_SETTING
+    ECommerceAuditApiResponse:
+      type: object
+      properties:
+        billingDkChanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/DkChange'
+        travelerDkChanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/DkChange'
   securitySchemes:
     oAuth2:
       type: oauth2
       flows:
         clientCredentials:
           tokenUrl: https://apis.egencia.com/auth/v1/token
-x-refined-from:
-- amex-gbt-company-info-api-openapi.json
-- amex-gbt-service-company-openapi.json

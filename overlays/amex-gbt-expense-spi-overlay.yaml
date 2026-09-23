@@ -3,9 +3,9 @@ info:
   title: API Evangelist enhancements for Expense SPI
   version: 1.0.0
 extends: openapi/amex-gbt-expense-spi-openapi.json
-generated: '2026-07-28'
-method: generated
-source: >-
+x-generated: '2026-07-28'
+x-method: generated
+x-source: >-
   Derived from openapi/amex-gbt-expense-spi-openapi.json (OpenAPI 3.1.0, 2 paths, 2 operations) plus the
   cross-cutting artifacts in this repo. The harvested specification itself is never mutated.
 actions:

@@ -1,8 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Amex Gbt bookings v2 API
-  version: '1.0'
-  description: 'Operations tagged bookings v2 across 2 of this provider''s published API definitions: amex-gbt-booking-api-openapi.json, amex-gbt-service-openconnect-openapi.json. Each path carries the servers of the definition it was published in.'
+  title: OpenAPI definition bookings v2 API
+  version: v0
 servers:
 - url: https://apis.egencia.com/openconnect/api
   description: Generated server url
@@ -11,7 +10,81 @@ tags:
 paths:
   /v2/bookings/{bookingId}/items/{itemId}/receipts:
     get:
-      description: "<p>Fetch all receipts for a booking item as a zip file</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Id corresponding to the trips summary for which you want to fetch all booking item receipts</td>\n        </tr>\n        <tr>\n            <td>itemId</td>\n            <td>String</td>\n            <td>Id corresponding to the booking item for which we want to fetch receipts</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Response Parameters in case of successful response</b></p>\n<p>In case of successful response, receipts zip file will be sent to the partner with 200 OK status</p>\n<p><b>Response Parameters in case of failure response</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>code</td>\n            <td>String</td>\n            <td>Error code in case of failure</td>\n        </tr>\n        <tr>\n            <td>message</td>\n            <td>String</td>\n            <td>Error message in case of failure</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Below response with 404 Not Found Error HttpStatus</b></p>\n<div>\n<pre>\n   <code>\n   {\n       \"error\": {\n           \"code\": \"EGE-ER-OS-4010\",\n           \"message\": \"Receipt is unavailable for this booking item.\"\n       }\n   }\n   </code>\n</pre>\n</div>\n"
+      description: 'Fetch all receipts for a booking item as a zip file
+
+
+        Request Parameters
+
+
+        Attribute
+
+
+        Type
+
+
+        Description
+
+
+        bookingId
+
+        String
+
+        Id corresponding to the trips summary for which you want to fetch all booking item receipts
+
+
+        itemId
+
+        String
+
+        Id corresponding to the booking item for which we want to fetch receipts
+
+
+        Response Parameters in case of successful response
+
+
+        In case of successful response, receipts zip file will be sent to the partner with 200 OK status
+
+
+        Response Parameters in case of failure response
+
+
+        Attribute
+
+
+        Type
+
+
+        Description
+
+
+        code
+
+        String
+
+        Error code in case of failure
+
+
+        message
+
+        String
+
+        Error message in case of failure
+
+
+        Below response with 404 Not Found Error HttpStatus
+
+
+        {
+
+        "error": {
+
+        "code": "EGE-ER-OS-4010",
+
+        "message": "Receipt is unavailable for this booking item."
+
+        }
+
+        }'
       operationId: getReceiptsAsZip
       parameters:
       - description: Booking id
@@ -52,12 +125,90 @@ paths:
       summary: Fetch all receipts for a booking item as a zip file
       tags:
       - bookings v2
-    servers:
-    - url: https://apis.egencia.com/openconnect/api
-      description: Generated server url
   /v2/bookings/{bookingId}/items/{itemId}/receipts/{receiptId}:
     get:
-      description: "<p>Fetch receipt for a booking item by receipt id</p>\n<p><b>Request Parameters</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>bookingId</td>\n            <td>String</td>\n            <td>Id corresponding to the trips summary for which you want to fetch each booking item receipts</td>\n        </tr>\n        <tr>\n            <td>itemId</td>\n            <td>String</td>\n            <td>Id corresponding to the booking item for which we want to fetch receipt</td>\n        </tr>\n        <tr>\n            <td>receiptId</td>\n            <td>String</td>\n            <td>Id corresponding to the receipt we want to fetch</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Response Parameters in case of successful response</b></p>\n<p>In case of successful response, receipt pdf will be sent to the partner with 200 OK status</p>\n<p><b>Response Parameters in case of failure response</b></p>\n<div>\n    <table>\n        <thead>\n        <tr>\n            <th>\n               Attribute\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Description\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr>\n            <td>code</td>\n            <td>String</td>\n            <td>Error code in case of failure</td>\n        </tr>\n        <tr>\n            <td>message</td>\n            <td>String</td>\n            <td>Error message in case of failure</td>\n        </tr>\n        </tbody>\n    </table>\n</div>\n<p><b>Below response with 404 Not Found Error HttpStatus</b></p>\n<div>\n<pre>\n   <code>\n   {\n       \"error\": {\n           \"code\": \"EGE-ER-OS-4010\",\n           \"message\": \"Receipt is unavailable for this booking item.\"\n       }\n   }\n   </code>\n</pre>\n</div>\n"
+      description: 'Fetch receipt for a booking item by receipt id
+
+
+        Request Parameters
+
+
+        Attribute
+
+
+        Type
+
+
+        Description
+
+
+        bookingId
+
+        String
+
+        Id corresponding to the trips summary for which you want to fetch each booking item receipts
+
+
+        itemId
+
+        String
+
+        Id corresponding to the booking item for which we want to fetch receipt
+
+
+        receiptId
+
+        String
+
+        Id corresponding to the receipt we want to fetch
+
+
+        Response Parameters in case of successful response
+
+
+        In case of successful response, receipt pdf will be sent to the partner with 200 OK status
+
+
+        Response Parameters in case of failure response
+
+
+        Attribute
+
+
+        Type
+
+
+        Description
+
+
+        code
+
+        String
+
+        Error code in case of failure
+
+
+        message
+
+        String
+
+        Error message in case of failure
+
+
+        Below response with 404 Not Found Error HttpStatus
+
+
+        {
+
+        "error": {
+
+        "code": "EGE-ER-OS-4010",
+
+        "message": "Receipt is unavailable for this booking item."
+
+        }
+
+        }'
       operationId: getReceipt
       parameters:
       - description: Booking id
@@ -110,9 +261,6 @@ paths:
       summary: Fetch receipt for a booking item by receipt id
       tags:
       - bookings v2
-    servers:
-    - url: https://apis.egencia.com/openconnect/api
-      description: Generated server url
 components:
   securitySchemes:
     OAuth2:
@@ -120,6 +268,3 @@ components:
         clientCredentials:
           tokenUrl: https://apis.egencia.com/auth/v1/token
       type: oauth2
-x-refined-from:
-- amex-gbt-booking-api-openapi.json
-- amex-gbt-service-openconnect-openapi.json

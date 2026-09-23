@@ -62,26 +62,10 @@ paths:
             application/json;charset=utf-8:
               schema:
                 $ref: '#/components/schemas/ErrorNode'
+      summary: Save acknowledgement
+      x-summary-source: derived
 components:
   schemas:
-    GbtCapAckRequestData:
-      type: object
-      properties:
-        dk_number:
-          type: string
-        reporting_id:
-          type: string
-        reporting_name:
-          type: string
-        timestamp:
-          type: integer
-          format: int64
-        billing_dk_number:
-          type: string
-        client_id:
-          type: string
-        account_number:
-          type: string
     GbtCapAckRequest:
       type: object
       properties:
@@ -106,6 +90,24 @@ components:
         errorCode:
           type: string
         errorDescription:
+          type: string
+    GbtCapAckRequestData:
+      type: object
+      properties:
+        dk_number:
+          type: string
+        reporting_id:
+          type: string
+        reporting_name:
+          type: string
+        timestamp:
+          type: integer
+          format: int64
+        billing_dk_number:
+          type: string
+        client_id:
+          type: string
+        account_number:
           type: string
   securitySchemes:
     oAuth2:

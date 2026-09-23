@@ -191,7 +191,9 @@ paths:
       - redirection-controller
   /v2/startTrip:
     get:
-      description: "\n            This api takes the values passed in the request and redirects to Egencia home page and pre-populates the context data in the corresponding fields such as search form data, custom data fields.\n            The \"cdf\" param in the \"request\" supports custom data fields for both the region EU as well as NA. The user of this api needs to pass the custom data field as a key value pair where key is the name of the custom data field and value will be the custom data field value. If the custom data field is configured as mandatory and non editable, then this api will throw an error otherwise if either name or value is invalid, this api will skip that record.\n            "
+      description: 'This api takes the values passed in the request and redirects to Egencia home page and pre-populates the context data in the corresponding fields such as search form data, custom data fields.
+
+        The "cdf" param in the "request" supports custom data fields for both the region EU as well as NA. The user of this api needs to pass the custom data field as a key value pair where key is the name of the custom data field and value will be the custom data field value. If the custom data field is configured as mandatory and non editable, then this api will throw an error otherwise if either name or value is invalid, this api will skip that record.'
       operationId: redirectToHomePage
       parameters:
       - in: query

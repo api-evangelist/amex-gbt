@@ -22,6 +22,8 @@ paths:
           description: OK
       tags:
       - doc-audit-clean-up-controller
+      summary: Cleanup
+      x-summary-source: derived
 components:
   securitySchemes:
     OAuth2:

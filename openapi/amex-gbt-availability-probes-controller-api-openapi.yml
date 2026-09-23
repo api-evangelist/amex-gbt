@@ -25,6 +25,8 @@ paths:
           description: OK
       tags:
       - availability-probes-controller
+      summary: Liveness
+      x-summary-source: derived
     servers:
     - url: https://apis.egencia.com/bi/api
       description: Generated server url
@@ -40,6 +42,8 @@ paths:
           description: OK
       tags:
       - availability-probes-controller
+      summary: Readiness
+      x-summary-source: derived
     servers:
     - url: https://apis.egencia.com/bi/api
       description: Generated server url

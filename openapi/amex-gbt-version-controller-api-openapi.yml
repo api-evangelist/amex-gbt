@@ -25,6 +25,8 @@ paths:
           description: OK
       tags:
       - version-controller
+      summary: Version 3
+      x-summary-source: derived
     get:
       operationId: version
       responses:
@@ -36,6 +38,8 @@ paths:
           description: OK
       tags:
       - version-controller
+      summary: Version
+      x-summary-source: derived
     head:
       operationId: version_5
       responses:
@@ -47,6 +51,8 @@ paths:
           description: OK
       tags:
       - version-controller
+      summary: Version 5
+      x-summary-source: derived
     options:
       operationId: version_6
       responses:
@@ -58,6 +64,8 @@ paths:
           description: OK
       tags:
       - version-controller
+      summary: Version 6
+      x-summary-source: derived
     patch:
       operationId: version_4
       responses:
@@ -69,6 +77,8 @@ paths:
           description: OK
       tags:
       - version-controller
+      summary: Version 4
+      x-summary-source: derived
     post:
       operationId: version_1
       responses:
@@ -80,6 +90,8 @@ paths:
           description: OK
       tags:
       - version-controller
+      summary: Version 1
+      x-summary-source: derived
     put:
       operationId: version_2
       responses:
@@ -91,6 +103,8 @@ paths:
           description: OK
       tags:
       - version-controller
+      summary: Version 2
+      x-summary-source: derived
     servers:
     - url: https://apis.egencia.com/bi/api
       description: Generated server url
