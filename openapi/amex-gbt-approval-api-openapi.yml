@@ -60,6 +60,31 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Company:
+      description: Stores the company information.
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Stores the company id
+        point_of_sale:
+          type: string
+          description: Stores the point of sale
+      required:
+      - id
+      - point_of_sale
+    ErrorSourceBean:
+      description: Source
+      properties:
+        application_name:
+          type: string
+          description: Application Name
+        error_code:
+          type: string
+          description: Error Code
+        error_description:
+          type: string
+          description: Error Description
     ExternalApprovalDetail:
       properties:
         level:
@@ -77,50 +102,12 @@ components:
           items:
             type: string
             description: denotes list of approver tuids
-    Traveler:
-      description: Stores the traveler information.
+    ExternalApprovalDetailsResponse:
       properties:
-        email_id:
-          type: string
-          description: Stores Traveler Email
-        price:
-          $ref: '#/components/schemas/Price'
-        custom_data_fields:
+        approval_details:
           type: array
-          description: Stores CDF information
           items:
-            $ref: '#/components/schemas/CustomDataField'
-        guest_traveler:
-          type: boolean
-      required:
-      - custom_data_fields
-      - email_id
-      - price
-    ErrorSourceBean:
-      description: Source
-      properties:
-        application_name:
-          type: string
-          description: Application Name
-        error_code:
-          type: string
-          description: Error Code
-        error_description:
-          type: string
-          description: Error Description
-    ErrorResponseDataBean:
-      description: Data
-      properties:
-        attribute:
-          type: string
-          description: Attribute
-        message:
-          type: string
-          description: Message
-        external_attributes:
-          type: object
-          additionalProperties:
-            type: object
+            $ref: '#/components/schemas/ExternalApprovalDetail'
     CustomDataField:
       description: Stores CDF information
       properties:
@@ -133,19 +120,6 @@ components:
       required:
       - name
       - value
-    Company:
-      description: Stores the company information.
-      properties:
-        id:
-          type: integer
-          format: int32
-          description: Stores the company id
-        point_of_sale:
-          type: string
-          description: Stores the point of sale
-      required:
-      - id
-      - point_of_sale
     ApprovalRequest:
       description: Approval request
       properties:
@@ -163,12 +137,27 @@ components:
       - company
       - line_of_business
       - travelers
-    ExternalApprovalDetailsResponse:
+    Price:
+      description: Price of the booking.
       properties:
-        approval_details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalApprovalDetail'
+        currency:
+          type: string
+        amount:
+          type: number
+          format: double
+    ErrorResponseDataBean:
+      description: Data
+      properties:
+        attribute:
+          type: string
+          description: Attribute
+        message:
+          type: string
+          description: Message
+        external_attributes:
+          type: object
+          additionalProperties:
+            type: object
     OpenconnectApprovalErrorResponseBean:
       properties:
         error_code:
@@ -190,11 +179,22 @@ components:
           description: Data
           items:
             $ref: '#/components/schemas/ErrorResponseDataBean'
-    Price:
-      description: Price of the booking.
+    Traveler:
+      description: Stores the traveler information.
       properties:
-        currency:
+        email_id:
           type: string
-        amount:
-          type: number
-          format: double
+          description: Stores Traveler Email
+        price:
+          $ref: '#/components/schemas/Price'
+        custom_data_fields:
+          type: array
+          description: Stores CDF information
+          items:
+            $ref: '#/components/schemas/CustomDataField'
+        guest_traveler:
+          type: boolean
+      required:
+      - custom_data_fields
+      - email_id
+      - price

@@ -1939,30 +1939,61 @@ paths:
       - SCIM User Sync V1
 components:
   schemas:
-    ScimPatchSchema:
+    MetaSchema:
       type: object
-      description: The user patch request schema.
+      description: A complex attribute containing resource metadata.
       properties:
-        Operations:
+        created:
+          type: string
+          format: date-time
+          description: The creation time metadata.
+        lastModified:
+          type: string
+          format: date-time
+          description: The last modification time.
+        location:
+          type: string
+          format: uri
+          description: The location of the user resource accessible by URI.
+        version:
+          type: string
+          description: The version of the resource.
+      title: Meta
+    AdminUserSchema:
+      type: object
+      description: The extended custom attributes specific to Egencia travel management system.
+      properties:
+        department:
+          type: string
+          description: The department of the admin user.
+          maxLength: 40
+          minLength: 0
+        geography:
+          type: string
+          description: The geography of the admin user.
+          maxLength: 40
+          minLength: 0
+        partner:
+          type: string
+          description: The partner of the admin user.
+          maxLength: 40
+          minLength: 0
+        pointOfSales:
           type: array
-          description: List of scim patch operations.
+          description: The pointOfSales of the admin user.
           items:
-            $ref: '#/components/schemas/ScimPatchOperationSchema'
+            $ref: '#/components/schemas/PointOfSaleSchema'
           maxItems: 2147483647
           minItems: 1
-        meta:
-          $ref: '#/components/schemas/MetaSchema'
-          description: The attribute containing the resource metadata.
-        schemas:
-          type: array
-          description: The schema urns for the associated resource.
-          items:
-            type: string
-          uniqueItems: true
+        status:
+          type: string
+          description: To update status for all Point Of Sales
       required:
-      - Operations
-      - schemas
-      title: ScimPatchSchema
+      - department
+      - geography
+      - partner
+      - pointOfSales
+      title: Admin user
     PointOfSaleSchema:
       type: object
       description: The complex model containing point of sale association.
@@ -1999,6 +2030,47 @@ components:
       - pointOfSaleId
       - role
       title: Name
+    SearchRequest:
+      type: object
+      description: The user search schema. Currently it supports only emails with eq operator.
+      properties:
+        filter:
+          type: string
+          description: Contains the expression for filtering the request. Currently only search by email, name, username and singleSignOnId is supported with eq operator. This filter attribute can be used to collect Egencia ID by searching via email and Egencia website ID
+          example: emails[value eq "test@xyz.com"] and urn:ietf:params:scim:schemas:extension:enterprise:2.0:User[organization eq 999]
+        meta:
+          $ref: '#/components/schemas/MetaSchema'
+          description: The attribute containing the resource metadata.
+        schemas:
+          type: array
+          description: The schema urns for the associated resource.
+          items:
+            type: string
+          uniqueItems: true
+      required:
+      - filter
+      - schemas
+      title: SearchRequest
+    EmailSchema:
+      type: object
+      description: The complex model containing email details of the user.
+      properties:
+        primary:
+          type: boolean
+          description: Identifier flag to determine whether the address is primary or not.
+        type:
+          type: string
+          description: Type of email. Ex. WORK. Please refer the <a href='#Email type'>Enumerations</a> section for the values supported.
+          enum:
+          - WORK
+        value:
+          type: string
+          description: The value of the email address. It needs to be in a standard format and cannot be empty.
+          minLength: 1
+      required:
+      - type
+      - value
+      title: Email
     UserSchema:
       type: object
       description: The user resource schema.
@@ -2060,41 +2132,6 @@ components:
       - familyName
       - givenName
       title: Name
-    AdminUserSchema:
-      type: object
-      description: The extended custom attributes specific to Egencia travel management system.
-      properties:
-        department:
-          type: string
-          description: The department of the admin user.
-          maxLength: 40
-          minLength: 0
-        geography:
-          type: string
-          description: The geography of the admin user.
-          maxLength: 40
-          minLength: 0
-        partner:
-          type: string
-          description: The partner of the admin user.
-          maxLength: 40
-          minLength: 0
-        pointOfSales:
-          type: array
-          description: The pointOfSales of the admin user.
-          items:
-            $ref: '#/components/schemas/PointOfSaleSchema'
-          maxItems: 2147483647
-          minItems: 1
-        status:
-          type: string
-          description: To update status for all Point Of Sales
-      required:
-      - department
-      - geography
-      - partner
-      - pointOfSales
-      title: Admin user
     ScimPatchOperationSchema:
       type: object
       description: A complex object for scim patch oeration.
@@ -2105,14 +2142,17 @@ components:
           type: string
         value: {}
       title: ScimPatchOperation
-    SearchRequest:
+    ScimPatchSchema:
       type: object
-      description: The user search schema. Currently it supports only emails with eq operator.
+      description: The user patch request schema.
       properties:
-        filter:
-          type: string
-          description: Contains the expression for filtering the request. Currently only search by email, name, username and singleSignOnId is supported with eq operator. This filter attribute can be used to collect Egencia ID by searching via email and Egencia website ID
-          example: emails[value eq "test@xyz.com"] and urn:ietf:params:scim:schemas:extension:enterprise:2.0:User[organization eq 999]
+        Operations:
+          type: array
+          description: List of scim patch operations.
+          items:
+            $ref: '#/components/schemas/ScimPatchOperationSchema'
+          maxItems: 2147483647
+          minItems: 1
         meta:
           $ref: '#/components/schemas/MetaSchema'
           description: The attribute containing the resource metadata.
@@ -2123,49 +2163,9 @@ components:
             type: string
           uniqueItems: true
       required:
-      - filter
+      - Operations
       - schemas
-      title: SearchRequest
-    EmailSchema:
-      type: object
-      description: The complex model containing email details of the user.
-      properties:
-        primary:
-          type: boolean
-          description: Identifier flag to determine whether the address is primary or not.
-        type:
-          type: string
-          description: Type of email. Ex. WORK. Please refer the <a href='#Email type'>Enumerations</a> section for the values supported.
-          enum:
-          - WORK
-        value:
-          type: string
-          description: The value of the email address. It needs to be in a standard format and cannot be empty.
-          minLength: 1
-      required:
-      - type
-      - value
-      title: Email
-    MetaSchema:
-      type: object
-      description: A complex attribute containing resource metadata.
-      properties:
-        created:
-          type: string
-          format: date-time
-          description: The creation time metadata.
-        lastModified:
-          type: string
-          format: date-time
-          description: The last modification time.
-        location:
-          type: string
-          format: uri
-          description: The location of the user resource accessible by URI.
-        version:
-          type: string
-          description: The version of the resource.
-      title: Meta
+      title: ScimPatchSchema
   securitySchemes:
     OAuth2:
       flows:

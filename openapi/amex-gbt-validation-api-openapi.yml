@@ -60,36 +60,6 @@ paths:
       - Validation
 components:
   schemas:
-    ValidationField:
-      description: Validation field
-      properties:
-        name:
-          type: string
-          description: The name of field which needs to be validated for.
-          example: Project Code
-        value:
-          type: string
-          description: The Value of the corresponding field.
-          example: F_AUTO
-      title: Validation field
-    Traveler:
-      description: Traveler details
-      properties:
-        email:
-          type: string
-          description: Email address of the traveler.
-          example: test@egencia.com
-        user_id:
-          type: integer
-          format: int64
-          description: TUID (Egencia Travelers Unique Identifier) of the traveler.
-          example: 454545
-        validation_fields:
-          type: array
-          description: The list of the fields and their corresponding values which needs to be validated.
-          items:
-            $ref: '#/components/schemas/ValidationField'
-      title: Traveler
     CDFValidationResponse:
       description: Validation response
       properties:
@@ -141,6 +111,49 @@ components:
             type: object
             description: Placeholder that can accommodate trip Information.
       title: Validation Request
+    Error:
+      description: Validation error
+      properties:
+        error_fields:
+          type: array
+          description: The list of field which are not valid.
+          items:
+            $ref: '#/components/schemas/ErrorField'
+        user_id:
+          type: integer
+          format: int32
+          description: TUID (Egencia Travelers Unique Identifier) of the traveler.
+      title: Validation error
+    ValidationField:
+      description: Validation field
+      properties:
+        name:
+          type: string
+          description: The name of field which needs to be validated for.
+          example: Project Code
+        value:
+          type: string
+          description: The Value of the corresponding field.
+          example: F_AUTO
+      title: Validation field
+    Traveler:
+      description: Traveler details
+      properties:
+        email:
+          type: string
+          description: Email address of the traveler.
+          example: test@egencia.com
+        user_id:
+          type: integer
+          format: int64
+          description: TUID (Egencia Travelers Unique Identifier) of the traveler.
+          example: 454545
+        validation_fields:
+          type: array
+          description: The list of the fields and their corresponding values which needs to be validated.
+          items:
+            $ref: '#/components/schemas/ValidationField'
+      title: Traveler
     BookerForThirdParty:
       description: Booker details
       properties:
@@ -177,16 +190,3 @@ components:
           type: string
           description: The name of field which is not valid.
       title: Validation error field
-    Error:
-      description: Validation error
-      properties:
-        error_fields:
-          type: array
-          description: The list of field which are not valid.
-          items:
-            $ref: '#/components/schemas/ErrorField'
-        user_id:
-          type: integer
-          format: int32
-          description: TUID (Egencia Travelers Unique Identifier) of the traveler.
-      title: Validation error

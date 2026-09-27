@@ -293,17 +293,70 @@ components:
       required:
       - schemas
       title: User Search Response schema
-    ScimPatchSchema:
+    MetaSchema:
       type: object
-      description: The user patch request schema.
+      description: A complex attribute containing resource metadata.
       properties:
-        Operations:
+        created:
+          type: string
+          format: date-time
+          description: The creation time metadata.
+        lastModified:
+          type: string
+          format: date-time
+          description: The last modification time.
+        location:
+          type: string
+          format: uri
+          description: The location of the user resource accessible by URI.
+        version:
+          type: string
+          description: The version of the resource.
+      title: Meta
+    AdminUserSchema:
+      type: object
+      description: The extended custom attributes specific to Egencia travel management system.
+      properties:
+        department:
+          type: string
+          description: The department of the admin user.
+          maxLength: 40
+          minLength: 0
+        geography:
+          type: string
+          description: The geography of the admin user.
+          maxLength: 40
+          minLength: 0
+        partner:
+          type: string
+          description: The partner of the admin user.
+          maxLength: 40
+          minLength: 0
+        pointOfSales:
           type: array
-          description: List of scim patch operations.
+          description: The pointOfSales of the admin user.
           items:
-            $ref: '#/components/schemas/ScimPatchOperationSchema'
+            $ref: '#/components/schemas/PointOfSaleSchema'
           maxItems: 2147483647
           minItems: 1
+        status:
+          type: string
+          description: To update status for all Point Of Sales
+      required:
+      - department
+      - geography
+      - partner
+      - pointOfSales
+      title: Admin user
+    SearchRequestSchema:
+      type: object
+      description: The user search schema. Currently it supports only emails with eq operator.
+      properties:
+        filter:
+          type: string
+          description: Contains the expression for filtering the request. Currently only search by email, name and username is supported with eq operator. This filter attribute can be used to collect Egencia ID by searching via email and Egencia website ID
+          example: '"name[givenName eq \"egencia\"] and name[familyName eq \"adminUser\"]"'
+          title: FilterRequest
         meta:
           $ref: '#/components/schemas/MetaSchema'
           description: The attribute containing the resource metadata.
@@ -314,33 +367,9 @@ components:
             type: string
           uniqueItems: true
       required:
-      - Operations
+      - filter
       - schemas
-      title: ScimPatchSchema
-    SearchResponse:
-      type: object
-      description: The complex model containing filtered fields from user schema.
-      properties:
-        emails:
-          type: array
-          description: The email addresses associated with the user account.
-          items:
-            $ref: '#/components/schemas/EmailSchema'
-          maxItems: 1
-          minItems: 1
-        name:
-          $ref: '#/components/schemas/NameSchema'
-          description: The name details of the user like first name, last name, etc. This is a mandatory property.
-        urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse:
-          $ref: '#/components/schemas/AdminUserSchema'
-          description: Extended custom attributes specific to Egencia travel management system.
-        userName:
-          type: string
-          description: The username of the user
-      required:
-      - emails
-      - name
-      - urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse
+      title: User Search schema
     PointOfSaleSchema:
       type: object
       description: The complex model containing point of sale association.
@@ -377,6 +406,35 @@ components:
       - pointOfSaleId
       - role
       title: Name
+    ErrorSchema:
+      type: object
+      description: The error schema for representing error details.
+      properties:
+        data:
+          type: array
+          description: The list of data objects associated with the error. (e.g. invalid attributes).
+          items:
+            $ref: '#/components/schemas/DataSchema'
+        detail:
+          type: string
+          description: The detailed description of the error.
+        meta:
+          $ref: '#/components/schemas/MetaSchema'
+          description: The attribute containing the resource metadata.
+        schemas:
+          type: array
+          description: The schema urns for the associated resource.
+          items:
+            type: string
+          uniqueItems: true
+        status:
+          type: string
+          description: The status code of the error.
+      required:
+      - detail
+      - schemas
+      - status
+      title: Error schema
     DataSchema:
       type: object
       description: The data schema for representing error details of different attributes
@@ -391,6 +449,50 @@ components:
       - attribute
       - message
       title: Data schema
+    EmailSchema:
+      type: object
+      description: The complex model containing email details of the user.
+      properties:
+        primary:
+          type: boolean
+          description: Identifier flag to determine whether the address is primary or not.
+        type:
+          type: string
+          description: Type of email. Ex. WORK. Please refer the <a href='#Email type'>Enumerations</a> section for the values supported.
+          enum:
+          - WORK
+        value:
+          type: string
+          description: The value of the email address. It needs to be in a standard format and cannot be empty.
+          minLength: 1
+      required:
+      - type
+      - value
+      title: Email
+    SearchResponse:
+      type: object
+      description: The complex model containing filtered fields from user schema.
+      properties:
+        emails:
+          type: array
+          description: The email addresses associated with the user account.
+          items:
+            $ref: '#/components/schemas/EmailSchema'
+          maxItems: 1
+          minItems: 1
+        name:
+          $ref: '#/components/schemas/NameSchema'
+          description: The name details of the user like first name, last name, etc. This is a mandatory property.
+        urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse:
+          $ref: '#/components/schemas/AdminUserSchema'
+          description: Extended custom attributes specific to Egencia travel management system.
+        userName:
+          type: string
+          description: The username of the user
+      required:
+      - emails
+      - name
+      - urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse
     UserSchema:
       type: object
       description: The user resource schema.
@@ -452,63 +554,6 @@ components:
       - familyName
       - givenName
       title: Name
-    AdminUserSchema:
-      type: object
-      description: The extended custom attributes specific to Egencia travel management system.
-      properties:
-        department:
-          type: string
-          description: The department of the admin user.
-          maxLength: 40
-          minLength: 0
-        geography:
-          type: string
-          description: The geography of the admin user.
-          maxLength: 40
-          minLength: 0
-        partner:
-          type: string
-          description: The partner of the admin user.
-          maxLength: 40
-          minLength: 0
-        pointOfSales:
-          type: array
-          description: The pointOfSales of the admin user.
-          items:
-            $ref: '#/components/schemas/PointOfSaleSchema'
-          maxItems: 2147483647
-          minItems: 1
-        status:
-          type: string
-          description: To update status for all Point Of Sales
-      required:
-      - department
-      - geography
-      - partner
-      - pointOfSales
-      title: Admin user
-    SearchRequestSchema:
-      type: object
-      description: The user search schema. Currently it supports only emails with eq operator.
-      properties:
-        filter:
-          type: string
-          description: Contains the expression for filtering the request. Currently only search by email, name and username is supported with eq operator. This filter attribute can be used to collect Egencia ID by searching via email and Egencia website ID
-          example: '"name[givenName eq \"egencia\"] and name[familyName eq \"adminUser\"]"'
-          title: FilterRequest
-        meta:
-          $ref: '#/components/schemas/MetaSchema'
-          description: The attribute containing the resource metadata.
-        schemas:
-          type: array
-          description: The schema urns for the associated resource.
-          items:
-            type: string
-          uniqueItems: true
-      required:
-      - filter
-      - schemas
-      title: User Search schema
     ScimPatchOperationSchema:
       type: object
       description: A complex object for scim patch oeration.
@@ -519,58 +564,17 @@ components:
           type: string
         value: {}
       title: ScimPatchOperation
-    EmailSchema:
+    ScimPatchSchema:
       type: object
-      description: The complex model containing email details of the user.
+      description: The user patch request schema.
       properties:
-        primary:
-          type: boolean
-          description: Identifier flag to determine whether the address is primary or not.
-        type:
-          type: string
-          description: Type of email. Ex. WORK. Please refer the <a href='#Email type'>Enumerations</a> section for the values supported.
-          enum:
-          - WORK
-        value:
-          type: string
-          description: The value of the email address. It needs to be in a standard format and cannot be empty.
-          minLength: 1
-      required:
-      - type
-      - value
-      title: Email
-    MetaSchema:
-      type: object
-      description: A complex attribute containing resource metadata.
-      properties:
-        created:
-          type: string
-          format: date-time
-          description: The creation time metadata.
-        lastModified:
-          type: string
-          format: date-time
-          description: The last modification time.
-        location:
-          type: string
-          format: uri
-          description: The location of the user resource accessible by URI.
-        version:
-          type: string
-          description: The version of the resource.
-      title: Meta
-    ErrorSchema:
-      type: object
-      description: The error schema for representing error details.
-      properties:
-        data:
+        Operations:
           type: array
-          description: The list of data objects associated with the error. (e.g. invalid attributes).
+          description: List of scim patch operations.
           items:
-            $ref: '#/components/schemas/DataSchema'
-        detail:
-          type: string
-          description: The detailed description of the error.
+            $ref: '#/components/schemas/ScimPatchOperationSchema'
+          maxItems: 2147483647
+          minItems: 1
         meta:
           $ref: '#/components/schemas/MetaSchema'
           description: The attribute containing the resource metadata.
@@ -580,14 +584,10 @@ components:
           items:
             type: string
           uniqueItems: true
-        status:
-          type: string
-          description: The status code of the error.
       required:
-      - detail
+      - Operations
       - schemas
-      - status
-      title: Error schema
+      title: ScimPatchSchema
   securitySchemes:
     OAuth2:
       flows:

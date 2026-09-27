@@ -84,13 +84,6 @@ components:
           type: string
         acknowledgementSuccessDetails:
           $ref: '#/components/schemas/GbtCapAckRequestData'
-    ErrorNode:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorDescription:
-          type: string
     GbtCapAckRequestData:
       type: object
       properties:
@@ -108,6 +101,13 @@ components:
         client_id:
           type: string
         account_number:
+          type: string
+    ErrorNode:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorDescription:
           type: string
   securitySchemes:
     oAuth2:

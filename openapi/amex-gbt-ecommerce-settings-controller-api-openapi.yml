@@ -108,6 +108,17 @@ components:
           - PAYMENT_SETTING
           - COMPANY_SETTING
         setting: {}
+    ECommerceAuditApiResponse:
+      type: object
+      properties:
+        billingDkChanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/DkChange'
+        travelerDkChanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/DkChange'
     ECommerceSettingsApiResponse:
       type: object
       properties:
@@ -129,17 +140,6 @@ components:
           - INVOICE_SETTING
           - PAYMENT_SETTING
           - COMPANY_SETTING
-    ECommerceAuditApiResponse:
-      type: object
-      properties:
-        billingDkChanges:
-          type: array
-          items:
-            $ref: '#/components/schemas/DkChange'
-        travelerDkChanges:
-          type: array
-          items:
-            $ref: '#/components/schemas/DkChange'
   securitySchemes:
     oAuth2:
       type: oauth2

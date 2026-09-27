@@ -5882,30 +5882,323 @@ paths:
       - bookings v1
 components:
   schemas:
-    SecondLevelBreakdown:
+    ApprovalItemResponse:
       type: object
+      description: Approval response after approve/deny action on booking item
       properties:
-        amount:
-          type: number
-          format: double
-          description: Amount
-          example: 23.89
-        currency:
+        bookingId:
           type: string
-          description: ISO 4217 currency code.
-          example: EUR
+          description: Booking ID for which approve/deny action is requested
+        itemId:
+          type: string
+          description: Booking item ID for which approve/deny action is requested
+        status:
+          type: string
+          description: 'Approval status after approve/deny action is performed, Possible values: PENDING/APPROVED/DENIED'
+      title: ApprovalItemResponse
+    Payment:
+      type: object
+      description: Details about payment.
+      properties:
+        breakdowns:
+          type: array
+          description: Breakdown of the price amount
+          items:
+            $ref: '#/components/schemas/FirstLevelBreakdown'
+        creditCardInfo:
+          $ref: '#/components/schemas/CreditCardInfo'
+          description: Credit card info
+        date:
+          type: string
+          description: Date of the payment
+        lineType:
+          type: string
+          description: Line type. This could be PRODUCT or EGENCIA_FEE
+        netAmount:
+          $ref: '#/components/schemas/Fare'
+          description: Net amount of the payment
+    GlobalGround:
+      allOf:
+      - $ref: '#/components/schemas/BookingItem'
+      - type: object
+        properties:
+          _links:
+            $ref: '#/components/schemas/Links'
+          bookingId:
+            type: string
+            description: BookingId of the trip
+          bookingStatus:
+            type: string
+            description: Booking status of the trip
+            enum:
+            - BOOKED
+            - CANCELLED
+            - DRAFT
+            - DELETED
+            - AWAITING_CONFIRMATION
+            example: BOOKED, CANCELLED
+          company:
+            $ref: '#/components/schemas/Company'
+            description: Traveler's company name and id.
+          dropOff:
+            $ref: '#/components/schemas/SegmentStep'
+            description: Describes the location/date of destination
+          groundTransferType:
+            $ref: '#/components/schemas/GroundTransferType'
+          partner:
+            $ref: '#/components/schemas/Partner'
+            description: Partner associated with the company
+          pickUp:
+            $ref: '#/components/schemas/SegmentStep'
+            description: Describes the location/date of origin
+          receiptInfo:
+            $ref: '#/components/schemas/ReceiptInfo'
+          vehicle:
+            $ref: '#/components/schemas/GroundVehicle'
+            description: 'Details about ground vehicle (Refer: https://www.acriss.org/car-codes/)'
+          vendor:
+            $ref: '#/components/schemas/Provider'
+            description: Details about ground supplier
+      required:
+      - bookingId
+      - company
+      - dropOff
+      - id
+      - pickUp
+      - travelers
+      - vendor
+      title: GlobalGround
+    ReceiptInfo:
+      type: object
+      description: Details about receipt like id, date, version etc. 'receipt_info' appears whenever a payment receipt or an invoice has been generated for the booking.
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        centralBill:
+          type: boolean
+        documentType:
+          type: string
+          description: Type of document, it can be INVOICE or CREDIT
+        id:
+          type: string
+          description: The 'id' is the reference of the last receipt or invoice or credit note generated for that booking as it appears in the PDF document. If multiple payments are required for a booking or if refunds occur, then multiple invoices and credit notes will be available to download, and the 'id' will be the one of the last document generated. Also keep in mind that Expense SPI sends a message every time an invoice or credit note is created, so by keeping track of the 'id' element you'll have a perfect visibility of the order in which those documents have been issued.
+        payments:
+          type: array
+          description: List of payments
+          items:
+            $ref: '#/components/schemas/Payment'
+        receiptDate:
+          type: string
+          description: Receipt Date
+        receiptNumber:
+          type: string
+          description: Receipt number
+        status:
+          type: string
+          description: Status of the receipt.
+        totalAmount:
+          $ref: '#/components/schemas/Fare'
+          description: Total receipt amount
+        travelerId:
+          type: integer
+          format: int64
+          description: Id of the traveler to whom invoice/receipt is issued
+        version:
+          type: integer
+          format: int32
+          description: Version of the receipt.
+    RateType:
+      type: object
+      description: The type of inventory purchased or reserved by the traveler (Published Rate, Egencia Preferred Rate, Corporate negotiated rate, etc.).
+      properties:
+        code:
+          type: string
+          description: Code of the inventory
+          example: CORPORATE
         name:
           type: string
-          description: Name of an amount
-          example: Taxes and service fees
-        type:
-          type: string
-          description: Type of an amount
-          example: TAXES
+          description: Name of the inventory
+          example: Corporate rate
       required:
-      - amount
-      - type
-      title: SecondLevelBreakdown
+      - code
+      title: RateType
+    Car:
+      allOf:
+      - $ref: '#/components/schemas/BookingItem'
+      - type: object
+        properties:
+          _links:
+            $ref: '#/components/schemas/Links'
+          amenities:
+            type: array
+            description: List of options in the vehicle, such as air conditioning
+            example: HandHeldNavigationSystem
+            items:
+              type: string
+          bookingId:
+            type: string
+            description: BookingId of the trip
+          bookingStatus:
+            type: string
+            description: Booking status of the trip
+            enum:
+            - BOOKED
+            - CANCELLED
+            - DRAFT
+            - DELETED
+            - AWAITING_CONFIRMATION
+            example: BOOKED, CANCELLED
+          company:
+            $ref: '#/components/schemas/Company'
+            description: Traveler's company name and id.
+          dropOff:
+            $ref: '#/components/schemas/SegmentStep'
+            description: Describes the location/date where the traveler should return its rental car
+          isDropOffCollection:
+            type: boolean
+            description: True if the traveler will return the rental car at a custom location
+          isPickUpDelivery:
+            type: boolean
+            description: True if the rental car will be delivered at a custom location to the traveler
+          numberOfDrivers:
+            type: integer
+            format: int32
+            description: Total number of driver, including the main driver (booker/traveler)
+          partner:
+            $ref: '#/components/schemas/Partner'
+            description: Partner associated with the company
+          pickUp:
+            $ref: '#/components/schemas/SegmentStep'
+            description: Describes the location/date where the traveler should get its rental car
+          receiptInfo:
+            $ref: '#/components/schemas/ReceiptInfo'
+          vehicle:
+            $ref: '#/components/schemas/RentalVehicle'
+            description: 'Details about car vehicle (Refer: https://www.acriss.org/car-codes/)'
+          vendor:
+            $ref: '#/components/schemas/Provider'
+            description: Details about car supplier
+      required:
+      - bookingId
+      - company
+      - dropOff
+      - id
+      - numberOfDrivers
+      - pickUp
+      - travelers
+      - vendor
+      title: Car
+    Hotel:
+      allOf:
+      - $ref: '#/components/schemas/BookingItem'
+      - type: object
+        properties:
+          _links:
+            $ref: '#/components/schemas/Links'
+          bookingId:
+            type: string
+            description: BookingId of the trip
+          bookingStatus:
+            type: string
+            description: Booking status of the trip
+            enum:
+            - BOOKED
+            - CANCELLED
+            - DRAFT
+            - DELETED
+            - AWAITING_CONFIRMATION
+            example: BOOKED, CANCELLED
+          checkIn:
+            type: string
+            description: CheckIn date in days only (does not handle hour of the check in). Format = ISO 8601 datetime
+            example: '2019-01-01T00:00:00.000Z'
+          checkOut:
+            type: string
+            description: Check out date in days only (does not handle hour of the check out). Format = ISO 8601 datetime
+            example: '2019-01-01T00:00:00.000Z'
+          company:
+            $ref: '#/components/schemas/Company'
+            description: Traveler's company name and id.
+          location:
+            $ref: '#/components/schemas/Location'
+            description: Hotel's address
+          partner:
+            $ref: '#/components/schemas/Partner'
+            description: Partner associated with the company
+          propertyId:
+            type: string
+            description: Unique identifier of the hotel property on the hotel distribution system
+          provider:
+            type: string
+            description: Where the property offering is sourced from
+          receiptInfo:
+            $ref: '#/components/schemas/ReceiptInfo'
+          starRating:
+            type: string
+            description: Hotel's rating
+            example: 1, 2, 2.5, 3.5, .., 5
+      required:
+      - bookingId
+      - checkIn
+      - checkOut
+      - company
+      - id
+      - travelers
+      title: Hotel
+    Train:
+      allOf:
+      - $ref: '#/components/schemas/BookingItem'
+      - type: object
+        properties:
+          _links:
+            $ref: '#/components/schemas/Links'
+          bookingId:
+            type: string
+            description: BookingId of the trip
+          bookingStatus:
+            type: string
+            description: Booking status of the trip
+            enum:
+            - BOOKED
+            - CANCELLED
+            - DRAFT
+            - DELETED
+            - AWAITING_CONFIRMATION
+            example: BOOKED, CANCELLED
+          company:
+            $ref: '#/components/schemas/Company'
+            description: Traveler's company name and id.
+          originDestinations:
+            type: array
+            description: List of origins to destinations. For example a round trip would have 2 origin destination in this list (e.g. Paris -> Tokyo, Tokyo -> Paris).
+            items:
+              $ref: '#/components/schemas/FlightOriginDestination'
+            minItems: 1
+          partner:
+            $ref: '#/components/schemas/Partner'
+            description: Partner associated with the company
+          receiptInfo:
+            $ref: '#/components/schemas/ReceiptInfo'
+      required:
+      - bookingId
+      - company
+      - id
+      - originDestinations
+      - travelers
+      title: Train
+    TicketInformation:
+      type: object
+      description: Ticket information of traveler for a segment.
+      properties:
+        number:
+          type: string
+          description: Ticket number. Only when booking is issued.
+          example: 0067508252738
+        priorNumber:
+          type: string
+          description: Prior ticket number if it exists.
+          example: 0067508252738
+      title: TicketInformation
     FirstLevelBreakdown:
       type: object
       description: Breakdown details
@@ -5936,162 +6229,41 @@ components:
       - amount
       - type
       title: FirstLevelBreakdown
-    CancelItem:
+    Location:
       type: object
-      description: Cancellation response after cancel action on booking item
       properties:
-        id:
-          type: string
-          description: Booking item ID for which cancellation action is requested
-        status:
-          type: string
-          description: Cancellation status for the item after cancellation is performed
-      title: CancelItem
-    CustomDataField:
-      type: object
-      description: Billing data added during the booking process.
-      properties:
-        label:
-          type: string
-          description: Name or key of the cdf field
-        value:
-          type: string
-          description: Value of the cdf field
-      required:
-      - label
-      title: CustomDataField
-    Carrier:
-      type: object
-      description: Carrier details
-      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+          description: Address details
         code:
           type: string
-          description: Carrier code
-        lowCostCarrier:
-          type: boolean
-          description: Flag indicating whether the carrier is a low-cost.
-        name:
-          type: string
-          description: Carrier name
-        number:
-          type: string
-          description: Carrier number
-      title: Carrier
-    RentalVehicle:
-      type: object
-      description: Details of the rental vehicle
-      properties:
-        acrissCode:
-          type: string
-          description: 'Complete Acriss Code, (Refer: https://www.acriss.org/car-codes/), not mandatory for off line booking case'
-          example: IFAR
-        category:
-          type: string
-          description: First letter from Car ACRISS code
-          example: I
-        mileageLimit:
-          type: string
-          description: 'Mileage limit policy, without standard (e.g. : Unlimited, 0 miles (Additional Mileage: 0,40 USD per mile))'
-          example: '1400 km (Additional Mileage: €0.19 per km)'
-        name:
-          type: string
-          description: Vehicle model's name
-          example: Toyota Rav4
-      title: RentalVehicle
-    Fee:
-      allOf:
-      - $ref: '#/components/schemas/BookingItem'
-      - type: object
-        properties:
-          _links:
-            $ref: '#/components/schemas/Links'
-          associatedBookingReference:
-            type: string
-            description: Booking reference indicating the booking with which Fee is associated.
-            example: '48523737071'
-          bookingId:
-            type: string
-            description: BookingId of the trip
-          bookingStatus:
-            type: string
-            description: Booking status of the trip
-            enum:
-            - BOOKED
-            - CANCELLED
-            - DRAFT
-            - DELETED
-            - AWAITING_CONFIRMATION
-            example: BOOKED, CANCELLED
-          company:
-            $ref: '#/components/schemas/Company'
-            description: Traveler's company name and id.
-          label:
-            type: string
-            description: Fee's description.
-            example: Agent assisted air purchase fee
-          partner:
-            $ref: '#/components/schemas/Partner'
-            description: Partner associated with the company
-          receiptInfo:
-            $ref: '#/components/schemas/ReceiptInfo'
-      required:
-      - bookingId
-      - company
-      - id
-      - label
-      - travelers
-      title: Fee
-    BookingProduct:
-      type: object
-      description: The Egencia expense model which carries details of traveler, trips and expenses
-      properties:
-        bookingId:
-          type: string
-          description: BookingId of the trip
-        company:
-          $ref: '#/components/schemas/Company'
-          description: Traveler's company name and id.
-        groupId:
-          type: string
-          description: Group Id in case of multi-traveler booking
-        items:
+          description: Airport IATA code or any station code. Mandatory for AIRPORT type only.
+          example: CDG
+        geoCoordinates:
           type: array
-          description: List of booking items belongs to the same booking
+          description: Geo-coordinates of the location
           items:
-            oneOf:
-            - $ref: '#/components/schemas/Car'
-            - $ref: '#/components/schemas/Fee'
-            - $ref: '#/components/schemas/Flight'
-            - $ref: '#/components/schemas/GlobalGround'
-            - $ref: '#/components/schemas/Hotel'
-            - $ref: '#/components/schemas/Train'
-        partner:
-          $ref: '#/components/schemas/Partner'
-          description: Partner associated with the company
-        pointOfSale:
-          $ref: '#/components/schemas/PointOfSale'
-          description: Country corresponding to traveler's company.
-        totalPrice:
-          $ref: '#/components/schemas/Price'
-          description: Total price of the trip
+            type: number
+            format: double
+        id:
+          type: string
+          description: 'Egencia location id '
+        name:
+          type: string
+          description: Name of airport, station, city or hotel. Mandatory for all types except ADDRESS.
+          example: Stockholm Arlanda
+        type:
+          type: string
+          description: The type of location.
+          enum:
+          - AIRPORT
+          - CITY
+          - TRAIN_STATION
+          - ADDRESS
+          - HOTEL
       required:
-      - company
-      - items
-      title: BookingProduct
-    ApprovalItemResponse:
-      type: object
-      description: Approval response after approve/deny action on booking item
-      properties:
-        bookingId:
-          type: string
-          description: Booking ID for which approve/deny action is requested
-        itemId:
-          type: string
-          description: Booking item ID for which approve/deny action is requested
-        status:
-          type: string
-          description: 'Approval status after approve/deny action is performed, Possible values: PENDING/APPROVED/DENIED'
-      title: ApprovalItemResponse
+      - address
+      title: Location
     Segment:
       type: object
       description: Segment is part of an origin to destination.
@@ -6162,92 +6334,6 @@ components:
       - bookingClass
       - departure
       title: Segment
-    TicketInformation:
-      type: object
-      description: Ticket information of traveler for a segment.
-      properties:
-        number:
-          type: string
-          description: Ticket number. Only when booking is issued.
-          example: 0067508252738
-        priorNumber:
-          type: string
-          description: Prior ticket number if it exists.
-          example: 0067508252738
-      title: TicketInformation
-    CO2EmissionEquivalency:
-      type: object
-      description: The CO2 emission equivalencies information.
-      properties:
-        type:
-          type: string
-          description: This specifies the type of CO2 emission equivalency.
-        value:
-          type: number
-          format: double
-          description: This specifies the value of CO2 emission equivalency.
-      title: CO2EmissionEquivalency
-    CancelItemResponse:
-      type: object
-      description: Response after cancel action on booking item
-      properties:
-        bookingId:
-          type: string
-          description: Booking ID for which cancel action is requested
-        errorCode:
-          type: string
-          description: Error code for the item when cancellation gets failed
-        errorMessage:
-          type: string
-          description: Failure message for the item when cancellation gets failed
-        id:
-          type: string
-          description: Booking item Id for which cancel action is requested
-        status:
-          type: string
-          description: Cancellation status after cancellation action is performed
-      title: CancelItemResponse
-    ViolationReason:
-      type: object
-      description: Policy non-compliance reasons
-      properties:
-        bestFare:
-          $ref: '#/components/schemas/Fare'
-          description: Best fare amount calculated for the search.
-        message:
-          type: string
-          description: Message explanation of non-compliance reason.
-        type:
-          type: string
-          description: Type of the reason.
-      title: ViolationReason
-    CO2Emission:
-      type: object
-      description: The details of the Carbon dioxide (CO2) emission.
-      properties:
-        equivalencies:
-          type: array
-          description: The CO2 emission equivalencies information.
-          items:
-            $ref: '#/components/schemas/CO2EmissionEquivalency'
-        offsetAmount:
-          type: number
-          description: The CO2 emission offset amount.
-        offsetCurrency:
-          type: string
-          description: The CO2 emission offset currency.
-        unit:
-          type: string
-          description: The unit of the CO2 emission.
-          enum:
-          - KG
-          - LB
-          example: KG, LB
-        value:
-          type: integer
-          format: int32
-          description: The value of the CO2 emission.
-      title: CO2Emission
     SegmentStep:
       type: object
       description: Segment related information carries location and date time info
@@ -6263,94 +6349,16 @@ components:
       - dateTime
       - location
       title: SegmentStep
-    GroundTransferType:
+    Traveler:
       type: object
-      properties:
-        code:
-          type: string
-          description: Code of the transfer vehicle
-          example: AIRPORT_BUS
-        description:
-          type: string
-          description: Description of the transfer vehicle
-          example: Express Bus from/to Airport
-      required:
-      - code
-      - description
-      title: GroundTransferType
-    TravelerSegmentInfo:
-      type: object
-      description: Traveler information for a segment.
-      properties:
-        pnr:
-          type: string
-          description: PNR reference
-        ticket:
-          $ref: '#/components/schemas/TicketInformation'
-          description: Ticket complex object. Object containing ticket information.
-        travelerId:
-          type: integer
-          format: int64
-          description: Id of the traveler.
-          example: 67508252738
-      title: TravelerSegmentInfo
-    Company:
-      type: object
-      description: Company details of the traveler
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: Company Id
-        name:
-          type: string
-          description: Name of the company
-        organizationParentId:
-          type: integer
-          format: int64
-          description: Organization Id of the company. It is the same as the company Id when no organization is defined
-          example: 6555689
-        partnerCustomerCode:
-          type: string
-          description: External Id provided by partner. Can be shared by different companies in Egencia. Only provided if mapping has been given by partner.
-          example: JE3B
-      required:
-      - id
-      title: Company
-    BookingSearchResponse:
-      type: object
-      properties:
-        bookings:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityModelBookingNotificationEvent'
-        count:
-          type: integer
-          format: int32
-      title: BookingSearchResponse
-    ApprovalResponse:
-      type: object
-      description: Approval response after approve/deny action
-      properties:
-        bookingId:
-          type: string
-          description: Booking ID for which approve/deny action is requested
-        items:
-          type: array
-          description: Breakdown of statuses for individual items associated with the booking
-          items:
-            $ref: '#/components/schemas/ApprovalItem'
-        status:
-          type: string
-          description: 'Approval status after approve/deny action is performed, Possible values: PENDING/APPROVED/DENIED'
-      title: ApprovalResponse
-    Person:
-      type: object
-      description: Details of the person
       properties:
         agentCode:
           type: string
           description: Agent code
+        customDataFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomDataField'
         email:
           type: string
           description: Email of the person
@@ -6373,273 +6381,40 @@ components:
         preferredLanguage:
           type: string
           description: The preferred language of the person
-      title: Person
-    RulesAndRegulations:
+    PointOfSale:
       type: object
-      description: Details of rules and regulations
+      description: A point of sale is defined by the intersection of a company, a management unit, and a jurisdiction.
       properties:
-        details:
-          type: array
-          description: Raw text describing provider rules and regulations.
-          example: Can be modified with a penalty..
-          items:
-            type: string
-      title: RulesAndRegulations
-    CancelResponse:
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          example: FR
+      required:
+      - countryCode
+      title: PointOfSale
+    MeetingInfo:
       type: object
-      description: Cancel response after cancel action
+      description: Meeting details associated with an item.
       properties:
-        bookingId:
+        endDatetime:
           type: string
-          description: Booking ID for which cancel action is requested
-        errorCode:
+          description: Meeting end date time
+        id:
           type: string
-          description: Error code for the item when cancellation gets failed
-        errorMessage:
+          description: Meeting id
+        location:
           type: string
-          description: Failure message for the item when cancellation gets failed
-        items:
-          type: array
-          description: Breakdown of statuses for individual items associated with the booking
-          items:
-            $ref: '#/components/schemas/CancelItem'
-        status:
+          description: Meeting location
+        name:
           type: string
-          description: Cancellation status after cancellation action is performed
-      title: CancelResponse
-    Flight:
-      allOf:
-      - $ref: '#/components/schemas/BookingItem'
-      - type: object
-        properties:
-          _links:
-            $ref: '#/components/schemas/Links'
-          bookingId:
-            type: string
-            description: BookingId of the trip
-          bookingStatus:
-            type: string
-            description: Booking status of the trip
-            enum:
-            - BOOKED
-            - CANCELLED
-            - DRAFT
-            - DELETED
-            - AWAITING_CONFIRMATION
-            example: BOOKED, CANCELLED
-          company:
-            $ref: '#/components/schemas/Company'
-            description: Traveler's company name and id.
-          originDestinations:
-            type: array
-            description: List of origins to destinations. For example a round trip would have 2 origin destination in this list (e.g. Paris -> Tokyo, Tokyo -> Paris).
-            items:
-              $ref: '#/components/schemas/FlightOriginDestination'
-            minItems: 1
-          partner:
-            $ref: '#/components/schemas/Partner'
-            description: Partner associated with the company
-          receiptInfo:
-            $ref: '#/components/schemas/ReceiptInfo'
-          ticketNumber:
-            type: array
-            description: Ticket number. Only when booking is issued.
-            example: 0067508252738
-            items:
-              type: string
-      required:
-      - bookingId
-      - company
-      - id
-      - originDestinations
-      - travelers
-      title: Flight
-    Hotel:
-      allOf:
-      - $ref: '#/components/schemas/BookingItem'
-      - type: object
-        properties:
-          _links:
-            $ref: '#/components/schemas/Links'
-          bookingId:
-            type: string
-            description: BookingId of the trip
-          bookingStatus:
-            type: string
-            description: Booking status of the trip
-            enum:
-            - BOOKED
-            - CANCELLED
-            - DRAFT
-            - DELETED
-            - AWAITING_CONFIRMATION
-            example: BOOKED, CANCELLED
-          checkIn:
-            type: string
-            description: CheckIn date in days only (does not handle hour of the check in). Format = ISO 8601 datetime
-            example: '2019-01-01T00:00:00.000Z'
-          checkOut:
-            type: string
-            description: Check out date in days only (does not handle hour of the check out). Format = ISO 8601 datetime
-            example: '2019-01-01T00:00:00.000Z'
-          company:
-            $ref: '#/components/schemas/Company'
-            description: Traveler's company name and id.
-          location:
-            $ref: '#/components/schemas/Location'
-            description: Hotel's address
-          partner:
-            $ref: '#/components/schemas/Partner'
-            description: Partner associated with the company
-          propertyId:
-            type: string
-            description: Unique identifier of the hotel property on the hotel distribution system
-          provider:
-            type: string
-            description: Where the property offering is sourced from
-          receiptInfo:
-            $ref: '#/components/schemas/ReceiptInfo'
-          starRating:
-            type: string
-            description: Hotel's rating
-            example: 1, 2, 2.5, 3.5, .., 5
-      required:
-      - bookingId
-      - checkIn
-      - checkOut
-      - company
-      - id
-      - travelers
-      title: Hotel
-    DeleteResponse:
-      type: object
-      description: Delete response after delete action
-      properties:
-        bookingId:
+          description: Meeting name
+        startDatetime:
           type: string
-          description: Booking ID for which delete action is requested
-        errorCode:
+          description: Meeting start date time
+        venue:
           type: string
-          description: Error code for the item when deletion gets failed
-        errorMessage:
-          type: string
-          description: Failure message for the item when deletion gets failed
-        items:
-          type: array
-          description: Breakdown of statuses for individual items associated with the booking
-          items:
-            $ref: '#/components/schemas/DeletedItem'
-        status:
-          type: string
-          description: Status after deletion action is performed
-      title: DeleteResponse
-    Car:
-      allOf:
-      - $ref: '#/components/schemas/BookingItem'
-      - type: object
-        properties:
-          _links:
-            $ref: '#/components/schemas/Links'
-          amenities:
-            type: array
-            description: List of options in the vehicle, such as air conditioning
-            example: HandHeldNavigationSystem
-            items:
-              type: string
-          bookingId:
-            type: string
-            description: BookingId of the trip
-          bookingStatus:
-            type: string
-            description: Booking status of the trip
-            enum:
-            - BOOKED
-            - CANCELLED
-            - DRAFT
-            - DELETED
-            - AWAITING_CONFIRMATION
-            example: BOOKED, CANCELLED
-          company:
-            $ref: '#/components/schemas/Company'
-            description: Traveler's company name and id.
-          dropOff:
-            $ref: '#/components/schemas/SegmentStep'
-            description: Describes the location/date where the traveler should return its rental car
-          isDropOffCollection:
-            type: boolean
-            description: True if the traveler will return the rental car at a custom location
-          isPickUpDelivery:
-            type: boolean
-            description: True if the rental car will be delivered at a custom location to the traveler
-          numberOfDrivers:
-            type: integer
-            format: int32
-            description: Total number of driver, including the main driver (booker/traveler)
-          partner:
-            $ref: '#/components/schemas/Partner'
-            description: Partner associated with the company
-          pickUp:
-            $ref: '#/components/schemas/SegmentStep'
-            description: Describes the location/date where the traveler should get its rental car
-          receiptInfo:
-            $ref: '#/components/schemas/ReceiptInfo'
-          vehicle:
-            $ref: '#/components/schemas/RentalVehicle'
-            description: 'Details about car vehicle (Refer: https://www.acriss.org/car-codes/)'
-          vendor:
-            $ref: '#/components/schemas/Provider'
-            description: Details about car supplier
-      required:
-      - bookingId
-      - company
-      - dropOff
-      - id
-      - numberOfDrivers
-      - pickUp
-      - travelers
-      - vendor
-      title: Car
-    Train:
-      allOf:
-      - $ref: '#/components/schemas/BookingItem'
-      - type: object
-        properties:
-          _links:
-            $ref: '#/components/schemas/Links'
-          bookingId:
-            type: string
-            description: BookingId of the trip
-          bookingStatus:
-            type: string
-            description: Booking status of the trip
-            enum:
-            - BOOKED
-            - CANCELLED
-            - DRAFT
-            - DELETED
-            - AWAITING_CONFIRMATION
-            example: BOOKED, CANCELLED
-          company:
-            $ref: '#/components/schemas/Company'
-            description: Traveler's company name and id.
-          originDestinations:
-            type: array
-            description: List of origins to destinations. For example a round trip would have 2 origin destination in this list (e.g. Paris -> Tokyo, Tokyo -> Paris).
-            items:
-              $ref: '#/components/schemas/FlightOriginDestination'
-            minItems: 1
-          partner:
-            $ref: '#/components/schemas/Partner'
-            description: Partner associated with the company
-          receiptInfo:
-            $ref: '#/components/schemas/ReceiptInfo'
-      required:
-      - bookingId
-      - company
-      - id
-      - originDestinations
-      - travelers
-      title: Train
+          description: Meeting venue
+      title: MeetingInfo
     FlightOriginDestination:
       type: object
       description: Details of the flight origin destination
@@ -6653,45 +6428,64 @@ components:
       required:
       - segments
       title: FlightOriginDestination
-    ApprovalItem:
+    DeletedItem:
       type: object
+      description: Deletion response after delete action on draft booking item
       properties:
         id:
           type: string
-          description: Booking item ID for which approve/deny action is requested
+          description: Booking item ID for which action is requested
         status:
           type: string
-          description: 'Approval status for the item after approve/deny action is performed, Possible values: DRAFT/PENDING/APPROVED/DENIED/CANCELLED'
-      title: ApprovalItem
-    Address:
+          description: Status of the item after action is performed
+      title: DeleteItem
+    RulesAndRegulations:
       type: object
-      description: Address
+      description: Details of rules and regulations
       properties:
-        cityCode:
+        details:
+          type: array
+          description: Raw text describing provider rules and regulations.
+          example: Can be modified with a penalty..
+          items:
+            type: string
+      title: RulesAndRegulations
+    ApprovalResponse:
+      type: object
+      description: Approval response after approve/deny action
+      properties:
+        bookingId:
           type: string
-          description: Code of the city
-        cityName:
+          description: Booking ID for which approve/deny action is requested
+        items:
+          type: array
+          description: Breakdown of statuses for individual items associated with the booking
+          items:
+            $ref: '#/components/schemas/ApprovalItem'
+        status:
           type: string
-          description: Name of the city
-        countryCode:
+          description: 'Approval status after approve/deny action is performed, Possible values: PENDING/APPROVED/DENIED'
+      title: ApprovalResponse
+    GroundVehicle:
+      type: object
+      properties:
+        category:
           type: string
-          description: Code of the country
-        countryName:
+          description: First letter from ACRISS code
+          example: I
+        description:
           type: string
-          description: Name of the country
-        postalCode:
+          description: Description of the vehicle
+          example: IFAR
+        seatingCapacity:
           type: string
-          description: Postal code of the location
-        stateProvinceCode:
+          description: Seating Capacity
+          example: '1'
+        type:
           type: string
-          description: Province or state sode
-        stateProvinceName:
-          type: string
-          description: Province or state name
-        streetName:
-          type: string
-          description: Street name
-      title: Address
+          description: Vehicle type
+          example: Taxi
+      title: GroundVehicle
     Price:
       type: object
       description: Details of the price
@@ -6727,6 +6521,120 @@ components:
       required:
       - amount
       title: Price
+    RentalVehicle:
+      type: object
+      description: Details of the rental vehicle
+      properties:
+        acrissCode:
+          type: string
+          description: 'Complete Acriss Code, (Refer: https://www.acriss.org/car-codes/), not mandatory for off line booking case'
+          example: IFAR
+        category:
+          type: string
+          description: First letter from Car ACRISS code
+          example: I
+        mileageLimit:
+          type: string
+          description: 'Mileage limit policy, without standard (e.g. : Unlimited, 0 miles (Additional Mileage: 0,40 USD per mile))'
+          example: '1400 km (Additional Mileage: €0.19 per km)'
+        name:
+          type: string
+          description: Vehicle model's name
+          example: Toyota Rav4
+      title: RentalVehicle
+    Person:
+      type: object
+      description: Details of the person
+      properties:
+        agentCode:
+          type: string
+          description: Agent code
+        email:
+          type: string
+          description: Email of the person
+        firstName:
+          type: string
+          description: First name of the person
+        id:
+          type: integer
+          format: int64
+          description: Person id
+        isAgent:
+          type: boolean
+          description: Flag indicating whether the person is agent or not
+        isGuest:
+          type: boolean
+          description: Flag indicating whether the person is guest or not
+        lastName:
+          type: string
+          description: Last name of the person
+        preferredLanguage:
+          type: string
+          description: The preferred language of the person
+      title: Person
+    Links:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/Link'
+    Fee:
+      allOf:
+      - $ref: '#/components/schemas/BookingItem'
+      - type: object
+        properties:
+          _links:
+            $ref: '#/components/schemas/Links'
+          associatedBookingReference:
+            type: string
+            description: Booking reference indicating the booking with which Fee is associated.
+            example: '48523737071'
+          bookingId:
+            type: string
+            description: BookingId of the trip
+          bookingStatus:
+            type: string
+            description: Booking status of the trip
+            enum:
+            - BOOKED
+            - CANCELLED
+            - DRAFT
+            - DELETED
+            - AWAITING_CONFIRMATION
+            example: BOOKED, CANCELLED
+          company:
+            $ref: '#/components/schemas/Company'
+            description: Traveler's company name and id.
+          label:
+            type: string
+            description: Fee's description.
+            example: Agent assisted air purchase fee
+          partner:
+            $ref: '#/components/schemas/Partner'
+            description: Partner associated with the company
+          receiptInfo:
+            $ref: '#/components/schemas/ReceiptInfo'
+      required:
+      - bookingId
+      - company
+      - id
+      - label
+      - travelers
+      title: Fee
+    TravelerSegmentInfo:
+      type: object
+      description: Traveler information for a segment.
+      properties:
+        pnr:
+          type: string
+          description: PNR reference
+        ticket:
+          $ref: '#/components/schemas/TicketInformation'
+          description: Ticket complex object. Object containing ticket information.
+        travelerId:
+          type: integer
+          format: int64
+          description: Id of the traveler.
+          example: 67508252738
+      title: TravelerSegmentInfo
     EntityModelBookingNotificationEvent:
       type: object
       properties:
@@ -6755,147 +6663,78 @@ components:
           description: Details of the partner
       required:
       - bookingId
-    ItemSummary:
+    Company:
       type: object
-      description: Booking item summary
+      description: Company details of the traveler
       properties:
-        bookingDateTime:
-          type: string
-          description: 'The date and time the booking occurred on an itinerary, ISO 8601 format: yyyy-MM-dd''T''HH:mm:ss.SSS''Z'' Example: 2021-09-30T12:35:00.000Z'
         id:
-          type: string
-          description: Item id corresponding to each booked product
-        isAgentAssisted:
-          type: boolean
-          description: Flag indicating whether the booking was done by agent or not
-        productType:
-          type: string
-          description: Type of product
-          enum:
-          - FLIGHT, GROUND, HOTEL, TRAIN, FEE, CAR
-        receiptInfo:
-          $ref: '#/components/schemas/ReceiptInfo'
-          description: Details about receipt like id, version.
-        status:
-          type: string
-          description: Status of booked product
-          enum:
-          - BOOKED, CANCELLED, DRAFT, DELETED, AWAITING_CONFIRMATION
-        travelerId:
-          type: string
-          description: Id of the traveler
-        version:
           type: integer
-          format: int32
-          description: The version of the notification item. It changes whenever there is an update to the item. Starts with 1 and incremental.
-          example: 3
+          format: int64
+          description: Company Id
+        name:
+          type: string
+          description: Name of the company
+        organizationParentId:
+          type: integer
+          format: int64
+          description: Organization Id of the company. It is the same as the company Id when no organization is defined
+          example: 6555689
+        partnerCustomerCode:
+          type: string
+          description: External Id provided by partner. Can be shared by different companies in Egencia. Only provided if mapping has been given by partner.
+          example: JE3B
       required:
-      - version
-      title: ItemSummary
-    DeletedItem:
+      - id
+      title: Company
+    SecondLevelBreakdown:
       type: object
-      description: Deletion response after delete action on draft booking item
-      properties:
-        id:
-          type: string
-          description: Booking item ID for which action is requested
-        status:
-          type: string
-          description: Status of the item after action is performed
-      title: DeleteItem
-    PointOfSale:
-      type: object
-      description: A point of sale is defined by the intersection of a company, a management unit, and a jurisdiction.
-      properties:
-        countryCode:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-          example: FR
-      required:
-      - countryCode
-      title: PointOfSale
-    Fare:
-      type: object
-      description: Details about fare.
       properties:
         amount:
           type: number
           format: double
           description: Amount
+          example: 23.89
         currency:
           type: string
-          description: Currency
-    Traveler:
+          description: ISO 4217 currency code.
+          example: EUR
+        name:
+          type: string
+          description: Name of an amount
+          example: Taxes and service fees
+        type:
+          type: string
+          description: Type of an amount
+          example: TAXES
+      required:
+      - amount
+      - type
+      title: SecondLevelBreakdown
+    CustomDataField:
       type: object
+      description: Billing data added during the booking process.
       properties:
-        agentCode:
+        label:
           type: string
-          description: Agent code
-        customDataFields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomDataField'
-        email:
+          description: Name or key of the cdf field
+        value:
           type: string
-          description: Email of the person
-        firstName:
-          type: string
-          description: First name of the person
-        id:
-          type: integer
-          format: int64
-          description: Person id
-        isAgent:
-          type: boolean
-          description: Flag indicating whether the person is agent or not
-        isGuest:
-          type: boolean
-          description: Flag indicating whether the person is guest or not
-        lastName:
-          type: string
-          description: Last name of the person
-        preferredLanguage:
-          type: string
-          description: The preferred language of the person
-    ReceiptInfo:
+          description: Value of the cdf field
+      required:
+      - label
+      title: CustomDataField
+    CO2EmissionEquivalency:
       type: object
-      description: Details about receipt like id, date, version etc. 'receipt_info' appears whenever a payment receipt or an invoice has been generated for the booking.
+      description: The CO2 emission equivalencies information.
       properties:
-        _links:
-          $ref: '#/components/schemas/Links'
-        centralBill:
-          type: boolean
-        documentType:
+        type:
           type: string
-          description: Type of document, it can be INVOICE or CREDIT
-        id:
-          type: string
-          description: The 'id' is the reference of the last receipt or invoice or credit note generated for that booking as it appears in the PDF document. If multiple payments are required for a booking or if refunds occur, then multiple invoices and credit notes will be available to download, and the 'id' will be the one of the last document generated. Also keep in mind that Expense SPI sends a message every time an invoice or credit note is created, so by keeping track of the 'id' element you'll have a perfect visibility of the order in which those documents have been issued.
-        payments:
-          type: array
-          description: List of payments
-          items:
-            $ref: '#/components/schemas/Payment'
-        receiptDate:
-          type: string
-          description: Receipt Date
-        receiptNumber:
-          type: string
-          description: Receipt number
-        status:
-          type: string
-          description: Status of the receipt.
-        totalAmount:
-          $ref: '#/components/schemas/Fare'
-          description: Total receipt amount
-        travelerId:
-          type: integer
-          format: int64
-          description: Id of the traveler to whom invoice/receipt is issued
-        version:
-          type: integer
-          format: int32
-          description: Version of the receipt.
+          description: This specifies the type of CO2 emission equivalency.
+        value:
+          type: number
+          format: double
+          description: This specifies the value of CO2 emission equivalency.
+      title: CO2EmissionEquivalency
     Provider:
       type: object
       description: Details of the provider like code, name
@@ -6911,91 +6750,146 @@ components:
       required:
       - code
       title: Provider
-    GlobalGround:
-      allOf:
-      - $ref: '#/components/schemas/BookingItem'
-      - type: object
-        properties:
-          _links:
-            $ref: '#/components/schemas/Links'
-          bookingId:
-            type: string
-            description: BookingId of the trip
-          bookingStatus:
-            type: string
-            description: Booking status of the trip
-            enum:
-            - BOOKED
-            - CANCELLED
-            - DRAFT
-            - DELETED
-            - AWAITING_CONFIRMATION
-            example: BOOKED, CANCELLED
-          company:
-            $ref: '#/components/schemas/Company'
-            description: Traveler's company name and id.
-          dropOff:
-            $ref: '#/components/schemas/SegmentStep'
-            description: Describes the location/date of destination
-          groundTransferType:
-            $ref: '#/components/schemas/GroundTransferType'
-          partner:
-            $ref: '#/components/schemas/Partner'
-            description: Partner associated with the company
-          pickUp:
-            $ref: '#/components/schemas/SegmentStep'
-            description: Describes the location/date of origin
-          receiptInfo:
-            $ref: '#/components/schemas/ReceiptInfo'
-          vehicle:
-            $ref: '#/components/schemas/GroundVehicle'
-            description: 'Details about ground vehicle (Refer: https://www.acriss.org/car-codes/)'
-          vendor:
-            $ref: '#/components/schemas/Provider'
-            description: Details about ground supplier
-      required:
-      - bookingId
-      - company
-      - dropOff
-      - id
-      - pickUp
-      - travelers
-      - vendor
-      title: GlobalGround
-    RateType:
+    BookingProduct:
       type: object
-      description: The type of inventory purchased or reserved by the traveler (Published Rate, Egencia Preferred Rate, Corporate negotiated rate, etc.).
+      description: The Egencia expense model which carries details of traveler, trips and expenses
+      properties:
+        bookingId:
+          type: string
+          description: BookingId of the trip
+        company:
+          $ref: '#/components/schemas/Company'
+          description: Traveler's company name and id.
+        groupId:
+          type: string
+          description: Group Id in case of multi-traveler booking
+        items:
+          type: array
+          description: List of booking items belongs to the same booking
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Car'
+            - $ref: '#/components/schemas/Fee'
+            - $ref: '#/components/schemas/Flight'
+            - $ref: '#/components/schemas/GlobalGround'
+            - $ref: '#/components/schemas/Hotel'
+            - $ref: '#/components/schemas/Train'
+        partner:
+          $ref: '#/components/schemas/Partner'
+          description: Partner associated with the company
+        pointOfSale:
+          $ref: '#/components/schemas/PointOfSale'
+          description: Country corresponding to traveler's company.
+        totalPrice:
+          $ref: '#/components/schemas/Price'
+          description: Total price of the trip
+      required:
+      - company
+      - items
+      title: BookingProduct
+    Partner:
+      type: object
+      description: Details of the partner
+      properties:
+        name:
+          type: string
+          description: Name of the partner
+      title: Partner
+    ViolationReason:
+      type: object
+      description: Policy non-compliance reasons
+      properties:
+        bestFare:
+          $ref: '#/components/schemas/Fare'
+          description: Best fare amount calculated for the search.
+        message:
+          type: string
+          description: Message explanation of non-compliance reason.
+        type:
+          type: string
+          description: Type of the reason.
+      title: ViolationReason
+    CreditCardInfo:
+      type: object
+      description: Details of credit card
+      properties:
+        cardType:
+          type: string
+          description: Type of card
+          example: VISA
+        first6Digits:
+          type: string
+          description: First six digits
+          example: '456123'
+        last4Digits:
+          type: string
+          description: Last four digits
+          example: '7878'
+      title: CreditCardInfo
+    Carrier:
+      type: object
+      description: Carrier details
       properties:
         code:
           type: string
-          description: Code of the inventory
-          example: CORPORATE
-        name:
-          type: string
-          description: Name of the inventory
-          example: Corporate rate
-      required:
-      - code
-      title: RateType
-    Link:
-      type: object
-      properties:
-        deprecation:
-          type: string
-        href:
-          type: string
-        hreflang:
-          type: string
-        name:
-          type: string
-        profile:
-          type: string
-        templated:
+          description: Carrier code
+        lowCostCarrier:
           type: boolean
-        title:
+          description: Flag indicating whether the carrier is a low-cost.
+        name:
           type: string
-        type:
+          description: Carrier name
+        number:
           type: string
+          description: Carrier number
+      title: Carrier
+    DeleteItemResponse:
+      type: object
+      description: Delete response after delete action on booking item
+      properties:
+        bookingId:
+          type: string
+          description: Booking ID for which delete action is requested
+        errorCode:
+          type: string
+          description: Error code for the item when deletion gets failed
+        errorMessage:
+          type: string
+          description: Failure message for the item when deletion gets failed
+        id:
+          type: string
+          description: Booking item Id for which delete action is requested
+        status:
+          type: string
+          description: Status after deletion action is performed
+      title: DeleteItemResponse
+    CO2Emission:
+      type: object
+      description: The details of the Carbon dioxide (CO2) emission.
+      properties:
+        equivalencies:
+          type: array
+          description: The CO2 emission equivalencies information.
+          items:
+            $ref: '#/components/schemas/CO2EmissionEquivalency'
+        offsetAmount:
+          type: number
+          description: The CO2 emission offset amount.
+        offsetCurrency:
+          type: string
+          description: The CO2 emission offset currency.
+        unit:
+          type: string
+          description: The unit of the CO2 emission.
+          enum:
+          - KG
+          - LB
+          example: KG, LB
+        value:
+          type: integer
+          format: int32
+          description: The value of the CO2 emission.
+      title: CO2Emission
     BookingItem:
       type: object
       discriminator:
@@ -7119,50 +7013,171 @@ components:
       - product_type
       - travelers
       title: BookingItem
-    Links:
+    GroundTransferType:
       type: object
-      additionalProperties:
-        $ref: '#/components/schemas/Link'
-    MeetingInfo:
-      type: object
-      description: Meeting details associated with an item.
       properties:
-        endDatetime:
+        code:
           type: string
-          description: Meeting end date time
-        id:
+          description: Code of the transfer vehicle
+          example: AIRPORT_BUS
+        description:
           type: string
-          description: Meeting id
-        location:
+          description: Description of the transfer vehicle
+          example: Express Bus from/to Airport
+      required:
+      - code
+      - description
+      title: GroundTransferType
+    Address:
+      type: object
+      description: Address
+      properties:
+        cityCode:
           type: string
-          description: Meeting location
+          description: Code of the city
+        cityName:
+          type: string
+          description: Name of the city
+        countryCode:
+          type: string
+          description: Code of the country
+        countryName:
+          type: string
+          description: Name of the country
+        postalCode:
+          type: string
+          description: Postal code of the location
+        stateProvinceCode:
+          type: string
+          description: Province or state sode
+        stateProvinceName:
+          type: string
+          description: Province or state name
+        streetName:
+          type: string
+          description: Street name
+      title: Address
+    Fare:
+      type: object
+      description: Details about fare.
+      properties:
+        amount:
+          type: number
+          format: double
+          description: Amount
+        currency:
+          type: string
+          description: Currency
+    BookingSearchResponse:
+      type: object
+      properties:
+        bookings:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelBookingNotificationEvent'
+        count:
+          type: integer
+          format: int32
+      title: BookingSearchResponse
+    Flight:
+      allOf:
+      - $ref: '#/components/schemas/BookingItem'
+      - type: object
+        properties:
+          _links:
+            $ref: '#/components/schemas/Links'
+          bookingId:
+            type: string
+            description: BookingId of the trip
+          bookingStatus:
+            type: string
+            description: Booking status of the trip
+            enum:
+            - BOOKED
+            - CANCELLED
+            - DRAFT
+            - DELETED
+            - AWAITING_CONFIRMATION
+            example: BOOKED, CANCELLED
+          company:
+            $ref: '#/components/schemas/Company'
+            description: Traveler's company name and id.
+          originDestinations:
+            type: array
+            description: List of origins to destinations. For example a round trip would have 2 origin destination in this list (e.g. Paris -> Tokyo, Tokyo -> Paris).
+            items:
+              $ref: '#/components/schemas/FlightOriginDestination'
+            minItems: 1
+          partner:
+            $ref: '#/components/schemas/Partner'
+            description: Partner associated with the company
+          receiptInfo:
+            $ref: '#/components/schemas/ReceiptInfo'
+          ticketNumber:
+            type: array
+            description: Ticket number. Only when booking is issued.
+            example: 0067508252738
+            items:
+              type: string
+      required:
+      - bookingId
+      - company
+      - id
+      - originDestinations
+      - travelers
+      title: Flight
+    CancelResponse:
+      type: object
+      description: Cancel response after cancel action
+      properties:
+        bookingId:
+          type: string
+          description: Booking ID for which cancel action is requested
+        errorCode:
+          type: string
+          description: Error code for the item when cancellation gets failed
+        errorMessage:
+          type: string
+          description: Failure message for the item when cancellation gets failed
+        items:
+          type: array
+          description: Breakdown of statuses for individual items associated with the booking
+          items:
+            $ref: '#/components/schemas/CancelItem'
+        status:
+          type: string
+          description: Cancellation status after cancellation action is performed
+      title: CancelResponse
+    Link:
+      type: object
+      properties:
+        deprecation:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
         name:
           type: string
-          description: Meeting name
-        startDatetime:
+        profile:
           type: string
-          description: Meeting start date time
-        venue:
+        templated:
+          type: boolean
+        title:
           type: string
-          description: Meeting venue
-      title: MeetingInfo
-    CreditCardInfo:
+        type:
+          type: string
+    CancelItem:
       type: object
-      description: Details of credit card
+      description: Cancellation response after cancel action on booking item
       properties:
-        cardType:
+        id:
           type: string
-          description: Type of card
-          example: VISA
-        first6Digits:
+          description: Booking item ID for which cancellation action is requested
+        status:
           type: string
-          description: First six digits
-          example: '456123'
-        last4Digits:
-          type: string
-          description: Last four digits
-          example: '7878'
-      title: CreditCardInfo
+          description: Cancellation status for the item after cancellation is performed
+      title: CancelItem
     PolicyCompliance:
       type: object
       description: Policy compliance details
@@ -7176,58 +7191,9 @@ components:
           items:
             $ref: '#/components/schemas/ViolationReason'
       title: PolicyCompliance
-    Partner:
+    DeleteResponse:
       type: object
-      description: Details of the partner
-      properties:
-        name:
-          type: string
-          description: Name of the partner
-      title: Partner
-    Payment:
-      type: object
-      description: Details about payment.
-      properties:
-        breakdowns:
-          type: array
-          description: Breakdown of the price amount
-          items:
-            $ref: '#/components/schemas/FirstLevelBreakdown'
-        creditCardInfo:
-          $ref: '#/components/schemas/CreditCardInfo'
-          description: Credit card info
-        date:
-          type: string
-          description: Date of the payment
-        lineType:
-          type: string
-          description: Line type. This could be PRODUCT or EGENCIA_FEE
-        netAmount:
-          $ref: '#/components/schemas/Fare'
-          description: Net amount of the payment
-    GroundVehicle:
-      type: object
-      properties:
-        category:
-          type: string
-          description: First letter from ACRISS code
-          example: I
-        description:
-          type: string
-          description: Description of the vehicle
-          example: IFAR
-        seatingCapacity:
-          type: string
-          description: Seating Capacity
-          example: '1'
-        type:
-          type: string
-          description: Vehicle type
-          example: Taxi
-      title: GroundVehicle
-    DeleteItemResponse:
-      type: object
-      description: Delete response after delete action on booking item
+      description: Delete response after delete action
       properties:
         bookingId:
           type: string
@@ -7238,48 +7204,82 @@ components:
         errorMessage:
           type: string
           description: Failure message for the item when deletion gets failed
-        id:
-          type: string
-          description: Booking item Id for which delete action is requested
+        items:
+          type: array
+          description: Breakdown of statuses for individual items associated with the booking
+          items:
+            $ref: '#/components/schemas/DeletedItem'
         status:
           type: string
           description: Status after deletion action is performed
-      title: DeleteItemResponse
-    Location:
+      title: DeleteResponse
+    ApprovalItem:
       type: object
       properties:
-        address:
-          $ref: '#/components/schemas/Address'
-          description: Address details
-        code:
-          type: string
-          description: Airport IATA code or any station code. Mandatory for AIRPORT type only.
-          example: CDG
-        geoCoordinates:
-          type: array
-          description: Geo-coordinates of the location
-          items:
-            type: number
-            format: double
         id:
           type: string
-          description: 'Egencia location id '
-        name:
+          description: Booking item ID for which approve/deny action is requested
+        status:
           type: string
-          description: Name of airport, station, city or hotel. Mandatory for all types except ADDRESS.
-          example: Stockholm Arlanda
-        type:
+          description: 'Approval status for the item after approve/deny action is performed, Possible values: DRAFT/PENDING/APPROVED/DENIED/CANCELLED'
+      title: ApprovalItem
+    ItemSummary:
+      type: object
+      description: Booking item summary
+      properties:
+        bookingDateTime:
           type: string
-          description: The type of location.
+          description: 'The date and time the booking occurred on an itinerary, ISO 8601 format: yyyy-MM-dd''T''HH:mm:ss.SSS''Z'' Example: 2021-09-30T12:35:00.000Z'
+        id:
+          type: string
+          description: Item id corresponding to each booked product
+        isAgentAssisted:
+          type: boolean
+          description: Flag indicating whether the booking was done by agent or not
+        productType:
+          type: string
+          description: Type of product
           enum:
-          - AIRPORT
-          - CITY
-          - TRAIN_STATION
-          - ADDRESS
-          - HOTEL
+          - FLIGHT, GROUND, HOTEL, TRAIN, FEE, CAR
+        receiptInfo:
+          $ref: '#/components/schemas/ReceiptInfo'
+          description: Details about receipt like id, version.
+        status:
+          type: string
+          description: Status of booked product
+          enum:
+          - BOOKED, CANCELLED, DRAFT, DELETED, AWAITING_CONFIRMATION
+        travelerId:
+          type: string
+          description: Id of the traveler
+        version:
+          type: integer
+          format: int32
+          description: The version of the notification item. It changes whenever there is an update to the item. Starts with 1 and incremental.
+          example: 3
       required:
-      - address
-      title: Location
+      - version
+      title: ItemSummary
+    CancelItemResponse:
+      type: object
+      description: Response after cancel action on booking item
+      properties:
+        bookingId:
+          type: string
+          description: Booking ID for which cancel action is requested
+        errorCode:
+          type: string
+          description: Error code for the item when cancellation gets failed
+        errorMessage:
+          type: string
+          description: Failure message for the item when cancellation gets failed
+        id:
+          type: string
+          description: Booking item Id for which cancel action is requested
+        status:
+          type: string
+          description: Cancellation status after cancellation action is performed
+      title: CancelItemResponse
   securitySchemes:
     OAuth2:
       flows:

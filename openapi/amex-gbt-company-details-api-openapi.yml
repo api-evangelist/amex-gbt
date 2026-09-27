@@ -302,27 +302,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Company_Search_Response:
-      type: object
-      description: Company search results with pagination information
-      properties:
-        count:
-          type: integer
-          format: int32
-          description: Number of results returned
-        start:
-          type: integer
-          format: int32
-          description: Start index for pagination
-        totalResults:
-          type: integer
-          format: int32
-          description: Total number of results found
-        companies:
-          type: array
-          description: List of companies matching search criteria
-          items:
-            $ref: '#/components/schemas/Company_Display_Name'
     PhoneNumber:
       type: object
       properties:
@@ -330,62 +309,6 @@ components:
           type: string
         label:
           type: string
-    ActivationStatusAudit:
-      type: object
-      properties:
-        changedBy:
-          type: integer
-          format: int64
-        changedAt:
-          type: integer
-          format: int64
-        oldStatus:
-          type: string
-          enum:
-          - PENDING_ACTIVATION
-          - ACTIVE
-          - BLOCKED_FOR_BOOKING
-          - BLOCKED_FOR_BOOKING_AND_INVOICING
-          - DISABLED
-          - DEACTIVATED
-        newStatus:
-          type: string
-          enum:
-          - PENDING_ACTIVATION
-          - ACTIVE
-          - BLOCKED_FOR_BOOKING
-          - BLOCKED_FOR_BOOKING_AND_INVOICING
-          - DISABLED
-          - DEACTIVATED
-        salesforceCaseNumber:
-          type: string
-    User:
-      type: object
-      properties:
-        tuid:
-          type: integer
-          format: int64
-        title:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        userId:
-          type: string
-        email:
-          type: string
-        alternateEmail:
-          type: string
-        role:
-          type: string
-          enum:
-          - ACCOUNT_MANAGER
-          - BILLING_CONTACT
-        phoneNumbers:
-          type: array
-          items:
-            $ref: '#/components/schemas/PhoneNumber'
     Address:
       type: object
       properties:
@@ -482,6 +405,83 @@ components:
       required:
       - companyId
       - companyName
+    ActivationStatusAudit:
+      type: object
+      properties:
+        changedBy:
+          type: integer
+          format: int64
+        changedAt:
+          type: integer
+          format: int64
+        oldStatus:
+          type: string
+          enum:
+          - PENDING_ACTIVATION
+          - ACTIVE
+          - BLOCKED_FOR_BOOKING
+          - BLOCKED_FOR_BOOKING_AND_INVOICING
+          - DISABLED
+          - DEACTIVATED
+        newStatus:
+          type: string
+          enum:
+          - PENDING_ACTIVATION
+          - ACTIVE
+          - BLOCKED_FOR_BOOKING
+          - BLOCKED_FOR_BOOKING_AND_INVOICING
+          - DISABLED
+          - DEACTIVATED
+        salesforceCaseNumber:
+          type: string
+    Company_Search_Response:
+      type: object
+      description: Company search results with pagination information
+      properties:
+        count:
+          type: integer
+          format: int32
+          description: Number of results returned
+        start:
+          type: integer
+          format: int32
+          description: Start index for pagination
+        totalResults:
+          type: integer
+          format: int32
+          description: Total number of results found
+        companies:
+          type: array
+          description: List of companies matching search criteria
+          items:
+            $ref: '#/components/schemas/Company_Display_Name'
+    User:
+      type: object
+      properties:
+        tuid:
+          type: integer
+          format: int64
+        title:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        userId:
+          type: string
+        email:
+          type: string
+        alternateEmail:
+          type: string
+        role:
+          type: string
+          enum:
+          - ACCOUNT_MANAGER
+          - BILLING_CONTACT
+        phoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
   securitySchemes:
     oAuth2:
       type: oauth2
