@@ -60,18 +60,46 @@ paths:
       - Validation
 components:
   schemas:
-    CDFValidationResponse:
-      description: Validation response
+    ValidationField:
+      description: Validation field
       properties:
-        errors:
+        name:
+          type: string
+          description: The name of field which needs to be validated for.
+          example: Project Code
+        value:
+          type: string
+          description: The Value of the corresponding field.
+          example: F_AUTO
+      title: Validation field
+    ErrorField:
+      description: Validation error field
+      properties:
+        error_description:
+          type: string
+          description: 'The error description provided by the Consumer in the language specified in the request.
+
+            This messages will be displayed to the user so that he can understand and correct the information in the form.'
+        expected_value:
+          type: string
+          description: The expected value for the field. Currently not supported in this version.
+        name:
+          type: string
+          description: The name of field which is not valid.
+      title: Validation error field
+    Error:
+      description: Validation error
+      properties:
+        error_fields:
           type: array
-          description: The List of errors for the traveler.
+          description: The list of field which are not valid.
           items:
-            $ref: '#/components/schemas/Error'
-        valid:
-          type: boolean
-          description: The value describes whether validation was successful or failure.
-      title: Validation Response
+            $ref: '#/components/schemas/ErrorField'
+        user_id:
+          type: integer
+          format: int32
+          description: TUID (Egencia Travelers Unique Identifier) of the traveler.
+      title: Validation error
     CDFValidationRequest:
       description: Validation request
       properties:
@@ -111,31 +139,6 @@ components:
             type: object
             description: Placeholder that can accommodate trip Information.
       title: Validation Request
-    Error:
-      description: Validation error
-      properties:
-        error_fields:
-          type: array
-          description: The list of field which are not valid.
-          items:
-            $ref: '#/components/schemas/ErrorField'
-        user_id:
-          type: integer
-          format: int32
-          description: TUID (Egencia Travelers Unique Identifier) of the traveler.
-      title: Validation error
-    ValidationField:
-      description: Validation field
-      properties:
-        name:
-          type: string
-          description: The name of field which needs to be validated for.
-          example: Project Code
-        value:
-          type: string
-          description: The Value of the corresponding field.
-          example: F_AUTO
-      title: Validation field
     Traveler:
       description: Traveler details
       properties:
@@ -175,18 +178,15 @@ components:
           description: TUID (Egencia Travelers Unique Identifier) of the user who is doing the booking.
           example: 12345
       title: Booker
-    ErrorField:
-      description: Validation error field
+    CDFValidationResponse:
+      description: Validation response
       properties:
-        error_description:
-          type: string
-          description: 'The error description provided by the Consumer in the language specified in the request.
-
-            This messages will be displayed to the user so that he can understand and correct the information in the form.'
-        expected_value:
-          type: string
-          description: The expected value for the field. Currently not supported in this version.
-        name:
-          type: string
-          description: The name of field which is not valid.
-      title: Validation error field
+        errors:
+          type: array
+          description: The List of errors for the traveler.
+          items:
+            $ref: '#/components/schemas/Error'
+        valid:
+          type: boolean
+          description: The value describes whether validation was successful or failure.
+      title: Validation Response

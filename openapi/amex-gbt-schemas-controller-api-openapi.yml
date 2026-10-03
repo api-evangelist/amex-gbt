@@ -73,76 +73,31 @@ components:
       required:
       - schemas
       title: User Search Response schema
-    AdminUserSchema:
+    NameSchema:
       type: object
-      description: The extended custom attributes specific to Egencia travel management system.
+      description: The complex model containing name attributes of the user.
       properties:
-        department:
+        familyName:
           type: string
-          description: The department of the admin user.
+          description: The family or last name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
           maxLength: 40
           minLength: 0
-        geography:
+        formatted:
           type: string
-          description: The geography of the admin user.
+          description: The formatted name of the user
+        givenName:
+          type: string
+          description: The given or first name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
           maxLength: 40
           minLength: 0
-        partner:
+        middleName:
           type: string
-          description: The partner of the admin user.
+          description: The middle name of the user. Maximum supported characters is 40.
           maxLength: 40
           minLength: 0
-        pointOfSales:
-          type: array
-          description: The pointOfSales of the admin user.
-          items:
-            $ref: '#/components/schemas/PointOfSaleSchema'
-          maxItems: 2147483647
-          minItems: 1
-        status:
-          type: string
-          description: To update status for all Point Of Sales
       required:
-      - department
-      - geography
-      - partner
-      - pointOfSales
-      title: Admin user
-    PointOfSaleSchema:
-      type: object
-      description: The complex model containing point of sale association.
-      properties:
-        operation:
-          type: string
-          description: The operation for point of sale
-          enum:
-          - REMOVE
-          - ADD
-          - UPDATE
-          - STATUS_CHANGE
-        pointOfSaleId:
-          type: integer
-          format: int64
-          description: The point of sale id
-          minimum: 1
-        role:
-          type: string
-          description: The role of the user against POS
-        status:
-          type: string
-          description: The admin user status
-          enum:
-          - ACTIVE
-          - INACTIVE
-          - PENDING
-          - DELETED
-        userId:
-          type: integer
-          format: int64
-          description: The admin user id
-      required:
-      - pointOfSaleId
-      - role
+      - familyName
+      - givenName
       title: Name
     EmailSchema:
       type: object
@@ -188,105 +143,6 @@ components:
       - emails
       - name
       - urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse
-    AttributeDefinition:
-      type: object
-      properties:
-        canonicalValues:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        caseExact:
-          type: boolean
-        description:
-          type:
-          - string
-          - 'null'
-        multiValued:
-          type: boolean
-        mutability:
-          type: string
-          enum:
-          - readOnly
-          - readWrite
-          - immutable
-          - writeOnly
-        name:
-          type: string
-        referenceTypes:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        required:
-          type: boolean
-        returned:
-          type: string
-          enum:
-          - always
-          - never
-          - default
-          - request
-        subAttributes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AttributeDefinition'
-        type:
-          type: string
-          enum:
-          - string
-          - boolean
-          - decimal
-          - integer
-          - dateTime
-          - binary
-          - reference
-          - complex
-        uniqueness:
-          type:
-          - string
-          - 'null'
-          enum:
-          - none
-          - server
-          - global
-      required:
-      - multiValued
-      - mutability
-      - name
-      - required
-      - returned
-      - type
-    NameSchema:
-      type: object
-      description: The complex model containing name attributes of the user.
-      properties:
-        familyName:
-          type: string
-          description: The family or last name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-        formatted:
-          type: string
-          description: The formatted name of the user
-        givenName:
-          type: string
-          description: The given or first name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-        middleName:
-          type: string
-          description: The middle name of the user. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-      required:
-      - familyName
-      - givenName
-      title: Name
     MetaSchema:
       type: object
       description: A complex attribute containing resource metadata.
@@ -366,6 +222,150 @@ components:
       required:
       - attributes
       - id
+    AdminUserSchema:
+      type: object
+      description: The extended custom attributes specific to Egencia travel management system.
+      properties:
+        department:
+          type: string
+          description: The department of the admin user.
+          maxLength: 40
+          minLength: 0
+        geography:
+          type: string
+          description: The geography of the admin user.
+          maxLength: 40
+          minLength: 0
+        partner:
+          type: string
+          description: The partner of the admin user.
+          maxLength: 40
+          minLength: 0
+        pointOfSales:
+          type: array
+          description: The pointOfSales of the admin user.
+          items:
+            $ref: '#/components/schemas/PointOfSaleSchema'
+          maxItems: 2147483647
+          minItems: 1
+        status:
+          type: string
+          description: To update status for all Point Of Sales
+      required:
+      - department
+      - geography
+      - partner
+      - pointOfSales
+      title: Admin user
+    AttributeDefinition:
+      type: object
+      properties:
+        canonicalValues:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        caseExact:
+          type: boolean
+        description:
+          type:
+          - string
+          - 'null'
+        multiValued:
+          type: boolean
+        mutability:
+          type: string
+          enum:
+          - readOnly
+          - readWrite
+          - immutable
+          - writeOnly
+        name:
+          type: string
+        referenceTypes:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        required:
+          type: boolean
+        returned:
+          type: string
+          enum:
+          - always
+          - never
+          - default
+          - request
+        subAttributes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AttributeDefinition'
+        type:
+          type: string
+          enum:
+          - string
+          - boolean
+          - decimal
+          - integer
+          - dateTime
+          - binary
+          - reference
+          - complex
+        uniqueness:
+          type:
+          - string
+          - 'null'
+          enum:
+          - none
+          - server
+          - global
+      required:
+      - multiValued
+      - mutability
+      - name
+      - required
+      - returned
+      - type
+    PointOfSaleSchema:
+      type: object
+      description: The complex model containing point of sale association.
+      properties:
+        operation:
+          type: string
+          description: The operation for point of sale
+          enum:
+          - REMOVE
+          - ADD
+          - UPDATE
+          - STATUS_CHANGE
+        pointOfSaleId:
+          type: integer
+          format: int64
+          description: The point of sale id
+          minimum: 1
+        role:
+          type: string
+          description: The role of the user against POS
+        status:
+          type: string
+          description: The admin user status
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - PENDING
+          - DELETED
+        userId:
+          type: integer
+          format: int64
+          description: The admin user id
+      required:
+      - pointOfSaleId
+      - role
+      title: Name
   securitySchemes:
     OAuth2:
       flows:

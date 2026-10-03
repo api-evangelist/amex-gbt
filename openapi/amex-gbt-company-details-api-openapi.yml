@@ -302,12 +302,55 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PhoneNumber:
+    Company_Search_Response:
+      type: object
+      description: Company search results with pagination information
+      properties:
+        count:
+          type: integer
+          format: int32
+          description: Number of results returned
+        start:
+          type: integer
+          format: int32
+          description: Start index for pagination
+        totalResults:
+          type: integer
+          format: int32
+          description: Total number of results found
+        companies:
+          type: array
+          description: List of companies matching search criteria
+          items:
+            $ref: '#/components/schemas/Company_Display_Name'
+    ActivationStatusAudit:
       type: object
       properties:
-        number:
+        changedBy:
+          type: integer
+          format: int64
+        changedAt:
+          type: integer
+          format: int64
+        oldStatus:
           type: string
-        label:
+          enum:
+          - PENDING_ACTIVATION
+          - ACTIVE
+          - BLOCKED_FOR_BOOKING
+          - BLOCKED_FOR_BOOKING_AND_INVOICING
+          - DISABLED
+          - DEACTIVATED
+        newStatus:
+          type: string
+          enum:
+          - PENDING_ACTIVATION
+          - ACTIVE
+          - BLOCKED_FOR_BOOKING
+          - BLOCKED_FOR_BOOKING_AND_INVOICING
+          - DISABLED
+          - DEACTIVATED
+        salesforceCaseNumber:
           type: string
     Address:
       type: object
@@ -329,6 +372,13 @@ components:
         countryCode:
           type: string
         postalCode:
+          type: string
+    PhoneNumber:
+      type: object
+      properties:
+        number:
+          type: string
+        label:
           type: string
     Company_Display_Name:
       type: object
@@ -405,56 +455,6 @@ components:
       required:
       - companyId
       - companyName
-    ActivationStatusAudit:
-      type: object
-      properties:
-        changedBy:
-          type: integer
-          format: int64
-        changedAt:
-          type: integer
-          format: int64
-        oldStatus:
-          type: string
-          enum:
-          - PENDING_ACTIVATION
-          - ACTIVE
-          - BLOCKED_FOR_BOOKING
-          - BLOCKED_FOR_BOOKING_AND_INVOICING
-          - DISABLED
-          - DEACTIVATED
-        newStatus:
-          type: string
-          enum:
-          - PENDING_ACTIVATION
-          - ACTIVE
-          - BLOCKED_FOR_BOOKING
-          - BLOCKED_FOR_BOOKING_AND_INVOICING
-          - DISABLED
-          - DEACTIVATED
-        salesforceCaseNumber:
-          type: string
-    Company_Search_Response:
-      type: object
-      description: Company search results with pagination information
-      properties:
-        count:
-          type: integer
-          format: int32
-          description: Number of results returned
-        start:
-          type: integer
-          format: int32
-          description: Start index for pagination
-        totalResults:
-          type: integer
-          format: int32
-          description: Total number of results found
-        companies:
-          type: array
-          description: List of companies matching search criteria
-          items:
-            $ref: '#/components/schemas/Company_Display_Name'
     User:
       type: object
       properties:

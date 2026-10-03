@@ -1038,18 +1038,16 @@ paths:
       - Custom Data Fields (CDF)
 components:
   schemas:
-    CdfValuesResponse:
+    CdfDefinitions:
       type: object
-      description: CDF values response based on different user filters
+      description: CDF Definitions
       properties:
-        _links:
-          $ref: '#/components/schemas/Links'
-        values:
+        cdfs:
           type: array
-          description: CDF Values
+          description: List of CDF Definitions for the company
           items:
-            $ref: '#/components/schemas/CdfValue'
-      title: CDFValuesResponse
+            $ref: '#/components/schemas/CdfDefinition'
+      title: CDFDefinitions
     CdfValue:
       type: object
       description: CDF value response based on different user filters
@@ -1076,53 +1074,41 @@ components:
       required:
       - value
       title: CDFValueResponse
-    CdfDefinition:
+    Link:
       type: object
-      description: CDF Definition
       properties:
-        code:
+        deprecation:
           type: string
-          description: CDF definition code
-        fieldType:
+        href:
           type: string
-          description: CDF type
-          enum:
-          - FREE_FIELD, LIST
-        id:
-          type: integer
-          format: int64
-          description: CDF definition id
-        maxLength:
-          type: integer
-          format: int32
-          description: CDF max length
+        hreflang:
+          type: string
         name:
           type: string
-          description: CDF definition name
-        rules:
-          type: array
-          description: CDF definition rule
-          items:
-            $ref: '#/components/schemas/CdfDefinitionRule'
-        status:
+        profile:
           type: string
-          description: CDF definition status
-          enum:
-          - ACTIVE
-          - PENDING
-          - DELETED
-          - INACTIVE
-      title: CDFDefinition
-    CdfDefinitions:
+        templated:
+          type: boolean
+        title:
+          type: string
+        type:
+          type: string
+    CdfValuesResponse:
       type: object
-      description: CDF Definitions
+      description: CDF values response based on different user filters
       properties:
-        cdfs:
+        _links:
+          $ref: '#/components/schemas/Links'
+        values:
           type: array
-          description: List of CDF Definitions for the company
+          description: CDF Values
           items:
-            $ref: '#/components/schemas/CdfDefinition'
-      title: CDFDefinitions
+            $ref: '#/components/schemas/CdfValue'
+      title: CDFValuesResponse
+    Links:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/Link'
     CdfDefinitionRule:
       type: object
       properties:
@@ -1162,6 +1148,17 @@ components:
           items:
             $ref: '#/components/schemas/CdfLinkValue'
       title: Links
+    CdfLinkValue:
+      type: object
+      description: Link values
+      properties:
+        id:
+          type: string
+          description: Linked CDF id
+        value:
+          type: string
+          description: Linked CDF value
+      title: LinkValues
     JsonPatchRequest:
       type: object
       properties:
@@ -1170,25 +1167,6 @@ components:
         path:
           type: string
         value: {}
-    Link:
-      type: object
-      properties:
-        deprecation:
-          type: string
-        href:
-          type: string
-        hreflang:
-          type: string
-        name:
-          type: string
-        profile:
-          type: string
-        templated:
-          type: boolean
-        title:
-          type: string
-        type:
-          type: string
     CdfValueLinks:
       type: object
       description: Linked CDF value response based on different user filters
@@ -1218,21 +1196,43 @@ components:
       required:
       - value
       title: CdfValueLinks
-    Links:
+    CdfDefinition:
       type: object
-      additionalProperties:
-        $ref: '#/components/schemas/Link'
-    CdfLinkValue:
-      type: object
-      description: Link values
+      description: CDF Definition
       properties:
+        code:
+          type: string
+          description: CDF definition code
+        fieldType:
+          type: string
+          description: CDF type
+          enum:
+          - FREE_FIELD, LIST
         id:
+          type: integer
+          format: int64
+          description: CDF definition id
+        maxLength:
+          type: integer
+          format: int32
+          description: CDF max length
+        name:
           type: string
-          description: Linked CDF id
-        value:
+          description: CDF definition name
+        rules:
+          type: array
+          description: CDF definition rule
+          items:
+            $ref: '#/components/schemas/CdfDefinitionRule'
+        status:
           type: string
-          description: Linked CDF value
-      title: LinkValues
+          description: CDF definition status
+          enum:
+          - ACTIVE
+          - PENDING
+          - DELETED
+          - INACTIVE
+      title: CDFDefinition
   securitySchemes:
     OAuth2:
       flows:

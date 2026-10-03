@@ -108,6 +108,20 @@ components:
           - PAYMENT_SETTING
           - COMPANY_SETTING
         setting: {}
+    DkChange:
+      type: object
+      properties:
+        dkNumber:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+        settingType:
+          type: string
+          enum:
+          - INVOICE_SETTING
+          - PAYMENT_SETTING
+          - COMPANY_SETTING
     ECommerceAuditApiResponse:
       type: object
       properties:
@@ -126,20 +140,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ECommerceSetting'
-    DkChange:
-      type: object
-      properties:
-        dkNumber:
-          type: string
-        updatedAt:
-          type: string
-          format: date-time
-        settingType:
-          type: string
-          enum:
-          - INVOICE_SETTING
-          - PAYMENT_SETTING
-          - COMPANY_SETTING
   securitySchemes:
     oAuth2:
       type: oauth2

@@ -2773,27 +2773,26 @@ paths:
       - Expense SPI
 components:
   schemas:
-    Payment:
-      description: Details about payment.
+    Link:
       properties:
-        breakdowns:
-          type: array
-          description: Breakdown of the price amount
-          items:
-            $ref: '#/components/schemas/FirstLevelBreakdown'
-        credit_card_info:
-          $ref: '#/components/schemas/CreditCardInfo'
-        date:
+        deprecation:
           type: string
-          description: Date of the payment
-        date_time:
+        href:
           type: string
-          description: Date and time of the payment
-        line_type:
+        hreflang:
           type: string
-          description: Line type. This could be PRODUCT or EGENCIA_FEE
-        net_amount:
-          $ref: '#/components/schemas/Fare'
+        media:
+          type: string
+        name:
+          type: string
+        profile:
+          type: string
+        rel:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
     GlobalGround:
       properties:
         approval_deadline:
@@ -2950,18 +2949,64 @@ components:
       - uuid
       - vendor
       title: Ground
-    RateType:
+    ViolationReason:
+      description: Policy non-compliance reasons
       properties:
-        code:
+        best_fare:
+          $ref: '#/components/schemas/Fare'
+        message:
           type: string
-          description: CORPORATE
-        name:
+          description: Message explanation of non-compliance reason.
+        type:
           type: string
-          description: Corporate rate
+          description: Type of the reason.
+      title: ViolationReason
+    RulesAndRegulations:
+      properties:
+        details:
+          type: array
+          description: Raw text describing provider rules and regulations.
+          example: Can be modified with a penalty..
+          items:
+            type: string
+            description: Raw text describing provider rules and regulations.
+            example: Can be modified with a penalty..
+      title: RulesAndRegulations
+    Person:
+      description: Details of the person
+      properties:
+        custom_data_fields:
+          type: array
+          description: Custom data fields associated with the traveler
+          items:
+            $ref: '#/components/schemas/CustomDataField'
+        email:
+          type: string
+          description: Email of the person
+        first_name:
+          type: string
+          description: First name of the person
+        id:
+          type: integer
+          format: int64
+          description: Person id
+        is_agent:
+          type: boolean
+          description: Flag indicating whether the person is agent or not
+        is_guest:
+          type: boolean
+          description: Flag indicating whether the person is guest traveler or not
+        last_name:
+          type: string
+          description: Last name of the person
+        preferred_language:
+          type: string
+          description: The preferred language of the person
       required:
-      - code
-      - name
-      title: RateType
+      - email
+      - first_name
+      - last_name
+      title: Person
     ReceiptInfo:
       description: Details about receipt like id, date, version etc. 'receipt_info' appears whenever a payment receipt or an invoice has been generated for the booking.
       properties:
@@ -3001,6 +3046,546 @@ components:
           type: integer
           format: int32
           description: Version of the receipt.
+    SegmentStep:
+      description: Describes the location/date of destination
+      properties:
+        date_time:
+          type: string
+          description: ISO 8601 date and time.
+          example: '2020-04-06T10:20:00.000-05:00'
+        location:
+          $ref: '#/components/schemas/Location'
+      required:
+      - date_time
+      - location
+      title: SegmentStep
+    RentalVehicle:
+      description: 'Details about car vehicle (Refer: https://www.acriss.org/car-codes/)'
+      properties:
+        acriss_code:
+          type: string
+          description: 'Complete Acriss Code, (Refer: https://www.acriss.org/car-codes/), not mandatory for off line booking case'
+          example: IFAR
+        category:
+          type: string
+          description: First letter from Car ACRISS code
+          example: I
+        mileage_limit:
+          type: string
+          description: 'Mileage limit policy, without standard (e.g. : Unlimited, 0 miles (Additional Mileage: 0,40 USD per mile))'
+          example: '1400 km (Additional Mileage: €0.19 per km)'
+        name:
+          type: string
+          description: Vehicule model's name
+          example: Toyota Rav4
+      title: RentalVehicle
+    Provider:
+      description: Details about ground supplier
+      properties:
+        code:
+          type: string
+          description: Code of the company
+          example: ZL
+        name:
+          type: string
+          description: Name of the company. Never provided on booking cancellation.
+          example: National Car Rental
+      required:
+      - code
+      title: Provider
+    FlightOriginDestination:
+      description: List of origins to destinations. For example a round trip would have 2 origin destination in this list (e.g. Paris -> Tokyo, Tokyo -> Paris).
+      properties:
+        segments:
+          type: array
+          description: List of segments. A trip having 1 stop will contain 2 segments (e.g. Paris -> Zurich, Zurich -> Tokyo).
+          items:
+            $ref: '#/components/schemas/Segment'
+          minItems: 1
+      required:
+      - segments
+      title: FlightOriginDestination
+    PointOfSale:
+      description: A point of sale is defined by the intersection of a company, a management unit, and a jurisdiction.
+      properties:
+        country_code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          example: FR
+      required:
+      - country_code
+      title: PointOfSale
+    FirstLevelBreakdown:
+      description: Details of an amount.
+      properties:
+        amount:
+          type: number
+          format: double
+        breakdowns:
+          type: array
+          description: Sub-breakdown of the breakdown amount. Giving further details to this amount.
+          items:
+            $ref: '#/components/schemas/SecondLevelBreakdown'
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+          example: EUR
+        name:
+          type: string
+          example: Taxes and service fees
+        type:
+          type: string
+          example: TAXES
+      required:
+      - amount
+      - currency
+      - type
+      title: FirstLevelBreakdown
+    TicketInformation:
+      description: Ticket information for a segment.
+      properties:
+        number:
+          type: string
+          description: Ticket number. Only when booking is issued.
+          example: 0067508252738
+        prior_number:
+          type: string
+          description: Former ticket number if exists. For example, when a booking is exchanged.
+          example: 0067508252738
+      title: TicketInformation
+    TravelerSegmentInfo:
+      description: Traveler information for a segment.
+      properties:
+        ticket:
+          $ref: '#/components/schemas/TicketInformation'
+        traveler_id:
+          type: integer
+          format: int64
+          description: Id of the traveler.
+          example: 67508252738
+      title: TravelerSegmentInfo
+    SubscriptionEvent:
+      description: Subscription event holding subscription details
+      properties:
+        partner:
+          $ref: '#/components/schemas/Partner'
+        subscriptions:
+          type: array
+          description: Subscription information
+          items:
+            $ref: '#/components/schemas/Subscription'
+      title: SubscriptionEvent
+    PolicyCompliance:
+      description: Policy compliance details
+      properties:
+        is_compliant:
+          type: boolean
+          description: Flag indicating whether the item is compliant or not.
+        reasons:
+          type: array
+          description: Reasons describing why the item is not policy compliant.
+          items:
+            $ref: '#/components/schemas/ViolationReason'
+      title: PolicyCompliance
+    Hotel:
+      properties:
+        approval_deadline:
+          type: string
+          description: Only when approval is enabled, time limit to approve/reject an item
+          example: '2021-04-15T15:26:00.000Z'
+        approval_status:
+          type: string
+          description: Only when approval is enabled.
+          enum:
+          - PENDING
+          - APPROVED
+          - DENIED
+          - CANCELLED
+          example: APPROVED
+        approval_triggered:
+          type: boolean
+          description: Flag to indicate whether approval got triggered for the transaction or not.
+        booker:
+          $ref: '#/components/schemas/Person'
+        booking_date_time:
+          type: string
+          description: The date and time the booking occurred on an itinerary.
+        booking_reference:
+          type: string
+          description: This is the reference of the Train, Flight, Hotel or Car booking as you can see it in your Egencia Trip Summary.
+          example: AZ23D
+        booking_status:
+          type: string
+          enum:
+          - BOOKED
+          - CANCELLED
+          - DRAFT
+          - DELETED
+          - AWAITING_CONFIRMATION
+        cancellation_date_time:
+          type: string
+          description: The date and time the booking was last cancelled.
+        check_in:
+          type: string
+          description: CheckIn date in days only (does not handle hour of the check in). Format = ISO 8601 datetime
+          example: '2019-01-01T00:00:00.000Z'
+        check_out:
+          type: string
+          description: Check out date in days only (does not handle hour of the check out). Format = ISO 8601 datetime
+          example: '2019-01-01T00:00:00.000Z'
+        company:
+          $ref: '#/components/schemas/Company'
+        credit_card:
+          $ref: '#/components/schemas/CreditCardInfo'
+        custom_data_fields:
+          type: array
+          deprecated: true
+          description: List of custom data fields. Can be company's cost centers for example.
+          items:
+            $ref: '#/components/schemas/CustomDataField'
+        egencia_item_id:
+          type: string
+          description: Unique identifier for the expense item in Egencia.
+        egencia_trip_id:
+          type: string
+          description: This Identifier is mutable and represents the Trip concept. In Egencia, Trip is the container that regroups the transactions, and this is what the user will see. It can be used to consolidate the bookings together like in Egencia.
+          example: 8006-8583-907
+        egencia_trip_link:
+          type: string
+          description: Link to trip in Egencia. SSO/Login vanity URL if the company is enabled.
+        expense_id:
+          type: string
+          description: Expense Transaction immutable and unique identifier for the product or service bought.
+          example: HL-a9fbb6cc6127cda4a4db8846dd1a9a3a6da7fd0b
+        expense_type:
+          type: string
+          description: Type of product.
+          enum:
+          - FLIGHT
+          - GROUND
+          - HOTEL
+          - TRAIN
+          - FEE
+          - CAR
+        expense_version:
+          type: integer
+          format: int32
+          description: The version of an Expense. It changes whenever a bought product has been updated.
+          example: 3
+        gds_reference:
+          type: string
+          description: External GDS (global distribution systems) reference. PNR (passenger name record) for flight.
+          example: ZJSZVT
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        location:
+          $ref: '#/components/schemas/Location'
+        mission_number:
+          type: string
+          description: Partner mission order number
+        partner:
+          $ref: '#/components/schemas/Partner'
+        payment_method:
+          type: string
+          description: The payment mean used for the booking.
+          enum:
+          - COMPANY_FORM_OF_PAYMENT
+          - CREDIT_CARD
+          - LODGED_CARD
+          - ON_ACCOUNT
+          - VIAPAY
+          - PAY_AT_COUNTER
+          - DIRECT_BILLING
+          - ACCREDITIVE
+          - ACCREDITIVE_CARD
+          - COMPANY_CARD
+          - PREPAID_BY_ECT
+        point_of_sale:
+          $ref: '#/components/schemas/PointOfSale'
+        policy_compliance:
+          $ref: '#/components/schemas/PolicyCompliance'
+        price:
+          $ref: '#/components/schemas/Price'
+        property_id:
+          type: string
+          description: Unique identifier of the hotel property on the hotel distribution system
+        provider:
+          type: string
+          description: Where the property offering is sourced from
+        rate_type:
+          $ref: '#/components/schemas/RateType'
+        receipt_info:
+          $ref: '#/components/schemas/ReceiptInfo'
+        receipt_provision_available:
+          type: boolean
+          description: Indicates if receipt is generated by Egencia for this expense item.
+        rules_and_regulations:
+          $ref: '#/components/schemas/RulesAndRegulations'
+        star_rating:
+          type: string
+          example: 1, 2, 2.5, 3.5, .., 5
+        travelers:
+          type: array
+          description: The travelers who are part of this reservation.
+          items:
+            $ref: '#/components/schemas/Person'
+        uuid:
+          type: string
+          format: uuid
+        vendor_reference:
+          type: string
+          description: Product vendor reference
+          example: 366L3FN9E
+      required:
+      - check_in
+      - check_out
+      - company
+      - custom_data_fields
+      - egencia_item_id
+      - egencia_trip_id
+      - egencia_trip_link
+      - expense_id
+      - expense_type
+      - uuid
+      title: Hotel
+    CustomDataField:
+      description: Billing data added during the booking process.
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+      required:
+      - label
+      title: CustomDataField
+    RateType:
+      properties:
+        code:
+          type: string
+          description: CORPORATE
+        name:
+          type: string
+          description: Corporate rate
+      required:
+      - code
+      - name
+      title: RateType
+    Flight:
+      properties:
+        approval_deadline:
+          type: string
+          description: Only when approval is enabled, time limit to approve/reject an item
+          example: '2021-04-15T15:26:00.000Z'
+        approval_status:
+          type: string
+          description: Only when approval is enabled.
+          enum:
+          - PENDING
+          - APPROVED
+          - DENIED
+          - CANCELLED
+          example: APPROVED
+        approval_triggered:
+          type: boolean
+          description: Flag to indicate whether approval got triggered for the transaction or not.
+        booker:
+          $ref: '#/components/schemas/Person'
+        booking_date_time:
+          type: string
+          description: The date and time the booking occurred on an itinerary.
+        booking_reference:
+          type: string
+          description: This is the reference of the Train, Flight, Hotel or Car booking as you can see it in your Egencia Trip Summary.
+          example: AZ23D
+        booking_status:
+          type: string
+          enum:
+          - BOOKED
+          - CANCELLED
+          - DRAFT
+          - DELETED
+          - AWAITING_CONFIRMATION
+        cancellation_date_time:
+          type: string
+          description: The date and time the booking was last cancelled.
+        company:
+          $ref: '#/components/schemas/Company'
+        credit_card:
+          $ref: '#/components/schemas/CreditCardInfo'
+        custom_data_fields:
+          type: array
+          deprecated: true
+          description: List of custom data fields. Can be company's cost centers for example.
+          items:
+            $ref: '#/components/schemas/CustomDataField'
+        egencia_item_id:
+          type: string
+          description: Unique identifier for the expense item in Egencia.
+        egencia_trip_id:
+          type: string
+          description: This Identifier is mutable and represents the Trip concept. In Egencia, Trip is the container that regroups the transactions, and this is what the user will see. It can be used to consolidate the bookings together like in Egencia.
+          example: 8006-8583-907
+        egencia_trip_link:
+          type: string
+          description: Link to trip in Egencia. SSO/Login vanity URL if the company is enabled.
+        expense_id:
+          type: string
+          description: Expense Transaction immutable and unique identifier for the product or service bought.
+          example: HL-a9fbb6cc6127cda4a4db8846dd1a9a3a6da7fd0b
+        expense_type:
+          type: string
+          description: Type of product.
+          enum:
+          - FLIGHT
+          - GROUND
+          - HOTEL
+          - TRAIN
+          - FEE
+          - CAR
+        expense_version:
+          type: integer
+          format: int32
+          description: The version of an Expense. It changes whenever a bought product has been updated.
+          example: 3
+        gds_reference:
+          type: string
+          description: External GDS (global distribution systems) reference. PNR (passenger name record) for flight.
+          example: ZJSZVT
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        mission_number:
+          type: string
+          description: Partner mission order number
+        origin_destinations:
+          type: array
+          description: List of origins to destinations. For example a round trip would have 2 origin destination in this list (e.g. Paris -> Tokyo, Tokyo -> Paris).
+          items:
+            $ref: '#/components/schemas/FlightOriginDestination'
+          minItems: 1
+        partner:
+          $ref: '#/components/schemas/Partner'
+        payment_method:
+          type: string
+          description: The payment mean used for the booking.
+          enum:
+          - COMPANY_FORM_OF_PAYMENT
+          - CREDIT_CARD
+          - LODGED_CARD
+          - ON_ACCOUNT
+          - VIAPAY
+          - PAY_AT_COUNTER
+          - DIRECT_BILLING
+          - ACCREDITIVE
+          - ACCREDITIVE_CARD
+          - COMPANY_CARD
+          - PREPAID_BY_ECT
+        point_of_sale:
+          $ref: '#/components/schemas/PointOfSale'
+        policy_compliance:
+          $ref: '#/components/schemas/PolicyCompliance'
+        price:
+          $ref: '#/components/schemas/Price'
+        rate_type:
+          $ref: '#/components/schemas/RateType'
+        receipt_info:
+          $ref: '#/components/schemas/ReceiptInfo'
+        receipt_provision_available:
+          type: boolean
+          description: Indicates if receipt is generated by Egencia for this expense item.
+        rules_and_regulations:
+          $ref: '#/components/schemas/RulesAndRegulations'
+        ticket_number:
+          type: array
+          description: Ticket number. Only when booking is issued.
+          example: 0067508252738
+          items:
+            type: string
+            description: Ticket number. Only when booking is issued.
+            example: 0067508252738
+        travelers:
+          type: array
+          description: The travelers who are part of this reservation.
+          items:
+            $ref: '#/components/schemas/Person'
+        uuid:
+          type: string
+          format: uuid
+        vendor_reference:
+          type: string
+          description: Product vendor reference
+          example: 366L3FN9E
+      required:
+      - company
+      - custom_data_fields
+      - egencia_item_id
+      - egencia_trip_id
+      - egencia_trip_link
+      - expense_id
+      - expense_type
+      - origin_destinations
+      - uuid
+      title: Flight
+    Segment:
+      description: Segment is part of an origin to destination.
+      properties:
+        arrival:
+          $ref: '#/components/schemas/SegmentStep'
+        booking_class:
+          type: string
+          description: The booking class code.
+          example: FIRST
+        co2_emission:
+          $ref: '#/components/schemas/CO2Emission'
+        departure:
+          $ref: '#/components/schemas/SegmentStep'
+        marketing_carrier:
+          $ref: '#/components/schemas/Carrier'
+        operating_carrier:
+          $ref: '#/components/schemas/Carrier'
+        provider:
+          $ref: '#/components/schemas/Provider'
+        rate_type:
+          $ref: '#/components/schemas/RateType'
+        rules_and_regulations:
+          $ref: '#/components/schemas/RulesAndRegulations'
+        status:
+          type: string
+          description: Status of a segment as it can be different from main bookingStatus.
+          enum:
+          - BOOKED
+          - CANCELLED
+          - DRAFT
+          - DELETED
+          - AWAITING_CONFIRMATION
+        traveler_segment_info:
+          type: array
+          description: The segment-specific information pertaining to the traveler.
+          items:
+            $ref: '#/components/schemas/TravelerSegmentInfo'
+      required:
+      - arrival
+      - booking_class
+      - departure
+      title: Segment
+    CreditCardInfo:
+      description: Credit card info
+      properties:
+        card_type:
+          type: string
+          description: Card type
+        first6_digits:
+          type: string
+          description: First six digits
+          example: '456123'
+        last4_digits:
+          type: string
+          description: Last four digits
+          example: '7878'
+      title: CreditCardInfo
     Car:
       properties:
         amenities:
@@ -3173,7 +3758,26 @@ components:
       - uuid
       - vendor
       title: Car
-    Hotel:
+    Subscription:
+      description: Subscription details
+      properties:
+        subscribed:
+          type: array
+          description: List of subscribed entities
+          items:
+            $ref: '#/components/schemas/SubscriptionEntity'
+        type:
+          type: string
+          description: Type of suscribed or unsubscribed entity
+          enum:
+          - COMPANY
+        unsubscribed:
+          type: array
+          description: List of unsubscribed entities
+          items:
+            $ref: '#/components/schemas/SubscriptionEntity'
+      title: Subscription
+    Fee:
       properties:
         approval_deadline:
           type: string
@@ -3191,6 +3795,10 @@ components:
         approval_triggered:
           type: boolean
           description: Flag to indicate whether approval got triggered for the transaction or not.
+        associated_booking_reference:
+          type: string
+          description: Booking reference indicating the booking with which Fee is associated
+          example: '48523737071'
         booker:
           $ref: '#/components/schemas/Person'
         booking_date_time:
@@ -3211,14 +3819,6 @@ components:
         cancellation_date_time:
           type: string
           description: The date and time the booking was last cancelled.
-        check_in:
-          type: string
-          description: CheckIn date in days only (does not handle hour of the check in). Format = ISO 8601 datetime
-          example: '2019-01-01T00:00:00.000Z'
-        check_out:
-          type: string
-          description: Check out date in days only (does not handle hour of the check out). Format = ISO 8601 datetime
-          example: '2019-01-01T00:00:00.000Z'
         company:
           $ref: '#/components/schemas/Company'
         credit_card:
@@ -3262,12 +3862,14 @@ components:
           type: string
           description: External GDS (global distribution systems) reference. PNR (passenger name record) for flight.
           example: ZJSZVT
+        label:
+          type: string
+          description: Fee's description.
+          example: Agent assisted air purchase fee
         links:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-        location:
-          $ref: '#/components/schemas/Location'
         mission_number:
           type: string
           description: Partner mission order number
@@ -3294,12 +3896,6 @@ components:
           $ref: '#/components/schemas/PolicyCompliance'
         price:
           $ref: '#/components/schemas/Price'
-        property_id:
-          type: string
-          description: Unique identifier of the hotel property on the hotel distribution system
-        provider:
-          type: string
-          description: Where the property offering is sourced from
         rate_type:
           $ref: '#/components/schemas/RateType'
         receipt_info:
@@ -3309,9 +3905,6 @@ components:
           description: Indicates if receipt is generated by Egencia for this expense item.
         rules_and_regulations:
           $ref: '#/components/schemas/RulesAndRegulations'
-        star_rating:
-          type: string
-          example: 1, 2, 2.5, 3.5, .., 5
         travelers:
           type: array
           description: The travelers who are part of this reservation.
@@ -3325,8 +3918,6 @@ components:
           description: Product vendor reference
           example: 366L3FN9E
       required:
-      - check_in
-      - check_out
       - company
       - custom_data_fields
       - egencia_item_id
@@ -3334,8 +3925,255 @@ components:
       - egencia_trip_link
       - expense_id
       - expense_type
+      - label
       - uuid
-      title: Hotel
+      title: Fee
+    CO2Emission:
+      description: The details of the Carbon dioxide (CO2) emission.
+      properties:
+        equivalencies:
+          type: array
+          description: The CO2 emission equivalencies information.
+          items:
+            $ref: '#/components/schemas/CO2EmissionEquivalency'
+        offset_amount:
+          type: number
+          description: The CO2 emission offset amount.
+        offset_currency:
+          type: string
+          description: The CO2 emission offset currency.
+        unit:
+          type: string
+          description: The unit of the CO2 emission.
+          enum:
+          - KG
+          - LB
+          example: KG, LB
+        value:
+          type: integer
+          format: int32
+          description: The value of the CO2 emission.
+      title: CO2Emission
+    Address:
+      description: Address details of the location
+      properties:
+        city_code:
+          type: string
+          description: City code.
+        city_name:
+          type: string
+          description: Name of the city.
+        country_code:
+          type: string
+          description: Country code.
+        country_name:
+          type: string
+          description: Name of the country.
+        postal_code:
+          type: string
+          description: Postal code of the location.
+        state_province_code:
+          type: string
+          description: State province code.
+        state_province_name:
+          type: string
+          description: Name of the state province.
+        street_name:
+          type: string
+          description: Name of the street.
+      title: Address
+    GroundTransferType:
+      description: Describes the ground transfer type
+      example: Describes the ground transfer type
+      properties:
+        code:
+          type: string
+          description: Code of the transfer vehicle
+          example: AIRPORT_BUS
+        description:
+          type: string
+          description: Description of the transfer vehicle
+          example: Express Bus from/to Airport
+      required:
+      - code
+      - description
+      title: GroundTransferType
+    Partner:
+      description: Partner Details
+      properties:
+        name:
+          type: string
+          description: Name of the partner
+      title: Partner
+    SecondLevelBreakdown:
+      description: Sub-breakdown of the breakdown amount. Giving further details to this amount.
+      properties:
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+          example: EUR
+        name:
+          type: string
+          example: Taxes and service fees
+        type:
+          type: string
+          example: TAXES
+      required:
+      - amount
+      - currency
+      - type
+      title: SecondLevelBreakdown
+    Price:
+      properties:
+        amount:
+          type: number
+          format: double
+        breakdowns:
+          type: array
+          description: 'Breakdown of the price amount describing: booked product amount, fee amount, taxes amount.'
+          items:
+            $ref: '#/components/schemas/FirstLevelBreakdown'
+        cost_to_customer:
+          type: number
+          format: double
+          description: The total cost incurred by the customer
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+          example: EUR
+        penalties:
+          type: array
+          description: Breakdown of penalties
+          items:
+            $ref: '#/components/schemas/FirstLevelBreakdown'
+        refunds:
+          type: array
+          description: Breakdown of refunds
+          items:
+            $ref: '#/components/schemas/FirstLevelBreakdown'
+      required:
+      - amount
+      - breakdowns
+      - cost_to_customer
+      - currency
+      title: Price
+    Location:
+      description: Hotel's address
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        code:
+          type: string
+          description: Airport IATA code or any station code. Mandatory for AIRPORT type only.
+          example: CDG
+        name:
+          type: string
+          description: Name of airport, station, city or hotel. Mandatory for all types except ADDRESS.
+          example: Stockholm Arlanda
+        type:
+          type: string
+          description: The type of location.
+          enum:
+          - AIRPORT
+          - CITY
+          - TRAIN_STATION
+          - ADDRESS
+          - HOTEL
+      required:
+      - address
+      - type
+      title: Location
+    SubscriptionEntity:
+      description: Subscribed or Unsubscribed Entity
+      properties:
+        id:
+          type: string
+          description: Identifier for the entity
+        name:
+          type: string
+          description: Name of the entity
+      title: SubscriptionEntity
+    GroundVehicle:
+      description: 'Details about ground vehicle (Refer: https://www.acriss.org/car-codes/)'
+      properties:
+        category:
+          type: string
+          description: First letter from ACRISS code
+          example: I
+        description:
+          type: string
+          description: Description of the vehicle
+          example: IFAR
+        seating_capacity:
+          type: string
+          description: Seating Capacity
+          example: '1'
+        type:
+          type: string
+          description: Vehicle type
+          example: Taxi
+      title: GroundVehicle
+    Company:
+      description: Traveler's company name and id.
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        organization_parent_id:
+          type: integer
+          format: int64
+          description: Organization Id of the company. It is the same as the company Id when no organization is defined
+          example: 6555689
+        partner_customer_code:
+          type: string
+          description: The partner_customer_code is the unique identifier of a client in the application of the partner. For partners who request it, partner_customer_code must be set everytime a customer subscribes to those partners.
+          example: JE3B
+      required:
+      - id
+      - name
+      title: Company
+    CO2EmissionEquivalency:
+      description: The CO2 emission equivalencies information.
+      properties:
+        type:
+          type: string
+          description: This specifies the type of CO2 emission equivalency.
+        value:
+          type: number
+          format: double
+          description: This specifies the value of CO2 emission equivalency.
+      title: CO2EmissionEquivalency
+    Carrier:
+      description: Marketing carrier details
+      properties:
+        code:
+          type: string
+          description: Carrier code
+        low_cost_carrier:
+          type: boolean
+          description: Flag indicating whether the carrier is a low-cost.
+        name:
+          type: string
+          description: Carrier name
+        number:
+          type: string
+          description: Carrier number
+      title: Carrier details
+    Fare:
+      description: Details about fare.
+      properties:
+        amount:
+          type: number
+          format: double
+          description: Amount
+        currency:
+          type: string
+          description: Currency
     Train:
       properties:
         approval_deadline:
@@ -3493,554 +4331,27 @@ components:
       - origin_destinations
       - uuid
       title: Train
-    Location:
-      description: Hotel's address
+    Payment:
+      description: Details about payment.
       properties:
-        address:
-          $ref: '#/components/schemas/Address'
-        code:
-          type: string
-          description: Airport IATA code or any station code. Mandatory for AIRPORT type only.
-          example: CDG
-        name:
-          type: string
-          description: Name of airport, station, city or hotel. Mandatory for all types except ADDRESS.
-          example: Stockholm Arlanda
-        type:
-          type: string
-          description: The type of location.
-          enum:
-          - AIRPORT
-          - CITY
-          - TRAIN_STATION
-          - ADDRESS
-          - HOTEL
-      required:
-      - address
-      - type
-      title: Location
-    FirstLevelBreakdown:
-      description: Details of an amount.
-      properties:
-        amount:
-          type: number
-          format: double
         breakdowns:
           type: array
-          description: Sub-breakdown of the breakdown amount. Giving further details to this amount.
+          description: Breakdown of the price amount
           items:
-            $ref: '#/components/schemas/SecondLevelBreakdown'
-        currency:
+            $ref: '#/components/schemas/FirstLevelBreakdown'
+        credit_card_info:
+          $ref: '#/components/schemas/CreditCardInfo'
+        date:
           type: string
-          description: ISO 4217 currency code.
-          example: EUR
-        name:
-          type: string
-          example: Taxes and service fees
-        type:
-          type: string
-          example: TAXES
-      required:
-      - amount
-      - currency
-      - type
-      title: FirstLevelBreakdown
-    Segment:
-      description: Segment is part of an origin to destination.
-      properties:
-        arrival:
-          $ref: '#/components/schemas/SegmentStep'
-        booking_class:
-          type: string
-          description: The booking class code.
-          example: FIRST
-        co2_emission:
-          $ref: '#/components/schemas/CO2Emission'
-        departure:
-          $ref: '#/components/schemas/SegmentStep'
-        marketing_carrier:
-          $ref: '#/components/schemas/Carrier'
-        operating_carrier:
-          $ref: '#/components/schemas/Carrier'
-        provider:
-          $ref: '#/components/schemas/Provider'
-        rate_type:
-          $ref: '#/components/schemas/RateType'
-        rules_and_regulations:
-          $ref: '#/components/schemas/RulesAndRegulations'
-        status:
-          type: string
-          description: Status of a segment as it can be different from main bookingStatus.
-          enum:
-          - BOOKED
-          - CANCELLED
-          - DRAFT
-          - DELETED
-          - AWAITING_CONFIRMATION
-        traveler_segment_info:
-          type: array
-          description: The segment-specific information pertaining to the traveler.
-          items:
-            $ref: '#/components/schemas/TravelerSegmentInfo'
-      required:
-      - arrival
-      - booking_class
-      - departure
-      title: Segment
-    SegmentStep:
-      description: Describes the location/date of destination
-      properties:
+          description: Date of the payment
         date_time:
           type: string
-          description: ISO 8601 date and time.
-          example: '2020-04-06T10:20:00.000-05:00'
-        location:
-          $ref: '#/components/schemas/Location'
-      required:
-      - date_time
-      - location
-      title: SegmentStep
-    PointOfSale:
-      description: A point of sale is defined by the intersection of a company, a management unit, and a jurisdiction.
-      properties:
-        country_code:
+          description: Date and time of the payment
+        line_type:
           type: string
-          description: ISO 3166-1 alpha-2 country code.
-          example: FR
-      required:
-      - country_code
-      title: PointOfSale
-    FlightOriginDestination:
-      description: List of origins to destinations. For example a round trip would have 2 origin destination in this list (e.g. Paris -> Tokyo, Tokyo -> Paris).
-      properties:
-        segments:
-          type: array
-          description: List of segments. A trip having 1 stop will contain 2 segments (e.g. Paris -> Zurich, Zurich -> Tokyo).
-          items:
-            $ref: '#/components/schemas/Segment'
-          minItems: 1
-      required:
-      - segments
-      title: FlightOriginDestination
-    RulesAndRegulations:
-      properties:
-        details:
-          type: array
-          description: Raw text describing provider rules and regulations.
-          example: Can be modified with a penalty..
-          items:
-            type: string
-            description: Raw text describing provider rules and regulations.
-            example: Can be modified with a penalty..
-      title: RulesAndRegulations
-    GroundVehicle:
-      description: 'Details about ground vehicle (Refer: https://www.acriss.org/car-codes/)'
-      properties:
-        category:
-          type: string
-          description: First letter from ACRISS code
-          example: I
-        description:
-          type: string
-          description: Description of the vehicle
-          example: IFAR
-        seating_capacity:
-          type: string
-          description: Seating Capacity
-          example: '1'
-        type:
-          type: string
-          description: Vehicle type
-          example: Taxi
-      title: GroundVehicle
-    Price:
-      properties:
-        amount:
-          type: number
-          format: double
-        breakdowns:
-          type: array
-          description: 'Breakdown of the price amount describing: booked product amount, fee amount, taxes amount.'
-          items:
-            $ref: '#/components/schemas/FirstLevelBreakdown'
-        cost_to_customer:
-          type: number
-          format: double
-          description: The total cost incurred by the customer
-        currency:
-          type: string
-          description: ISO 4217 currency code.
-          example: EUR
-        penalties:
-          type: array
-          description: Breakdown of penalties
-          items:
-            $ref: '#/components/schemas/FirstLevelBreakdown'
-        refunds:
-          type: array
-          description: Breakdown of refunds
-          items:
-            $ref: '#/components/schemas/FirstLevelBreakdown'
-      required:
-      - amount
-      - breakdowns
-      - cost_to_customer
-      - currency
-      title: Price
-    RentalVehicle:
-      description: 'Details about car vehicle (Refer: https://www.acriss.org/car-codes/)'
-      properties:
-        acriss_code:
-          type: string
-          description: 'Complete Acriss Code, (Refer: https://www.acriss.org/car-codes/), not mandatory for off line booking case'
-          example: IFAR
-        category:
-          type: string
-          description: First letter from Car ACRISS code
-          example: I
-        mileage_limit:
-          type: string
-          description: 'Mileage limit policy, without standard (e.g. : Unlimited, 0 miles (Additional Mileage: 0,40 USD per mile))'
-          example: '1400 km (Additional Mileage: €0.19 per km)'
-        name:
-          type: string
-          description: Vehicule model's name
-          example: Toyota Rav4
-      title: RentalVehicle
-    SubscriptionEntity:
-      description: Subscribed or Unsubscribed Entity
-      properties:
-        id:
-          type: string
-          description: Identifier for the entity
-        name:
-          type: string
-          description: Name of the entity
-      title: SubscriptionEntity
-    Person:
-      description: Details of the person
-      properties:
-        custom_data_fields:
-          type: array
-          description: Custom data fields associated with the traveler
-          items:
-            $ref: '#/components/schemas/CustomDataField'
-        email:
-          type: string
-          description: Email of the person
-        first_name:
-          type: string
-          description: First name of the person
-        id:
-          type: integer
-          format: int64
-          description: Person id
-        is_agent:
-          type: boolean
-          description: Flag indicating whether the person is agent or not
-        is_guest:
-          type: boolean
-          description: Flag indicating whether the person is guest traveler or not
-        last_name:
-          type: string
-          description: Last name of the person
-        preferred_language:
-          type: string
-          description: The preferred language of the person
-      required:
-      - email
-      - first_name
-      - last_name
-      title: Person
-    Fee:
-      properties:
-        approval_deadline:
-          type: string
-          description: Only when approval is enabled, time limit to approve/reject an item
-          example: '2021-04-15T15:26:00.000Z'
-        approval_status:
-          type: string
-          description: Only when approval is enabled.
-          enum:
-          - PENDING
-          - APPROVED
-          - DENIED
-          - CANCELLED
-          example: APPROVED
-        approval_triggered:
-          type: boolean
-          description: Flag to indicate whether approval got triggered for the transaction or not.
-        associated_booking_reference:
-          type: string
-          description: Booking reference indicating the booking with which Fee is associated
-          example: '48523737071'
-        booker:
-          $ref: '#/components/schemas/Person'
-        booking_date_time:
-          type: string
-          description: The date and time the booking occurred on an itinerary.
-        booking_reference:
-          type: string
-          description: This is the reference of the Train, Flight, Hotel or Car booking as you can see it in your Egencia Trip Summary.
-          example: AZ23D
-        booking_status:
-          type: string
-          enum:
-          - BOOKED
-          - CANCELLED
-          - DRAFT
-          - DELETED
-          - AWAITING_CONFIRMATION
-        cancellation_date_time:
-          type: string
-          description: The date and time the booking was last cancelled.
-        company:
-          $ref: '#/components/schemas/Company'
-        credit_card:
-          $ref: '#/components/schemas/CreditCardInfo'
-        custom_data_fields:
-          type: array
-          deprecated: true
-          description: List of custom data fields. Can be company's cost centers for example.
-          items:
-            $ref: '#/components/schemas/CustomDataField'
-        egencia_item_id:
-          type: string
-          description: Unique identifier for the expense item in Egencia.
-        egencia_trip_id:
-          type: string
-          description: This Identifier is mutable and represents the Trip concept. In Egencia, Trip is the container that regroups the transactions, and this is what the user will see. It can be used to consolidate the bookings together like in Egencia.
-          example: 8006-8583-907
-        egencia_trip_link:
-          type: string
-          description: Link to trip in Egencia. SSO/Login vanity URL if the company is enabled.
-        expense_id:
-          type: string
-          description: Expense Transaction immutable and unique identifier for the product or service bought.
-          example: HL-a9fbb6cc6127cda4a4db8846dd1a9a3a6da7fd0b
-        expense_type:
-          type: string
-          description: Type of product.
-          enum:
-          - FLIGHT
-          - GROUND
-          - HOTEL
-          - TRAIN
-          - FEE
-          - CAR
-        expense_version:
-          type: integer
-          format: int32
-          description: The version of an Expense. It changes whenever a bought product has been updated.
-          example: 3
-        gds_reference:
-          type: string
-          description: External GDS (global distribution systems) reference. PNR (passenger name record) for flight.
-          example: ZJSZVT
-        label:
-          type: string
-          description: Fee's description.
-          example: Agent assisted air purchase fee
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        mission_number:
-          type: string
-          description: Partner mission order number
-        partner:
-          $ref: '#/components/schemas/Partner'
-        payment_method:
-          type: string
-          description: The payment mean used for the booking.
-          enum:
-          - COMPANY_FORM_OF_PAYMENT
-          - CREDIT_CARD
-          - LODGED_CARD
-          - ON_ACCOUNT
-          - VIAPAY
-          - PAY_AT_COUNTER
-          - DIRECT_BILLING
-          - ACCREDITIVE
-          - ACCREDITIVE_CARD
-          - COMPANY_CARD
-          - PREPAID_BY_ECT
-        point_of_sale:
-          $ref: '#/components/schemas/PointOfSale'
-        policy_compliance:
-          $ref: '#/components/schemas/PolicyCompliance'
-        price:
-          $ref: '#/components/schemas/Price'
-        rate_type:
-          $ref: '#/components/schemas/RateType'
-        receipt_info:
-          $ref: '#/components/schemas/ReceiptInfo'
-        receipt_provision_available:
-          type: boolean
-          description: Indicates if receipt is generated by Egencia for this expense item.
-        rules_and_regulations:
-          $ref: '#/components/schemas/RulesAndRegulations'
-        travelers:
-          type: array
-          description: The travelers who are part of this reservation.
-          items:
-            $ref: '#/components/schemas/Person'
-        uuid:
-          type: string
-          format: uuid
-        vendor_reference:
-          type: string
-          description: Product vendor reference
-          example: 366L3FN9E
-      required:
-      - company
-      - custom_data_fields
-      - egencia_item_id
-      - egencia_trip_id
-      - egencia_trip_link
-      - expense_id
-      - expense_type
-      - label
-      - uuid
-      title: Fee
-    TravelerSegmentInfo:
-      description: Traveler information for a segment.
-      properties:
-        ticket:
-          $ref: '#/components/schemas/TicketInformation'
-        traveler_id:
-          type: integer
-          format: int64
-          description: Id of the traveler.
-          example: 67508252738
-      title: TravelerSegmentInfo
-    Company:
-      description: Traveler's company name and id.
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        organization_parent_id:
-          type: integer
-          format: int64
-          description: Organization Id of the company. It is the same as the company Id when no organization is defined
-          example: 6555689
-        partner_customer_code:
-          type: string
-          description: The partner_customer_code is the unique identifier of a client in the application of the partner. For partners who request it, partner_customer_code must be set everytime a customer subscribes to those partners.
-          example: JE3B
-      required:
-      - id
-      - name
-      title: Company
-    CustomDataField:
-      description: Billing data added during the booking process.
-      properties:
-        label:
-          type: string
-        value:
-          type: string
-      required:
-      - label
-      title: CustomDataField
-    SecondLevelBreakdown:
-      description: Sub-breakdown of the breakdown amount. Giving further details to this amount.
-      properties:
-        amount:
-          type: number
-          format: double
-        currency:
-          type: string
-          description: ISO 4217 currency code.
-          example: EUR
-        name:
-          type: string
-          example: Taxes and service fees
-        type:
-          type: string
-          example: TAXES
-      required:
-      - amount
-      - currency
-      - type
-      title: SecondLevelBreakdown
-    CO2EmissionEquivalency:
-      description: The CO2 emission equivalencies information.
-      properties:
-        type:
-          type: string
-          description: This specifies the type of CO2 emission equivalency.
-        value:
-          type: number
-          format: double
-          description: This specifies the value of CO2 emission equivalency.
-      title: CO2EmissionEquivalency
-    Provider:
-      description: Details about ground supplier
-      properties:
-        code:
-          type: string
-          description: Code of the company
-          example: ZL
-        name:
-          type: string
-          description: Name of the company. Never provided on booking cancellation.
-          example: National Car Rental
-      required:
-      - code
-      title: Provider
-    Partner:
-      description: Partner Details
-      properties:
-        name:
-          type: string
-          description: Name of the partner
-      title: Partner
-    ViolationReason:
-      description: Policy non-compliance reasons
-      properties:
-        best_fare:
+          description: Line type. This could be PRODUCT or EGENCIA_FEE
+        net_amount:
           $ref: '#/components/schemas/Fare'
-        message:
-          type: string
-          description: Message explanation of non-compliance reason.
-        type:
-          type: string
-          description: Type of the reason.
-      title: ViolationReason
-    CreditCardInfo:
-      description: Credit card info
-      properties:
-        card_type:
-          type: string
-          description: Card type
-        first6_digits:
-          type: string
-          description: First six digits
-          example: '456123'
-        last4_digits:
-          type: string
-          description: Last four digits
-          example: '7878'
-      title: CreditCardInfo
-    Carrier:
-      description: Marketing carrier details
-      properties:
-        code:
-          type: string
-          description: Carrier code
-        low_cost_carrier:
-          type: boolean
-          description: Flag indicating whether the carrier is a low-cost.
-        name:
-          type: string
-          description: Carrier name
-        number:
-          type: string
-          description: Carrier number
-      title: Carrier details
     Expense:
       discriminator:
         propertyName: expenseType
@@ -4182,314 +4493,3 @@ components:
       - expense_type
       - uuid
       title: Expense
-    CO2Emission:
-      description: The details of the Carbon dioxide (CO2) emission.
-      properties:
-        equivalencies:
-          type: array
-          description: The CO2 emission equivalencies information.
-          items:
-            $ref: '#/components/schemas/CO2EmissionEquivalency'
-        offset_amount:
-          type: number
-          description: The CO2 emission offset amount.
-        offset_currency:
-          type: string
-          description: The CO2 emission offset currency.
-        unit:
-          type: string
-          description: The unit of the CO2 emission.
-          enum:
-          - KG
-          - LB
-          example: KG, LB
-        value:
-          type: integer
-          format: int32
-          description: The value of the CO2 emission.
-      title: CO2Emission
-    SubscriptionEvent:
-      description: Subscription event holding subscription details
-      properties:
-        partner:
-          $ref: '#/components/schemas/Partner'
-        subscriptions:
-          type: array
-          description: Subscription information
-          items:
-            $ref: '#/components/schemas/Subscription'
-      title: SubscriptionEvent
-    GroundTransferType:
-      description: Describes the ground transfer type
-      example: Describes the ground transfer type
-      properties:
-        code:
-          type: string
-          description: Code of the transfer vehicle
-          example: AIRPORT_BUS
-        description:
-          type: string
-          description: Description of the transfer vehicle
-          example: Express Bus from/to Airport
-      required:
-      - code
-      - description
-      title: GroundTransferType
-    Address:
-      description: Address details of the location
-      properties:
-        city_code:
-          type: string
-          description: City code.
-        city_name:
-          type: string
-          description: Name of the city.
-        country_code:
-          type: string
-          description: Country code.
-        country_name:
-          type: string
-          description: Name of the country.
-        postal_code:
-          type: string
-          description: Postal code of the location.
-        state_province_code:
-          type: string
-          description: State province code.
-        state_province_name:
-          type: string
-          description: Name of the state province.
-        street_name:
-          type: string
-          description: Name of the street.
-      title: Address
-    Fare:
-      description: Details about fare.
-      properties:
-        amount:
-          type: number
-          format: double
-          description: Amount
-        currency:
-          type: string
-          description: Currency
-    Subscription:
-      description: Subscription details
-      properties:
-        subscribed:
-          type: array
-          description: List of subscribed entities
-          items:
-            $ref: '#/components/schemas/SubscriptionEntity'
-        type:
-          type: string
-          description: Type of suscribed or unsubscribed entity
-          enum:
-          - COMPANY
-        unsubscribed:
-          type: array
-          description: List of unsubscribed entities
-          items:
-            $ref: '#/components/schemas/SubscriptionEntity'
-      title: Subscription
-    Flight:
-      properties:
-        approval_deadline:
-          type: string
-          description: Only when approval is enabled, time limit to approve/reject an item
-          example: '2021-04-15T15:26:00.000Z'
-        approval_status:
-          type: string
-          description: Only when approval is enabled.
-          enum:
-          - PENDING
-          - APPROVED
-          - DENIED
-          - CANCELLED
-          example: APPROVED
-        approval_triggered:
-          type: boolean
-          description: Flag to indicate whether approval got triggered for the transaction or not.
-        booker:
-          $ref: '#/components/schemas/Person'
-        booking_date_time:
-          type: string
-          description: The date and time the booking occurred on an itinerary.
-        booking_reference:
-          type: string
-          description: This is the reference of the Train, Flight, Hotel or Car booking as you can see it in your Egencia Trip Summary.
-          example: AZ23D
-        booking_status:
-          type: string
-          enum:
-          - BOOKED
-          - CANCELLED
-          - DRAFT
-          - DELETED
-          - AWAITING_CONFIRMATION
-        cancellation_date_time:
-          type: string
-          description: The date and time the booking was last cancelled.
-        company:
-          $ref: '#/components/schemas/Company'
-        credit_card:
-          $ref: '#/components/schemas/CreditCardInfo'
-        custom_data_fields:
-          type: array
-          deprecated: true
-          description: List of custom data fields. Can be company's cost centers for example.
-          items:
-            $ref: '#/components/schemas/CustomDataField'
-        egencia_item_id:
-          type: string
-          description: Unique identifier for the expense item in Egencia.
-        egencia_trip_id:
-          type: string
-          description: This Identifier is mutable and represents the Trip concept. In Egencia, Trip is the container that regroups the transactions, and this is what the user will see. It can be used to consolidate the bookings together like in Egencia.
-          example: 8006-8583-907
-        egencia_trip_link:
-          type: string
-          description: Link to trip in Egencia. SSO/Login vanity URL if the company is enabled.
-        expense_id:
-          type: string
-          description: Expense Transaction immutable and unique identifier for the product or service bought.
-          example: HL-a9fbb6cc6127cda4a4db8846dd1a9a3a6da7fd0b
-        expense_type:
-          type: string
-          description: Type of product.
-          enum:
-          - FLIGHT
-          - GROUND
-          - HOTEL
-          - TRAIN
-          - FEE
-          - CAR
-        expense_version:
-          type: integer
-          format: int32
-          description: The version of an Expense. It changes whenever a bought product has been updated.
-          example: 3
-        gds_reference:
-          type: string
-          description: External GDS (global distribution systems) reference. PNR (passenger name record) for flight.
-          example: ZJSZVT
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        mission_number:
-          type: string
-          description: Partner mission order number
-        origin_destinations:
-          type: array
-          description: List of origins to destinations. For example a round trip would have 2 origin destination in this list (e.g. Paris -> Tokyo, Tokyo -> Paris).
-          items:
-            $ref: '#/components/schemas/FlightOriginDestination'
-          minItems: 1
-        partner:
-          $ref: '#/components/schemas/Partner'
-        payment_method:
-          type: string
-          description: The payment mean used for the booking.
-          enum:
-          - COMPANY_FORM_OF_PAYMENT
-          - CREDIT_CARD
-          - LODGED_CARD
-          - ON_ACCOUNT
-          - VIAPAY
-          - PAY_AT_COUNTER
-          - DIRECT_BILLING
-          - ACCREDITIVE
-          - ACCREDITIVE_CARD
-          - COMPANY_CARD
-          - PREPAID_BY_ECT
-        point_of_sale:
-          $ref: '#/components/schemas/PointOfSale'
-        policy_compliance:
-          $ref: '#/components/schemas/PolicyCompliance'
-        price:
-          $ref: '#/components/schemas/Price'
-        rate_type:
-          $ref: '#/components/schemas/RateType'
-        receipt_info:
-          $ref: '#/components/schemas/ReceiptInfo'
-        receipt_provision_available:
-          type: boolean
-          description: Indicates if receipt is generated by Egencia for this expense item.
-        rules_and_regulations:
-          $ref: '#/components/schemas/RulesAndRegulations'
-        ticket_number:
-          type: array
-          description: Ticket number. Only when booking is issued.
-          example: 0067508252738
-          items:
-            type: string
-            description: Ticket number. Only when booking is issued.
-            example: 0067508252738
-        travelers:
-          type: array
-          description: The travelers who are part of this reservation.
-          items:
-            $ref: '#/components/schemas/Person'
-        uuid:
-          type: string
-          format: uuid
-        vendor_reference:
-          type: string
-          description: Product vendor reference
-          example: 366L3FN9E
-      required:
-      - company
-      - custom_data_fields
-      - egencia_item_id
-      - egencia_trip_id
-      - egencia_trip_link
-      - expense_id
-      - expense_type
-      - origin_destinations
-      - uuid
-      title: Flight
-    Link:
-      properties:
-        deprecation:
-          type: string
-        href:
-          type: string
-        hreflang:
-          type: string
-        media:
-          type: string
-        name:
-          type: string
-        profile:
-          type: string
-        rel:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-    PolicyCompliance:
-      description: Policy compliance details
-      properties:
-        is_compliant:
-          type: boolean
-          description: Flag indicating whether the item is compliant or not.
-        reasons:
-          type: array
-          description: Reasons describing why the item is not policy compliant.
-          items:
-            $ref: '#/components/schemas/ViolationReason'
-      title: PolicyCompliance
-    TicketInformation:
-      description: Ticket information for a segment.
-      properties:
-        number:
-          type: string
-          description: Ticket number. Only when booking is issued.
-          example: 0067508252738
-        prior_number:
-          type: string
-          description: Former ticket number if exists. For example, when a booking is exchanged.
-          example: 0067508252738
-      title: TicketInformation

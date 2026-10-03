@@ -534,63 +534,6 @@ paths:
       - DutyOfCare Data
 components:
   schemas:
-    Rail_Segment_Details:
-      properties:
-        carrierCode:
-          type: string
-          description: Unique carrier code of the traveler’s carrier
-        trainArrivalCityRailCode:
-          type: string
-          description: Arrival city rail code of the of traveler's train journey
-        trainArrivalDatetime:
-          type: string
-          description: 'Arrival date-time of the traveler’s train journey in ISO 8601 format: YYYY-MM-DDTHH:MM:SS'
-        trainArrivalLatitude:
-          type: string
-          description: Latitude of the train arrival location
-        trainArrivalLongitude:
-          type: string
-          description: Longitude of the train arrival location
-        trainArrivalStationName:
-          type: string
-          description: Arrival station name of the traveler's train journey
-        trainDepartureCityRailCode:
-          type: string
-          description: Departure city rail code of the traveler's train journey
-        trainDepartureDatetime:
-          type: string
-          description: 'Departure date-time of the traveler’s train journey in ISO 8601 format: YYYY-MM-DDTHH:MM:SS'
-        trainDepartureLatitude:
-          type: string
-          description: Latitude of the train departure location
-        trainDepartureLongitude:
-          type: string
-          description: Longitude of the train departure location
-        trainDepartureStationName:
-          type: string
-          description: Departure station name of the traveler's train journey
-        trainNumber:
-          type: string
-          description: The number associated with a train for a segment
-    Traveler_Details:
-      properties:
-        customDataFields:
-          type: array
-          description: Custom data fields
-          items:
-            $ref: '#/components/schemas/Custom_Data_Fields'
-        email:
-          type: string
-          description: Email address of the person for whom the travel booking was made
-        firstName:
-          type: string
-          description: First Name of the person for whom the travel booking was made
-        lastName:
-          type: string
-          description: Last Name of the person for whom the travel booking was made
-        phone:
-          type: string
-          description: Phone number of the person for whom the travel booking was made
     Air_Segment_Details:
       properties:
         airlineCode:
@@ -611,6 +554,84 @@ components:
         flightNumber:
           type: string
           description: Unique airline code for the particular flight
+    Duty_of_Care_Request_Bean:
+      description: DutyOfCareDataRequestBean Request
+      properties:
+        companyId:
+          type: array
+          description: Company ID is a Unique Identifier for the company
+          items:
+            type: integer
+            format: int32
+            description: Company ID is a Unique Identifier for the company
+        endDateTime:
+          type: string
+          description: 'The end date-time to fetch the booking data in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ'
+        partnerId:
+          type: integer
+          format: int32
+          description: Unique identifier provided to partner by Egencia
+        startDateTime:
+          type: string
+          description: 'The start date-time to fetch the booking data in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ'
+    Traveler_Details:
+      properties:
+        customDataFields:
+          type: array
+          description: Custom data fields
+          items:
+            $ref: '#/components/schemas/Custom_Data_Fields'
+        email:
+          type: string
+          description: Email address of the person for whom the travel booking was made
+        firstName:
+          type: string
+          description: First Name of the person for whom the travel booking was made
+        lastName:
+          type: string
+          description: Last Name of the person for whom the travel booking was made
+        phone:
+          type: string
+          description: Phone number of the person for whom the travel booking was made
+    Link:
+      properties:
+        deprecation:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        name:
+          type: string
+        profile:
+          type: string
+        rel:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+    Metadata_corresponding_to_a_request:
+      description: Represents the Metadata information
+      properties:
+        currentPage:
+          type: integer
+          format: int32
+          description: Indicates the current page
+        pageLimit:
+          type: integer
+          format: int32
+          description: Indicates the Page Size for the request
+        totalPages:
+          type: integer
+          format: int32
+          description: Indicates the total number of expected pages
+        totalRecords:
+          type: integer
+          format: int32
+          description: Indicates the toal number of records for the request
     Hotel_Segment_Details:
       properties:
         hotelAddress:
@@ -668,6 +689,15 @@ components:
           description: List of records
           items:
             $ref: '#/components/schemas/Doc_Records_List'
+    Custom_Data_Fields:
+      description: Custom data fields
+      properties:
+        name:
+          type: string
+          description: Name of the Custom Data Fields as configured for the company
+        value:
+          type: string
+          description: The values provided will be retrieved for the corresponding fields, if they are available
     Doc_Records_List:
       description: Contains the records in duty of care
       properties:
@@ -713,74 +743,44 @@ components:
         tripId:
           type: string
           description: A trip_id is a unique identifier generated by the system
-    Link:
+    Rail_Segment_Details:
       properties:
-        deprecation:
+        carrierCode:
           type: string
-        href:
+          description: Unique carrier code of the traveler’s carrier
+        trainArrivalCityRailCode:
           type: string
-        hreflang:
+          description: Arrival city rail code of the of traveler's train journey
+        trainArrivalDatetime:
           type: string
-        media:
+          description: 'Arrival date-time of the traveler’s train journey in ISO 8601 format: YYYY-MM-DDTHH:MM:SS'
+        trainArrivalLatitude:
           type: string
-        name:
+          description: Latitude of the train arrival location
+        trainArrivalLongitude:
           type: string
-        profile:
+          description: Longitude of the train arrival location
+        trainArrivalStationName:
           type: string
-        rel:
+          description: Arrival station name of the traveler's train journey
+        trainDepartureCityRailCode:
           type: string
-        title:
+          description: Departure city rail code of the traveler's train journey
+        trainDepartureDatetime:
           type: string
-        type:
+          description: 'Departure date-time of the traveler’s train journey in ISO 8601 format: YYYY-MM-DDTHH:MM:SS'
+        trainDepartureLatitude:
           type: string
-    Metadata_corresponding_to_a_request:
-      description: Represents the Metadata information
-      properties:
-        currentPage:
-          type: integer
-          format: int32
-          description: Indicates the current page
-        pageLimit:
-          type: integer
-          format: int32
-          description: Indicates the Page Size for the request
-        totalPages:
-          type: integer
-          format: int32
-          description: Indicates the total number of expected pages
-        totalRecords:
-          type: integer
-          format: int32
-          description: Indicates the toal number of records for the request
-    Duty_of_Care_Request_Bean:
-      description: DutyOfCareDataRequestBean Request
-      properties:
-        companyId:
-          type: array
-          description: Company ID is a Unique Identifier for the company
-          items:
-            type: integer
-            format: int32
-            description: Company ID is a Unique Identifier for the company
-        endDateTime:
+          description: Latitude of the train departure location
+        trainDepartureLongitude:
           type: string
-          description: 'The end date-time to fetch the booking data in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ'
-        partnerId:
-          type: integer
-          format: int32
-          description: Unique identifier provided to partner by Egencia
-        startDateTime:
+          description: Longitude of the train departure location
+        trainDepartureStationName:
           type: string
-          description: 'The start date-time to fetch the booking data in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ'
-    Custom_Data_Fields:
-      description: Custom data fields
-      properties:
-        name:
+          description: Departure station name of the traveler's train journey
+        trainNumber:
           type: string
-          description: Name of the Custom Data Fields as configured for the company
-        value:
-          type: string
-          description: The values provided will be retrieved for the corresponding fields, if they are available
+          description: The number associated with a train for a segment
   securitySchemes:
     OAuth2:
       flows:

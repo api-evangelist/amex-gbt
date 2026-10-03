@@ -169,15 +169,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    AgentAssistNoteDTO:
-      type: object
-      properties:
-        noteId:
-          type: string
-        title:
-          type: string
-        message:
-          type: string
     Agent_Assist_Notes:
       type: object
       description: ' List of Agent Assist Notes'
@@ -193,6 +184,15 @@ components:
             $ref: '#/components/schemas/AgentAssistNoteDTO'
       required:
       - companyId
+    AgentAssistNoteDTO:
+      type: object
+      properties:
+        noteId:
+          type: string
+        title:
+          type: string
+        message:
+          type: string
   securitySchemes:
     oAuth2:
       type: oauth2

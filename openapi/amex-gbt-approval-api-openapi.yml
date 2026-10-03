@@ -60,6 +60,18 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    CustomDataField:
+      description: Stores CDF information
+      properties:
+        name:
+          type: string
+          description: Stores the cdf name
+        value:
+          type: string
+          description: Stores the cdf value
+      required:
+      - name
+      - value
     Company:
       description: Stores the company information.
       properties:
@@ -73,18 +85,31 @@ components:
       required:
       - id
       - point_of_sale
-    ErrorSourceBean:
-      description: Source
+    ExternalApprovalDetailsResponse:
       properties:
-        application_name:
+        approval_details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalApprovalDetail'
+    Traveler:
+      description: Stores the traveler information.
+      properties:
+        email_id:
           type: string
-          description: Application Name
-        error_code:
-          type: string
-          description: Error Code
-        error_description:
-          type: string
-          description: Error Description
+          description: Stores Traveler Email
+        price:
+          $ref: '#/components/schemas/Price'
+        custom_data_fields:
+          type: array
+          description: Stores CDF information
+          items:
+            $ref: '#/components/schemas/CustomDataField'
+        guest_traveler:
+          type: boolean
+      required:
+      - custom_data_fields
+      - email_id
+      - price
     ExternalApprovalDetail:
       properties:
         level:
@@ -102,24 +127,6 @@ components:
           items:
             type: string
             description: denotes list of approver tuids
-    ExternalApprovalDetailsResponse:
-      properties:
-        approval_details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalApprovalDetail'
-    CustomDataField:
-      description: Stores CDF information
-      properties:
-        name:
-          type: string
-          description: Stores the cdf name
-        value:
-          type: string
-          description: Stores the cdf value
-      required:
-      - name
-      - value
     ApprovalRequest:
       description: Approval request
       properties:
@@ -137,27 +144,18 @@ components:
       - company
       - line_of_business
       - travelers
-    Price:
-      description: Price of the booking.
+    ErrorSourceBean:
+      description: Source
       properties:
-        currency:
+        application_name:
           type: string
-        amount:
-          type: number
-          format: double
-    ErrorResponseDataBean:
-      description: Data
-      properties:
-        attribute:
+          description: Application Name
+        error_code:
           type: string
-          description: Attribute
-        message:
+          description: Error Code
+        error_description:
           type: string
-          description: Message
-        external_attributes:
-          type: object
-          additionalProperties:
-            type: object
+          description: Error Description
     OpenconnectApprovalErrorResponseBean:
       properties:
         error_code:
@@ -179,22 +177,24 @@ components:
           description: Data
           items:
             $ref: '#/components/schemas/ErrorResponseDataBean'
-    Traveler:
-      description: Stores the traveler information.
+    ErrorResponseDataBean:
+      description: Data
       properties:
-        email_id:
+        attribute:
           type: string
-          description: Stores Traveler Email
-        price:
-          $ref: '#/components/schemas/Price'
-        custom_data_fields:
-          type: array
-          description: Stores CDF information
-          items:
-            $ref: '#/components/schemas/CustomDataField'
-        guest_traveler:
-          type: boolean
-      required:
-      - custom_data_fields
-      - email_id
-      - price
+          description: Attribute
+        message:
+          type: string
+          description: Message
+        external_attributes:
+          type: object
+          additionalProperties:
+            type: object
+    Price:
+      description: Price of the booking.
+      properties:
+        currency:
+          type: string
+        amount:
+          type: number
+          format: double
