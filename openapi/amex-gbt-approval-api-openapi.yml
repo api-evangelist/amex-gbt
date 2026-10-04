@@ -60,6 +60,45 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ErrorResponseDataBean:
+      description: Data
+      properties:
+        attribute:
+          type: string
+          description: Attribute
+        message:
+          type: string
+          description: Message
+        external_attributes:
+          type: object
+          additionalProperties:
+            type: object
+    ErrorSourceBean:
+      description: Source
+      properties:
+        application_name:
+          type: string
+          description: Application Name
+        error_code:
+          type: string
+          description: Error Code
+        error_description:
+          type: string
+          description: Error Description
+    Price:
+      description: Price of the booking.
+      properties:
+        currency:
+          type: string
+        amount:
+          type: number
+          format: double
+    ExternalApprovalDetailsResponse:
+      properties:
+        approval_details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalApprovalDetail'
     CustomDataField:
       description: Stores CDF information
       properties:
@@ -72,6 +111,27 @@ components:
       required:
       - name
       - value
+    OpenconnectApprovalErrorResponseBean:
+      properties:
+        error_code:
+          type: string
+          description: Error Code
+        error_subcode:
+          type: string
+          description: Error Sub Code
+        error_description:
+          type: string
+          description: Error Description
+        detail_error_message:
+          type: string
+          description: Details about Error Message
+        source:
+          $ref: '#/components/schemas/ErrorSourceBean'
+        data:
+          type: array
+          description: Data
+          items:
+            $ref: '#/components/schemas/ErrorResponseDataBean'
     Company:
       description: Stores the company information.
       properties:
@@ -85,12 +145,23 @@ components:
       required:
       - id
       - point_of_sale
-    ExternalApprovalDetailsResponse:
+    ApprovalRequest:
+      description: Approval request
       properties:
-        approval_details:
+        line_of_business:
+          type: string
+          description: Stores the lob information.
+        company:
+          $ref: '#/components/schemas/Company'
+        travelers:
           type: array
+          description: Stores the traveler information.
           items:
-            $ref: '#/components/schemas/ExternalApprovalDetail'
+            $ref: '#/components/schemas/Traveler'
+      required:
+      - company
+      - line_of_business
+      - travelers
     Traveler:
       description: Stores the traveler information.
       properties:
@@ -127,74 +198,3 @@ components:
           items:
             type: string
             description: denotes list of approver tuids
-    ApprovalRequest:
-      description: Approval request
-      properties:
-        line_of_business:
-          type: string
-          description: Stores the lob information.
-        company:
-          $ref: '#/components/schemas/Company'
-        travelers:
-          type: array
-          description: Stores the traveler information.
-          items:
-            $ref: '#/components/schemas/Traveler'
-      required:
-      - company
-      - line_of_business
-      - travelers
-    ErrorSourceBean:
-      description: Source
-      properties:
-        application_name:
-          type: string
-          description: Application Name
-        error_code:
-          type: string
-          description: Error Code
-        error_description:
-          type: string
-          description: Error Description
-    OpenconnectApprovalErrorResponseBean:
-      properties:
-        error_code:
-          type: string
-          description: Error Code
-        error_subcode:
-          type: string
-          description: Error Sub Code
-        error_description:
-          type: string
-          description: Error Description
-        detail_error_message:
-          type: string
-          description: Details about Error Message
-        source:
-          $ref: '#/components/schemas/ErrorSourceBean'
-        data:
-          type: array
-          description: Data
-          items:
-            $ref: '#/components/schemas/ErrorResponseDataBean'
-    ErrorResponseDataBean:
-      description: Data
-      properties:
-        attribute:
-          type: string
-          description: Attribute
-        message:
-          type: string
-          description: Message
-        external_attributes:
-          type: object
-          additionalProperties:
-            type: object
-    Price:
-      description: Price of the booking.
-      properties:
-        currency:
-          type: string
-        amount:
-          type: number
-          format: double

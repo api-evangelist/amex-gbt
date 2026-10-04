@@ -302,27 +302,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Company_Search_Response:
-      type: object
-      description: Company search results with pagination information
-      properties:
-        count:
-          type: integer
-          format: int32
-          description: Number of results returned
-        start:
-          type: integer
-          format: int32
-          description: Start index for pagination
-        totalResults:
-          type: integer
-          format: int32
-          description: Total number of results found
-        companies:
-          type: array
-          description: List of companies matching search criteria
-          items:
-            $ref: '#/components/schemas/Company_Display_Name'
     ActivationStatusAudit:
       type: object
       properties:
@@ -352,34 +331,33 @@ components:
           - DEACTIVATED
         salesforceCaseNumber:
           type: string
-    Address:
+    User:
       type: object
       properties:
-        suite:
+        tuid:
+          type: integer
+          format: int64
+        title:
           type: string
-        street:
+        firstName:
           type: string
-        addressLine2:
+        lastName:
           type: string
-        province:
+        userId:
           type: string
-        city:
+        email:
           type: string
-        romanizedCity:
+        alternateEmail:
           type: string
-        country:
+        role:
           type: string
-        countryCode:
-          type: string
-        postalCode:
-          type: string
-    PhoneNumber:
-      type: object
-      properties:
-        number:
-          type: string
-        label:
-          type: string
+          enum:
+          - ACCOUNT_MANAGER
+          - BILLING_CONTACT
+        phoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
     Company_Display_Name:
       type: object
       description: ' Company Display Name with ComapnyId'
@@ -455,33 +433,55 @@ components:
       required:
       - companyId
       - companyName
-    User:
+    PhoneNumber:
       type: object
       properties:
-        tuid:
+        number:
+          type: string
+        label:
+          type: string
+    Company_Search_Response:
+      type: object
+      description: Company search results with pagination information
+      properties:
+        count:
           type: integer
-          format: int64
-        title:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        userId:
-          type: string
-        email:
-          type: string
-        alternateEmail:
-          type: string
-        role:
-          type: string
-          enum:
-          - ACCOUNT_MANAGER
-          - BILLING_CONTACT
-        phoneNumbers:
+          format: int32
+          description: Number of results returned
+        start:
+          type: integer
+          format: int32
+          description: Start index for pagination
+        totalResults:
+          type: integer
+          format: int32
+          description: Total number of results found
+        companies:
           type: array
+          description: List of companies matching search criteria
           items:
-            $ref: '#/components/schemas/PhoneNumber'
+            $ref: '#/components/schemas/Company_Display_Name'
+    Address:
+      type: object
+      properties:
+        suite:
+          type: string
+        street:
+          type: string
+        addressLine2:
+          type: string
+        province:
+          type: string
+        city:
+          type: string
+        romanizedCity:
+          type: string
+        country:
+          type: string
+        countryCode:
+          type: string
+        postalCode:
+          type: string
   securitySchemes:
     oAuth2:
       type: oauth2

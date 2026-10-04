@@ -2254,201 +2254,6 @@ paths:
       - SCIM User Sync V2
 components:
   schemas:
-    AllApproversSchemaV2:
-      type: object
-      description: Approver details for the user like level 1, level 2 approvers etc. Approver of a user must already exist and its unique id needs to be passed to associate that approver with a user. The Username (email value) or TUID (Egencia ID) to be set as the Approver of the user.
-      properties:
-        delegateApprovers:
-          type: array
-          description: Delegate Approver details for the user. Delegate Approver of a user must already exist and its unique id needs to be passed to associate that as a delegate to a user with Approver role
-          items:
-            $ref: '#/components/schemas/ApproverSchemaV2'
-        level1Approvers:
-          type: array
-          description: Level 1 approvers associated with the user.
-          items:
-            $ref: '#/components/schemas/ApproverSchemaV2'
-        level2Approvers:
-          type: array
-          description: Level 2 approvers associated with the user.
-          items:
-            $ref: '#/components/schemas/ApproverSchemaV2'
-      title: ApproverSchemaV2
-    EgenciaExtensionUserSchemaV2:
-      type: object
-      description: The extended custom attributes specific to Egencia travel management system.
-      properties:
-        approvers:
-          $ref: '#/components/schemas/AllApproversSchemaV2'
-          description: Approver details for the user like level 1, level 2 approvers etc. Approver of a user must already exist and its unique id needs to be passed to associate that approver with a user. The Username (email value) or TUID (Egencia ID) to be set as the Approver of the user.
-        arrangerGroups:
-          type: array
-          description: The arranger groups to which the user is associated with. The user must have an arranger role to get associated to an arranger group.
-          items:
-            type: string
-        arrangers:
-          type: array
-          description: Arrangers for the user. Arranger of a user must already exist and its unique id needs to be passed to associate that arranger with a user
-          items:
-            $ref: '#/components/schemas/ArrangerSchema'
-        companyId:
-          type: string
-          description: Egencia website unique ID. The organization Id or company Id associated with the user.
-        customDataFields:
-          type: array
-          description: Egencia reporting fields. A complex attribute containing custom data fields associated with the user.
-          items:
-            $ref: '#/components/schemas/CustomDataFieldSchema'
-        dateOfBirth:
-          type: string
-          description: The date of birth of the user. (ISO 8601 date format YYYY-MM-DD)
-        documents:
-          type: array
-          description: A complex attribute containing documents associated with the user.
-          items:
-            $ref: '#/components/schemas/DocumentSchema'
-        loyaltyPrograms:
-          type: array
-          description: A complex attribute containing details of loyalty programs associated with the user.
-          items:
-            $ref: '#/components/schemas/LoyaltyProgramSchema'
-        preferences:
-          type: array
-          description: A complex attribute containing details of the user preferences.
-          items:
-            $ref: '#/components/schemas/PreferenceSchema'
-        serviceLevelIds:
-          type: array
-          description: The service level details of the user.
-          items:
-            type: string
-        settings:
-          $ref: '#/components/schemas/UserSettingsSchema'
-          description: User settings model
-        singleSignOnId:
-          type: string
-          description: The single sign-on id of the user. It is the SSO ID used for authentication. It will be username handled by Auth if not provided.
-        subscribedCompanyIds:
-          type: array
-          description: The GPIDs, associated with the requested user's company, that are subscribed by the partner whose token is used. Populated only for partner tokens; it is null for customer tokens.
-          items:
-            type: string
-          readOnly: true
-        userAuthenticationMode:
-          type: string
-          description: The case sensitive Authentication mode of the user. Values supported are LOGIN or SSO. It is mandatory if the company is SSO_OR_LOGIN.
-      title: EgenciaExtensionUserSchemaV2
-    MetaSchema:
-      type: object
-      description: A complex attribute containing resource metadata.
-      properties:
-        created:
-          type: string
-          format: date-time
-          description: The creation time metadata.
-        lastModified:
-          type: string
-          format: date-time
-          description: The last modification time.
-        location:
-          type: string
-          format: uri
-          description: The location of the user resource accessible by URI.
-        version:
-          type: string
-          description: The version of the resource.
-      title: Meta
-    DocumentSchema:
-      type: object
-      description: The complex model containing user document details like passport, Id card, etc.
-      properties:
-        expirationDate:
-          type: string
-          format: date
-          description: The expiration date of the document. (ISO 8601 date format YYYY-MM-DD)
-        issueCountry:
-          type: string
-          description: The value of the document issue country. It should be 3 letters (alpha-3) or 2 letters (alpha-2) ISO country code of the document issuing country. Version 1 of the APIs support 3 letter country code while version 2 supports 2 letter country code
-          maxLength: 3
-          minLength: 2
-        issueDate:
-          type: string
-          format: date
-          description: The issuing date of the document. (ISO 8601 date format YYYY-MM-DD)
-        issueLocation:
-          type: string
-          description: The name of the document issuing city.
-        type:
-          type: string
-          description: The type code of the document e.g. passport, ID card, etc. Except China and Hong Kong, for rest of the countries we only support documents of type PAS, ID & DL. Please refer the <a href='#Document type'>Enumerations</a> section for the values supported
-        value:
-          type: string
-          description: The value of the document. This field is mandatory and cannot be empty.
-          minLength: 1
-      required:
-      - type
-      - value
-      title: DocumentSchema
-    ApproverSchemaV2:
-      type: object
-      description: The complex model containing approver's id, userName, and externalId.
-      properties:
-        externalId:
-          type: string
-          description: External id of the approver associated with the user.
-        id:
-          type: string
-          description: User id of the approver associated with the user.
-          pattern: ([1-9]([0-9]*))
-        userName:
-          type: string
-          description: Username of the approver associated with the user.
-      title: ApproverSchemaV2
-    UserNotificationsSchema:
-      type: object
-      description: Schema to denote user notifications settings.
-      properties:
-        outOfPolicyPurchaseEmails:
-          type: array
-          description: Email ids of users to notify when a purchase is out of policy.
-          items:
-            type: string
-        reservationEmail:
-          type: string
-          description: 'The reservation email setting of user. Valid values are : {ALL, NONE_EXCEPT_MY_ETICKETS, NORMAL}. Default value is NORMAL. ALL is supported only for Travel Directors and Manage User roles. Please refer the <a href=''#ReservationEmail''>Enumerations</a> section for the values supported.'
-      title: UserNotificationSchema
-    GroupSchema:
-      type: object
-      description: The complex model containing details of traveller group to which user is associated.
-      properties:
-        display:
-          type: string
-          description: The displayable value of the group.
-        value:
-          type: string
-          description: Egencia Traveler Group - the value of the group to which the user is associated. This field is mandatory and cannot be empty and must match with value on Egencia website.
-          minLength: 1
-      required:
-      - value
-      title: GroupSchema
-    ContactSchema:
-      type: object
-      description: The complex model containing contact attributes of the user.
-      properties:
-        primary:
-          type: boolean
-          description: Identifier flag to determine whether the contact is primary or not.
-        type:
-          type: string
-          description: The type of contact e.g. home, work, mobile, etc.
-        value:
-          type: string
-          description: 'The value of the contact in international format. The number should follow this pattern : +[country code]-[area code][phone number] eg. +44-1234512345, or +[country code][area code][phone number] eg. +441234512345.  Please follow this link to know more : https://www.itu.int/rec/T-REC-E.123-200102-I/en'
-          minLength: 1
-      required:
-      - type
-      - value
-      title: ContactSchema
     UserSchemaV2:
       type: object
       description: The user resource schema.
@@ -2534,64 +2339,26 @@ components:
       - schemas
       - userType
       title: UserSchemaV2
-    ArrangerSchema:
+    AllApproversSchemaV2:
       type: object
-      description: The complex model containing arrangers of the user.
+      description: Approver details for the user like level 1, level 2 approvers etc. Approver of a user must already exist and its unique id needs to be passed to associate that approver with a user. The Username (email value) or TUID (Egencia ID) to be set as the Approver of the user.
       properties:
-        email:
-          type: string
-        id:
-          type: string
-          description: User id of the arranger associated with the user.
-          pattern: ([1-9]([0-9]*))
-        userName:
-          type: string
-          description: Username of the arranger associated with the user.
-      title: ArrangerSchema
-    ScimPatchSchema:
-      type: object
-      description: The user patch request schema.
-      properties:
-        Operations:
+        delegateApprovers:
           type: array
-          description: List of scim patch operations.
+          description: Delegate Approver details for the user. Delegate Approver of a user must already exist and its unique id needs to be passed to associate that as a delegate to a user with Approver role
           items:
-            $ref: '#/components/schemas/ScimPatchOperationSchema'
-          maxItems: 2147483647
-          minItems: 1
-        meta:
-          $ref: '#/components/schemas/MetaSchema'
-          description: The attribute containing the resource metadata.
-        schemas:
+            $ref: '#/components/schemas/ApproverSchemaV2'
+        level1Approvers:
           type: array
-          description: The schema urns for the associated resource.
+          description: Level 1 approvers associated with the user.
           items:
-            type: string
-          uniqueItems: true
-      required:
-      - Operations
-      - schemas
-      title: ScimPatchSchema
-    EmailSchema:
-      type: object
-      description: The complex model containing email details of the user.
-      properties:
-        primary:
-          type: boolean
-          description: Identifier flag to determine whether the address is primary or not.
-        type:
-          type: string
-          description: Type of email. Ex. WORK. Please refer the <a href='#Email type'>Enumerations</a> section for the values supported.
-          enum:
-          - WORK
-        value:
-          type: string
-          description: The value of the email address. It needs to be in a standard format and cannot be empty.
-          minLength: 1
-      required:
-      - type
-      - value
-      title: Email
+            $ref: '#/components/schemas/ApproverSchemaV2'
+        level2Approvers:
+          type: array
+          description: Level 2 approvers associated with the user.
+          items:
+            $ref: '#/components/schemas/ApproverSchemaV2'
+      title: ApproverSchemaV2
     AddressSchema:
       type: object
       description: The complex model containing contact address attributes of the user.
@@ -2630,61 +2397,148 @@ components:
       - streetAddress
       - type
       title: AddressSchema
-    LoyaltyProgramSchema:
+    ContactSchema:
       type: object
-      description: The complex model containing details of loyalty programs associated with the user.
+      description: The complex model containing contact attributes of the user.
       properties:
-        accreditive:
+        primary:
           type: boolean
-        class:
-          type: string
-          description: The cabin class to which the loyalty program applies to. e.g. FIRST, SECOND. (applicable to Rail only)
-        code:
-          type: string
-          description: The loyalty program code associated with the membership program.
-        issuingSupplierCode:
-          type: string
-          description: The name of the supplier issuing the loyalty program. This field is mandatory and cannot be empty.
-          minLength: 1
-        lob:
-          type: string
-          description: The line of business type to which loyalty program is associated e.g. AIR, CAR, HOTEL, RAIL. Please refer the <a href='#LOB type'>Enumerations</a> section for the values supported.
-        name:
-          type: string
-          description: The name of the loyalty membership program.  This field is mandatory and cannot be empty.
-          minLength: 1
+          description: Identifier flag to determine whether the contact is primary or not.
         type:
           type: string
-          description: The type of loyalty program if any. Please refer the <a href='#Loyalty program type'>Enumerations</a> section for the values supported.
-        validFrom:
-          type: string
-          format: date
-          description: The date from which the loyalty program is valid. (ISO 8601 date format YYYY-MM-DD)
-        validTo:
-          type: string
-          format: date
-          description: The date to which the loyalty program is valid. (ISO 8601 date format YYYY-MM-DD)
+          description: The type of contact e.g. home, work, mobile, etc.
         value:
           type: string
-          description: The value of the loyalty program or membership id. This field is mandatory except for UK RAIL loyalty programs and cannot be greater than 30 characters
-          maxLength: 30
+          description: 'The value of the contact in international format. The number should follow this pattern : +[country code]-[area code][phone number] eg. +44-1234512345, or +[country code][area code][phone number] eg. +441234512345.  Please follow this link to know more : https://www.itu.int/rec/T-REC-E.123-200102-I/en'
           minLength: 1
       required:
-      - issuingSupplierCode
-      - lob
-      - name
+      - type
       - value
-      title: LoyaltyProgramSchema
-    ScimPatchOperationSchema:
+      title: ContactSchema
+    ApproverSchemaV2:
       type: object
-      description: A complex object for scim patch oeration.
+      description: The complex model containing approver's id, userName, and externalId.
       properties:
-        op:
+        externalId:
           type: string
-        path:
+          description: External id of the approver associated with the user.
+        id:
           type: string
-        value: {}
-      title: ScimPatchOperation
+          description: User id of the approver associated with the user.
+          pattern: ([1-9]([0-9]*))
+        userName:
+          type: string
+          description: Username of the approver associated with the user.
+      title: ApproverSchemaV2
+    ArrangerSchema:
+      type: object
+      description: The complex model containing arrangers of the user.
+      properties:
+        email:
+          type: string
+        id:
+          type: string
+          description: User id of the arranger associated with the user.
+          pattern: ([1-9]([0-9]*))
+        userName:
+          type: string
+          description: Username of the arranger associated with the user.
+      title: ArrangerSchema
+    EgenciaExtensionUserSchemaV2:
+      type: object
+      description: The extended custom attributes specific to Egencia travel management system.
+      properties:
+        approvers:
+          $ref: '#/components/schemas/AllApproversSchemaV2'
+          description: Approver details for the user like level 1, level 2 approvers etc. Approver of a user must already exist and its unique id needs to be passed to associate that approver with a user. The Username (email value) or TUID (Egencia ID) to be set as the Approver of the user.
+        arrangerGroups:
+          type: array
+          description: The arranger groups to which the user is associated with. The user must have an arranger role to get associated to an arranger group.
+          items:
+            type: string
+        arrangers:
+          type: array
+          description: Arrangers for the user. Arranger of a user must already exist and its unique id needs to be passed to associate that arranger with a user
+          items:
+            $ref: '#/components/schemas/ArrangerSchema'
+        companyId:
+          type: string
+          description: Egencia website unique ID. The organization Id or company Id associated with the user.
+        customDataFields:
+          type: array
+          description: Egencia reporting fields. A complex attribute containing custom data fields associated with the user.
+          items:
+            $ref: '#/components/schemas/CustomDataFieldSchema'
+        dateOfBirth:
+          type: string
+          description: The date of birth of the user. (ISO 8601 date format YYYY-MM-DD)
+        documents:
+          type: array
+          description: A complex attribute containing documents associated with the user.
+          items:
+            $ref: '#/components/schemas/DocumentSchema'
+        loyaltyPrograms:
+          type: array
+          description: A complex attribute containing details of loyalty programs associated with the user.
+          items:
+            $ref: '#/components/schemas/LoyaltyProgramSchema'
+        preferences:
+          type: array
+          description: A complex attribute containing details of the user preferences.
+          items:
+            $ref: '#/components/schemas/PreferenceSchema'
+        serviceLevelIds:
+          type: array
+          description: The service level details of the user.
+          items:
+            type: string
+        settings:
+          $ref: '#/components/schemas/UserSettingsSchema'
+          description: User settings model
+        singleSignOnId:
+          type: string
+          description: The single sign-on id of the user. It is the SSO ID used for authentication. It will be username handled by Auth if not provided.
+        subscribedCompanyIds:
+          type: array
+          description: The GPIDs, associated with the requested user's company, that are subscribed by the partner whose token is used. Populated only for partner tokens; it is null for customer tokens.
+          items:
+            type: string
+          readOnly: true
+        userAuthenticationMode:
+          type: string
+          description: The case sensitive Authentication mode of the user. Values supported are LOGIN or SSO. It is mandatory if the company is SSO_OR_LOGIN.
+      title: EgenciaExtensionUserSchemaV2
+    DocumentSchema:
+      type: object
+      description: The complex model containing user document details like passport, Id card, etc.
+      properties:
+        expirationDate:
+          type: string
+          format: date
+          description: The expiration date of the document. (ISO 8601 date format YYYY-MM-DD)
+        issueCountry:
+          type: string
+          description: The value of the document issue country. It should be 3 letters (alpha-3) or 2 letters (alpha-2) ISO country code of the document issuing country. Version 1 of the APIs support 3 letter country code while version 2 supports 2 letter country code
+          maxLength: 3
+          minLength: 2
+        issueDate:
+          type: string
+          format: date
+          description: The issuing date of the document. (ISO 8601 date format YYYY-MM-DD)
+        issueLocation:
+          type: string
+          description: The name of the document issuing city.
+        type:
+          type: string
+          description: The type code of the document e.g. passport, ID card, etc. Except China and Hong Kong, for rest of the countries we only support documents of type PAS, ID & DL. Please refer the <a href='#Document type'>Enumerations</a> section for the values supported
+        value:
+          type: string
+          description: The value of the document. This field is mandatory and cannot be empty.
+          minLength: 1
+      required:
+      - type
+      - value
+      title: DocumentSchema
     UserSettingsSchema:
       type: object
       description: Schema to denote the user settings.
@@ -2693,22 +2547,6 @@ components:
           $ref: '#/components/schemas/UserNotificationsSchema'
           description: User Notifications Schema
       title: UserSettingSchema
-    CustomDataFieldSchema:
-      type: object
-      description: Egencia reporting fields. A complex attribute containing custom data fields associated with the user.
-      properties:
-        name:
-          type: string
-          description: The name of the custom data field definition. This field is mandatory and cannot be empty. By default, maximum supported characters is 50.
-          minLength: 1
-        value:
-          type: string
-          description: The value of the custom data field code which needs to be associated with the user. This field is mandatory and cannot be empty. If the custom data field is of LIST type, the value provided must match with value on Egencia website. By default, maximum supported characters is 30 for LIST type and 50 for FREE_FIELD.
-          minLength: 1
-      required:
-      - name
-      - value
-      title: CustomDataFieldSchema
     NameSchema:
       type: object
       description: The complex model containing name attributes of the user.
@@ -2735,6 +2573,109 @@ components:
       - familyName
       - givenName
       title: Name
+    EmailSchema:
+      type: object
+      description: The complex model containing email details of the user.
+      properties:
+        primary:
+          type: boolean
+          description: Identifier flag to determine whether the address is primary or not.
+        type:
+          type: string
+          description: Type of email. Ex. WORK. Please refer the <a href='#Email type'>Enumerations</a> section for the values supported.
+          enum:
+          - WORK
+        value:
+          type: string
+          description: The value of the email address. It needs to be in a standard format and cannot be empty.
+          minLength: 1
+      required:
+      - type
+      - value
+      title: Email
+    ScimPatchSchema:
+      type: object
+      description: The user patch request schema.
+      properties:
+        Operations:
+          type: array
+          description: List of scim patch operations.
+          items:
+            $ref: '#/components/schemas/ScimPatchOperationSchema'
+          maxItems: 2147483647
+          minItems: 1
+        meta:
+          $ref: '#/components/schemas/MetaSchema'
+          description: The attribute containing the resource metadata.
+        schemas:
+          type: array
+          description: The schema urns for the associated resource.
+          items:
+            type: string
+          uniqueItems: true
+      required:
+      - Operations
+      - schemas
+      title: ScimPatchSchema
+    MetaSchema:
+      type: object
+      description: A complex attribute containing resource metadata.
+      properties:
+        created:
+          type: string
+          format: date-time
+          description: The creation time metadata.
+        lastModified:
+          type: string
+          format: date-time
+          description: The last modification time.
+        location:
+          type: string
+          format: uri
+          description: The location of the user resource accessible by URI.
+        version:
+          type: string
+          description: The version of the resource.
+      title: Meta
+    ScimPatchOperationSchema:
+      type: object
+      description: A complex object for scim patch oeration.
+      properties:
+        op:
+          type: string
+        path:
+          type: string
+        value: {}
+      title: ScimPatchOperation
+    UserNotificationsSchema:
+      type: object
+      description: Schema to denote user notifications settings.
+      properties:
+        outOfPolicyPurchaseEmails:
+          type: array
+          description: Email ids of users to notify when a purchase is out of policy.
+          items:
+            type: string
+        reservationEmail:
+          type: string
+          description: 'The reservation email setting of user. Valid values are : {ALL, NONE_EXCEPT_MY_ETICKETS, NORMAL}. Default value is NORMAL. ALL is supported only for Travel Directors and Manage User roles. Please refer the <a href=''#ReservationEmail''>Enumerations</a> section for the values supported.'
+      title: UserNotificationSchema
+    CustomDataFieldSchema:
+      type: object
+      description: Egencia reporting fields. A complex attribute containing custom data fields associated with the user.
+      properties:
+        name:
+          type: string
+          description: The name of the custom data field definition. This field is mandatory and cannot be empty. By default, maximum supported characters is 50.
+          minLength: 1
+        value:
+          type: string
+          description: The value of the custom data field code which needs to be associated with the user. This field is mandatory and cannot be empty. If the custom data field is of LIST type, the value provided must match with value on Egencia website. By default, maximum supported characters is 30 for LIST type and 50 for FREE_FIELD.
+          minLength: 1
+      required:
+      - name
+      - value
+      title: CustomDataFieldSchema
     PreferenceSchema:
       type: object
       description: The complex model containing details of the user preferences.
@@ -2781,6 +2722,51 @@ components:
       required:
       - lob
       title: PreferenceSchema
+    LoyaltyProgramSchema:
+      type: object
+      description: The complex model containing details of loyalty programs associated with the user.
+      properties:
+        accreditive:
+          type: boolean
+        class:
+          type: string
+          description: The cabin class to which the loyalty program applies to. e.g. FIRST, SECOND. (applicable to Rail only)
+        code:
+          type: string
+          description: The loyalty program code associated with the membership program.
+        issuingSupplierCode:
+          type: string
+          description: The name of the supplier issuing the loyalty program. This field is mandatory and cannot be empty.
+          minLength: 1
+        lob:
+          type: string
+          description: The line of business type to which loyalty program is associated e.g. AIR, CAR, HOTEL, RAIL. Please refer the <a href='#LOB type'>Enumerations</a> section for the values supported.
+        name:
+          type: string
+          description: The name of the loyalty membership program.  This field is mandatory and cannot be empty.
+          minLength: 1
+        type:
+          type: string
+          description: The type of loyalty program if any. Please refer the <a href='#Loyalty program type'>Enumerations</a> section for the values supported.
+        validFrom:
+          type: string
+          format: date
+          description: The date from which the loyalty program is valid. (ISO 8601 date format YYYY-MM-DD)
+        validTo:
+          type: string
+          format: date
+          description: The date to which the loyalty program is valid. (ISO 8601 date format YYYY-MM-DD)
+        value:
+          type: string
+          description: The value of the loyalty program or membership id. This field is mandatory except for UK RAIL loyalty programs and cannot be greater than 30 characters
+          maxLength: 30
+          minLength: 1
+      required:
+      - issuingSupplierCode
+      - lob
+      - name
+      - value
+      title: LoyaltyProgramSchema
     EnterpriseUserSchemaV2:
       type: object
       description: Enterprise attributes for User profile.
@@ -2789,6 +2775,20 @@ components:
           type: string
           description: The employee number of the requested user. This field is only supported for EU point of sale.
       title: EnterpriseUserSchemaV2
+    GroupSchema:
+      type: object
+      description: The complex model containing details of traveller group to which user is associated.
+      properties:
+        display:
+          type: string
+          description: The displayable value of the group.
+        value:
+          type: string
+          description: Egencia Traveler Group - the value of the group to which the user is associated. This field is mandatory and cannot be empty and must match with value on Egencia website.
+          minLength: 1
+      required:
+      - value
+      title: GroupSchema
   securitySchemes:
     OAuth2:
       flows:

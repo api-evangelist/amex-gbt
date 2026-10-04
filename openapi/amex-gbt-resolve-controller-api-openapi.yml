@@ -30,13 +30,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ResolveInfoRequest:
-      type: object
-      properties:
-        legacy_company_id:
-          type: string
-        legacy_user_id:
-          type: string
     ResolveInfoResponse:
       type: object
       properties:
@@ -46,6 +39,13 @@ components:
         userId:
           type: integer
           format: int32
+    ResolveInfoRequest:
+      type: object
+      properties:
+        legacy_company_id:
+          type: string
+        legacy_user_id:
+          type: string
   securitySchemes:
     OAuth2:
       flows:

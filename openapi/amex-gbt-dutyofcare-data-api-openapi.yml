@@ -534,26 +534,20 @@ paths:
       - DutyOfCare Data
 components:
   schemas:
-    Air_Segment_Details:
+    Duty_Of_Care_Response_Bean:
+      description: Represents the API model for Doc service Public response
       properties:
-        airlineCode:
-          type: string
-          description: Unique airline code to identify the traveler airline
-        flightArrivalDatetime:
-          type: string
-          description: 'Actual flight arrival date-time in ISO 8601 format: YYYY-MM-DDTHH:MM:SS'
-        flightArrivalIataCode:
-          type: string
-          description: Actual flight arrival IATA Code in standard format
-        flightDepartureDatetime:
-          type: string
-          description: 'Actual flight departure date-time in ISO 8601 format: YYYY-MM-DDTHH:MM:SS'
-        flightDepartureIataCode:
-          type: string
-          description: Actual flight departure IATA Code in standard format
-        flightNumber:
-          type: string
-          description: Unique airline code for the particular flight
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        metadata:
+          $ref: '#/components/schemas/Metadata_corresponding_to_a_request'
+        recordList:
+          type: array
+          description: List of records
+          items:
+            $ref: '#/components/schemas/Doc_Records_List'
     Duty_of_Care_Request_Bean:
       description: DutyOfCareDataRequestBean Request
       properties:
@@ -574,25 +568,6 @@ components:
         startDateTime:
           type: string
           description: 'The start date-time to fetch the booking data in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ'
-    Traveler_Details:
-      properties:
-        customDataFields:
-          type: array
-          description: Custom data fields
-          items:
-            $ref: '#/components/schemas/Custom_Data_Fields'
-        email:
-          type: string
-          description: Email address of the person for whom the travel booking was made
-        firstName:
-          type: string
-          description: First Name of the person for whom the travel booking was made
-        lastName:
-          type: string
-          description: Last Name of the person for whom the travel booking was made
-        phone:
-          type: string
-          description: Phone number of the person for whom the travel booking was made
     Link:
       properties:
         deprecation:
@@ -613,6 +588,15 @@ components:
           type: string
         type:
           type: string
+    Custom_Data_Fields:
+      description: Custom data fields
+      properties:
+        name:
+          type: string
+          description: Name of the Custom Data Fields as configured for the company
+        value:
+          type: string
+          description: The values provided will be retrieved for the corresponding fields, if they are available
     Metadata_corresponding_to_a_request:
       description: Represents the Metadata information
       properties:
@@ -632,29 +616,6 @@ components:
           type: integer
           format: int32
           description: Indicates the toal number of records for the request
-    Hotel_Segment_Details:
-      properties:
-        hotelAddress:
-          type: string
-          description: Address of the hotel
-        hotelCheckinDatetime:
-          type: string
-          description: Check in date-time in the local timezone of the hotel in ISO 8601 format:YYYY-MM-DDTHH:MM:SS
-        hotelCheckoutDatetime:
-          type: string
-          description: 'Check out date-time in the local timezone of the hotel in ISO 8601 format: YYYY-MM-DDTHH:MM:SS'
-        hotelLatitude:
-          type: string
-          description: Latitude of the hotel location
-        hotelLongitude:
-          type: string
-          description: Longitude of the hotel location
-        hotelName:
-          type: string
-          description: The name of the hotel
-        hotelPhone:
-          type: string
-          description: Telephone number of the hotel
     Car_Segment_Details:
       properties:
         carDropoffDatetime:
@@ -675,29 +636,64 @@ components:
         carVendorName:
           type: string
           description: Name of the car vendor
-    Duty_Of_Care_Response_Bean:
-      description: Represents the API model for Doc service Public response
+    Rail_Segment_Details:
       properties:
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        metadata:
-          $ref: '#/components/schemas/Metadata_corresponding_to_a_request'
-        recordList:
-          type: array
-          description: List of records
-          items:
-            $ref: '#/components/schemas/Doc_Records_List'
-    Custom_Data_Fields:
-      description: Custom data fields
+        carrierCode:
+          type: string
+          description: Unique carrier code of the traveler’s carrier
+        trainArrivalCityRailCode:
+          type: string
+          description: Arrival city rail code of the of traveler's train journey
+        trainArrivalDatetime:
+          type: string
+          description: 'Arrival date-time of the traveler’s train journey in ISO 8601 format: YYYY-MM-DDTHH:MM:SS'
+        trainArrivalLatitude:
+          type: string
+          description: Latitude of the train arrival location
+        trainArrivalLongitude:
+          type: string
+          description: Longitude of the train arrival location
+        trainArrivalStationName:
+          type: string
+          description: Arrival station name of the traveler's train journey
+        trainDepartureCityRailCode:
+          type: string
+          description: Departure city rail code of the traveler's train journey
+        trainDepartureDatetime:
+          type: string
+          description: 'Departure date-time of the traveler’s train journey in ISO 8601 format: YYYY-MM-DDTHH:MM:SS'
+        trainDepartureLatitude:
+          type: string
+          description: Latitude of the train departure location
+        trainDepartureLongitude:
+          type: string
+          description: Longitude of the train departure location
+        trainDepartureStationName:
+          type: string
+          description: Departure station name of the traveler's train journey
+        trainNumber:
+          type: string
+          description: The number associated with a train for a segment
+    Air_Segment_Details:
       properties:
-        name:
+        airlineCode:
           type: string
-          description: Name of the Custom Data Fields as configured for the company
-        value:
+          description: Unique airline code to identify the traveler airline
+        flightArrivalDatetime:
           type: string
-          description: The values provided will be retrieved for the corresponding fields, if they are available
+          description: 'Actual flight arrival date-time in ISO 8601 format: YYYY-MM-DDTHH:MM:SS'
+        flightArrivalIataCode:
+          type: string
+          description: Actual flight arrival IATA Code in standard format
+        flightDepartureDatetime:
+          type: string
+          description: 'Actual flight departure date-time in ISO 8601 format: YYYY-MM-DDTHH:MM:SS'
+        flightDepartureIataCode:
+          type: string
+          description: Actual flight departure IATA Code in standard format
+        flightNumber:
+          type: string
+          description: Unique airline code for the particular flight
     Doc_Records_List:
       description: Contains the records in duty of care
       properties:
@@ -743,44 +739,48 @@ components:
         tripId:
           type: string
           description: A trip_id is a unique identifier generated by the system
-    Rail_Segment_Details:
+    Hotel_Segment_Details:
       properties:
-        carrierCode:
+        hotelAddress:
           type: string
-          description: Unique carrier code of the traveler’s carrier
-        trainArrivalCityRailCode:
+          description: Address of the hotel
+        hotelCheckinDatetime:
           type: string
-          description: Arrival city rail code of the of traveler's train journey
-        trainArrivalDatetime:
+          description: Check in date-time in the local timezone of the hotel in ISO 8601 format:YYYY-MM-DDTHH:MM:SS
+        hotelCheckoutDatetime:
           type: string
-          description: 'Arrival date-time of the traveler’s train journey in ISO 8601 format: YYYY-MM-DDTHH:MM:SS'
-        trainArrivalLatitude:
+          description: 'Check out date-time in the local timezone of the hotel in ISO 8601 format: YYYY-MM-DDTHH:MM:SS'
+        hotelLatitude:
           type: string
-          description: Latitude of the train arrival location
-        trainArrivalLongitude:
+          description: Latitude of the hotel location
+        hotelLongitude:
           type: string
-          description: Longitude of the train arrival location
-        trainArrivalStationName:
+          description: Longitude of the hotel location
+        hotelName:
           type: string
-          description: Arrival station name of the traveler's train journey
-        trainDepartureCityRailCode:
+          description: The name of the hotel
+        hotelPhone:
           type: string
-          description: Departure city rail code of the traveler's train journey
-        trainDepartureDatetime:
+          description: Telephone number of the hotel
+    Traveler_Details:
+      properties:
+        customDataFields:
+          type: array
+          description: Custom data fields
+          items:
+            $ref: '#/components/schemas/Custom_Data_Fields'
+        email:
           type: string
-          description: 'Departure date-time of the traveler’s train journey in ISO 8601 format: YYYY-MM-DDTHH:MM:SS'
-        trainDepartureLatitude:
+          description: Email address of the person for whom the travel booking was made
+        firstName:
           type: string
-          description: Latitude of the train departure location
-        trainDepartureLongitude:
+          description: First Name of the person for whom the travel booking was made
+        lastName:
           type: string
-          description: Longitude of the train departure location
-        trainDepartureStationName:
+          description: Last Name of the person for whom the travel booking was made
+        phone:
           type: string
-          description: Departure station name of the traveler's train journey
-        trainNumber:
-          type: string
-          description: The number associated with a train for a segment
+          description: Phone number of the person for whom the travel booking was made
   securitySchemes:
     OAuth2:
       flows:
