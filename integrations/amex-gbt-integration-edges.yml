@@ -1,0 +1,18 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/amex-gbt/integrations
+- https://zapier.com/apps/american-express-global-business-travel/integrations
+- https://n8n.io/integrations/amex-gbt/
+- https://composio.dev/toolkits/amex-gbt
+- https://monid.ai/tools/amex-gbt
+checked:
+- https://composio.dev/toolkits/amex-gbt
+- https://monid.ai/tools/amex-gbt
+- https://n8n.io/integrations/amex-gbt/
+- https://zapier.com/apps/american-express-global-business-travel/integrations
+- https://zapier.com/apps/amex-gbt/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
