@@ -1038,6 +1038,36 @@ paths:
       - Custom Data Fields (CDF)
 components:
   schemas:
+    Link:
+      type: object
+      properties:
+        deprecation:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        name:
+          type: string
+        profile:
+          type: string
+        templated:
+          type: boolean
+        title:
+          type: string
+        type:
+          type: string
+    CdfLinkValue:
+      type: object
+      description: Link values
+      properties:
+        id:
+          type: string
+          description: Linked CDF id
+        value:
+          type: string
+          description: Linked CDF value
+      title: LinkValues
     CdfDefinition:
       type: object
       description: CDF Definition
@@ -1075,6 +1105,18 @@ components:
           - DELETED
           - INACTIVE
       title: CDFDefinition
+    Links:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/Link'
+    JsonPatchRequest:
+      type: object
+      properties:
+        op:
+          type: string
+        path:
+          type: string
+        value: {}
     CdfDefinitionRule:
       type: object
       properties:
@@ -1099,50 +1141,6 @@ components:
       required:
       - placement
       title: CdfDefinitionRule
-    CdfLinkValue:
-      type: object
-      description: Link values
-      properties:
-        id:
-          type: string
-          description: Linked CDF id
-        value:
-          type: string
-          description: Linked CDF value
-      title: LinkValues
-    Links:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/Link'
-    CdfValueLinks:
-      type: object
-      description: Linked CDF value response based on different user filters
-      properties:
-        childCount:
-          type: integer
-          format: int32
-          description: Count of child links
-        description:
-          type: string
-          description: CDF value description. This field is mandatory for creating/updating NA Department Code CDF values
-        id:
-          type: integer
-          format: int64
-          description: CDF value ID
-        links:
-          $ref: '#/components/schemas/CdfLinks'
-          description: Linked Cdf values
-        parentCount:
-          type: integer
-          format: int32
-          description: Count of parent links
-        value:
-          type: string
-          description: CDF value name. By default, maximum supported characters is 30 for LIST type and 50 for FREE_FIELD.
-          minLength: 1
-      required:
-      - value
-      title: CdfValueLinks
     CdfDefinitions:
       type: object
       description: CDF Definitions
@@ -1153,33 +1151,6 @@ components:
           items:
             $ref: '#/components/schemas/CdfDefinition'
       title: CDFDefinitions
-    JsonPatchRequest:
-      type: object
-      properties:
-        op:
-          type: string
-        path:
-          type: string
-        value: {}
-    Link:
-      type: object
-      properties:
-        deprecation:
-          type: string
-        href:
-          type: string
-        hreflang:
-          type: string
-        name:
-          type: string
-        profile:
-          type: string
-        templated:
-          type: boolean
-        title:
-          type: string
-        type:
-          type: string
     CdfValue:
       type: object
       description: CDF value response based on different user filters
@@ -1221,6 +1192,35 @@ components:
           items:
             $ref: '#/components/schemas/CdfLinkValue'
       title: Links
+    CdfValueLinks:
+      type: object
+      description: Linked CDF value response based on different user filters
+      properties:
+        childCount:
+          type: integer
+          format: int32
+          description: Count of child links
+        description:
+          type: string
+          description: CDF value description. This field is mandatory for creating/updating NA Department Code CDF values
+        id:
+          type: integer
+          format: int64
+          description: CDF value ID
+        links:
+          $ref: '#/components/schemas/CdfLinks'
+          description: Linked Cdf values
+        parentCount:
+          type: integer
+          format: int32
+          description: Count of parent links
+        value:
+          type: string
+          description: CDF value name. By default, maximum supported characters is 30 for LIST type and 50 for FREE_FIELD.
+          minLength: 1
+      required:
+      - value
+      title: CdfValueLinks
     CdfValuesResponse:
       type: object
       description: CDF values response based on different user filters

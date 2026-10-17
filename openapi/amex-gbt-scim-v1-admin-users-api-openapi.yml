@@ -264,30 +264,6 @@ paths:
       - scim-v1-admin-users
 components:
   schemas:
-    ScimPatchSchema:
-      type: object
-      description: The user patch request schema.
-      properties:
-        Operations:
-          type: array
-          description: List of scim patch operations.
-          items:
-            $ref: '#/components/schemas/ScimPatchOperationSchema'
-          maxItems: 2147483647
-          minItems: 1
-        meta:
-          $ref: '#/components/schemas/MetaSchema'
-          description: The attribute containing the resource metadata.
-        schemas:
-          type: array
-          description: The schema urns for the associated resource.
-          items:
-            type: string
-          uniqueItems: true
-      required:
-      - Operations
-      - schemas
-      title: ScimPatchSchema
     ErrorSchema:
       type: object
       description: The error schema for representing error details.
@@ -317,6 +293,16 @@ components:
       - schemas
       - status
       title: Error schema
+    ScimPatchOperationSchema:
+      type: object
+      description: A complex object for scim patch oeration.
+      properties:
+        op:
+          type: string
+        path:
+          type: string
+        value: {}
+      title: ScimPatchOperation
     AdminUserSchema:
       type: object
       description: The extended custom attributes specific to Egencia travel management system.
@@ -352,6 +338,94 @@ components:
       - partner
       - pointOfSales
       title: Admin user
+    SearchResponse:
+      type: object
+      description: The complex model containing filtered fields from user schema.
+      properties:
+        emails:
+          type: array
+          description: The email addresses associated with the user account.
+          items:
+            $ref: '#/components/schemas/EmailSchema'
+          maxItems: 1
+          minItems: 1
+        name:
+          $ref: '#/components/schemas/NameSchema'
+          description: The name details of the user like first name, last name, etc. This is a mandatory property.
+        urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse:
+          $ref: '#/components/schemas/AdminUserSchema'
+          description: Extended custom attributes specific to Egencia travel management system.
+        userName:
+          type: string
+          description: The username of the user
+      required:
+      - emails
+      - name
+      - urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse
+    ScimPatchSchema:
+      type: object
+      description: The user patch request schema.
+      properties:
+        Operations:
+          type: array
+          description: List of scim patch operations.
+          items:
+            $ref: '#/components/schemas/ScimPatchOperationSchema'
+          maxItems: 2147483647
+          minItems: 1
+        meta:
+          $ref: '#/components/schemas/MetaSchema'
+          description: The attribute containing the resource metadata.
+        schemas:
+          type: array
+          description: The schema urns for the associated resource.
+          items:
+            type: string
+          uniqueItems: true
+      required:
+      - Operations
+      - schemas
+      title: ScimPatchSchema
+    NameSchema:
+      type: object
+      description: The complex model containing name attributes of the user.
+      properties:
+        familyName:
+          type: string
+          description: The family or last name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
+          maxLength: 40
+          minLength: 0
+        formatted:
+          type: string
+          description: The formatted name of the user
+        givenName:
+          type: string
+          description: The given or first name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
+          maxLength: 40
+          minLength: 0
+        middleName:
+          type: string
+          description: The middle name of the user. Maximum supported characters is 40.
+          maxLength: 40
+          minLength: 0
+      required:
+      - familyName
+      - givenName
+      title: Name
+    DataSchema:
+      type: object
+      description: The data schema for representing error details of different attributes
+      properties:
+        attribute:
+          type: string
+          description: The name of the schema-defined attribute, if missing or invalid.
+        message:
+          type: string
+          description: The error message related to the erroneous attribute.
+      required:
+      - attribute
+      - message
+      title: Data schema
     ListResponse:
       type: object
       description: This is a list response schema containing the resources returned based on the filtering condition.
@@ -381,6 +455,48 @@ components:
       required:
       - schemas
       title: User Search Response schema
+    MetaSchema:
+      type: object
+      description: A complex attribute containing resource metadata.
+      properties:
+        created:
+          type: string
+          format: date-time
+          description: The creation time metadata.
+        lastModified:
+          type: string
+          format: date-time
+          description: The last modification time.
+        location:
+          type: string
+          format: uri
+          description: The location of the user resource accessible by URI.
+        version:
+          type: string
+          description: The version of the resource.
+      title: Meta
+    SearchRequestSchema:
+      type: object
+      description: The user search schema. Currently it supports only emails with eq operator.
+      properties:
+        filter:
+          type: string
+          description: Contains the expression for filtering the request. Currently only search by email, name and username is supported with eq operator. This filter attribute can be used to collect Egencia ID by searching via email and Egencia website ID
+          example: '"name[givenName eq \"egencia\"] and name[familyName eq \"adminUser\"]"'
+          title: FilterRequest
+        meta:
+          $ref: '#/components/schemas/MetaSchema'
+          description: The attribute containing the resource metadata.
+        schemas:
+          type: array
+          description: The schema urns for the associated resource.
+          items:
+            type: string
+          uniqueItems: true
+      required:
+      - filter
+      - schemas
+      title: User Search schema
     UserSchema:
       type: object
       description: The user resource schema.
@@ -416,122 +532,6 @@ components:
       - schemas
       - urn:ietf:params:scim:schemas:extension:egencia:2.0:Admin
       title: User schema
-    MetaSchema:
-      type: object
-      description: A complex attribute containing resource metadata.
-      properties:
-        created:
-          type: string
-          format: date-time
-          description: The creation time metadata.
-        lastModified:
-          type: string
-          format: date-time
-          description: The last modification time.
-        location:
-          type: string
-          format: uri
-          description: The location of the user resource accessible by URI.
-        version:
-          type: string
-          description: The version of the resource.
-      title: Meta
-    NameSchema:
-      type: object
-      description: The complex model containing name attributes of the user.
-      properties:
-        familyName:
-          type: string
-          description: The family or last name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-        formatted:
-          type: string
-          description: The formatted name of the user
-        givenName:
-          type: string
-          description: The given or first name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-        middleName:
-          type: string
-          description: The middle name of the user. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-      required:
-      - familyName
-      - givenName
-      title: Name
-    SearchRequestSchema:
-      type: object
-      description: The user search schema. Currently it supports only emails with eq operator.
-      properties:
-        filter:
-          type: string
-          description: Contains the expression for filtering the request. Currently only search by email, name and username is supported with eq operator. This filter attribute can be used to collect Egencia ID by searching via email and Egencia website ID
-          example: '"name[givenName eq \"egencia\"] and name[familyName eq \"adminUser\"]"'
-          title: FilterRequest
-        meta:
-          $ref: '#/components/schemas/MetaSchema'
-          description: The attribute containing the resource metadata.
-        schemas:
-          type: array
-          description: The schema urns for the associated resource.
-          items:
-            type: string
-          uniqueItems: true
-      required:
-      - filter
-      - schemas
-      title: User Search schema
-    ScimPatchOperationSchema:
-      type: object
-      description: A complex object for scim patch oeration.
-      properties:
-        op:
-          type: string
-        path:
-          type: string
-        value: {}
-      title: ScimPatchOperation
-    DataSchema:
-      type: object
-      description: The data schema for representing error details of different attributes
-      properties:
-        attribute:
-          type: string
-          description: The name of the schema-defined attribute, if missing or invalid.
-        message:
-          type: string
-          description: The error message related to the erroneous attribute.
-      required:
-      - attribute
-      - message
-      title: Data schema
-    SearchResponse:
-      type: object
-      description: The complex model containing filtered fields from user schema.
-      properties:
-        emails:
-          type: array
-          description: The email addresses associated with the user account.
-          items:
-            $ref: '#/components/schemas/EmailSchema'
-          maxItems: 1
-          minItems: 1
-        name:
-          $ref: '#/components/schemas/NameSchema'
-          description: The name details of the user like first name, last name, etc. This is a mandatory property.
-        urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse:
-          $ref: '#/components/schemas/AdminUserSchema'
-          description: Extended custom attributes specific to Egencia travel management system.
-        userName:
-          type: string
-          description: The username of the user
-      required:
-      - emails
-      - name
-      - urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse
     PointOfSaleSchema:
       type: object
       description: The complex model containing point of sale association.

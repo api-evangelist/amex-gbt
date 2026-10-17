@@ -66,24 +66,13 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    GbtCapAckRequest:
+    ErrorNode:
       type: object
       properties:
-        status:
+        errorCode:
           type: string
-          enum:
-          - SUCCESS
-          - ERROR
-        code:
+        errorDescription:
           type: string
-        message:
-          type: string
-        transactionId:
-          type: string
-        errorTyp:
-          type: string
-        acknowledgementSuccessDetails:
-          $ref: '#/components/schemas/GbtCapAckRequestData'
     GbtCapAckRequestData:
       type: object
       properties:
@@ -102,13 +91,24 @@ components:
           type: string
         account_number:
           type: string
-    ErrorNode:
+    GbtCapAckRequest:
       type: object
       properties:
-        errorCode:
+        status:
           type: string
-        errorDescription:
+          enum:
+          - SUCCESS
+          - ERROR
+        code:
           type: string
+        message:
+          type: string
+        transactionId:
+          type: string
+        errorTyp:
+          type: string
+        acknowledgementSuccessDetails:
+          $ref: '#/components/schemas/GbtCapAckRequestData'
   securitySchemes:
     oAuth2:
       type: oauth2

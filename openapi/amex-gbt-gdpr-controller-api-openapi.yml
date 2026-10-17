@@ -160,6 +160,12 @@ paths:
       description: Generated server url
 components:
   schemas:
+    ErrorNode:
+      properties:
+        error_code:
+          type: string
+        error_description:
+          type: string
     UserGDPRValidationResponseBean:
       properties:
         action_status:
@@ -171,11 +177,12 @@ components:
           type: array
           items:
             type: string
-    ErrorNode:
+    ErrorNode_2:
+      type: object
       properties:
-        error_code:
+        errorCode:
           type: string
-        error_description:
+        errorDescription:
           type: string
     UserGDPRValidationResponseBean_2:
       type: object
@@ -189,32 +196,13 @@ components:
           type: array
           items:
             type: string
-    ErrorNode_2:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorDescription:
-          type: string
-    UserGDPRValidationResponseBean_3:
-      properties:
-        actionStatus:
-          type: string
-        userId:
-          type: integer
-          format: int32
-        validationMessages:
-          type: array
-          items:
-            type: string
     ErrorNode_3:
       properties:
         errorCode:
           type: string
         errorDescription:
           type: string
-    UserGDPRValidationResponseBean_4:
-      type: object
+    UserGDPRValidationResponseBean_3:
       properties:
         actionStatus:
           type: string
@@ -232,6 +220,18 @@ components:
           type: string
         errorDescription:
           type: string
+    UserGDPRValidationResponseBean_4:
+      type: object
+      properties:
+        actionStatus:
+          type: string
+        userId:
+          type: integer
+          format: int32
+        validationMessages:
+          type: array
+          items:
+            type: string
   securitySchemes:
     OAuth2:
       flows:

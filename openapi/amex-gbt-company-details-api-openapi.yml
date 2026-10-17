@@ -302,62 +302,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ActivationStatusAudit:
-      type: object
-      properties:
-        changedBy:
-          type: integer
-          format: int64
-        changedAt:
-          type: integer
-          format: int64
-        oldStatus:
-          type: string
-          enum:
-          - PENDING_ACTIVATION
-          - ACTIVE
-          - BLOCKED_FOR_BOOKING
-          - BLOCKED_FOR_BOOKING_AND_INVOICING
-          - DISABLED
-          - DEACTIVATED
-        newStatus:
-          type: string
-          enum:
-          - PENDING_ACTIVATION
-          - ACTIVE
-          - BLOCKED_FOR_BOOKING
-          - BLOCKED_FOR_BOOKING_AND_INVOICING
-          - DISABLED
-          - DEACTIVATED
-        salesforceCaseNumber:
-          type: string
-    User:
-      type: object
-      properties:
-        tuid:
-          type: integer
-          format: int64
-        title:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        userId:
-          type: string
-        email:
-          type: string
-        alternateEmail:
-          type: string
-        role:
-          type: string
-          enum:
-          - ACCOUNT_MANAGER
-          - BILLING_CONTACT
-        phoneNumbers:
-          type: array
-          items:
-            $ref: '#/components/schemas/PhoneNumber'
     Company_Display_Name:
       type: object
       description: ' Company Display Name with ComapnyId'
@@ -433,12 +377,26 @@ components:
       required:
       - companyId
       - companyName
-    PhoneNumber:
+    Address:
       type: object
       properties:
-        number:
+        suite:
           type: string
-        label:
+        street:
+          type: string
+        addressLine2:
+          type: string
+        province:
+          type: string
+        city:
+          type: string
+        romanizedCity:
+          type: string
+        country:
+          type: string
+        countryCode:
+          type: string
+        postalCode:
           type: string
     Company_Search_Response:
       type: object
@@ -461,26 +419,68 @@ components:
           description: List of companies matching search criteria
           items:
             $ref: '#/components/schemas/Company_Display_Name'
-    Address:
+    User:
       type: object
       properties:
-        suite:
+        tuid:
+          type: integer
+          format: int64
+        title:
           type: string
-        street:
+        firstName:
           type: string
-        addressLine2:
+        lastName:
           type: string
-        province:
+        userId:
           type: string
-        city:
+        email:
           type: string
-        romanizedCity:
+        alternateEmail:
           type: string
-        country:
+        role:
           type: string
-        countryCode:
+          enum:
+          - ACCOUNT_MANAGER
+          - BILLING_CONTACT
+        phoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
+    PhoneNumber:
+      type: object
+      properties:
+        number:
           type: string
-        postalCode:
+        label:
+          type: string
+    ActivationStatusAudit:
+      type: object
+      properties:
+        changedBy:
+          type: integer
+          format: int64
+        changedAt:
+          type: integer
+          format: int64
+        oldStatus:
+          type: string
+          enum:
+          - PENDING_ACTIVATION
+          - ACTIVE
+          - BLOCKED_FOR_BOOKING
+          - BLOCKED_FOR_BOOKING_AND_INVOICING
+          - DISABLED
+          - DEACTIVATED
+        newStatus:
+          type: string
+          enum:
+          - PENDING_ACTIVATION
+          - ACTIVE
+          - BLOCKED_FOR_BOOKING
+          - BLOCKED_FOR_BOOKING_AND_INVOICING
+          - DISABLED
+          - DEACTIVATED
+        salesforceCaseNumber:
           type: string
   securitySchemes:
     oAuth2:

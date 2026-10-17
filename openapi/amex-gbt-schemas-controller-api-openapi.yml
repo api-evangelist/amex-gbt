@@ -77,6 +77,30 @@ components:
       required:
       - attributes
       - id
+    SearchResponse:
+      type: object
+      description: The complex model containing filtered fields from user schema.
+      properties:
+        emails:
+          type: array
+          description: The email addresses associated with the user account.
+          items:
+            $ref: '#/components/schemas/EmailSchema'
+          maxItems: 1
+          minItems: 1
+        name:
+          $ref: '#/components/schemas/NameSchema'
+          description: The name details of the user like first name, last name, etc. This is a mandatory property.
+        urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse:
+          $ref: '#/components/schemas/AdminUserSchema'
+          description: Extended custom attributes specific to Egencia travel management system.
+        userName:
+          type: string
+          description: The username of the user
+      required:
+      - emails
+      - name
+      - urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse
     AdminUserSchema:
       type: object
       description: The extended custom attributes specific to Egencia travel management system.
@@ -112,6 +136,58 @@ components:
       - partner
       - pointOfSales
       title: Admin user
+    Meta:
+      type: 'null'
+      properties:
+        created:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastModified:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        location:
+          type:
+          - string
+          - 'null'
+          format: uri
+        resourceType:
+          type:
+          - string
+          - 'null'
+        version:
+          type:
+          - string
+          - 'null'
+    NameSchema:
+      type: object
+      description: The complex model containing name attributes of the user.
+      properties:
+        familyName:
+          type: string
+          description: The family or last name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
+          maxLength: 40
+          minLength: 0
+        formatted:
+          type: string
+          description: The formatted name of the user
+        givenName:
+          type: string
+          description: The given or first name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
+          maxLength: 40
+          minLength: 0
+        middleName:
+          type: string
+          description: The middle name of the user. Maximum supported characters is 40.
+          maxLength: 40
+          minLength: 0
+      required:
+      - familyName
+      - givenName
+      title: Name
     ListResponse:
       type: object
       description: This is a list response schema containing the resources returned based on the filtering condition.
@@ -141,52 +217,6 @@ components:
       required:
       - schemas
       title: User Search Response schema
-    MetaSchema:
-      type: object
-      description: A complex attribute containing resource metadata.
-      properties:
-        created:
-          type: string
-          format: date-time
-          description: The creation time metadata.
-        lastModified:
-          type: string
-          format: date-time
-          description: The last modification time.
-        location:
-          type: string
-          format: uri
-          description: The location of the user resource accessible by URI.
-        version:
-          type: string
-          description: The version of the resource.
-      title: Meta
-    NameSchema:
-      type: object
-      description: The complex model containing name attributes of the user.
-      properties:
-        familyName:
-          type: string
-          description: The family or last name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-        formatted:
-          type: string
-          description: The formatted name of the user
-        givenName:
-          type: string
-          description: The given or first name of the user. This field is mandatory and cannot be empty. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-        middleName:
-          type: string
-          description: The middle name of the user. Maximum supported characters is 40.
-          maxLength: 40
-          minLength: 0
-      required:
-      - familyName
-      - givenName
-      title: Name
     AttributeDefinition:
       type: object
       properties:
@@ -260,30 +290,26 @@ components:
       - required
       - returned
       - type
-    SearchResponse:
+    MetaSchema:
       type: object
-      description: The complex model containing filtered fields from user schema.
+      description: A complex attribute containing resource metadata.
       properties:
-        emails:
-          type: array
-          description: The email addresses associated with the user account.
-          items:
-            $ref: '#/components/schemas/EmailSchema'
-          maxItems: 1
-          minItems: 1
-        name:
-          $ref: '#/components/schemas/NameSchema'
-          description: The name details of the user like first name, last name, etc. This is a mandatory property.
-        urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse:
-          $ref: '#/components/schemas/AdminUserSchema'
-          description: Extended custom attributes specific to Egencia travel management system.
-        userName:
+        created:
           type: string
-          description: The username of the user
-      required:
-      - emails
-      - name
-      - urn:ietf:params:scim:schemas:extension:egencia:2.0:AdminUserSearchResponse
+          format: date-time
+          description: The creation time metadata.
+        lastModified:
+          type: string
+          format: date-time
+          description: The last modification time.
+        location:
+          type: string
+          format: uri
+          description: The location of the user resource accessible by URI.
+        version:
+          type: string
+          description: The version of the resource.
+      title: Meta
     PointOfSaleSchema:
       type: object
       description: The complex model containing point of sale association.
@@ -320,32 +346,6 @@ components:
       - pointOfSaleId
       - role
       title: Name
-    Meta:
-      type: 'null'
-      properties:
-        created:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        lastModified:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        location:
-          type:
-          - string
-          - 'null'
-          format: uri
-        resourceType:
-          type:
-          - string
-          - 'null'
-        version:
-          type:
-          - string
-          - 'null'
     EmailSchema:
       type: object
       description: The complex model containing email details of the user.

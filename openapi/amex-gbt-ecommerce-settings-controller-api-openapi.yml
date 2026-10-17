@@ -109,23 +109,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DkChange'
-    ECommerceSetting:
-      type: object
-      properties:
-        settingType:
-          type: string
-          enum:
-          - INVOICE_SETTING
-          - PAYMENT_SETTING
-          - COMPANY_SETTING
-        setting: {}
-    ECommerceSettingsApiResponse:
-      type: object
-      properties:
-        ecommerceSettings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ECommerceSetting'
     DkChange:
       type: object
       properties:
@@ -140,6 +123,23 @@ components:
           - INVOICE_SETTING
           - PAYMENT_SETTING
           - COMPANY_SETTING
+    ECommerceSettingsApiResponse:
+      type: object
+      properties:
+        ecommerceSettings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ECommerceSetting'
+    ECommerceSetting:
+      type: object
+      properties:
+        settingType:
+          type: string
+          enum:
+          - INVOICE_SETTING
+          - PAYMENT_SETTING
+          - COMPANY_SETTING
+        setting: {}
   securitySchemes:
     oAuth2:
       type: oauth2
